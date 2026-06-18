@@ -1,0 +1,335 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Οδηγός Εγκατάστασης Debian GNU/Linux</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<meta name="description" content="Το κείμενο αυτό περιέχει οδηγίες για το σύστημα Debian GNU/Linux 12 για την αρχιτεκτονική 64-bit ARM (arm64). Περιέχει επίσης δείκτες σε επιπλέον πληροφορίες και πληροφορία σχετικά με το πώς να αξιοποιήσετε κατά τον καλύτερο δυνατό τρόπο το καινούριο σας σύστημα Debian. ">
+<link rel="home" href="index.html" title="Οδηγός Εγκατάστασης Debian GNU/Linux">
+<link rel="next" href="pr01.html" title="Εγκαθιστώντας το Debian GNU/Linux 12 για την αρχιτεκτονική arm64">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Οδηγός Εγκατάστασης Debian GNU/Linux</th></tr>
+<tr>
+<td width="20%" align="left"> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="pr01.html"><img src="images/next.png" alt="Επόμενο"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div lang="el" class="book">
+<div class="titlepage">
+<div>
+<div><h1 class="title">
+<a name="idm1"></a>Οδηγός Εγκατάστασης Debian GNU/Linux</h1></div>
+<div><p class="copyright">Πνευματικά Δικαιώματα © 2004 – 2023 H ομάδα του εγκαταστάτη του Debian</p></div>
+<div><div class="legalnotice">
+<a name="idm12"></a><p>Το εγχειρίδιο αυτό είναι ελεύθερο λογισμικό. Μπορείτε να το αναδιανείμετε και να το τροποποιήσετε σύμφωνα με τους όρους της Άδειας GNU General Public License. Παρακαλούμε. αναφερθείτε στην άδεια αυτή στη σελίδα <a class="xref" href="apf.html" title="Παράρτημα F. ΓΕΝΙΚΗ ΑΔΕΙΑ ΔΗΜΟΣΙΑΣ ΧΡΗΣΗΣ GNU">Παράρτημα F, <i>ΓΕΝΙΚΗ ΑΔΕΙΑ ΔΗΜΟΣΙΑΣ ΧΡΗΣΗΣ GNU</i></a>. </p>
+<p>Έκδοση παραγωγής αυτού εγχειριδίου: 20230508+deb12u1. </p>
+</div></div>
+<div><div class="abstract">
+<p class="title"><b>Περίληψη</b></p>
+<p>Το κείμενο αυτό περιέχει οδηγίες για το σύστημα Debian GNU/Linux 12 για την αρχιτεκτονική  <span class="phrase">64-bit ARM</span> (<span class="quote">«<span class="quote">arm64</span>»</span>). Περιέχει επίσης δείκτες σε επιπλέον πληροφορίες και πληροφορία σχετικά με το πώς να  αξιοποιήσετε κατά τον καλύτερο δυνατό τρόπο το καινούριο σας σύστημα Debian. </p>
+<p>
+
+
+
+</p>
+</div></div>
+</div>
+<hr>
+</div>
+<div class="toc">
+<p><b>Πίνακας Περιεχομένων</b></p>
+<dl class="toc">
+<dt><span class="preface"><a href="pr01.html">Εγκαθιστώντας το Debian GNU/Linux 12 για την αρχιτεκτονική arm64</a></span></dt>
+<dt><span class="chapter"><a href="ch01.html">1. Καλώς ήλθατε στο Debian</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="ch01s01.html">1.1. Τι είναι το Debian;</a></span></dt>
+<dt><span class="sect1"><a href="ch01s02.html">1.2. Τι είναι το GNU/Linux;</a></span></dt>
+<dt><span class="sect1"><a href="ch01s03.html">1.3. Τι είναι το Debian GNU/Linux;</a></span></dt>
+<dt><span class="sect1"><a href="ch01s04.html">1.4. Τι είναι ο εγκαταστάτης του Debian;</a></span></dt>
+<dt><span class="sect1"><a href="ch01s05.html">1.5. Αποκτώντας το Debian</a></span></dt>
+<dt><span class="sect1"><a href="ch01s06.html">1.6. Αποκτώντας την νεώτερη έκδοση αυτού του κειμένου</a></span></dt>
+<dt><span class="sect1"><a href="ch01s07.html">1.7. Οργάνωση αυτού του κειμένου</a></span></dt>
+<dt><span class="sect1"><a href="ch01s08.html">1.8. Σχετικά με τα Πνευματικά Δικαιώματα και τις Άδειες Χρήσης </a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="ch02.html">2. Απαιτήσεις Συστήματος</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="ch02s01.html">2.1. Υποστηριζόμενο Υλικό</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch02s01.html#idm185">2.1.1. Υποστηριζόμενες Αρχιτεκτονικές</a></span></dt>
+<dt><span class="sect2"><a href="ch02s01.html#idm270">2.1.2. Τρεις διαφορετικές υλοποιήσεις ARM</a></span></dt>
+<dt><span class="sect2"><a href="ch02s01.html#idm281">2.1.3. Παραλλαγές στον σχεδιασμό των ARM CPU και πολυπλοκότητα υποστήριξης</a></span></dt>
+<dt><span class="sect2"><a href="ch02s01.html#arm64-supported-platforms">2.1.4. Πλατφόρμες υποστηριζόμενες από το Debian/arm64</a></span></dt>
+<dt><span class="sect2"><a href="ch02s01.html#idm308">2.1.5. Πολλαπλοί Επεξεργαστές</a></span></dt>
+<dt><span class="sect2"><a href="ch02s01.html#gfx">2.1.6. Υποστήριξη Υλικού Γραφικών</a></span></dt>
+<dt><span class="sect2"><a href="ch02s01.html#network-cards">2.1.7. Υλικό Δικτυακής Σύνδεσης</a></span></dt>
+<dt><span class="sect2"><a href="ch02s01.html#supported-peripherals">2.1.8. Περιφερειακά και άλλο Υλικό</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="ch02s02.html">2.2. Συσκευές που απαιτούν firmware</a></span></dt>
+<dt><span class="sect1"><a href="ch02s03.html">2.3. Αγοράζοντας υλικό ειδικά για το GNU/Linux</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="ch02s03.html#idm356">2.3.1. Αποφύγετε κλειστό ή Proprietary υλικό</a></span></dt></dl></dd>
+<dt><span class="sect1"><a href="ch02s04.html">2.4. Μέσα Εγκατάστασης</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch02s04.html#idm368">2.4.1. CD-ROM/DVD-ROM/BD-ROM</a></span></dt>
+<dt><span class="sect2"><a href="ch02s04.html#idm371">2.4.2. USB stick μνήμης</a></span></dt>
+<dt><span class="sect2"><a href="ch02s04.html#idm375">2.4.3. Δίκτυο</a></span></dt>
+<dt><span class="sect2"><a href="ch02s04.html#idm381">2.4.4. Σκληρός Δίσκος</a></span></dt>
+<dt><span class="sect2"><a href="ch02s04.html#idm384">2.4.5. Σύστημα Un*x ή GNU</a></span></dt>
+<dt><span class="sect2"><a href="ch02s04.html#idm389">2.4.6. Υποστηριζόμενα συστήματα Αποθήκευσης</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="ch02s05.html">2.5. Απαιτήσεις Μνήμης και χώρου Δίσκου</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="ch03.html">3. Πριν την εγκατάσταση του Debian GNU/Linux</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="ch03s01.html">3.1. Επισκόπηση της Διαδικασίας Εγκατάστασης</a></span></dt>
+<dt><span class="sect1"><a href="ch03s02.html">3.2. Σώστε τα Υπάρχοντα Δεδομένα σας!</a></span></dt>
+<dt><span class="sect1"><a href="ch03s03.html">3.3. Πληροφορίες που θα χρειαστείτε</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch03s03.html#idm468">3.3.1. Τεκμηρίωση</a></span></dt>
+<dt><span class="sect2"><a href="ch03s03.html#fsohi">3.3.2. Βρίσκοντας πηγές για πληροφορίες σχετικά με το Υλικό σας</a></span></dt>
+<dt><span class="sect2"><a href="ch03s03.html#idm534">3.3.3. Συμβατότητα Υλικού</a></span></dt>
+<dt><span class="sect2"><a href="ch03s03.html#idm574">3.3.4. Ρυθμίσεις Δικτύου</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="ch03s04.html">3.4. Ικανοποίηση των ελάχιστων απαιτήσεων Υλικού</a></span></dt>
+<dt><span class="sect1"><a href="ch03s05.html">3.5. Προκατάτμηση για Συστήματα με εκκίνηση πολλαπλών λειτουργικών</a></span></dt>
+<dt><span class="sect1"><a href="ch03s06.html">3.6. Ρύθμιση του Υλικού και του Λειτουργικού συστήματος πριν την εγκατάσταση</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch03s06.html#boot-dev-select-arm64">3.6.1. Επιλογή συσκευής εκκίνησης</a></span></dt>
+<dt><span class="sect2"><a href="ch03s06.html#arm-firmware-overview">3.6.2. ARM firmware</a></span></dt>
+<dt><span class="sect2"><a href="ch03s06.html#uboot-macsetting">3.6.3. Ρύθμιση της διεύθυνσης MAC του ethernet για U-Boot</a></span></dt>
+<dt><span class="sect2"><a href="ch03s06.html#uboot-relocation-issues">3.6.4. Ζητήματα μετεγκατάστασης Kernel/Initrd/Device-Tree για U-Boot</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="ch04.html">4. Αποκτώντας τα Μέσα Εγκατάστασης του Συστήματος</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="ch04s01.html">4.1. Επίσημες εικόνες εγκατάστασης του Debian GNU/Linux</a></span></dt>
+<dt><span class="sect1"><a href="ch04s02.html">4.2. Λήψη Αρχείων από τους Κατοπτριστές αρχείων του Debian</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="ch04s02.html#where-files">4.2.1. Πού να βρείτε αρχεία της εγκατάστασης</a></span></dt></dl></dd>
+<dt><span class="sect1"><a href="ch04s03.html">4.3. Προετοιμασία Αρχείων για Εκκίνηση από ένα USB Stick μνήμης</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="ch04s03.html#usb-copy-isohybrid">4.3.1. Προετοιμάζοντας ένα κλειδί USB xρησιμοποιώντας μια υβριδική εικόνα CD/DVD</a></span></dt></dl></dd>
+<dt><span class="sect1"><a href="ch04s04.html">4.4. Προετοιμασία Αρχείων για δικτυακή εκκίνηση με TFTP</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch04s04.html#tftp-rarp">4.4.1. Ρυθμίζοντας έναν εξυπηρετητή RARP</a></span></dt>
+<dt><span class="sect2"><a href="ch04s04.html#dhcpd">4.4.2. Ρυθμίζοντας έναν εξυπηρετητή DHCP</a></span></dt>
+<dt><span class="sect2"><a href="ch04s04.html#tftp-bootp">4.4.3. Ρύθμιση ενός εξυπηρετητή BOOTP</a></span></dt>
+<dt><span class="sect2"><a href="ch04s04.html#tftpd">4.4.4. Ενεργοποίηση του εξυπηρετητή TFTP</a></span></dt>
+<dt><span class="sect2"><a href="ch04s04.html#tftp-images">4.4.5. Μεταφορά των ειδώλων TFTP στη θέση τους</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="ch04s05.html">4.5. Αυτόματη Εγκατάσταση</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="ch04s05.html#preseed">4.5.1. Αυτόματη εγκατάσταση με χρήση του Debian Installer </a></span></dt></dl></dd>
+<dt><span class="sect1"><a href="ch04s06.html">4.6. Επαλήθευση της ακεραιότητας των αρχείων εγκατάστασης</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="ch05.html">5. Εκκίνηση του Συστήματος Εγκατάστασης</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="ch05s01.html">5.1. Ξεκινώντας τον εγκαταστάτη στην αρχιτεκτονική <span class="phrase">64-bit ARM</span></a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch05s01.html#arm64-console-setup">5.1.1. Ρύθμιση της κονσόλας</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#juno-installation">5.1.2. Εγκατάσταση σε Juno</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#apm-installation">5.1.3. Εγκατάσταση σε Applied Micro Mustang</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#boot-tftp-arm">5.1.4. Εκκίνηση με TFTP</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#usb-boot-arm64">5.1.5. Εκκίνηση από κλειδί μνήμης USB με UEFI   </a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#graphical">5.1.6. Ο γραφικός Εγκαταστάτης</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="ch05s02.html">5.2. Προσβασιμότητα</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch05s02.html#idm969">5.2.1. Το front-end του εγκαταστάτη</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm992">5.2.2. Συσκευές Καρτών</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm996">5.2.3. Θέμα Υψηλής Αντίθεσης</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm1002">5.2.4. Zoom</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm1011">5.2.5. Εγκατάσταση έμπειρου χρήστη, λειτουργία διάσωσης και αυτοματοποιημένη εγκατάσταση</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm1025">5.2.6. Προσβασιμότητα του εγκατεστημένου συστήματος</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="ch05s03.html">5.3. Παράμετροι εκκίνησης</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch05s03.html#boot-console">5.3.1. Κονσόλα Εκκίνησης</a></span></dt>
+<dt><span class="sect2"><a href="ch05s03.html#installer-args">5.3.2. Παράμετροι του Εγκαταστάτη του Debian</a></span></dt>
+<dt><span class="sect2"><a href="ch05s03.html#preseed-args">5.3.3. Χρήση παραμέτρων εκκίνησης για την απάντηση ερωτήσεων</a></span></dt>
+<dt><span class="sect2"><a href="ch05s03.html#module-parms">5.3.4. Πέρασμα παραμέτρων στα αρθρώματα του πυρήνα</a></span></dt>
+<dt><span class="sect2"><a href="ch05s03.html#module-blacklist">5.3.5. Αποκλεισμός (blacklisting) αρθρωμάτων του πυρήνα</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="ch05s04.html">5.4. Ανίχνευση λαθών της Διαδικασίας Εγκατάστασης </a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch05s04.html#unreliable-cd">5.4.1. Αξιοπιστία των οπτικών μέσων</a></span></dt>
+<dt><span class="sect2"><a href="ch05s04.html#idm1351">5.4.2. Ρύθμιση της εκκίνησης</a></span></dt>
+<dt><span class="sect2"><a href="ch05s04.html#kernel-msgs">5.4.3. Ερμηνεία των μηνυμάτων έναρξης πυρήνα! </a></span></dt>
+<dt><span class="sect2"><a href="ch05s04.html#problem-report">5.4.4. Αναφορά Προβλημάτων της Εγκατάστασης</a></span></dt>
+<dt><span class="sect2"><a href="ch05s04.html#submit-bug">5.4.5. Διαδικασία υποβολής Αναφοράς Εγκατάστασης</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="ch06.html">6. Χρησιμοποιώντας τον Εγκαταστάτη του Debian</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="ch06s01.html">6.1. Πώς λειτουργεί ο Εγκαταστάτης</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="ch06s01.html#gtk-using">6.1.1. Χρησιμοποιώντας τον γραφικό εγκαταστάτη</a></span></dt></dl></dd>
+<dt><span class="sect1"><a href="ch06s02.html">6.2. Εισαγωγή στα συστατικά</a></span></dt>
+<dt><span class="sect1"><a href="ch06s03.html">6.3. Χρήση επιμέρους συστατικών</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch06s03.html#di-setup">6.3.1. Έναρξη του Εγκαταστάτη του Debian και Ρύθμιση του Υλικού</a></span></dt>
+<dt><span class="sect2"><a href="ch06s03.html#di-user-setup">6.3.2. Ρύθμιση των Χρηστών και των Κωδικών Πρόσβασης</a></span></dt>
+<dt><span class="sect2"><a href="ch06s03.html#clock-setup">6.3.3. Ρύθμιση του ρολογιού και της χρονικής ζώνης</a></span></dt>
+<dt><span class="sect2"><a href="ch06s03.html#di-partition">6.3.4. Διαμέριση και Επιλογή Σημείων Προσάρτησης</a></span></dt>
+<dt><span class="sect2"><a href="ch06s03.html#di-install-base">6.3.5. Εγκατάσταση του Βασικού Συστήματος</a></span></dt>
+<dt><span class="sect2"><a href="ch06s03.html#di-install-software">6.3.6. Εγκατάσταση Επιπρόσθετου Λογισμικού</a></span></dt>
+<dt><span class="sect2"><a href="ch06s03.html#di-make-bootable">6.3.7. Καθιστώντας το Σύστημα Εκκινήσιμο</a></span></dt>
+<dt><span class="sect2"><a href="ch06s03.html#di-finish">6.3.8. Τελειώνοντας την Εγκατάσταση</a></span></dt>
+<dt><span class="sect2"><a href="ch06s03.html#di-miscellaneous">6.3.9. Επίλυση προβλημάτων</a></span></dt>
+<dt><span class="sect2"><a href="ch06s03.html#network-console">6.3.10. Εγκατάσταση μέσω κονσόλας δικτύου</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="ch06s04.html">6.4. Φόρτωση λογισμικού firmware που απουσιάζει</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch06s04.html#idm2418">6.4.1. Προετοιμασία ενός μέσου</a></span></dt>
+<dt><span class="sect2"><a href="ch06s04.html#idm2429">6.4.2. Λογισμικό firmware και το Εγκατεστημένο Σύστημα</a></span></dt>
+<dt><span class="sect2"><a href="ch06s04.html#completing-installed-system">6.4.3. Ολοκλήρωση του εγκατεστημένου συστήματος</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="ch06s05.html">6.5. Προσαρμογή</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="ch06s05.html#idm2457">6.5.1. Εγκατάσταση ενός εναλλακτικού Συστήματος Init</a></span></dt></dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="ch07.html">7. Μπαίνοντας στο καινούριο σας σύστημα Debian</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="ch07s01.html">7.1. Η στιγμή της αλήθειας </a></span></dt>
+<dt><span class="sect1"><a href="ch07s02.html">7.2. Προσάρτηση κρυπτογραφημένων τόμων</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="ch07s02.html#crypto-troubleshooting">7.2.1. Επίλυση προβλημάτων</a></span></dt></dl></dd>
+<dt><span class="sect1"><a href="ch07s03.html">7.3. Είσοδος στο Σύστημα</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="ch08.html">8. Επόμενα βήματα και πού να πάτε από δω κι ύστερα</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="ch08s01.html">8.1. Κλείνοντας το σύστημά σας</a></span></dt>
+<dt><span class="sect1"><a href="ch08s02.html">8.2. Προσανατολιστείτε στο Debian</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch08s02.html#idm2579">8.2.1. Το σύστημα πακέτων του Debian</a></span></dt>
+<dt><span class="sect2"><a href="ch08s02.html#idm2609">8.2.2. Επιπρόσθετο Λογισμικό Διαθέσιμο για το Debian</a></span></dt>
+<dt><span class="sect2"><a href="ch08s02.html#idm2613">8.2.3. Διαχείριση των εκδόσεων των Εφαρμογών</a></span></dt>
+<dt><span class="sect2"><a href="ch08s02.html#idm2616">8.2.4. Διαχείριση Περιοδικών εργασιών</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="ch08s03.html">8.3. Παραπέρα Διάβασμα και Πληροφορίες</a></span></dt>
+<dt><span class="sect1"><a href="ch08s04.html">8.4. Ρύθμιση του συστήματός σας για την χρήση E-Mail</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch08s04.html#mail-default">8.4.1. Προκαθορισμένη διαμόρφωση E-mail</a></span></dt>
+<dt><span class="sect2"><a href="ch08s04.html#mail-outgoing">8.4.2. Αποστολή αλληλογραφίας εκτός συστήματος</a></span></dt>
+<dt><span class="sect2"><a href="ch08s04.html#config-mta">8.4.3. Ρύθμιση του MTA Exim4</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="ch08s05.html">8.5. Δημιουργία (μεταγλώττιση) ενός καινούριου πυρήνα</a></span></dt>
+<dt><span class="sect1"><a href="ch08s06.html">8.6. Ανακτώντας ένα Προβληματικό σύστημα</a></span></dt>
+</dl></dd>
+<dt><span class="appendix"><a href="apa.html">A. Οδηγός εγκατάστασης</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="apas01.html">A.1. Προκαταρκτικά</a></span></dt>
+<dt><span class="sect1"><a href="apas02.html">A.2. Ξεκινώντας τον Εγκαταστάτη</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="apas02.html#howto-getting-images-cdrom">A.2.1. Οπτικός δίσκος</a></span></dt>
+<dt><span class="sect2"><a href="apas02.html#howto-getting-images-usb">A.2.2. Κλειδί μνήμης USB</a></span></dt>
+<dt><span class="sect2"><a href="apas02.html#howto-getting-images-netboot">A.2.3. Εκκίνηση από δίκτυο</a></span></dt>
+<dt><span class="sect2"><a href="apas02.html#howto-getting-images-hard-disk">A.2.4. Εκκίνηση από σκληρό δίσκο</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="apas03.html">A.3. Εγκατάσταση</a></span></dt>
+<dt><span class="sect1"><a href="apas04.html">A.4. Στείλτε μας μια αναφορά εγκατάστασης</a></span></dt>
+<dt><span class="sect1"><a href="apas05.html">A.5. Και τέλος…</a></span></dt>
+</dl></dd>
+<dt><span class="appendix"><a href="apb.html">B. Αυτοματοποίηση της εγκατάστασης με χρήση προρυθμίσεων (preseeding)</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="apbs01.html">B.1. Εισαγωγή</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="apbs01.html#preseed-methods">B.1.1. Μέθοδοι προρύθμισης</a></span></dt>
+<dt><span class="sect2"><a href="apbs01.html#preseed-limitations">B.1.2. Περιορισμοί</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="apbs02.html">B.2. Χρησιμοποιώντας preseeding</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="apbs02.html#preseed-loading">B.2.1. Φόρτωση του αρχείου προρυθμίσεων</a></span></dt>
+<dt><span class="sect2"><a href="apbs02.html#preseed-bootparms">B.2.2. Χρήση παραμέτρων εκκίνησης για την προρύθμιση ερωτήσεων</a></span></dt>
+<dt><span class="sect2"><a href="apbs02.html#preseed-auto">B.2.3. Αυτόματη Κατάσταση (auto)</a></span></dt>
+<dt><span class="sect2"><a href="apbs02.html#preseed-aliases">B.2.4. Παρωνύμια χρήσιμα με την προρύθμιση</a></span></dt>
+<dt><span class="sect2"><a href="apbs02.html#preseed-bootparms-examples">B.2.5. Παραδείγματα προρύθμισης προτρεπτικού εκκίνησης</a></span></dt>
+<dt><span class="sect2"><a href="apbs02.html#preseed-dhcp">B.2.6. Χρήση ενός εξυπηρετητή DHCP για τον προσδιορισμό αρχείων προρυθμίσεων</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="apbs03.html">B.3. Δημιουργία ενός αρχείου προρυθμίσεων</a></span></dt>
+<dt><span class="sect1"><a href="apbs04.html">B.4. Περιεχόμενα του αρχείου προρύθμισης (για την έκδοση bookworm)</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="apbs04.html#preseed-l10n">B.4.1. Τοπικοποίηση</a></span></dt>
+<dt><span class="sect2"><a href="apbs04.html#preseed-network">B.4.2. Ρύθμιση δικτύου</a></span></dt>
+<dt><span class="sect2"><a href="apbs04.html#preseed-network-console">B.4.3. Κονσόλα δικτύου</a></span></dt>
+<dt><span class="sect2"><a href="apbs04.html#preseed-mirror">B.4.4. Ρυθμίσεις καθρέφτη της αρχειοθήκης του Debian</a></span></dt>
+<dt><span class="sect2"><a href="apbs04.html#preseed-account">B.4.5. Ρύθμιση Λογαριασμού</a></span></dt>
+<dt><span class="sect2"><a href="apbs04.html#preseed-time">B.4.6. Ρύθμιση ρολογιού και χρονικής ζώνης</a></span></dt>
+<dt><span class="sect2"><a href="apbs04.html#preseed-partman">B.4.7. Διαμέριση</a></span></dt>
+<dt><span class="sect2"><a href="apbs04.html#preseed-base-installer">B.4.8. Εγκατάσταση του βασικού συστήματος</a></span></dt>
+<dt><span class="sect2"><a href="apbs04.html#preseed-apt">B.4.9. Ρύθμιση setup</a></span></dt>
+<dt><span class="sect2"><a href="apbs04.html#preseed-pkgsel">B.4.10. Επιλογή πακέτων</a></span></dt>
+<dt><span class="sect2"><a href="apbs04.html#preseed-finish">B.4.11. Ολοκλήρωση της εγκατάστασης</a></span></dt>
+<dt><span class="sect2"><a href="apbs04.html#preseed-other">B.4.12. Χρήση preseeding για άλλα πακέτα</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="apbs05.html">B.5. Προχωρημένες επιλογές</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="apbs05.html#preseed-hooks">B.5.1. Εκτέλεση προσαρμοσμένων εντολών κατά την διάρκεια της εγκατάστασης.</a></span></dt>
+<dt><span class="sect2"><a href="apbs05.html#preseed-seenflag">B.5.2. Χρήση preseeding για την αλλαγή των προκαθορισμένων τιμών</a></span></dt>
+<dt><span class="sect2"><a href="apbs05.html#preseed-chainload">B.5.3. Αλυσιδωτή φόρτωση (chainloading) αρχείων προρυθμίσεων</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="appendix"><a href="apc.html">C. Δημιουργία κατατμήσεων για το Debian</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="apcs01.html">C.1. Αποφασίζοντας για τις κατατμήσεις στο Debian και τα μεγέθη τους</a></span></dt>
+<dt><span class="sect1"><a href="apcs02.html">C.2. Το Δέντρο των Καταλόγων</a></span></dt>
+<dt><span class="sect1"><a href="apcs03.html">C.3. Προτεινόμενο Σχήμα Διαμέρισης</a></span></dt>
+<dt><span class="sect1"><a href="apcs04.html">C.4. Ονόματα συσκευών στο Linux</a></span></dt>
+<dt><span class="sect1"><a href="apcs05.html">C.5. Προγράμματα Διαμέρισης στο Debian</a></span></dt>
+</dl></dd>
+<dt><span class="appendix"><a href="apd.html">D. Διάφορα</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="apds01.html">D.1. Συσκευές Linux</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="apds01.html#device-mouse">D.1.1. παλΡύθμιση του ποντικιού</a></span></dt></dl></dd>
+<dt><span class="sect1"><a href="apds02.html">D.2. Χώρος στο δίσκο που χρειάζεται για τις διάφορες Εργασίες</a></span></dt>
+<dt><span class="sect1"><a href="apds03.html">D.3. Εγκαθιστώντας το Debian GNU/Linux από ένα Σύστημα Unix/Linux</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="apds03.html#idm3817">D.3.1. Ξεκινώντας</a></span></dt>
+<dt><span class="sect2"><a href="apds03.html#idm3837">D.3.2. Εγκαθιστώντας με το <span class="command"><strong>debootstrap</strong></span></a></span></dt>
+<dt><span class="sect2"><a href="apds03.html#idm3862">D.3.3. Τρέξτε το <span class="command"><strong>debootstrap</strong></span></a></span></dt>
+<dt><span class="sect2"><a href="apds03.html#idm3887">D.3.4. Ρύθμιση του βασικού συστήματος</a></span></dt>
+<dt><span class="sect2"><a href="apds03.html#idm3994">D.3.5. Εγκατάσταση ενός Πυρήνα</a></span></dt>
+<dt><span class="sect2"><a href="apds03.html#idm4003">D.3.6. Ρύθμιση του Φορτωτή Εκκίνησης (Boot Loader)</a></span></dt>
+<dt><span class="sect2"><a href="apds03.html#idm4011">D.3.7. Απομακρυσμένη πρόσβαση: Εγκαθιστώντας με SSH και καθορίζοντας την πρόσβαση</a></span></dt>
+<dt><span class="sect2"><a href="apds03.html#idm4024">D.3.8. Τελευταίες πινελιές</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="apds04.html">D.4. Εγκαθιστώντας το Debian GNU/Linux χρησιμοποιώντας PPP over Ethernet (PPPoE)</a></span></dt>
+</dl></dd>
+<dt><span class="appendix"><a href="ape.html">E. Διαχειριστικά</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="apes01.html">E.1. Σχετικά με αυτό το κείμενο</a></span></dt>
+<dt><span class="sect1"><a href="apes02.html">E.2. Συνεισφορά στο Κείμενο</a></span></dt>
+<dt><span class="sect1"><a href="apes03.html">E.3. Κυριότερες Συνεισφορές</a></span></dt>
+<dt><span class="sect1"><a href="apes04.html">E.4. Μνεία Εμπορικών Σημάτων</a></span></dt>
+</dl></dd>
+<dt><span class="appendix"><a href="apf.html">F. ΓΕΝΙΚΗ ΑΔΕΙΑ ΔΗΜΟΣΙΑΣ ΧΡΗΣΗΣ GNU</a></span></dt>
+</dl>
+</div>
+<div class="list-of-tables">
+<p><b>Κατάλογος Πινάκων</b></p>
+<dl>
+<dt>3.1. <a href="ch03s03.html#idm504">Πληροφορίες για το υλικό που μπορούν να σας χρησιμεύσουν σε μια εγκατάσταση</a>
+</dt>
+<dt>3.2. <a href="ch03s04.html#idm604">Προτεινόμενες ελάχιστες απαιτήσεις του συστήματος</a>
+</dt>
+</dl>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left"> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="pr01.html"><img src="images/next.png" alt="Επόμενο"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top"> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right" valign="top"> Εγκαθιστώντας το Debian GNU/Linux 12 για την αρχιτεκτονική arm64</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

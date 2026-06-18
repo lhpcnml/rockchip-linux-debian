@@ -1,0 +1,214 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>2.1. Maquinari suportat</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Guia d'instal·lació de Debian GNU/Linux">
+<link rel="up" href="ch02.html" title="Capítol 2. Requisits del sistema">
+<link rel="prev" href="ch02.html" title="Capítol 2. Requisits del sistema">
+<link rel="next" href="ch02s02.html" title="2.2. Dispositius que requereixen microprogramari">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">2.1. Maquinari suportat</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch02.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<th width="60%" align="center">Capítol 2. Requisits del sistema</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch02s02.html"><img src="images/next.png" alt="Següent"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="hardware-supported"></a>2.1. Maquinari suportat</h2></div></div></div>
+<p>Debian no imposa cap requeriment més enllà dels necessaris pel nucli Linux i el conjunt de ferramentes GNU. Per això, qualsevol arquitectura o plataforma per la qual s'haja portat el nucli Linux, les libc, <span class="command"><strong>gcc</strong></span>, etc. i per la qual s'haja portat Debian, es pot executar Debian. Visiteu la pàgina dels ports <a class="ulink" href="https://www.debian.org/ports/arm/" target="_top">https://www.debian.org/ports/arm/</a> per obtenir més detalls dels sistemes on l'arquitectura <span class="phrase">64-bit ARM</span> s'ha comprovat amb Debian GNU/Linux. </p>
+<p>Més que intentar descriure totes les configuracions diferents del maquinari que estan separades per <span class="phrase">64-bit ARM</span>, aquesta secció conté informació general i apunts d'on trobar més informació. </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm186"></a>2.1.1. Arquitectures suportades</h3></div></div></div>
+<p>Debian GNU/Linux 12 suporta 9 arquitectures principals i diverses variacions de cada arquitectura conegudes com <span class="quote">«<span class="quote">sabors</span>»</span>. </p>
+<p>
+
+</p>
+<div class="informaltable"><table class="informaltable" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Arquitectura</th>
+<th>Nom a Debian</th>
+<th>Subarquitectura</th>
+<th>Sabor</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>AMD64 &amp; Intel 64</td>
+<td>amd64</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td rowspan="2">Basada en Intel x86</td>
+<td rowspan="2">i386</td>
+<td>màquines x86 predeterminades</td>
+<td>predeterminat</td>
+</tr>
+<tr>
+<td>Només dominis Xen PV</td>
+<td>xen</td>
+</tr>
+<tr>
+<td>ARM</td>
+<td>armel</td>
+<td>Marvell Kirkwood i Orion</td>
+<td>marvell</td>
+</tr>
+<tr>
+<td>ARM amb maquinari FPU</td>
+<td>armhf</td>
+<td>multiplatform</td>
+<td>armmp</td>
+</tr>
+<tr>
+<td>64bit ARM</td>
+<td>arm64</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td rowspan="3">64bit MIPS (little endian)</td>
+<td rowspan="3">mips64el</td>
+<td>MIPS Malta</td>
+<td>5kc-malta</td>
+</tr>
+<tr>
+<td>Cavium Octeon</td>
+<td>octeon</td>
+</tr>
+<tr>
+<td>Loongson 3</td>
+<td>loongson-3</td>
+</tr>
+<tr>
+<td rowspan="3">32bit MIPS (little endian)</td>
+<td rowspan="3">mipsel</td>
+<td>MIPS Malta</td>
+<td>4kc-malta</td>
+</tr>
+<tr>
+<td>Cavium Octeon</td>
+<td>octeon</td>
+</tr>
+<tr>
+<td>Loongson 3</td>
+<td>loongson-3</td>
+</tr>
+<tr>
+<td>Power Systems</td>
+<td>ppc64el</td>
+<td>IBM POWER8 o més actuals</td>
+<td> </td>
+</tr>
+<tr>
+<td>IBM S/390 64 bits</td>
+<td>s390x</td>
+<td>IPL de VM-reader i DASD</td>
+<td>genèric</td>
+</tr>
+</tbody>
+</table></div>
+<p>
+
+</p>
+<p>Aquest document cobreix la instal·lació per a l'arquitectura <span class="emphasis"><em><span class="phrase">64-bit ARM</span></em></span> fent servir el nucli <span class="emphasis"><em>Linux</em></span>. Si busqueu informació per qualsevol altra arquitectura suportada per Debian, pegueu una ullada a les pàgines dels <a class="ulink" href="http://www.debian.org/ports/" target="_top">ports de Debian</a>. </p>
+<p>Aquesta és la primera distribució oficial de Debian GNU/Linux per l'arquitectura <span class="phrase">64-bit ARM</span>. Ha estat suficientment provada per ser alliberada. Tanmateix, com que no ha estat exposada (i per tant provada pels usuaris) a alguna de les arquitectures, podeu trobar algunes errades. Utilitzeu el nostre <a class="ulink" href="https://bugs.debian.org/" target="_top">Sistema de seguiment d'errors</a> per informar de qualsevol problema; assegureu-vos d'anomenar el fet que l'error és a la plataforma <span class="phrase">64-bit ARM</span> fent servir el nucli <span class="emphasis"><em>Linux</em></span>. També pot utilitzar-se si és necessari la <a class="ulink" href="https://www.debian.org/MailingLists/subscribe" target="_top">llista de correu debian-arm mailing list</a>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm271"></a>2.1.2. Tres adaptacions per a ARM diferents</h3></div></div></div>
+<p>L'arquitectura ARM ha evolucionat amb el temps i els processadors ARM moderns tenen funcions que no estaven implementades en els models antics. Per això, Debian oferta tres adaptacions per ARM per tal de donar el millor suport a un ample ventall de màquines diferents: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>Debian/armel s'adapta als antics processadors ARM de 32 bits sense unitat de coma flotant (FPU), </p></li>
+<li class="listitem"><p>Debian/armhf funciona només amb els nous processadors ARM de 32 bits amb al menys l'arquitectura ARMv7 amb la versió 3 de l'especificació ARM de punt flotant vectorial (VFPv3). Es fa ús de les funcions ampliades i millores de rendiment disponibles en aquests models. </p></li>
+<li class="listitem"><p>Debian/arm64 funciona amb processadors ARM de 64 bits que implementen la darrera aquictectura ARMv8. </p></li>
+</ul></div>
+<p>
+</p>
+<p>Tècnicament, totes les CPU ARM disponibles actualment poden funcionar en el mode «endian» (gran o petit), però a la pràctica la majoria fan servir el mode «endian» petit. Tots els Debian/arm64, Debian/armhf i Debian/armel admeten només els sistemes «endian» petit. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm282"></a>2.1.3. Variacions en el disseny de CPU ARM i complexitat de suport</h3></div></div></div>
+<p>Els sistemes ARM son molt més heterogenis que els ordinadors basats en les arquitectures i386/amd64, i per això donar-hi suport és més complicat. </p>
+<p>L'arquitectura ARM fan servir l'anomenat disseny <span class="quote">«<span class="quote">sistema en un xip</span>»</span> (SoC). Aquests SoC estan dissenyats per vàries empreses i fan servir un ample ventall de components de maquinari fins i tot per a la funcionant bàsica requerida per arrencar el sistema. Les versions antigues de l'arquitectura ARM tenen diferències enormes en cada nova versió del S0C, però l'ARMv8 (arm64) és molt més estandarditzat i facilita el suport de l'arquitectura al nucli Linux i altres programes. </p>
+<p>Les versions per a servidors del maquinari ARMv8 estan configurats fent servir l'interfície de programari extensible unificada (UEFI) i els estàndards d'interfície avançada de configuració i energia (ACPI). Aquestes dues tecnologies proporcionen formes comuns i independents dels dispositius per arrencar i configurar el maquinari de l'ordinador. També son comuns en el món dels PC x86. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm64-supported-platforms"></a>2.1.4. Plataformes admeses per Debian/arm64</h3></div></div></div>
+<p>El maquinari Arm64/AArch64/ARMv8 es va afegir bastant tard en el cicle de llançament de Debian Bookworm degut a que poques plataformes tenien estaven suportades per la versió del nucli en el moment d'aquest llançament; aquest és el principal requeriment en el qual s'està treballant amb el <code class="classname">debian-installer</code>. Les següents plataformes estan suportades per Debian/arm64 en aquest llançament. Només una imatge del nucli és compatible amb totes les plataformes llistades. </p>
+<div class="variablelist"><dl class="variablelist">
+<dt><span class="term">Applied Micro (APM) Mustang/X-Gene</span></dt>
+<dd><p>El APM Mustang va ésser el primer sistema ARMv8 disponible que admetia Linux. Fa servir SoC X-gene, que des de llavors ha estat també usada per altres màquines. És una CPU de 8 nuclis, amb ethernet, USB i ports sèrie. Amb placa base segons l'estàndard té un aspecte semblant a una caixa de PC, encara que s'esperen altres versions en el futur. Gran part del maquinari està suportat pel nucli principal, però en aquest moment no te suport per USB en el nucli Bookworm. </p></dd>
+<dt><span class="term">Plataforma de desenvolupament Juno ARM</span></dt>
+<dd><p>Juno és una placa de desenvolupament capaç de 6 nuclis (2xA57, 4xA53) ARMv8-A amb CPU a 800 Mhz, gràfics Mali (T624), 8 Gb de RAM DDR3, Ethernet, USB i ports sèrie. Va ésser dissenyada per al sistema de lliurament i les proves de potència perquè no és ni petita ni barata, però va ésser una de les primeres plaques disponibles. Tot el maquinari necessari és suportat en el nucli principal i en Bookworm. </p></dd>
+</dl></div>
+<p>Quan es fa servir el <code class="classname">debian-installer</code> en sistemes que no fan servir UEFi, pot ésser que hagi de fer arrencable el sistema manualment al final de la instal·lació, p. ex. executant les ordres necessàries en una consola iniciada des del <code class="classname">debian-installer</code>. «flash-kernel» és capaç de posar en marxa el sistema X-Gene arrencant amb U-Boot. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="arm64-other-platforms"></a>2.1.4.1. Altres plataformes</h4></div></div></div>
+<p>El suport multiplataforma en el nucli Linux per a arm64 també permet executar el <code class="classname">debian-installer</code> en sistemes arm64 que no estan explícitament llistats anteriorment. Des de que el nucli usat pel <code class="classname">debian-installer</code> suporta els components del sistema de destí, i l'arxiu de l'arbre de dispositiu del destí està disponible, el nou sistema destí pot funcionar correctament. En aquests casos, l'instal·lador facilita una instal·lació que funciona, i sempre que es faci servir UEFI, ha de ser capaç d'arrencar el sistema. Si no es fa servir UEFI podeu realitzar algunes etapes de configuració manual per a fer arrencable el sistema. </p>
+</div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm309"></a>2.1.5. Processadors múltiples</h3></div></div></div>
+<p>El suport de processadors múltiples — també anomenat <span class="quote">«<span class="quote">multiprocés simètric</span>»</span> o SMP — està disponible per a aquesta arquitectura. La presencia de múltiples processadors en un ordinador va començar en sistemes servidors de gama alta però s'ha tornat més comú amb la introducció dels anomenats processadors <span class="quote">«<span class="quote">multi-nucli</span>»</span>. Aquests contenen dues o més unitats de processadors anomenats <span class="quote">«<span class="quote">nuclis</span>»</span> en un únic xip físic. </p>
+<p>La imatge del nucli estàndard de Debian 12 ha estat compilada amb suport SMP. També es pot fer servir en sistemes sense SMP sense problemes. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="gfx"></a>2.1.6. Targetes gràfiques suportades</h3></div></div></div>
+<p>El suport de les interfícies gràfiques a Debian ve determinat pel suport subjacent que es troba al sistema X11 de X.Org, i també al nucli. La gestió bàsica dels gràfics està garantida amb el nucli, si l'entorn d'escriptori fa servir X11. Que es pugui fer servir les característiques de targetes gràfiques avançades com l'acceleració de maquinari 3D o vídeo accelerat per maquinari, depèn del maquinari emprat en el sistema i, en alguns casos, de la instal·lació addicional «blobs» (arxius en format binari) de <span class="quote">«<span class="quote">microprogramari</span>»</span> («firmware») (mireu <a class="xref" href="ch02s02.html" title="2.2. Dispositius que requereixen microprogramari">Secció 2.2, «Dispositius que requereixen microprogramari»</a>). </p>
+<p>Quasi totes les màquines ARM tenen el maquinari gràfic incorporat, en comptes de tenir-ho a una targeta auto configurable. Algunes màquines tenen ranures d'expansió que incorporen les targetes gràfiques, però això és por freqüent. El maquinari dissenyat sense tenir cap gestor gràfic és poc habitual. Per altra banda, les targetes de vídeo bàsiques facilitades pel nucli haurien de funcionar amb tots els dispositius que tenen gràfics, els acceleradors 3D de gràfics requereixen controladors binaris per a treballar. Aquesta situació està canviant ràpidament i en el moment de llançar la bookworm hi ha disponibles controladors lliures per a «nouveau» (Nvidia Tegra K1 SoC) i «freedreno» (Qualcomm Snapdragon SoCs). Altres dispositius requereixen controladors privatius de terceres parts. </p>
+<p>Podeu trobar detalls del maquinari gràfic i dispositius senyaladors suportats a <a class="ulink" href="https://wiki.freedesktop.org/xorg/" target="_top">https://wiki.freedesktop.org/xorg/</a>. Debian 12 ve amb la versió 7.7 de les X.Org. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="network-cards"></a>2.1.7. Maquinari per a la connexió de xarxes</h3></div></div></div>
+<p>Pràcticament qualsevol targeta de xarxa (NIC) suportada pel nucli Linux és també suportada pel sistema d'instal·lació; els controladors modulars s'haurien de carregar automàticament.   </p>
+<p>En <span class="phrase">64-bit ARM</span>, la majoria de dispositius Ethernet integrats són suportats i es proveeixen mòduls addicionals per a dispositius PCI i USB. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="supported-peripherals"></a>2.1.8. Perifèrics i altre maquinari</h3></div></div></div>
+<p>El Linux permet utilitzar una gran varietat de dispositius de maquinari com ara ratolins, impressores, escànners, PCMCIA/CardBus/ExpressCard i dispositius USB. De tota manera, la major part d'aquests dispositius no són necessaris durant la instal·lació del sistema. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch02.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch02.html"><img src="images/up.png" alt="Pujar"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch02s02.html"><img src="images/next.png" alt="Següent"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Capítol 2. Requisits del sistema </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Inici"></a></td>
+<td width="40%" align="right" valign="top"> 2.2. Dispositius que requereixen microprogramari</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

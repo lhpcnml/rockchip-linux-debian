@@ -1,0 +1,214 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>2.1. Phần cứng được hỗ trợ</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Sổ tay Cài đặt Debian GNU/Linux">
+<link rel="up" href="ch02.html" title="Chương 2. Hệ thống Yêu cầu">
+<link rel="prev" href="ch02.html" title="Chương 2. Hệ thống Yêu cầu">
+<link rel="next" href="ch02s02.html" title="2.2. Thiết bị cần thiết phần vững">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">2.1. Phần cứng được hỗ trợ</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch02.html"><img src="images/prev.png" alt="Trước đó"></a> </td>
+<th width="60%" align="center">Chương 2. Hệ thống Yêu cầu</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch02s02.html"><img src="images/next.png" alt="Kế tiếp"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="hardware-supported"></a>2.1. Phần cứng được hỗ trợ</h2></div></div></div>
+<p>Debian không yêu cầu phần cứng đặc biệt khác với yêu cầu của hạt nhân Linux hay kFreeBSD và các bộ công cụ GNU. Vì vậy, bất kỳ kiến trúc hay nền tảng nào sang đó hạt nhân Linux hay kFreeBSD, thư viện C libc, bộ biên dịch <span class="command"><strong>gcc</strong></span> v.v. đã được chuyển, cũng cho đó có một bản chuyển Debian, có khả năng chạy được hệ thống Debian. Xem những trang <span class="emphasis"><em>Bản Chuyển</em></span> (Ports) tại <a class="ulink" href="https://www.debian.org/ports/arm/" target="_top">https://www.debian.org/ports/arm/</a> để tìm thêm thông tin về hệ thống kiến trúc <span class="phrase">64-bit ARM</span> đã được thử ra với Debian GNU/Linux. </p>
+<p>Hơn là cố gắng diễn tả tất cả các cấu hình phần cứng được hỗ trợ cho kiến trúc <span class="phrase">64-bit ARM</span>, tiết đoạn này chứa thông tin chung và liên kết đến thông tin thêm. </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm193"></a>2.1.1. Kiến trúc được hỗ trợ</h3></div></div></div>
+<p>Debian GNU/Linux 12 supports 9 major architectures and several variations of each architecture known as <span class="quote">“<span class="quote">flavors</span>”</span>. </p>
+<p>
+
+</p>
+<div class="informaltable"><table class="informaltable" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Kiến trúc</th>
+<th>Tên Debian</th>
+<th>Kiến trúc phụ</th>
+<th>Mùi vị</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>AMD64 &amp; Intel 64</td>
+<td>amd64</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td rowspan="2">Dựa vào x86 Intel</td>
+<td rowspan="2">i386</td>
+<td>default x86 machines</td>
+<td>default</td>
+</tr>
+<tr>
+<td>Xen PV domains only</td>
+<td>xen</td>
+</tr>
+<tr>
+<td>ARM</td>
+<td>armel</td>
+<td>Marvell Kirkwood and Orion</td>
+<td>marvell</td>
+</tr>
+<tr>
+<td>ARM with hardware FPU</td>
+<td>armhf</td>
+<td>multiplatform</td>
+<td>armmp</td>
+</tr>
+<tr>
+<td>64bit ARM</td>
+<td>arm64</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td rowspan="3">64bit MIPS (little-endian)</td>
+<td rowspan="3">mips64el</td>
+<td>MIPS Malta</td>
+<td>5kc-malta</td>
+</tr>
+<tr>
+<td>Cavium Octeon</td>
+<td>octeon</td>
+</tr>
+<tr>
+<td>Loongson 3</td>
+<td>loongson-3</td>
+</tr>
+<tr>
+<td rowspan="3">32bit MIPS (little-endian)</td>
+<td rowspan="3">mipsel</td>
+<td>MIPS Malta</td>
+<td>4kc-malta</td>
+</tr>
+<tr>
+<td>Cavium Octeon</td>
+<td>octeon</td>
+</tr>
+<tr>
+<td>Loongson 3</td>
+<td>loongson-3</td>
+</tr>
+<tr>
+<td>Power Systems</td>
+<td>ppc64el</td>
+<td>IBM POWER8 or newer machines</td>
+<td> </td>
+</tr>
+<tr>
+<td>64bit IBM S/390</td>
+<td>s390x</td>
+<td>IPL từ bộ đọc VM-reader và DASD</td>
+<td>giống loài</td>
+</tr>
+</tbody>
+</table></div>
+<p>
+
+</p>
+<p>Tài liệu này bao quát sự cài đặt cho kiến trúc <span class="emphasis"><em><span class="phrase">64-bit ARM</span></em></span> dùng hạt nhân <span class="emphasis"><em>Linux</em></span>. Nếu bạn tìm thông tin về bất cứ kiến trúc khác nào được Debian hỗ trợ, xem trang <a class="ulink" href="http://www.debian.org/ports/" target="_top">Bản Chuyển Debian</a>. </p>
+<p>Đây là bản phát hành Debian GNU/Linux chính thức thứ nhất cho kiến trúc <span class="phrase">64-bit ARM</span>. Chúng tôi xem là nó đủ hữu hiệu để được phát hành. Tuy nhiên, vì nó chưa được thử ra bởi cùng một số người dùng với các kiến trúc khác, bạn có thể gặp vài lỗi. Xin hãy sử dụng <a class="ulink" href="https://bugs.debian.org/" target="_top">Hệ thống theo dõi lỗi</a> của Debian để thông báo lỗi nào; kiểm tra lại bạn nói rằng lỗi đó xảy ra trên nền tảng <span class="phrase">64-bit ARM</span> dùng hạt nhân <span class="emphasis"><em>Linux</em></span>. Cũng đề nghị bạn thảo luận vấn đề đó trong hộp thư chung <a class="ulink" href="https://www.debian.org/MailingLists/subscribe" target="_top">debian-arm</a>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm278"></a>2.1.2. Three different ARM ports</h3></div></div></div>
+<p>The ARM architecture has evolved over time and modern ARM processors provide features which are not available in older models. Debian therefore provides three ARM ports to give the best support for a very wide range of different machines: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>Debian/armel targets older 32-bit ARM processors without support for a hardware floating point unit (FPU), </p></li>
+<li class="listitem"><p>Debian/armhf works only on newer 32-bit ARM processors which implement at least the ARMv7 architecture with version 3 of the ARM vector floating point specification (VFPv3). It makes use of the extended features and performance enhancements available on these models. </p></li>
+<li class="listitem"><p>Debian/arm64 works on 64-bit ARM processors which implement at least the ARMv8 architecture. </p></li>
+</ul></div>
+<p>
+</p>
+<p>Technically, all currently available ARM CPUs can be run in either endian mode (big or little), but in practice the vast majority use little-endian mode. All of Debian/arm64, Debian/armhf and Debian/armel support only little-endian systems. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm289"></a>2.1.3. Variations in ARM CPU designs and support complexity</h3></div></div></div>
+<p>ARM systems are much more heterogeneous than those based on the i386/amd64-based PC architecture, so the support situation can be much more complicated. </p>
+<p>The ARM architecture is used mainly in so-called <span class="quote">“<span class="quote">system-on-chip</span>”</span> (SoC) designs. These SoCs are designed by many different companies, often with vastly varying hardware components even for the very basic functionality required to bring the system up. Older versions of the ARM architecture have seen massive differences from one SoC to the next, but ARMv8 (arm64) is much more standardised and so is easier for the Linux kernel and other software to support. </p>
+<p>Server versions of ARMv8 hardware are typically configured using the Unified Extensible Firmware Interface (UEFI) and Advanced Configuration and Power Interface (ACPI) standards. These two provide common, device-independent ways to boot and configure computer hardware. They are also common in the x86 PC world. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm64-supported-platforms"></a>2.1.4. Platforms supported by Debian/arm64</h3></div></div></div>
+<p>Arm64/AArch64/ARMv8 hardware became available quite late in the Debian Bookworm release cycle so not many platforms had support merged in the mainline kernel version by the time of this release; this is the main requirement to have <code class="classname">debian-installer</code> working on them. The following platforms are known to be supported by Debian/arm64 in this release. There is only one kernel image, which supports all the listed platforms. </p>
+<div class="variablelist"><dl class="variablelist">
+<dt><span class="term">Applied Micro (APM) Mustang/X-Gene</span></dt>
+<dd><p>The APM Mustang was the first Linux-capable ARMv8 system available. It uses the X-gene SoC, which has since also been used in other machines. It is an 8-core CPU, with ethernet, USB and serial. A common form-factor looks just like a desktop PC box, but many other versions are expected in the future. Most of the hardware is supported in the mainline kernel, but at this point USB support is lacking in the Bookworm kernel. </p></dd>
+<dt><span class="term">ARM Juno Development Platform</span></dt>
+<dd><p>Juno is a capable development board with a 6-core (2xA57, 4xA53) ARMv8-A 800Mhz CPU, Mali (T624) graphics, 8GB DDR3 RAM, Ethernet, USB, Serial. It was designed for system bring-up and power testing so is neither small nor cheap, but was one of the first boards available. All the on-board hardware is supported in the mainline kernel and in Bookworm. </p></dd>
+</dl></div>
+<p>When using <code class="classname">debian-installer</code> on non-UEFI systems, you may have to manually make the system bootable at the end of the installation, e.g. by running the required commands in a shell started from within <code class="classname">debian-installer</code>. flash-kernel knows how to set up an X-Gene system booting with U-Boot. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="arm64-other-platforms"></a>2.1.4.1. Other platforms</h4></div></div></div>
+<p>The multiplatform support in the arm64 Linux kernel may also allow running <code class="classname">debian-installer</code> on arm64 systems not explicitly listed above. So long as the kernel used by <code class="classname">debian-installer</code> has support for the target system's components, and a device-tree file for that target is available, a new target system may work just fine. In these cases, the installer can usually provide a working installation, and so long as UEFI is in use, it should be able to make the system bootable as well. If UEFI is not used you may also need to perform some manual configuration steps to make the system bootable. </p>
+</div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm316"></a>2.1.5. Đa bộ xử lý</h3></div></div></div>
+<p>Multiprocessor support — also called <span class="quote">“<span class="quote">symmetric multiprocessing</span>”</span> or SMP — is available for this architecture. Having multiple processors in a computer was originally only an issue for high-end server systems but has become common in recent years nearly everywhere with the introduction of so called <span class="quote">“<span class="quote">multi-core</span>”</span> processors. These contain two or more processor units, called <span class="quote">“<span class="quote">cores</span>”</span>, in one physical chip. </p>
+<p>The standard Debian 12 kernel image has been compiled with SMP support. It is also usable on non-SMP systems without problems. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="gfx"></a>2.1.6. Graphics Hardware Support</h3></div></div></div>
+<p>Debian's support for graphical interfaces is determined by the underlying support found in X.Org's X11 system, and the kernel. Basic framebuffer graphics is provided by the kernel, whilst desktop environments use X11. Whether advanced graphics card features such as 3D-hardware acceleration or hardware-accelerated video are available, depends on the actual graphics hardware used in the system and in some cases on the installation of additional <span class="quote">“<span class="quote">firmware</span>”</span> blobs (see <a class="xref" href="ch02s02.html" title="2.2. Thiết bị cần thiết phần vững">Phần 2.2, “Thiết bị cần thiết phần vững”</a>). </p>
+<p>Nearly all ARM machines have the graphics hardware built-in, rather than being on a plug-in card. Some machines do have expansion slots which will take graphics cards, but that is a rarity. Hardware designed to be headless with no graphics at all is quite common. Whilst basic framebuffer video provided by the kernel should work on all devices that have graphics, fast 3D graphics invariably needs binary drivers to work. The situation is changing quickly but at the time of the bookworm release free drivers for nouveau (Nvidia Tegra K1 SoC) and freedreno (Qualcomm Snapdragon SoCs) are available in the release. Other hardware needs non-free drivers from 3rd parties. </p>
+<p>Details on supported graphics hardware and pointing devices can be found at <a class="ulink" href="https://wiki.freedesktop.org/xorg/" target="_top">https://wiki.freedesktop.org/xorg/</a>. Debian 12 ships with X.Org version 7.7. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="network-cards"></a>2.1.7. Phần cứng khả năng kết nối mạng</h3></div></div></div>
+<p>Almost any network interface card (NIC) supported by the Linux kernel should also be supported by the installation system; drivers should normally be loaded automatically.   </p>
+<p>Trên <span class="phrase">64-bit ARM</span>, hầu hết các thiết bị mạng Ethernet gắn liền với mạch đều được hỗ trợ và các mô-đun cho các thiết bị PCI và USB gắn thêm đều được cung cấp. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="supported-peripherals"></a>2.1.8. Ngoại vi và phần cứng khác</h3></div></div></div>
+<p>Linux supports a large variety of hardware devices such as mice, printers, scanners, PCMCIA/CardBus/ExpressCard and USB devices. However, most of these devices are not required while installing the system. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch02.html"><img src="images/prev.png" alt="Trước đó"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch02.html"><img src="images/up.png" alt="Lên"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch02s02.html"><img src="images/next.png" alt="Kế tiếp"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chương 2. Hệ thống Yêu cầu </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Đầu"></a></td>
+<td width="40%" align="right" valign="top"> 2.2. Thiết bị cần thiết phần vững</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

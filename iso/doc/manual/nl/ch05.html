@@ -1,0 +1,88 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Hoofdstuk 5. Het installatiesysteem starten</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux Installatiehandleiding">
+<link rel="up" href="index.html" title="Debian GNU/Linux Installatiehandleiding">
+<link rel="prev" href="ch04s06.html" title="4.6. De integriteit van installatiebestanden verifiëren">
+<link rel="next" href="ch05s01.html" title="5.1. Het installatiesysteem starten op 64-bit ARM">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Hoofdstuk 5. Het installatiesysteem starten</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch04s06.html"><img src="images/prev.png" alt="Terug"></a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="ch05s01.html"><img src="images/next.png" alt="Volgende"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="chapter">
+<div class="titlepage"><div><div><h1 class="title">
+<a name="boot-installer"></a>Hoofdstuk 5. Het installatiesysteem starten</h1></div></div></div>
+<div class="toc">
+<p><b>Inhoudsopgave</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="ch05s01.html">5.1. Het installatiesysteem starten op <span class="phrase">64-bit ARM</span></a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch05s01.html#arm64-console-setup">5.1.1. De configuratie van de console</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#juno-installation">5.1.2. De installatie op Juno</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#apm-installation">5.1.3. De installatie op Mustang van Applied Micro</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#boot-tftp-arm">5.1.4. Opstarten via TFTP</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#usb-boot-arm64">5.1.5. Opstarten vanaf een USB-geheugenstick met UEFI</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#graphical">5.1.6. Het grafische installatiesysteem</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="ch05s02.html">5.2. Toegankelijkheid</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch05s02.html#idm974">5.2.1. Frontend voor het installatiesysteem</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm997">5.2.2. Apparatuur op een kaart</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm1001">5.2.3. Een stijl met verhoogd contrast</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm1007">5.2.4. Zoomfunctie</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm1016">5.2.5. Expertmodus, reparatiemodus, geautomatiseerde installatie</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm1030">5.2.6. Toegankelijkheid van het geïnstalleerde systeem</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="ch05s03.html">5.3. Opstartparameters</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch05s03.html#boot-console">5.3.1. Opstartconsole</a></span></dt>
+<dt><span class="sect2"><a href="ch05s03.html#installer-args">5.3.2. Parameters voor het installatiesysteem van Debian</a></span></dt>
+<dt><span class="sect2"><a href="ch05s03.html#preseed-args">5.3.3. Het gebruik van opstartparameters om op vragen te antwoorden</a></span></dt>
+<dt><span class="sect2"><a href="ch05s03.html#module-parms">5.3.4. Parameters doorgeven aan kernelmodules</a></span></dt>
+<dt><span class="sect2"><a href="ch05s03.html#module-blacklist">5.3.5. Kernel modules op een zwarte lijst plaatsen</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="ch05s04.html">5.4. Probleemanalyse bij het installatieproces</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch05s04.html#unreliable-cd">5.4.1. Betrouwbaarheid van optische media</a></span></dt>
+<dt><span class="sect2"><a href="ch05s04.html#idm1364">5.4.2. De configuratie van het opstartproces</a></span></dt>
+<dt><span class="sect2"><a href="ch05s04.html#kernel-msgs">5.4.3. De meldingen bij het opstarten van de kernel interpreteren</a></span></dt>
+<dt><span class="sect2"><a href="ch05s04.html#problem-report">5.4.4. Installatieproblemen rapporteren</a></span></dt>
+<dt><span class="sect2"><a href="ch05s04.html#submit-bug">5.4.5. Installatierapporten insturen</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch04s06.html"><img src="images/prev.png" alt="Terug"></a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="ch05s01.html"><img src="images/next.png" alt="Volgende"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">4.6. De integriteit van installatiebestanden verifiëren </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Begin"></a></td>
+<td width="40%" align="right" valign="top"> 5.1. Het installatiesysteem starten op <span class="phrase">64-bit ARM</span>
+</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

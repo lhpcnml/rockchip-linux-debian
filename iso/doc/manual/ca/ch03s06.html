@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>3.6. Configuració del maquinari i del sistema operatiu prèvia a la instal·lació</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Guia d'instal·lació de Debian GNU/Linux">
+<link rel="up" href="ch03.html" title="Capítol 3. Abans d'instal·lar Debian GNU/Linux">
+<link rel="prev" href="ch03s05.html" title="3.5. Pre-particions per a sistemes d'arrencada múltiple">
+<link rel="next" href="ch04.html" title="Capítol 4. Obtenir el suport d'instal·lació del sistema">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">3.6. Configuració del maquinari i del sistema operatiu prèvia a la instal·lació</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch03s05.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<th width="60%" align="center">Capítol 3. Abans d'instal·lar Debian GNU/Linux</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch04.html"><img src="images/next.png" alt="Següent"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="pre-install-bios-setup"></a>3.6. Configuració del maquinari i del sistema operatiu prèvia a la instal·lació</h2></div></div></div>
+<p>Aquesta secció explica el procés de configuració prèvia a la instal·lació del maquinari, si s'escau, que cal fer abans d'instal·lar Debian. Normalment es tracta de fer comprovacions dels ajusts de la BIOS/UEFI o del microprogramari del sistema, i de vegades de canviar-los. La <span class="quote">«<span class="quote">BIOS/UEFI</span>»</span> o <span class="quote">«<span class="quote">microprogramari</span>»</span> és el programari bàsic emprat pel maquinari; és absolutament necessari durant el procés d'arrencada (després d'arrencar l'ordinador). </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-dev-select-arm64"></a>3.6.1. Selecció del dispositiu d'arrencada</h3></div></div></div>
+<p>
+
+    </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm-firmware-overview"></a>3.6.2. Microprogramari ARM</h3></div></div></div>
+<p>Com ja s'ha explicat anteriorment, no hi ha un estàndard pel microprogramari del sistema en sistemes ARM. Fins hi tot el comportament del diversos sistemes que fan servir nominalment el mateix microprogramari pot ésser molt diferent. Tot és degut a que bona part del dispositius que fan servir les arquitectures ARM són sistemes integrats, pels quals els fabricants elaboren microprogramari fet a mida i inclouen pegats específics del dispositiu. Malauradament, els fabricants no informen dels canvis i extensions als desenvolupadors del microprogramari de la línia principal, per la qual cosa els canvis no s'integren en les noves versions del microprogramari original. </p>
+<p>Degut a tot això, fins i tot els sistemes venuts més recents fan servir microprogramari basat en versions modificades pels fabricants de microprogramari amb anys d'antiguitat, i del qual, la línia principal, ha evolucionat força en aquests anys i ofereix funcionalitats addicionals o te un comportament diferent en alguns aspectes. A tot això cal afegir que el nom dels components incorporats no és coherent entre les versions modificades pels fabricants del mateix microprogramari, de manera que és impossible facilitar instruccions útils independents del dispositiu en el sistemes basats en ARM. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="uboot-macsetting"></a>3.6.3. Configurar l'adreça MAC d'ethernet en U-Boot</h3></div></div></div>
+<p>L'adreça MAC de cada interfície ethernet, normalment ha d'ésser única en el món, i tècnicament ha d'ésser única en el seu domini de difusió ethernet. Per aconseguir-ho, el fabricant assigna un bloc d'adreces MAC d'un grup d'administració centralitzada (amb un cost econòmic) i preconfigura una d'aquests adreces en cada un dels articles venuts. </p>
+<p>En el cas de les targetes de desenvolupament, algunes vegades el fabricant vol evitar el pagament d'aquestes quotes i adjudica adreces que no son úniques mundialment. En aquest cas el usuaris han de definir les adreces MAC dels seus sistemes. Quan l'adreça MAC no està definida a una interfície ethernet, alguns controladors de xarxa generen adreces MAC aleatòries que poden canviar a cada arrencada, i si passa això, és possible l'accés a la xarxa sense que l'usuari defineixi manualment l'adreça, però l'assignació semi-estàtica d'adreces IP mijançant DHCP basada en les adreces MAC dels clients, òbviament no funcionaria de forma fiable. </p>
+<p>Per evitar conflictes amb les adreces MAC assignades oficialment, hi ha un grup d'adreces reservades per les adreces <span class="quote">«<span class="quote">administrades localment</span>»</span>. Es defineixen amb el valor de dos bits específics del primer byte de l'adreca (l'article <span class="quote">«<span class="quote">MAC address</span>»</span> de la versió en anglès de la Wikipedia ho explica molt bé). A la pràctica, això significa que qualsevol adreça que comenci que comenci amb «ca» en hexadecimal (com ca:ff:ee:12:34:56) pot ésser utilitzada com una adreça administrada localment. </p>
+<p>En els sistemes que fan servir U-Boot com a programari del sistema, l'adreça MAC d'ethernet està allotjada a la variable d'entorn <span class="quote">«<span class="quote">ethaddr</span>»</span>. Es pot consultar amb l'ordre U-Boot de línia d'ordres <span class="quote">«<span class="quote">printenv ethaddr</span>»</span> i es pot establir amb l'ordre <span class="quote">«<span class="quote">setenv ethaddr ca:ff:ee:12:34:56</span>»</span>. Després de configurar seu valor, l'ordre <span class="quote">«<span class="quote">saveenv</span>»</span> fa que l'assignació sigui permanent. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="uboot-relocation-issues"></a>3.6.4. Problemes de reubicació de Nucli/Initrd/Arbre de dispositius en U-Boot</h3></div></div></div>
+<p>En alguns sistemes amb versions antigues d'U-Boot hi pot haver problemes amb la reubicació del nucli, el disc RAM inicial i el blob de l'arbre de dispositius en la memòria en el procés d'arrencada. En aquest cas, U-Boot mostra el missatge <span class="quote">«<span class="quote">Starting kernel ...</span>»</span>, però el sistema queda congelat sense mostrar més missatges. Aquest problema està resolt a partir de la versió v2014.07. </p>
+<p>Si el sistema ha fet servir una versió d'U-Boot anterior a v2014.07 i s'ha actualitzat posteriorment a una versió més recent, és possible que el problema persisteixi després de l'actualització d'U-Boot. L'actualització d'U-Boot no modifica les variables d'entorn d'U-Boot i per solucionar el problema cal establir el valor a una variable d'entorn addicional («bootm_size»), atès que U-Boot només ho fa automàticament quan s'instal·la per primera vegada i no hi ha dades d'entorn prèvies. És possible d'inicialitzar manualment bootm_size al valor per defecte del nou U-Boot executant la comanda <span class="quote">«<span class="quote">env default bootm_size; saveenv</span>»</span> a l'indicador de l'U-Boot. </p>
+<p>Una altra possibilitat per evitar aquests problemes de reubicació és executar l'ordre <span class="quote">«<span class="quote">setenv fdt_high ffffffff; setenv initrd_high 0xffffffff; saveenv</span>»</span> en la línia d'ordres d'U-Boot per a desactivar la recol·locació del disc RAM inicial i el blob de l'arbre de dispositius. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch03s05.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch03.html"><img src="images/up.png" alt="Pujar"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch04.html"><img src="images/next.png" alt="Següent"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">3.5. Pre-particions per a sistemes d'arrencada múltiple </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Inici"></a></td>
+<td width="40%" align="right" valign="top"> Capítol 4. Obtenir el suport d'instal·lació del sistema</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

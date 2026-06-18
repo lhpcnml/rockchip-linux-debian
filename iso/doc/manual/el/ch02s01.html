@@ -1,0 +1,214 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>2.1. Υποστηριζόμενο Υλικό</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Οδηγός Εγκατάστασης Debian GNU/Linux">
+<link rel="up" href="ch02.html" title="Κεφάλαιο 2. Απαιτήσεις Συστήματος">
+<link rel="prev" href="ch02.html" title="Κεφάλαιο 2. Απαιτήσεις Συστήματος">
+<link rel="next" href="ch02s02.html" title="2.2. Συσκευές που απαιτούν firmware">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">2.1. Υποστηριζόμενο Υλικό</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch02.html"><img src="images/prev.png" alt="Προηγ"></a> </td>
+<th width="60%" align="center">Κεφάλαιο 2. Απαιτήσεις Συστήματος</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch02s02.html"><img src="images/next.png" alt="Επόμενο"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="hardware-supported"></a>2.1. Υποστηριζόμενο Υλικό</h2></div></div></div>
+<p>To Debian δεν βάζει κάποιες απαιτήσεις υλικού πέρα από αυτές που έχουν ο πυρήνας του Linux ή του kFreeBSD και τα εργαλεία του GNU. Κατά συνέπεια οποιαδήποτε αρχιτεκτονική ή πλατφόρμα στην οποία έχουν υλοποιηθεί ο πυρήνας του Linux ή του kFreeBSD, η libc, ο <span class="command"><strong>gcc</strong></span> κλπ. και για την οποία υπάρχει μια υλοποίηση του Debian μπορεί να τρέξει το Debian. Παρακαλούμε, δείτε τις σελίδες των υλοποιήσεων (Ports) στο <a class="ulink" href="https://www.debian.org/ports/arm/" target="_top">https://www.debian.org/ports/arm/</a> για περισσότερες λεπτομέρειες για συστήματα της αρχιτεκτονικής <span class="phrase">64-bit ARM</span> που έχουν δοκιμαστεί με το Debian GNU/Linux. </p>
+<p>Δεν γίνεται μια προσπάθεια να περιγραφούν όλες διαφορετικές διαμορφώσεις υλικού που υποστηρίζονται για την αρχιτεκτονική <span class="phrase">64-bit ARM</span>, αντίθετα η ενότητα αυτή περιέχει γενικές πληροφορίες και δείκτες σε μέρη όπου μπορεί να βρει κανείς επιπρόσθετες πληροφορίες. </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm185"></a>2.1.1. Υποστηριζόμενες Αρχιτεκτονικές</h3></div></div></div>
+<p>Το Debian GNU/Linux 12 υποστηρίζει εννέα (9) κύριες αρχιτεκτονικές και αρκετές παραλλαγές κάθε αρχιτεκτονικής γνωστές και ως <span class="quote">«<span class="quote">γεύσεις</span>»</span>. </p>
+<p>
+
+</p>
+<div class="informaltable"><table class="informaltable" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Αρχιτεκτονική</th>
+<th>Debian Designation </th>
+<th>Υποαρχιτεκτονική</th>
+<th>Γεύση</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>AMD64 &amp; Intel 64</td>
+<td>amd64</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td rowspan="2">Βασισμένη σε Intel x86</td>
+<td rowspan="2">i386 </td>
+<td>προεπιλεγμένα μηχανήματα x86</td>
+<td>προεπιλογή</td>
+</tr>
+<tr>
+<td>Μόνο πεδία Xen PV</td>
+<td>xen</td>
+</tr>
+<tr>
+<td>ARM</td>
+<td>armel</td>
+<td>Marvell Kirkwood και Orion</td>
+<td>marvell</td>
+</tr>
+<tr>
+<td>ARM με hardware FPU</td>
+<td>armhf</td>
+<td>multiplatform</td>
+<td>armmp</td>
+</tr>
+<tr>
+<td>64bit ARM</td>
+<td>arm64</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td rowspan="3">64bit MIPS (little endian) </td>
+<td rowspan="3">mips64el </td>
+<td>MIPS Malta</td>
+<td>5kc-malta</td>
+</tr>
+<tr>
+<td>Cavium Octeon</td>
+<td>octeon</td>
+</tr>
+<tr>
+<td>Loongson 3</td>
+<td>loongson-3</td>
+</tr>
+<tr>
+<td rowspan="3">32bit MIPS (little endian) </td>
+<td rowspan="3">mipsel </td>
+<td>MIPS Malta</td>
+<td>4kc-malta</td>
+</tr>
+<tr>
+<td>Cavium Octeon</td>
+<td>octeon</td>
+</tr>
+<tr>
+<td>Loongson 3</td>
+<td>loongson-3</td>
+</tr>
+<tr>
+<td>Power Systems</td>
+<td>ppc64el</td>
+<td>IBM POWER8 ή νεώτερα συστήματα</td>
+<td> </td>
+</tr>
+<tr>
+<td>64μπιτο IBM S/390</td>
+<td>s390x</td>
+<td>IPL από VM-reader και DASD</td>
+<td>generic </td>
+</tr>
+</tbody>
+</table></div>
+<p>
+
+</p>
+<p>To κείμενο αυτό καλύπτει την εγκατάσταση για την αρχιτεκτονική <span class="emphasis"><em><span class="phrase">64-bit ARM</span></em></span> που χρησιμοποιεί τον πυρήνα <span class="emphasis"><em>Linux</em></span>. Αν ψάχνετε πληροφορίες για οποιαδήποτε από τις άλλες υποστηριζόμενες από το Debian αρχιτεκτονικές κοιτάξτε στις σελίδες <a class="ulink" href="http://www.debian.org/ports/" target="_top">Debian-Ports</a>. </p>
+<p>Αυτή είναι η πρώτη επίσημη έκδοση του Debian GNU/Linux για την αρχιτεκτονική <span class="phrase">64-bit ARM</span> Αισθανόμαστε ότι έχει δοκιμαστεί αρκετά ώστε να κυκλοφορήσει. Όμως επειδή δεν έχει την έκθεση (και άρα την δοκιμή από τους χρήστες) που έχουν κάποιες άλλες αρχιτεκτονικές ίσως συναντήσετε μερικά προβλήματα. Χρησιμοποιήστε το <a class="ulink" href="https://bugs.debian.org/" target="_top">Bug Tracking System</a> για να αναφέρετε οποιαδήπτε προβλήματα. Σιγουρευτείτε να δηλώσετε ότι το σφάλμα είναι στην πλατφόρμα <span class="phrase">64-bit ARM</span> που χρησιμοποιεί τον πυρήνα <span class="emphasis"><em>Linux</em></span>. Ίσως είναι απαραίτητο να χρησιμοποιήσετε επίσης τη λίστα αλληλογραφίας <a class="ulink" href="https://www.debian.org/MailingLists/subscribe" target="_top">debian-arm mailing list</a>.  </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm270"></a>2.1.2. Τρεις διαφορετικές υλοποιήσεις ARM</h3></div></div></div>
+<p>Η αρχιτεκτονική ARM έχει εξελιχθεί με τα χρόνια και σύγχρονοι επεξεργαστές ARM παρέχουν χαρακτηριστικά που δεν είναι διαθέσιμα από παλιότερα μοντέλα. Το Debian παρέχει λοιπόν τρεις διαφορετικές υλοποιήσεις για την αρχιτεκτονική ARM για να προσφέρει την καλλίτερη δυνατή υποστήριξη για ένα ευρύ φάσμα διαφορετικών μηχανημάτων: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>υπό εγκατάσταση συστήματα Debian/armel με παλιότερους 32-μπιτους επεξεργαστές ARM χωρίς υποστήριξη για υλικό μονάδας floating point unit (FPU), </p></li>
+<li class="listitem"><p>Η πλατφόρμα Debian/armhf δουλεύει μόνο για νεώτερους επεξεργαστές ARM 32-bit που υλοποιούν τουλάχιστον την αρχιτεκτονική ARMv7 με την έκδοση 3 των προδιαγραφών του ARM vector floating point (VFPv3). Κάνει χρήση των επαυξημένων χαρακτηριστικών και των βελτιώσεων απόδοσης που είναι διαθέσιμα σ' αυτά τα μοντέλα. </p></li>
+<li class="listitem"><p>Το Debian/arm64 δουλεύει σε 64-bit επεξεργαστές ARM που υλοποιούν τουλάχιστον την αρχιτεκτονικήARMv8. </p></li>
+</ul></div>
+<p>
+</p>
+<p>Από τεχνική άποψη, όλοι οι διαθέσιμοι αυτή τη στιγμή επεξεργαστές ARM μπορούν να τρέξουν σε οποιαδήποτε από τις δυο καταστάσεις endian (big ή little), αλλά στην πράξη η τεράστια πλειοψηφία τους χρησιμοποιεί την κατάσταση little-endian. Όλοι οι επεξεργαστές Debian/arm64, Debian/armhf and Debian/armelυποστηρίζουν μόνο συστήματα little-endian ΑRM. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm281"></a>2.1.3. Παραλλαγές στον σχεδιασμό των ARM CPU και πολυπλοκότητα υποστήριξης</h3></div></div></div>
+<p>Τα συστήματα ARM είναι πολύ πιο ετερογενή από αυτά που βασίζονται στις αρχιτεκτονικές για υπολογιστές i386/amd64, με αποτέλεσμα η κατάσταση σχετικά με την υποστήριξή τους να μπορεί να γίνει αρκετά πολύπλοκη. </p>
+<p>Η αρχιτεκτονική ARM χρησιμοποιείται κυρίως για λεγόμενα σχέδια <span class="quote">«<span class="quote">σύστημα-σε-τσιπ (system-on-chip)</span>»</span> (SoC). Αυτά τα συστήματα (SoC) σχεδιάζονται από πολλές διαφορετικές εταιρείες, συχνά με εξαιρετικά διαφορετικά τμήματα υλικού ακόμα και για την πολύ βασική λειτουργικότητα που απαιτείται για να ξεκινήσει το σύστημα. Παλιές εκδόσεις της αρχιτεκτονικής ARM έχουν δει τεράστιες διαφοροποιήσεις από το ένα σύστημα SoC στο επόμενο, αλλά η αρχιτεκτονική ARMv8 (arm64) είναι προτυποποιημένη σε πολύ μεγαλύτερο βαθμό και έτσι είναι πιο εύκολη η υποστήριξη για τον πυρήνα του Linux και άλλο λογισμικό. </p>
+<p>Οι εκδόσεις εξυπηρετητών με υλικό της αρχιτεκτονικής ARMv8 ρυθμίζονται τυπικά με χρήση των προτύπων Unified Extensible Firmware Interface (UEFI) και Advanced Configuration and Power Interface (ACPI). Αυτά τα δύο πρότυπα παρέχουν ανεξάρτητους από τη συσκευή τρόπους εκκίνησης και ρύθμισης του υλικού του υπολογιστή. Είναι, επίσης, συνηθισμένα στον κόσμο των Η/Υ x86. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm64-supported-platforms"></a>2.1.4. Πλατφόρμες υποστηριζόμενες από το Debian/arm64</h3></div></div></div>
+<p>Υλικό με αρχιτεκτονική Arm64/AArch64/ARMv8 έχει γίνει διαθέσιμο σχετικά πρόσφατα για τον κύκλο έκδοσης του Debian Bookworm οπότε δεν έχει ακόμα συγχωνευθεί στην βασική έκδοση του πυρήνα υποστήριξη για πολλές πλατφόρμες κατά τη στιγμή της παρούσας κυκλοφορίας η βασική απαίτηση είναι να μπορεί ο <code class="classname">debian-installer</code> να δουλεύει σ' αυτές. Οι ακόλουθες πλατφόρμες είναι γνωστό ότι υποστηρίζονται από το Debian/arm64 στην παρούσα κυκλοφορία. Υπάρχει μια μόνο εικόνα του πυρήνα, η οποία υποστηρίζει όλες τις αναφερόμενες πλατφόρμες. </p>
+<div class="variablelist"><dl class="variablelist">
+<dt><span class="term">Applied Micro (APM) Mustang/X-Gene</span></dt>
+<dd><p>Το σύστημα APM Mustang ήταν το πρώτο διεθέσιμο σύστημα με δυνατότητα υποστήριξης Linux για την αρχιτεκτονική ARMv8. Χρησιμοποιεί το X-gene SoC, το οποίο έκτοτε έχει χρησιμοποιηθεί και σε άλλα μηχανήματα. Είναι μια 8-πύρηνη CPU, με ethernet, USB και σειριακή θύρα. Ένας συνηθισμένος μορφότυπος μοιάζει ακριβώς όπως ένα επιτραπέζιο PC box αλλά στο μέλλον αναμένονται και άλλες εκδόσεις. Οι περισσότεροι τύποι υλικού υποστηρίζονται από τον βασικό πυρήνα, αλλά στο παρόν σημείο ο πυρήνας της έκδοσης Bookworm στερείται υποστήριξης USB. </p></dd>
+<dt><span class="term">Η πλατφόρμα ανάπτυξης ARM Juno</span></dt>
+<dd><p>Η Juno είναι μια ικανή μητρική ανάπτυξης με μια 6-πύρηνη (2xA57, 4xA53) ARMv8-A 800Mhz CPU, κάρτα γραφικών Mali (T624), 8GB DDR3 μνήμης RAM, Ethernet, USB,και Serial. Σχεδιάστηκε για την εκκίνηση συστημάτων και δοκιμή ισχύος οπότε δεν είναι ούτε μικρή σε μέγεθος ούτε φθηνή, αλλά ήταν μια από τις πρώτες διαθέσιμες μητρικές. Όλο το υλικό που είναι στη μητρική υποστηρίζεται στην βασική έκδοση του πυρήνα και στην Bookworm. </p></dd>
+</dl></div>
+<p>Όταν χρησιμοποιείτε τον <code class="classname">debian-installer</code> σε συστήματα χωρίς UEFI, ίσως πρέπει να καταστήσετε το σύστημα εκκινήσιμο με το χέρι στο τέλος της εγκατάστασης, πχ. εκτελώντας τις απαραίτητες εντολές σε ένα κέλυφος που ξεκινά μέσα από τον ίδιο τον <code class="classname">debian-installer</code>. Το flash-kernel "γνωρίζει" πώς να ρυθμίσει την εκκίνση ενός συστήματος X-Gene με το U-Boot. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="arm64-other-platforms"></a>2.1.4.1. Άλλες πλατφόρμες</h4></div></div></div>
+<p>Η υποστήριξη πολλαπλών πλατφορμών στον πυρήνα arm64 του Linux μπορεί ίσως να επιτρέπει την εκτέλεση του <code class="classname">debian-installer</code> σε συστήματα arm64 τα οποία δεν αναφέρονται συγκεκριμένα στην παραπάνω λίστα. Στον βαθμό που ο πυρήνας που χρησιμοποιείται από τον <code class="classname">debian-installer</code> έχει υποστήριξη για τα διάφορα συστατικά του προς εγκατάσταση συστήματος, ένα νέο τέτοιο σύστημα μπορεί να δουλέψει μια χαρά. Σ' αυτές τις περιπτώσεις, ο εγκαταστάτης μπορεί συνήθως να προσφέρει μια λειτουργική εγκατάσταση και στον βαθμό που χρησιμοποιείται το UEFI, έχει την ικανότητα να κάνει το σύστημα και εκκινήσιμο. Αν δεν χρησιμοποιείται το UEFI ίσως πρέπει επίσης να πραγματοποιήσετε κάποια ρύθμιση με το χέρι ώστε να γίνει το σύστημα εκκινήσιμο. </p>
+</div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm308"></a>2.1.5. Πολλαπλοί Επεξεργαστές</h3></div></div></div>
+<p>Υποστήριξη για πολλαπλούς επεξεργαστές — γνωστή και ως <span class="quote">«<span class="quote">συμμετρική πολυ-επεξεργασία</span>»</span> ή SMP — είναι διαθέσιμη για την αρχιτεκτονική αυτή. Η ύπαρξη πολλαπλών επεξεργαστών σε έναν υπολογιστή ήταν αρχικά ζήτημα μόνο σε υψηλών-επιδόσεων συστήματα εξυπηρετητών αλλά έγινε αρκετά διαδεδομένη στα πρόσφατα χρόνια ακόμα σχεδόν παντού με την εισαγωγή των λεγόμενων <span class="quote">«<span class="quote">πολυπύρηνων</span>»</span> επεξεργαστών. Αυτοί περιέχουν δύο ή περισσότερες επεξεργαστικές μονάδες, που ονομάζονται <span class="quote">«<span class="quote">πυρήνες</span>»</span>, σε έναν μοναδικό φυσικό μικροεπεξεργαστή. </p>
+<p>Η εικόνα του πυρήνα της συνηθισμένης έκδοσης Debian 12 έχει μεταγλωττιστεί με υποστήριξη για SMP. Μπορεί επίσης να χρησιμοποιηθεί σε μη-πολυεπεξεργαστικά συστήματα χωρίς προβλήματα. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="gfx"></a>2.1.6. Υποστήριξη Υλικού Γραφικών</h3></div></div></div>
+<p>Η υποστήριξη του Debian για γραφικές διεπαφές καθορίζεται από την υποκείμενη υποστήριξη που βρίσκεται στο σύστημα X11 του X.Org και στον πυρήνα. Στοιχειώδη γραφικά framebuffer παρέχονται από τον πυρήνα, ενώ τα περιβάλλοντα επιφάνειας εργασίας χρησιμοποιούν το σύστημα X11. Το αν είναι διαθέσιμα άλλα προχωρημένα χαρακτηριστικά γραφικών καρτών όπως η τρισδιάστατη επιτάχυνση από το υλικό ή η επιτάχυνση εικόνας από το υλικό (hardware-accelerated video), εξαρτάται από την συγκεκριμένη κάρτα γραφικών που χρησιμοποιείται στο σύστημα και σε μερικές περιπτώσεις από την εγκατάσταση επιπρόσθετων blobs <span class="quote">«<span class="quote">υλισμικού</span>»</span> (δείτε το <a class="xref" href="ch02s02.html" title="2.2. Συσκευές που απαιτούν firmware">Τμήμα 2.2, «Συσκευές που απαιτούν firmware»</a>). </p>
+<p>Σχεδόν όλα τα μηχανήματα ARM έχουν το υλικό των γραφικών ενσωματωμένο και όχι σε μια εξωτερική προς σύνδεση (plug-in) κάρτα. Μερικά μηχανήματα έχουν θέσεις επέκτασης που μπορούν να δεχθούν κάρτες γραφικών αλλά αυτό συμβαίνει σπάνια. Υλικό που έχει σχεδιαστεί να είναι "headless" χωρίς καθόλου γραφικά είναι κάτι αρκετά κοινό. Παρ' όλο που η βασική υποστήριξη για framebuffer βίντεο που παρέχεται από τον πυρήναθα πρέπει να δουλεύει σε όλες τις συσκευές που έχουν γραφικά, γρήγορα 3διάστατα/3D γραφικά απαιτούν έτοιμους binary οδηγούς για να δουλέψουν. Η κατάσταση αυτή αλλάζει γενικά γρήγορα αλλά τη στιγμή της έκδοσης της bookworm υπάρχουν διαθέσιμοι σ' αυτήν ελεύθεροι οδηγοί της nouveau (Nvidia Tegra K1 SoC) και freedreno (Qualcomm Snapdragon SoCs). Άλλα είδη υλικού χρειάζονται μη-ελεύθερους οδηγούς από τρίτους. </p>
+<p>Λεπτομέρειες για τις υποστηριζόμενες κάρτες γραφικών και συσκευές pointing μπορούν να βρεθούν στον σύνδεσμο <a class="ulink" href="https://wiki.freedesktop.org/xorg/" target="_top">https://wiki.freedesktop.org/xorg/</a>. Το Debian 12 έρχεται με την έκδοση 7.7 του X.Org. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="network-cards"></a>2.1.7. Υλικό Δικτυακής Σύνδεσης</h3></div></div></div>
+<p>Σχεδόν όλoι οι τύποι καρτών δικτύου (NIC) που υποστηρίζονται από τον πυρήνα του Linux πρέπει επίσης να υποστηρίζονται από το σύστημα εγκατάστασης. Οι διάφοροι οδηγοί (drivers) θα πρέπει κανονικά να φορτώνονται αυτόματα.   </p>
+<p>Στην αρχιτεκτονική <span class="phrase">64-bit ARM</span>, υποστηρίζονται οι περισσότερες ενσωματωμένες συσκευές Ethernet και παρέχονται αρθρώματα για επιπρόσθετες συσκευές PCI και USB. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="supported-peripherals"></a>2.1.8. Περιφερειακά και άλλο Υλικό</h3></div></div></div>
+<p>Το Linux υποστηρίζει μια μεγάλη ποικιλία από συσκευές υλικού όπως ποντίκια, εκτυπωτές, σαρωτές, και συσκευές PCMCIA/CardBus/ExpressCard και USB. Παρ' όλα αυτά, οι περισσότερες από τις συσκευές αυτές δεν είναι απαραίτητες κατά την εγκατάσταση του συστήματος. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch02.html"><img src="images/prev.png" alt="Προηγ"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch02.html"><img src="images/up.png" alt="Πάνω"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch02s02.html"><img src="images/next.png" alt="Επόμενο"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Κεφάλαιο 2. Απαιτήσεις Συστήματος </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Αρχή"></a></td>
+<td width="40%" align="right" valign="top"> 2.2. Συσκευές που απαιτούν firmware</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

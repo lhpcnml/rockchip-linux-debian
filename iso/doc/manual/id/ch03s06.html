@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>3.6. Penyiapan Perangkat Keras dan Sistem Operasi Pra Instalasi</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Panduan Instalasi Debian GNU/Linux">
+<link rel="up" href="ch03.html" title="Bab 3. Sebelum Memasang Debian GNU/Linux">
+<link rel="prev" href="ch03s05.html" title="3.5. Pra-Pemartisian untuk Sistem Multi-Boot">
+<link rel="next" href="ch04.html" title="Bab 4. Mendapatkan Media Instalasi Sistem">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">3.6. Penyiapan Perangkat Keras dan Sistem Operasi Pra Instalasi</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch03s05.html"><img src="images/prev.png" alt="Sebelumnya"></a> </td>
+<th width="60%" align="center">Bab 3. Sebelum Memasang Debian GNU/Linux</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch04.html"><img src="images/next.png" alt="Lanjut"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="pre-install-bios-setup"></a>3.6. Penyiapan Perangkat Keras dan Sistem Operasi Pra Instalasi</h2></div></div></div>
+<p>Bagian ini akan memandu Anda melalui penyiapan perangkat keras pra-instalasi, jika ada, yang perlu Anda lakukan sebelum memasang Debian. Umumnya, ini melibatkan pemeriksaan dan mungkin mengubah pengaturan firmware BIOS/UEFI/sistem untuk sistem Anda. <span class="quote">“<span class="quote">BIOS/UEFI</span>”</span> atau <span class="quote">“<span class="quote">firmware sistem</span>”</span> adalah perangkat lunak inti yang digunakan oleh perangkat keras; ini paling kritis dipanggil selama proses bootstrap (setelah daya dihidupkan). </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-dev-select-arm64"></a>3.6.1. Pemilihan Perangkat Boot</h3></div></div></div>
+<p>
+
+    </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm-firmware-overview"></a>3.6.2. Firmware ARM</h3></div></div></div>
+<p>Seperti yang telah disebutkan sebelumnya, sayangnya tidak ada standar untuk firmware sistem pada sistem ARM. Bahkan perilaku sistem yang berbeda yang menggunakan firmware yang secara nominal sama bisa sangat berbeda. Ini dihasilkan dari fakta bahwa sebagian besar perangkat yang menggunakan arsitektur ARM adalah sistem tertanam (embedded), dimana produsen biasanya membangun versi firmware yang sangat disesuaikan dan menyertakan patch spesifik perangkat. Sayangnya produsen sering tidak mengirimkan perubahan dan ekstensi mereka kembali ke pengembang firmware mainline, sehingga perubahan mereka tidak diintegrasikan ke dalam versi firmware asli yang lebih baru. </p>
+<p>Akibatnya bahkan sistem yang baru dijual sering menggunakan firmware yang didasarkan pada versi firmware yang dimodifikasi pabrikan berusia bertahun-tahun yang basis kode mainline-nya telah berkembang lebih jauh sementara itu dan menawarkan fitur tambahan atau menunjukkan perilaku yang berbeda dalam aspek-aspek tertentu. Selain itu, penamaan perangkat onboard tidak konsisten antara versi modifikasi pabrikan yang berbeda dari firmware yang sama, oleh karena itu hampir tidak mungkin untuk memberikan instruksi independen produk yang dapat digunakan untuk sistem berbasis ARM. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="uboot-macsetting"></a>3.6.3. Mengatur alamat MAC ethernet di U-Boot</h3></div></div></div>
+<p>Alamat MAC dari setiap antarmuka ethernet biasanya harus unik secara global, dan secara teknis harus unik dalam domain broadcast ethernet-nya. Untuk mencapai hal ini, pabrikan biasanya mengalokasikan satu blok alamat MAC dari kumpulan yang dikelola secara terpusat (yang biayanya harus dibayar) dan mem-prakonfigurasi salah satu alamat ini pada setiap item yang dijual. </p>
+<p>Dalam kasus papan pengembangan, kadang-kadang produsen ingin menghindari pembayaran biaya ini dan karena itu tidak memberikan alamat yang unik secara global. Dalam kasus ini pengguna sendiri harus menentukan alamat MAC untuk sistem mereka. Ketika tidak ada alamat MAC yang didefinisikan untuk antarmuka ethernet, beberapa driver jaringan menghasilkan alamat MAC acak yang dapat berubah pada setiap boot, dan jika ini terjadi, akses jaringan akan dimungkinkan bahkan ketika pengguna belum menetapkan alamat secara manual, tetapi misalnya menetapkan alamat IP semi-statis oleh DHCP berdasarkan alamat MAC klien yang meminta jelas tidak akan berfungsi dengan andal. </p>
+<p>Untuk menghindari konflik dengan alamat MAC yang ditetapkan secara resmi, ada kumpulan alamat yang dicadangkan untuk apa yang disebut alamat <span class="quote">“<span class="quote">yang dikelola secara lokal</span>”</span>. Ini didefinisikan oleh nilai dua bit spesifik dalam byte pertama alamat (artikel <span class="quote">“<span class="quote">alamat MAC</span>”</span> di Wikipedia bahasa Inggris memberikan penjelasan yang baik). Dalam praktiknya ini berarti bahwa misalnya alamat apa pun yang dimulai dengan heksadesimal ca (seperti ca:ff:ee:12:34:56) dapat digunakan sebagai alamat yang dikelola secara lokal. </p>
+<p>Pada sistem yang menggunakan U-Boot sebagai firmware sistem, alamat MAC ethernet ditempatkan dalam variabel lingkungan <span class="quote">“<span class="quote">ethaddr</span>”</span>. Itu dapat diperiksa di prompt perintah U-Boot dengan perintah <span class="quote">“<span class="quote">printenv ethaddr</span>”</span> dan dapat diatur dengan perintah <span class="quote">“<span class="quote">setenv ethaddr ca:ff:ee:12:34:56</span>”</span>. Setelah mengatur nilai, perintah <span class="quote">“<span class="quote">saveenv</span>”</span> membuat penugasan permanen. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="uboot-relocation-issues"></a>3.6.4. Masalah relokasi kernel/initrd/device-tree di U-Boot</h3></div></div></div>
+<p>Pada beberapa sistem dengan versi U-Boot yang lebih lama mungkin ada masalah dengan relokasi kernel Linux dengan benar, ramdisk awal dan blob pohon perangkat dalam memori selama proses boot. Dalam hal ini, U-Boot menunjukkan pesan <span class="quote">“<span class="quote">Starting kernel ...</span>”</span>, tetapi sistem membeku setelahnya tanpa keluaran lebih lanjut. Masalah ini telah diselesaikan dengan versi U-Boot yang lebih baru dari v2014.07 dan seterusnya. </p>
+<p>Jika sistem awalnya menggunakan versi U-Boot yang lebih lama dari v2014.07 dan telah ditingkatkan ke versi yang lebih baru nanti, masalah mungkin masih terjadi bahkan setelah memutakhirkan U-Boot. Memutakhirkan U-Boot biasanya tidak memodifikasi variabel lingkungan U-Boot yang ada dan perbaikannya memerlukan variabel lingkungan tambahan (bootm_size) untuk diatur, yang dilakukan U-Boot secara otomatis hanya pada instalasi baru tanpa data lingkungan yang ada. Dimungkinkan untuk mengatur bootm_size secara manual ke nilai baku U-Boot baru dengan menjalankan perintah <span class="quote">“<span class="quote">env default bootm_size; saveenv</span>”</span> pada prompt U-Boot. </p>
+<p>Kemungkinan lain untuk menghindari masalah terkait relokasi adalah dengan menjalankan perintah <span class="quote">“<span class="quote">setenv fdt_high ffffffff; setenv initrd_high 0xffffffff; saveenv</span>”</span> pada prompt U-Boot untuk sepenuhnya menonaktifkan relokasi ramdisk awal dan blob pohon perangkat. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch03s05.html"><img src="images/prev.png" alt="Sebelumnya"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch03.html"><img src="images/up.png" alt="Induk"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch04.html"><img src="images/next.png" alt="Lanjut"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">3.5. Pra-Pemartisian untuk Sistem Multi-Boot </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Depan"></a></td>
+<td width="40%" align="right" valign="top"> Bab 4. Mendapatkan Media Instalasi Sistem</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

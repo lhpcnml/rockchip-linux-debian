@@ -1,0 +1,95 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>5.2. Accessibilité</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Manuel d'installation pour la distribution Debian GNU/Linux">
+<link rel="up" href="ch05.html" title="Chapitre 5. Démarrer le système d'installation">
+<link rel="prev" href="ch05s01.html" title="5.1. Démarrer l'installateur sur ARM 64 bit">
+<link rel="next" href="ch05s03.html" title="5.3. Paramètres d'amorçage">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">5.2. Accessibilité</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch05s01.html"><img src="images/prev.png" alt="Précédent"></a> </td>
+<th width="60%" align="center">Chapitre 5. Démarrer le système d'installation</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch05s03.html"><img src="images/next.png" alt="Suivant"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="boot-installer-accessibility"></a>5.2. Accessibilité</h2></div></div></div>
+<p>Certaines personnes ont besoin d'une aide spéciale, par exemple à cause d'une déficience visuelle.  <span class="phrase">La plupart des</span> fonctionnalités doivent être activées explicitement.  Des paramètres d'amorçage peuvent  être ajoutés pour activer les fonctions d'accessibilité. Remarquez que, sur la plupart des architectures, le programme d'amorçage considère le clavier comme un clavier QWERTY. </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm967"></a>5.2.1. Frontaux de l'installateur</h3></div></div></div>
+<p>L'installateur prend en charge différents frontaux pour poser des questions : en particulier <strong class="userinput"><code>text</code></strong> utilise le texte brut alors que <strong class="userinput"><code>newt</code></strong> utilise des boîtes de dialogues basées sur du texte. Le choix peut être fait à l’invite du démarrage. Veuillez consulter la documentation de <strong class="userinput"><code>DEBIAN_FRONTEND</code></strong> dans la <a class="xref" href="ch05s03.html#installer-args" title="5.3.2. Paramètres pour l'installateur Debian">Section 5.3.2, « Paramètres pour l'installateur Debian »</a>. </p>
+<p>Avec le frontal <strong class="userinput"><code>newt</code></strong> (surtout utilisé avec le braille), il suffit de sélectionner les réponses avec les flèches du clavier et valider avec <span class="keycap"><strong>Entrée</strong></span>. Les touches <span class="keycap"><strong>Tab</strong></span> ou <span class="keycap"><strong>Shift</strong></span>+<span class="keycap"><strong>Tab</strong></span> permettent de basculer d'un élément à l'autre, en particulier pour accéder au bouton <strong class="userinput"><code>Revenir en arrière</code></strong> qui renvoie à la question précédente. Certains écrans contiennent des cases à cocher qui peuvent être (dé)sélectionnées avec la touche <span class="keycap"><strong>Espace</strong></span>. </p>
+<p>Avec le frontal <strong class="userinput"><code>text</code></strong> (surtout utilisé par la synthèse vocale), il suffit de sélectionner les réponses en saisissant leur numéro suivi de <span class="keycap"><strong>Entrée</strong></span>, ou sélectionner un choix avec les flèches et valider par <span class="keycap"><strong>Entrée</strong></span>. Utiliser uniquement la touche <span class="keycap"><strong>Entrée</strong></span> permet de choisir la valeur par défaut proposée. Taper <strong class="userinput"><code>&lt;</code></strong> suivi de <span class="keycap"><strong>Entrée</strong></span> renvoie à la question précédente. Quand plusieurs choix sont proposés (par exemple pour la sélection des tâches), <strong class="userinput"><code>!</code></strong> permet de n'en sélectionner aucun. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm990"></a>5.2.2. Cartes fille</h3></div></div></div>
+<p>Certains périphériques sont en fait des cartes fille qui sont enfichées dans la machine et qui lisent le texte directement dans la mémoire vidéo. Pour les faire fonctionner, la gestion du tampon vidéo doit être désactivée avec le paramètre  <strong class="userinput"><code>fb=false</code></strong>. Mais cela réduit le nombre de langues disponibles. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm994"></a>5.2.3. Thème à fort contraste</h3></div></div></div>
+<p>Pour les utilisateurs ayant une vue basse, l'installateur propose un thème avec des couleurs très contrastées qui le rend plus lisible. Pour l'activer, utilisez l'entrée <span class="quote">« <span class="quote">Accessible high contrast</span> »</span> du menu d'amorçage, à laquelle correspond le raccourci <strong class="userinput"><code>d</code></strong>, ou ajoutez le paramètre <strong class="userinput"><code>theme=dark</code></strong>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm1000"></a>5.2.4. Zoom</h3></div></div></div>
+<p>Pour les utilisateurs qui ont une mauvaise vue, l'installateur graphique possède une fonction basique de zoom : les raccourcis <span class="keycap"><strong>Control</strong></span>+<span class="keycap"><strong>+</strong></span> et <span class="keycap"><strong>Control</strong></span>+<span class="keycap"><strong>-</strong></span> augmentent ou réduisent la taille de police. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm1009"></a>5.2.5. Modes d'installation Expert, Rescue et Automated</h3></div></div></div>
+<p>Les modes d'installation Expert, Rescue (récupération) et Automated (automatisé) sont aussi disponibles avec les options d'accessibilité. Pour y accéder, il faut d'abord choisir le sous-menu <span class="quote">« <span class="quote">Advanced options</span> »</span> du menu d'amorçage en saisissant <strong class="userinput"><code>a</code></strong>. Dans le cas d'un système sous BIOS (le menu d'amorçage n'aura émis qu'un seul bip), il faut aussi appuyer sur la touche <span class="keycap"><strong>Entrée</strong></span> ; avec un système UEFI (le menu d'amorçage aura émis deux bips) cela n'est pas nécessaire. Ensuite, en appuyant sur la touche <strong class="userinput"><code>s</code></strong> (suivie de <span class="keycap"><strong>Entrée</strong></span> sur les systèmes sous BIOS mais pas sous UEFI), la synthèse vocale est activée. À partir de ce moment, plusieurs raccourcis peuvent être utilisés : <strong class="userinput"><code>x</code></strong> pour une installation en mode expert, <strong class="userinput"><code>r</code></strong> pour le mode de récupération, et <strong class="userinput"><code>a</code></strong> pour l'installation automatisée. Si un système sous BIOS est utilisé, chaque raccourci doit être suivi de la touche <span class="keycap"><strong>Entrée</strong></span>. </p>
+<p>Debian peut être aussi installée de façon automatique en utilisant la préconfiguration. Cette préconfiguration peut être chargée après la sélection des options d'accessibilité. Une documentation est disponible dans l'<a class="xref" href="apb.html" title="Annexe B. Automatisation de l'installation par préconfiguration">Annexe B, <i>Automatisation de l'installation par préconfiguration</i></a>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm1023"></a>5.2.6. Accessibilité du système installé</h3></div></div></div>
+<p>Une documentation sur l'accessibilité est disponible sur la page du wiki Debian <a class="ulink" href="https://wiki.debian.org/accessibility" target="_top">Accessibility</a>. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch05s01.html"><img src="images/prev.png" alt="Précédent"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch05.html"><img src="images/up.png" alt="Niveau supérieur"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch05s03.html"><img src="images/next.png" alt="Suivant"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">5.1. Démarrer l'installateur sur 
+  
+  
+  <span class="phrase">ARM 64 bit</span>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Sommaire"></a></td>
+<td width="40%" align="right" valign="top"> 5.3. Paramètres d'amorçage</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>2.1. Hardware supportato</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Guida all'installazione di Debian GNU/Linux">
+<link rel="up" href="ch02.html" title="Capitolo 2. Requisiti di sistema">
+<link rel="prev" href="ch02.html" title="Capitolo 2. Requisiti di sistema">
+<link rel="next" href="ch02s02.html" title="2.2. Dispositivi che richiedono firmware specifico">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">2.1. Hardware supportato</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch02.html"><img src="images/prev.png" alt="Indietro"></a> </td>
+<th width="60%" align="center">Capitolo 2. Requisiti di sistema</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch02s02.html"><img src="images/next.png" alt="Avanti"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="hardware-supported"></a>2.1. Hardware supportato</h2></div></div></div>
+<p>Debian non ha nessun requisito aggiuntivo all'hardware oltre a quelli necessari al funzionamento del kernel Linux o kFreeBSD e dei programmi GNU. Perciò è possibile usare Debian su qualsiasi architettura o piattaforma verso cui è stato fatto il port del kernel Linux o kFreeBSD, della libc e del <span class="command"><strong>gcc</strong></span> e per la quale esiste il port di Debian. Consultare le pagine dei port su <a class="ulink" href="https://www.debian.org/ports/arm/" target="_top">https://www.debian.org/ports/arm/</a> per conoscere quali sistemi con architettura 
+  
+  
+  <span class="phrase">ARM 64 bit</span>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   sono stati testati con Debian GNU/Linux. </p>
+<p>Piuttosto che cercare di descrivere tutte le diverse configurazioni hardware che sono supportate da 
+  
+  
+  <span class="phrase">ARM 64 bit</span>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  , questa sezione contiene delle informazioni generali e dei riferimenti a documenti dov'è possibile trovare delle informazioni aggiuntive. </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm189"></a>2.1.1. Architetture supportate</h3></div></div></div>
+<p>Debian GNU/Linux 12 supporta 9 architetture principali e diverse varianti di ogni architettura, che vanno sotto il nome di <span class="quote">«<span class="quote">flavor</span>»</span>. </p>
+<p>
+
+</p>
+<div class="informaltable"><table class="informaltable" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Architettura</th>
+<th>Indicazione Debian</th>
+<th>Sottoarchitettura</th>
+<th>Variante (flavor)</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>AMD64 &amp; Intel 64</td>
+<td>amd64</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td rowspan="2">Intel x86-based</td>
+<td rowspan="2">i386</td>
+<td>macchine x86</td>
+<td>default</td>
+</tr>
+<tr>
+<td>solo domini Xen PV</td>
+<td>xen</td>
+</tr>
+<tr>
+<td>ARM</td>
+<td>armel</td>
+<td>Marvell Kirkwood e Orion</td>
+<td>marvell</td>
+</tr>
+<tr>
+<td>ARM con FPU hardware</td>
+<td>armhf</td>
+<td>multipiattaforma</td>
+<td>armmp</td>
+</tr>
+<tr>
+<td>64bit ARM</td>
+<td>arm64</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td rowspan="3">64bit MIPS (little endian)</td>
+<td rowspan="3">mips64el</td>
+<td>MIPS Malta</td>
+<td>5kc-malta</td>
+</tr>
+<tr>
+<td>Cavium Octeon</td>
+<td>octeon</td>
+</tr>
+<tr>
+<td>Loongson 3</td>
+<td>loongson-3</td>
+</tr>
+<tr>
+<td rowspan="3">32bit MIPS (little endian)</td>
+<td rowspan="3">mipsel</td>
+<td>MIPS Malta</td>
+<td>4kc-malta</td>
+</tr>
+<tr>
+<td>Cavium Octeon</td>
+<td>octeon</td>
+</tr>
+<tr>
+<td>Loongson 3</td>
+<td>loongson-3</td>
+</tr>
+<tr>
+<td>Sistemi Power</td>
+<td>ppc64el</td>
+<td>IBM POWER8 o macchine più recenti</td>
+<td> </td>
+</tr>
+<tr>
+<td>64bit IBM S/390</td>
+<td>s390x</td>
+<td>IPL da VM-reader e DASD</td>
+<td>generico</td>
+</tr>
+</tbody>
+</table></div>
+<p>
+
+</p>
+<p>Questo documento tratta l'installazione sull'architettura <span class="emphasis"><em>
+  
+  
+  <span class="phrase">ARM 64 bit</span>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </em></span> con il kernel <span class="emphasis"><em>Linux</em></span>. Se si cercano delle informazioni su un'altra delle architetture supportate da Debian si consultati la pagina dei <a class="ulink" href="http://www.debian.org/ports/" target="_top">port Debian</a>. </p>
+<p>Questa è la prima release ufficiale di Debian GNU/Linux per l'architettura 
+  
+  
+  <span class="phrase">ARM 64 bit</span>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  . Pensiamo che si sia dimostrata sufficientemente stabile per essere rilasciata. Tuttavia, poiché non ha avuto la visibilità (e quindi non è stata testata dagli utenti) delle altre architetture, è possibile che siano presenti dei bug. Usare il nostro <a class="ulink" href="https://bugs.debian.org/" target="_top">Bug Tracking System</a> per segnalare qualsiasi problema, assicurandosi di indicare che il bug affligge la piattaforma 
+  
+  
+  <span class="phrase">ARM 64 bit</span>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   con il kernel <span class="emphasis"><em>Linux</em></span>. Può essere necessario usare anche la <a class="ulink" href="https://www.debian.org/MailingLists/subscribe" target="_top">mailing list debian-arm</a>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm274"></a>2.1.2. I tre port ARM</h3></div></div></div>
+<p>Nel tempo l'architettura ARM si è evoluta e i moderni processori ARM forniscono funzionalità che non erano presenti nei modelli precedenti. Debian fornisce tre port su ARM per fornire il miglior supporto per una gamma molto ampia di macchine: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>Debian/armel è adatto ai processori ARM più vecchi che non dispongono di una FPU (floating point unit), </p></li>
+<li class="listitem"><p>Debian/armhf funziona solo sui processori ARM più recenti conformi all'architettura ARMv7 e con l'unità di calcolo in virgola mobile VFPv3. Fa un ampio uso delle funzioni e dei miglioramenti delle prestazioni disponibili su questi modelli. </p></li>
+<li class="listitem"><p>Debian/arm64 funziona sui processori ARM a 64-bit conformi almeno all'architettura ARMv8. </p></li>
+</ul></div>
+<p>
+</p>
+<p>Tecnicamente, tutte le CPU ARM attualmente disponibili possono funzionare sia in modalità big-endian che in modalità little-endian, in pratica la maggior parte dei sistemi attualmente disponibili utilizzano la modalità little-endian. Debian/arm64, Debian/armhf e Debian/armel supportano solo sistemi little-endian. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm285"></a>2.1.3. Variazioni nelle CPU ARM e difficoltà di supporto</h3></div></div></div>
+<p>I sistemi ARM sono molto più eterogenei rispetto a quelli dell'architettura dei PC basati su i386/amd64, quindi il supporto può essere più complicato. </p>
+<p>L'architettura ARM è principalmente usata per i SoC (<span class="quote">«<span class="quote">system-on-chip</span>»</span>). I SoC sono progettati da diverse aziende e usano una gran varietà di componenti hardware anche per le funzionalità di base necessarie all'avvio del sistema. Nelle vecchie versioni dell'architettura ARM era possibile vedere differenze enormi tra un SoC e l'altro ma con ARMv8 (arm64) è molto più standardizzato e quindi è più facile da supportare per il kernel Linux. </p>
+<p>Tipicamente le versioni server dell'hardware ARMv8 utilizzano gli standard UEFI (Unified Extensible Firmware Interface) e ACPI (Advanced Configuration Power Interface). Questi forniscono due modi comuni e indipendenti dal dispositivo per avviare il sistema e configurare l'hardware del computer. Inoltre sono anche in comune con il mondo dei PC x86. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm64-supported-platforms"></a>2.1.4. Piattaforme supportate da Debian/arm64</h3></div></div></div>
+<p>L'hardware Arm64/AArch64/ARMv8 è diventato disponibile quando il ciclo di sviluppo di Debian Bookworm era molto avanti e quindi non c'è stato tempo a disposizione per inserire il supporto per di queste piattaforme nel kernel di questo rilascio, che è il requisito fondamentale per usare il <code class="classname">installatore Debian</code> su qualsiasi piattaforma. È confermato che le seguenti piattaforme sono supportate in questo rilascio Debian/arm64. Esiste un unico kernel che supporta tutte le piattaforme elencate. </p>
+<div class="variablelist"><dl class="variablelist">
+<dt><span class="term">Applied Micro (APM) Mustang/X-Gene</span></dt>
+<dd><p>L'APM Mustang è stato il primo sistema ARMv8 gestibile con Linux a essere disponibile. Usa il SoC X-gene, il quale da allora è stato usato anche su altre macchine. È una CPU con 8 core, scheda ethernet, USB e seriale. Nel fattore di forma comune assomiglia a un pc desktop ma in futuro sono attesi altri formati. La maggior parte dell'hardware è supportato dal kernel, ma in questo momento nel kernel di Bookworm manca il supporto per USB. </p></dd>
+<dt><span class="term">ARM Juno Development Platform</span></dt>
+<dd><p>Juno è una scheda di sviluppo con una CPU (2xA57, 4xA53) ARMv8-A 800Mhz con 6 core, grafica Mali (T624), 8GB DDR3 RAM, Ethernet, USB e seriale. È progettata per la realizzazione e test di sistema di potenza e quindi non è né piccola né economica ma è una delle prime schede disponibili. Tutto l'hardware a bordo è supportato nel kernel e in Bookworm. </p></dd>
+</dl></div>
+<p>Quando si utilizza <code class="classname">installatore Debian</code> su sistemi non-UEFI, potrebbe essere necessario rendere il sistema avviabile al termine dell'installazione, eseguendo i comandi necessari da una shell avviata all'interno del <code class="classname">installatore Debian</code>. flash-kernel sa come impostare l'avvio di un sistema X-Gene con U-Boot. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="arm64-other-platforms"></a>2.1.4.1. Altre piattaforme</h4></div></div></div>
+<p>Il supporto multipiattaforma nel kernel Linux arm64 permette di usare il <code class="classname">installatore Debian</code> anche sui sistemi non esplicitamente elencati in precedenza, l'importante e che il kernel del <code class="classname">installatore Debian</code> supporti i componenti del sistema e che sia disponibile un file con il device-tree. In questo caso l'installatore è in grado di fornire un'installazione funzionante e, se viene usato UEFI, è in grado di rendere il sistema avviabile. Se non è usato UEFI probabilmente sono necessarie altre configurazioni da fare manualmente per rendere il sistema avviabile. </p>
+</div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm312"></a>2.1.5. Sistemi multiprocessore</h3></div></div></div>
+<p>Il supporto multiprocessore — detto anche <span class="quote">«<span class="quote">symmetric multiprocessing</span>»</span> o SMP — è disponibile per questa architettura. In origine la presenza più processori in un computer era una caratteristica solo dei sistemi server di alto livello, negli ultimi anni questa caratteristica è diventata molto comune grazie ai cosiddetti processori <span class="quote">«<span class="quote">multi-core</span>»</span>. Tali processori contengono due o più unità di elaborazione, chiamate <span class="quote">«<span class="quote">core</span>»</span>, all'interno di un solo chip. </p>
+<p>L'immagine del kernel standard di Debian 12 è stata compilata con il supporto per l'SMP ed è utilizzabile anche su sistemi non-SMP senza problemi. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="gfx"></a>2.1.6. Hardware grafico supportato</h3></div></div></div>
+<p>Il supporto di Debian per le interfacce grafiche è determinato dal supporto sottostante fornito dal sistema X11 di X.Org e dal kernel. La grafica di base del framebuffer è fornita dal kernel invece gli ambienti desktop utilizzano X11. La disponibilità delle funzionalità avanzate della scheda grafica come l'accelerazione 3D o l'accelerazione video dipende da quale hardware è installato nel sistema e in alcuni casi potrebbe essere necessario installare delle immagini aggiuntive con il <span class="quote">«<span class="quote">firmware</span>»</span> (consultare <a class="xref" href="ch02s02.html" title="2.2. Dispositivi che richiedono firmware specifico">Sezione 2.2, «Dispositivi che richiedono firmware specifico»</a>). </p>
+<p>Su quasi tutte le macchine ARM l'hardware grafico è integrato anziché essere su una scheda da inserire. Alcune macchine dispongono di slot d'espansione in cui è possibile inserire schede grafiche, ma sono delle rarità. Invece è abbastanza comune trovare dell'hardware progettato per essere usato senza monitor e senza tastiera. Anche se il framebuffer video fornito dal kernel funziona tutti i dispositivi grafici, per far funzionare la grafica 3D sono necessari dei driver binari. Questa situazione si evolve molto rapidamente, al momento del rilascio di bookworm sono disponibili i driver liberi per nouveau (Nvidia Tegra K1 SoC) e freedreno (Qualcomm Snapdragon SoCs). Altri hardware richiedono driver non-free da terze parti. </p>
+<p>I dettagli sull'hardware grafico e i dispositivi di puntamento supportati possono essere trovati in <a class="ulink" href="https://wiki.freedesktop.org/xorg/" target="_top">https://wiki.freedesktop.org/xorg/</a>. Debian 12 include la versione 7.7 di X.Org. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="network-cards"></a>2.1.7. Schede di rete</h3></div></div></div>
+<p>Quasi tutte le schede di rete (NIC) supportate dal kernel Linux standard dovrebbero essere supportate anche dal sistema d'installazione; normalmente i driver sono caricati automaticamente.   </p>
+<p>Su 
+  
+  
+  <span class="phrase">ARM 64 bit</span>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  , la maggior parte dei dispositivi Ethernet integrati sono supportati e i moduli per i dispositivi PCI e USB aggiuntivi sono disponibili. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="supported-peripherals"></a>2.1.8. Periferiche e altro hardware</h3></div></div></div>
+<p>Linux supporta una grande varietà di dispositivi hardware come per esempio mouse, stampanti, dispositivi PCMCIA/CardBus/ExpressCard e USB. Tuttavia molte di queste periferiche non sono necessarie durante l'installazione del sistema. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch02.html"><img src="images/prev.png" alt="Indietro"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch02.html"><img src="images/up.png" alt="Risali"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch02s02.html"><img src="images/next.png" alt="Avanti"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Capitolo 2. Requisiti di sistema </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Partenza"></a></td>
+<td width="40%" align="right" valign="top"> 2.2. Dispositivi che richiedono firmware specifico</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>3.6. Configuratie van hardware en besturingssysteem voor de installatie</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux Installatiehandleiding">
+<link rel="up" href="ch03.html" title="Hoofdstuk 3. Vooraleer u Debian GNU/Linux installeert">
+<link rel="prev" href="ch03s05.html" title="3.5. Uw harde schijf vooraf indelen voor een multi-boot systeem">
+<link rel="next" href="ch04.html" title="Hoofdstuk 4. Media met het installatiesysteem verkrijgen">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">3.6. Configuratie van hardware en besturingssysteem voor de installatie</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch03s05.html"><img src="images/prev.png" alt="Terug"></a> </td>
+<th width="60%" align="center">Hoofdstuk 3. Vooraleer u Debian GNU/Linux installeert</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch04.html"><img src="images/next.png" alt="Volgende"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="pre-install-bios-setup"></a>3.6. Configuratie van hardware en besturingssysteem voor de installatie</h2></div></div></div>
+<p>Dit deel behandelt eventuele hardware-instellingen die u moet uitvoeren voordat u Debian installeert. In het algemeen gaat het dan over het controleren en eventueel wijzigen van instellingen in de BIOS/UEFI/systeemfirmware op uw systeem. Het <span class="quote">“<span class="quote">BIOS/UEFI</span>”</span> of de <span class="quote">“<span class="quote">systeemfirmware</span>”</span> is de kernsoftware die door de hardware wordt gebruikt. Deze speelt een cruciale rol bij het begin van het opstarten (na het aanzetten van de computer). </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-dev-select-arm64"></a>3.6.1. Het opstartapparaat kiezen</h3></div></div></div>
+<p>
+
+    </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm-firmware-overview"></a>3.6.2. ARM firmware</h3></div></div></div>
+<p>Zoals reeds eerder aangegeven, bestaat er jammer genoeg geen standaard voor systeemfirmware op ARM-systemen. Zelfs verschillende systemen die nominaal dezelfde firmware gebruiken, kunnen zich heel verschillend gedragen. Dit komt door het feit dat een groot deel van de apparaten die van de ARM-architectuur gebruik maken, ingebedde systemen zijn waarvoor de fabrikanten sterk aangepaste firmwareversies maken met toevoeging van apparaatspecifieke aanpassingen. Jammer genoeg koppelen de fabrikanten deze aanpassingen en uitbreidingen niet terug naar de ontwikkelaars van de standaardfirmware, waardoor hun wijzigingen niet opgenomen geraken in de recentere versies van de originele firmware. </p>
+<p>Het gevolg daarvan is dat zelfs nieuw verkochte systemen vaak gebruik maken van firmware die gebaseerd is op een jaren oude door de fabrikant gewijzigde versie van firmware waarvan de standaardcode intussen erg geëvolueerd is en bijkomende functionaliteit biedt en voor bepaalde aspecten een ander gedrag vertoont. Daarbij komt nog dat er tussen verschillende door de fabrikant gewijzigde versies van dezelfde firmware geen consistentie is in de naamgeving van boordapparatuur en daarom is het schier onmogelijk om bruikbare product-onafhankelijke instructies te geven voor op ARM gebaseerde systemen. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="uboot-macsetting"></a>3.6.3. Het ethernet MAC-adres instellen in U-Boot</h3></div></div></div>
+<p>Normaal zou het MAC-adres van elke ethernet-interface wereldwijd uniek moeten zijn en het moet vanuit technisch oogpunt uniek zijn binnen zijn ethernet broadcast-domein. Om dit te bereiken reserveert de fabrikant gewoonlijk een blok MAC-adressen uit een centraal beheerde pool (waarvoor een prijs betaald moet worden) en stelt een van deze adressen vooraf in op elk verkocht exemplaar. </p>
+<p>In het geval van ontwikkelingsborden wil de fabrikant deze kosten soms vermijden en geeft hij geen globaal uniek adres. In deze gevallen moet de gebruiker zelf een uniek MAC-adres definiëren voor zijn systeem. Als geen MAC-adres gedefinieerd werd voor een ethernet-interface, genereren sommige netwerkstuurprogramma's een willekeurig MAC-adres dat bij elke herstart anders kan zijn. In een dergelijk scenario is toegang tot het netwerk mogelijk, zelfs als de gebruiker niet handmatig een adres ingesteld heeft, maar bijvoorbeeld het toekennen van een semi-statisch IP-adres door DHCP op basis van het MAC-adres van de cliënt die daarom vraagt, zal om evidente redenen niet betrouwbaar kunnen gebeuren. </p>
+<p>Om conflicten met officieel toegewezen MAC-adressen te vermijden, bestaat er een pool met adressen die voorbehouden is voor zogenaamde <span class="quote">“<span class="quote">lokaal beheerde</span>”</span> adressen. Die pool wordt gedefinieerd door de waarde van twee specifieke bits in de eerste byte van het adres (het artikel <span class="quote">“<span class="quote">MAC address</span>”</span> in de Engelstalige Wikipedia geeft een goede uitleg). In de praktijk betekent dit dat bijvoorbeeld elk adres dat met het hexadecimaal getal ca begint (zoals ca:ff:ee:12:34:56) gebruikt kan worden voor een lokaal beheerd adres. </p>
+<p>Op systemen die U-Boot als systeemfirmware gebruiken, wordt het ethernet MAC-adres geplaatst in de omgevingsvariabele <span class="quote">“<span class="quote">ethaddr</span>”</span>. Het kan nagekeken worden aan de commandoregelprompt van U-Boot met het commando <span class="quote">“<span class="quote">printenv ethaddr</span>”</span> en het kan ingesteld worden met het commando <span class="quote">“<span class="quote">setenv ethaddr ca:ff:ee:12:34:56</span>”</span>. Nadat de waarde ingesteld werd, maakt het commando <span class="quote">“<span class="quote">saveenv</span>”</span> de toewijzing permanent. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="uboot-relocation-issues"></a>3.6.4. Problemen in U-Boot met relocatie van kernel/initrd/apparatenboom</h3></div></div></div>
+<p>Op sommige systemen met een oudere U-Boot-versie kunnen er zich tijdens het opstartproces problemen stellen met een juiste relocatie in het geheugen van de Linuxkernel, de initiële ramdisk en de blob met de apparatenboom. In een dergelijk geval toont U-Boot de melding <span class="quote">“<span class="quote">Starting kernel ...</span>”</span>, maar loopt het systeem nadien vast zonder verdere uitvoer te genereren. In recentere versies van U-Boot, te beginnen met v2014.07, zijn deze problemen opgelost. </p>
+<p>Indien het systeem oorspronkelijk een versie van U-Boot gebruikte die ouder was dan v2014.07 en nadien opgewaardeerd werd naar een recentere versie, kan het probleem zich na de opwaardering van U-Boot nog steeds manifesteren. Het opwaarderen van U-Boot wijzigt over het algemeen niet de bestaande omgevingsvariabelen van U-boot en de reparatie vereist dat een bijkomende omgevingsvariabele (bootm_size) ingesteld wordt, hetgeen U-Boot enkel automatisch doet bij nieuwe installaties waar nog geen omgevingsdata bestaan. Men kan de variabele bootm_size handmatig instellen op de nieuwe standaard van U-Boot door het commando <span class="quote">“<span class="quote">env default bootm_size; saveenv</span>”</span> uit te voeren aan de prompt van U-Boot. </p>
+<p>Een andere mogelijkheid om de relocatiegerelateerde problemen te omzeilen is om de relocatie van de initiële ramdisk en de blob met de apparatenboom volledig uit te schakelen door aan de prompt van U-Boot het commando <span class="quote">“<span class="quote">setenv fdt_high ffffffff; setenv initrd_high 0xffffffff; saveenv</span>”</span> in te geven. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch03s05.html"><img src="images/prev.png" alt="Terug"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch03.html"><img src="images/up.png" alt="Omhoog"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch04.html"><img src="images/next.png" alt="Volgende"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">3.5. Uw harde schijf vooraf indelen voor een multi-boot systeem </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Begin"></a></td>
+<td width="40%" align="right" valign="top"> Hoofdstuk 4. Media met het installatiesysteem verkrijgen</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

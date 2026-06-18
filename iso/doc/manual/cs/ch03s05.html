@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>3.5. Předrozdělení disku pro více operačních systémů</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux — instalační příručka">
+<link rel="up" href="ch03.html" title="Kapitola 3. Než začnete s instalací">
+<link rel="prev" href="ch03s04.html" title="3.4. Splnění minimálních hardwarových požadavků">
+<link rel="next" href="ch03s06.html" title="3.6. Než začnete s instalací …">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">3.5. Předrozdělení disku pro více operačních systémů</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch03s04.html"><img src="images/prev.png" alt="Předcházející"></a> </td>
+<th width="60%" align="center">Kapitola 3. Než začnete s instalací</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch03s06.html"><img src="images/next.png" alt="Další"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="non-debian-partitioning"></a>3.5. Předrozdělení disku pro více operačních systémů</h2></div></div></div>
+<p>Rozdělením disku se na disku vytvoří několik vzájemně nezávislých oddílů (angl. partition). Každý oddíl je nezávislý na ostatních. Dá se to přirovnat k bytu rozčleněnému zdmi — přidání nábytku do jedné místnosti nemá na ostatní místnosti žádný vliv. </p>
+<p>Jestliže už na počítači máte nějaký operační systém   a chcete na stejný disk ještě umístit Debian, patrně se nevyhnete přerozdělení disku. Debian pro sebe potřebuje vlastní diskové oblasti a nemůže být nainstalován na oblasti systému Windows nebo třeba MacOS X. Je sice možné sdílet některé oblasti s jinými systémy, ale popis je mimo rozsah tohoto dokumentu. Minimálně budete potřebovat jednu oblast pro kořenový souborový systém. </p>
+<p>Informace o aktuálním rozdělení disku můžete získat dělicím programem svého stávajícího operačního systému . Každý dělicí nástroj umožňuje prohlížet oblasti bez jejich modifikace. </p>
+<p>Obecně změna oddílu, na kterém je souborový systém, znamená ztrátu dat, takže si raději disk před změnami do tabulky diskových oddílů zazálohujte. Podle analogie s bytem a zdmi, z bytu také raději vynesete veškerý nábytek, než budete přestavovat zdi. </p>
+<p>Přestože některé moderní operační systémy zvládají přesun a změnu velikosti některých oddílů bez zničení obsahu, takže by se dalo vytvořit místo pro Debian beze ztráty dat, jedná se o inherentně nebezpečnou operaci a proto byste to měli spáchat až po kompletní záloze všech dat.  </p>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch03s04.html"><img src="images/prev.png" alt="Předcházející"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch03.html"><img src="images/up.png" alt="Nahoru"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch03s06.html"><img src="images/next.png" alt="Další"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">3.4. Splnění minimálních hardwarových požadavků </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Domů"></a></td>
+<td width="40%" align="right" valign="top"> 3.6. Než začnete s instalací …</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

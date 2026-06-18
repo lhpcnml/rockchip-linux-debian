@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>3.6. Præinstallation af udstyr og operativsystem</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Installationsguide for Debian GNU/Linux">
+<link rel="up" href="ch03.html" title="Kapitel 3. Før installation af Debian GNU/Linux">
+<link rel="prev" href="ch03s05.html" title="3.5. Forhåndspartitionering for systemer med flere opstartsmuligheder">
+<link rel="next" href="ch04.html" title="Kapitel 4. Find systeminstallationsmedie">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">3.6. Præinstallation af udstyr og operativsystem</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch03s05.html"><img src="images/prev.png" alt="forrige"></a> </td>
+<th width="60%" align="center">Kapitel 3. Før installation af Debian GNU/Linux</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch04.html"><img src="images/next.png" alt="næste"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="pre-install-bios-setup"></a>3.6. Præinstallation af udstyr og operativsystem</h2></div></div></div>
+<p>Dette afsnit vil gennemgå opsætning af udstyr til forhåndsinstallationen, som du skal gøre, før du installerer Debian. Generelt involverer dette kontrol og muligvis ændring af BIOS/UEFI/systemfirmware-indstillinger for dit system. <span class="quote">“<span class="quote">BIOS/UEFI</span>”</span> eller <span class="quote">“<span class="quote">systemfirmware</span>”</span> er det grundlæggende program brugt af udstyret; det er mest kritisk igangsat under opstartsprocessen (efter tænding). </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-dev-select-arm64"></a>3.6.1. Valg af opstartsenhed</h3></div></div></div>
+<p>
+
+    </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm-firmware-overview"></a>3.6.2. ARM-firmware</h3></div></div></div>
+<p>Som allerede nævnt før, så er der uheldigvis ikke en standard for systemfirmware på ARM-systemer. Selv opførelsen på forskellige systemer, der normalt bruger den samme firmware kan være ret så forskellig. Dette kommer af, at en stor del af enhederne, der bruger ARM-arkitekturen er indlejrede systemer, hvortil producenten normalt bygget meget tilpasset firmwareversioner og inkluderer enhedsspecifikke rettelser. Desværre sender producenterne ikke deres ændringer og udvidelser tilbage til firmwareudviklerne, så deres ændirnger integreres ikke i nyere versioner af den oprindelige firmware. </p>
+<p>Det medfører, at selv nye systemer ofte bruger en firmware, der er baseret på en gammel producentændret version af en firmware, hvis kodegrundlag har udviklet sig langt mere i mellemtiden og tilbyder yderligere funktioner eller har en anden opførsel under bestemte betingelser. Derudover er navngivningen af onboard-enheder ikke konsistent mellem forskellige producentændrede versioner af den samme firmware, så det er næsten umuligt at tilbyde brugbare produktuafhængige instruktioner for ARM-baserede systemer. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="uboot-macsetting"></a>3.6.3. Angivelse af ethernet MAC-adressen i U-Boot</h3></div></div></div>
+<p>MAC-adressen for hver ethernetgrænseflade skal normalt være global unik, og den skal teknisk være unik indenfor sit ethernet broadcast-domæne. For at opnå dette, allokerer leverandøren normalt en blok af MAC-adresser fra en centralt administreret pulje (hvilket der skal betales et vederlag for) og forhåndskonfigurerer en af disse adresser på hvert solgt enhed. </p>
+<p>I tilfældet med udviklingsbundkort ønsker producenten nogle gange at undgå betaling af disse gebyrer og tilbyder derfor ingen globale unikke adresser. I disse tilfælde skal brugeren selv definere MAC-adresser for deres systemer. Når ingen MAC-adresse er defineret for en ethernet-grænseflade, opretter nogle netværksdrivere en vilkårlig MAC-adresse, der kan ændre sig ved hver opstart, og hvis dette sker, vil netværksadgang være mulig, selv når brugere ikke manuelt har angivet en adresse, men f.eks. tildeling af semi-statiske IP-adresser fra DHCP baseret på MAC-adressen for den anmodende klient vil indlysende nok ikke fungere stabilt. </p>
+<p>For at undgå konflikter med eksisterende officielt tildelte MAC-adresser, er der en adressepulje, der er reserveret for såkaldt <span class="quote">“<span class="quote">lokalt administrerede</span>”</span> adresser. Det er defineret af værdien for to specifikke bit i den første byte af adressen (artiklen <span class="quote">“<span class="quote">MAC address</span>”</span> i den engelske Wikipedia har en god forklaring). I praktisk betyder dette at f.eks. enhver adresse startende med hexadecimal ca (såsom ca:ff:ee:12:34:56) kan bruges som en lokalt administreret adresse. </p>
+<p>På systemer der bruger U-Boot som systemfirmware, er ethernet MAC-adressen placeret i miljøvariablen <span class="quote">“<span class="quote">ethaddr</span>”</span>. Det kan kontrolleres via U-Boot-kommandoprompten med kommandoen <span class="quote">“<span class="quote">printenv ethaddr</span>”</span> og kan indstilles med kommandoen <span class="quote">“<span class="quote">setenv ethaddr ca:ff:ee:12:34:56</span>”</span>. Efter angivelse af værdien, gør kommandoen <span class="quote">“<span class="quote">saveenv</span>”</span> tildelingen permanent. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="uboot-relocation-issues"></a>3.6.4. Kernel/Initrd/Device-Tree-flytteproblemstillinger i U-Boot</h3></div></div></div>
+<p>På nogle systemer med ældre U-Boot-versioner kan der være problemer med korrekt reallokering af Linuxkernen, den oprindelige ramdisk og enhedstræets blob i hukommelsen under opstartsprocessen. I dette tiflælde viser U-Boot beskeden <span class="quote">“<span class="quote">Starting kernel ...</span>”</span>, men systemet fryser efterfølgende uden yderligere resultat. Disse problemstillinger er blevet løst med nyere U-Boot-versioner fra version 2014.07 og fremad. </p>
+<p>Hvis systemet oprindelig har brugt en U-Boot-version ældre end v2014.07 og aldrig er blevet opgraderet til en nyere version senere, så kan problemet fortsat være der efter opgradering af U-Boot. Opgradering af U-Boot ændrer normalt ikke det eksisterende U-Boot-miljøs variabler og rettelsen kræver at en yderligere miljøvariabel (bootm_size) indstilles, hvilket U-Boot kun gør automatisk på friske installationer uden eksisterende miljødata. Det er muligt manuelt at indstille bootm_size til den nye U-Boots standardværdi ved at afvikle kommandoen <span class="quote">“<span class="quote">env default bootm_size; saveenv</span>”</span> ved U-Boot-prompten. </p>
+<p>En anden måde at omgå relokeringsproblemer er at køre kommandoen <span class="quote">“<span class="quote">setenv fdt_high ffffffff; setenv initrd_high 0xffffffff; saveenv</span>”</span> på U-Boot-prompten for helt at deaktivere relokeringen af den oprindelige ramdisk og enhedstræets blob. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch03s05.html"><img src="images/prev.png" alt="forrige"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch03.html"><img src="images/up.png" alt="op"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch04.html"><img src="images/next.png" alt="næste"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">3.5. Forhåndspartitionering for systemer med flere opstartsmuligheder </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="hjem"></a></td>
+<td width="40%" align="right" valign="top"> Kapitel 4. Find systeminstallationsmedie</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

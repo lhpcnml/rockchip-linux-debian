@@ -1,0 +1,64 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>C.5. Debian - partitioneringsprogrammer</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Installationsguide for Debian GNU/Linux">
+<link rel="up" href="apc.html" title="Appendiks C. Partitionering for Debian">
+<link rel="prev" href="apcs04.html" title="C.4. Enhedsnavne i Linux">
+<link rel="next" href="apd.html" title="Appendiks D. Diverse forklaringer">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">C.5. Debian - partitioneringsprogrammer</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="apcs04.html"><img src="images/prev.png" alt="forrige"></a> </td>
+<th width="60%" align="center">Appendiks C. Partitionering for Debian</th>
+<td width="20%" align="right"> <a accesskey="n" href="apd.html"><img src="images/next.png" alt="næste"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="partition-programs"></a>C.5. Debian - partitioneringsprogrammer</h2></div></div></div>
+<p>Flere variationer af partitioneringsprogrammer er blevet tilpasset af Debian-udviklere til at fungere på forskellige typer af harddiske og computerarkitekturer. Her følger en liste over programmer, som er egnede for din arkitektur. </p>
+<div class="variablelist"><dl class="variablelist">
+<dt><span class="term"><span class="command"><strong>partman</strong></span></span></dt>
+<dd><p>Anbefalet partitioneringsværktøj i Debian. Denne schweitzerkniv kan også ændre størrelse på partitioner, oprette filsystemer  og tildele dem til monteringspunkter. </p></dd>
+<dt><span class="term"><span class="command"><strong>fdisk</strong></span></span></dt>
+<dd>
+<p>Det originale Linux-diskpartitioneringsprogram, godt for guruer. </p>
+<p>Vær forsigtig hvis du har eksisterende FreeBSD-partitioner på din maskine. Installationskernerne inkluderer understøttelse for disse partitioner, men den måde som <span class="command"><strong>fdisk</strong></span> repræsenterer dem (eller ej) kan gøre at enhedsnavnene er forskellige. Se <a class="ulink" href="http://www.tldp.org/HOWTO/Linux+FreeBSD-2.html" target="_top">Linux+FreeBSD HOWTO</a>. </p>
+</dd>
+<dt><span class="term"><span class="command"><strong>cfdisk</strong></span></span></dt>
+<dd>
+<p>Et simpelt fuldskærms diskpartitioneringsprogram for resten af os. </p>
+<p>Bemærk at <span class="command"><strong>cfdisk</strong></span> overhovedet ikke forstår FreeBSD-partitioner, og, igen, enhedsnavne kan være forskellige som et resultat heraf. </p>
+</dd>
+</dl></div>
+<p>Et af disse programmer vil blive kørt som standard når du vælger <span class="guimenuitem">Partitionsdiske</span> (eller lignende). Det kan være muligt at bruge et andet partitioneringsværktøj fra kommandolinjen på VT2, men dette anbefales ikke. </p>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="apcs04.html"><img src="images/prev.png" alt="forrige"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="apc.html"><img src="images/up.png" alt="op"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="apd.html"><img src="images/next.png" alt="næste"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">C.4. Enhedsnavne i Linux </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="hjem"></a></td>
+<td width="40%" align="right" valign="top"> Appendiks D. Diverse forklaringer</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

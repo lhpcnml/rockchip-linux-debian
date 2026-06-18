@@ -1,0 +1,82 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>5.2. Aksesibilitas</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Panduan Instalasi Debian GNU/Linux">
+<link rel="up" href="ch05.html" title="Bab 5. Mem-boot Sistem Instalasi">
+<link rel="prev" href="ch05s01.html" title="5.1. Mem-boot Installer pada 64-bit ARM">
+<link rel="next" href="ch05s03.html" title="5.3. Parameter Boot">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">5.2. Aksesibilitas</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch05s01.html"><img src="images/prev.png" alt="Sebelumnya"></a> </td>
+<th width="60%" align="center">Bab 5. Mem-boot Sistem Instalasi</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch05s03.html"><img src="images/next.png" alt="Lanjut"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="boot-installer-accessibility"></a>5.2. Aksesibilitas</h2></div></div></div>
+<p>Beberapa pengguna mungkin memerlukan dukungan khusus karena misalnya beberapa gangguan penglihatan.  <span class="phrase">Kebanyakan</span> fitur aksesibilitas harus diaktifkan secara manual.  Beberapa parameter boot  dapat ditambahkan untuk mengaktifkan fitur aksesibilitas. Perhatikan bahwa pada sebagian besar arsitektur boot loader menafsirkan papan tik Anda sebagai papan tik QWERTY. </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm971"></a>5.2.1. Front-end penginstal</h3></div></div></div>
+<p>Pemasang Debian mendukung beberapa front-end untuk mengajukan pertanyaan, dengan berbagai kenyamanan untuk aksesibilitas: terutama, <strong class="userinput"><code>text</code></strong> menggunakan teks polos sementara <strong class="userinput"><code>newt</code></strong> menggunakan kotak dialog berbasis teks. Pilihan dapat dibuat di prompt boot, lihat dokumentasi untuk <strong class="userinput"><code>DEBIAN_FRONTEND</code></strong> di <a class="xref" href="ch05s03.html#installer-args" title="5.3.2. Parameter Pemasang Debian">Bagian 5.3.2, “Parameter Pemasang Debian”</a>. </p>
+<p>Dengan front-end <strong class="userinput"><code>newt</code></strong> (sebagian besar digunakan dengan braille), seseorang kebanyakan hanya memilih jawaban dengan tombol panah dan menekan <span class="keycap"><strong>Enter</strong></span> untuk memvalidasi pilihan. Menekan <span class="keycap"><strong>Tab</strong></span> atau <span class="keycap"><strong>Shift</strong></span> - <span class="keycap"><strong>Tab</strong></span> memungkinkan untuk beralih di antara elemen dialog, dan terutama untuk mengakses tombol <strong class="userinput"><code>Kembali</code></strong>, yang membawa kembali ke pertanyaan sebelumnya. Beberapa dialog berisi kotak centang, yang dapat dicentang dan dimatikan dengan menekan <span class="keycap"><strong>Space</strong></span>. </p>
+<p>Dengan front-end <strong class="userinput"><code>teks</code></strong> (sebagian besar digunakan dengan ucapan), seseorang sebagian besar memilih jawaban baik dengan mengetikkan nomor mereka diikuti dengan menekan <span class="keycap"><strong>Enter</strong></span>, atau dengan memilih jawaban dengan tombol panah, dan menekan <span class="keycap"><strong>Enter</strong></span> untuk memvalidasi pilihan. Seseorang juga tidak dapat mengetik apa pun dan cukup menekan <span class="keycap"><strong>Enter</strong></span> untuk hanya menerima nilai baku. Mengetik <strong class="userinput"><code>&lt;</code></strong> dan menekan <span class="keycap"><strong>Enter</strong></span> membawa kembali ke pertanyaan sebelumnya. Ketika penentuan atas pilihan harus dibuat (misalnya selama pemilihan tugas), seseorang dapat mengetik <strong class="userinput"><code>!</code></strong> untuk mengekspresikan pilihan kosong. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm994"></a>5.2.2. Perangkat Papan</h3></div></div></div>
+<p>Beberapa perangkat aksesibilitas adalah papan aktual yang dicolokkan ke dalam mesin dan yang membaca teks langsung dari memori video. Untuk membuat mereka bekerja, dukungan framebuffer harus dinonaktifkan dengan menggunakan parameter boot  <strong class="userinput"><code>fb=false</code></strong>. Namun ini akan mengurangi jumlah bahasa yang tersedia. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm998"></a>5.2.3. Tema Kontras Tinggi</h3></div></div></div>
+<p>Untuk pengguna dengan penglihatan lemah, pemasang dapat menggunakan tema warna kontras tinggi yang membuatnya lebih mudah dibaca. Untuk mengaktifkannya, Anda dapat menggunakan entri <span class="quote">“<span class="quote">Kontras tinggi yang dapat diakses</span>”</span> dari layar boot dengan pintasan <strong class="userinput"><code>d</code></strong>, atau menambahkan parameter boot <strong class="userinput"><code>theme=dark</code></strong>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm1004"></a>5.2.4. Zum</h3></div></div></div>
+<p>Untuk pengguna dengan penglihatan lemah, pemasang grafis memiliki dukungan zoom yang sangat mendasar: pintasan <span class="keycap"><strong>Control</strong></span>+<span class="keycap"><strong>+</strong></span> dan <span class="keycap"><strong>Control</strong></span>+<span class="keycap"><strong>-</strong></span> menaikkan dan menurunkan ukuran fonta. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm1013"></a>5.2.5. Instalasi pakar, mode penyelamatan, instalasi terotomasi</h3></div></div></div>
+<p>Pilihan instalasi Pakar, Penyelamatan, dan Terotomasi juga tersedia dengan dukungan aksesibilitas. Untuk mengaksesnya, seseorang harus terlebih dahulu memasukkan sub menu <span class="quote">“<span class="quote">Opsi tingkat lanjut</span>”</span> dari menu boot dengan mengetik <strong class="userinput"><code>a</code></strong>. Saat menggunakan sistem BIOS (menu boot hanya akan berbunyi bip sekali), ini harus diikuti oleh <span class="keycap"><strong>Enter</strong></span> ; untuk sistem UEFI (menu boot akan berbunyi bip dua kali) ini tidak boleh dilakukan. Kemudian, untuk mengaktifkan sintesis ucapan, <strong class="userinput"><code>s</code></strong> secara opsional dapat ditekan (diikuti lagi oleh <span class="keycap"><strong>Enter</strong></span> pada sistem BIOS tetapi tidak pada sistem UEFI). Dari sana, berbagai pintasan dapat digunakan: <strong class="userinput"><code>x</code></strong> untuk instalasi pakar, <strong class="userinput"><code>r</code></strong> untuk mode penyelamatan, atau <strong class="userinput"><code>a</code></strong> untuk instalasi terotomasi. Sekali lagi ini perlu diikuti oleh <span class="keycap"><strong>Enter</strong></span> saat menggunakan sistem BIOS. </p>
+<p>Pilihan instalasi otomatis memungkinkan untuk memasang Debian sepenuhnya secara otomatis dengan menggunakan preseed, yang sumbernya dapat dimasukkan setelah fitur aksesibilitas dimulai. Preseed itu sendiri didokumentasikan dalam <a class="xref" href="apb.html" title="Lampiran B. Mengotomatiskan instalasi menggunakan preseed">Lampiran B, <i>Mengotomatiskan instalasi menggunakan preseed</i></a>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm1027"></a>5.2.6. Aksesibilitas sistem yang dipasang</h3></div></div></div>
+<p>Dokumentasi tentang aksesibilitas sistem yang diinstal tersedia di <a class="ulink" href="https://wiki.debian.org/accessibility" target="_top">Halaman wiki Aksesibilitas Debian</a>. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch05s01.html"><img src="images/prev.png" alt="Sebelumnya"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch05.html"><img src="images/up.png" alt="Induk"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch05s03.html"><img src="images/next.png" alt="Lanjut"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">5.1. Mem-boot Installer pada <span class="phrase">64-bit ARM</span> </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Depan"></a></td>
+<td width="40%" align="right" valign="top"> 5.3. Parameter Boot</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

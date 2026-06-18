@@ -1,0 +1,64 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>C.5. Debian-Partitionierungsprogramme</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux – Installationsanleitung">
+<link rel="up" href="apc.html" title="Anhang C. Partitionieren für eine Debian-Installation">
+<link rel="prev" href="apcs04.html" title="C.4. Gerätebezeichnungen unter Linux">
+<link rel="next" href="apd.html" title="Anhang D. Verschiedenes">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">C.5. Debian-Partitionierungsprogramme</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="apcs04.html"><img src="images/prev.png" alt="Zurück"></a> </td>
+<th width="60%" align="center">Anhang C. Partitionieren für eine Debian-Installation</th>
+<td width="20%" align="right"> <a accesskey="n" href="apd.html"><img src="images/next.png" alt="Weiter"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="partition-programs"></a>C.5. Debian-Partitionierungsprogramme</h2></div></div></div>
+<p>Es wurden mehrere Variationen der Partitionierungsprogramme von den Entwicklern in Debian eingepflegt, um mit verschiedenen Festplattentypen und Rechnerarchitekturen funktionieren zu können. Hier eine Liste der Programme, die für Ihre Architektur verfügbar sind: </p>
+<div class="variablelist"><dl class="variablelist">
+<dt><span class="term"><span class="command"><strong>partman</strong></span></span></dt>
+<dd><p>Das bevorzugte Partitionierungswerkzeug in Debian. Dieses Schweizer Messer unter den Partitionierungsprogrammen kann auch die Größe von bestehenden Partitionen verändern sowie Dateisysteme erstellen  und die Einbindungspunkte zuweisen. </p></dd>
+<dt><span class="term"><span class="command"><strong>fdisk</strong></span></span></dt>
+<dd>
+<p>Der Original-Linux-Festplatten-Partitionierer, gut für Gurus. </p>
+<p>Seien Sie vorsichtig, wenn Sie bestehende FreeBSD-Partitionen auf Ihrem Rechner haben. Die Installationskernel bieten Unterstützung für diesen Partitionstyp, aber die Art und Weise, wie <span class="command"><strong>fdisk</strong></span> sie darstellt (oder eventuell nicht), kann verursachen, dass sich die Gerätebezeichnungen unterscheiden. Lesen Sie dazu das <a class="ulink" href="http://www.tldp.org/HOWTO/Linux+FreeBSD-2.html" target="_top">Linux+FreeBSD-HowTo</a>. </p>
+</dd>
+<dt><span class="term"><span class="command"><strong>cfdisk</strong></span></span></dt>
+<dd>
+<p>Ein einfach zu nutzender Festplatten-Partitionierer im Vollbildmodus für den Rest der Welt. </p>
+<p>Beachten Sie, dass <span class="command"><strong>cfdisk</strong></span> FreeBSD-Partitionen nicht versteht und sich deswegen Gerätebezeichnungen unterscheiden können (siehe oben). </p>
+</dd>
+</dl></div>
+<p>Eines dieser Programme wird standardmäßig gestartet, wenn Sie <span class="guimenuitem">Eine Festplatte partitionieren</span> (oder ähnliches) auswählen. Es könnte möglich sein, ein anderes Programm auf der zweiten virtuellen Konsole VT2 zu benutzen, aber dies wird nicht empfohlen. </p>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="apcs04.html"><img src="images/prev.png" alt="Zurück"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="apc.html"><img src="images/up.png" alt="Nach oben"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="apd.html"><img src="images/next.png" alt="Weiter"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">C.4. Gerätebezeichnungen unter Linux </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Zum Anfang"></a></td>
+<td width="40%" align="right" valign="top"> Anhang D. Verschiedenes</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

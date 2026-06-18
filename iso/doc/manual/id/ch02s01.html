@@ -1,0 +1,214 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>2.1. Perangkat Keras yang Didukung</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Panduan Instalasi Debian GNU/Linux">
+<link rel="up" href="ch02.html" title="Bab 2. Persyaratan Sistem">
+<link rel="prev" href="ch02.html" title="Bab 2. Persyaratan Sistem">
+<link rel="next" href="ch02s02.html" title="2.2. Perangkat yang Membutuhkan Firmware">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">2.1. Perangkat Keras yang Didukung</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch02.html"><img src="images/prev.png" alt="Sebelumnya"></a> </td>
+<th width="60%" align="center">Bab 2. Persyaratan Sistem</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch02s02.html"><img src="images/next.png" alt="Lanjut"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="hardware-supported"></a>2.1. Perangkat Keras yang Didukung</h2></div></div></div>
+<p>Debian tidak memaksakan persyaratan perangkat keras di luar persyaratan kernel Linux atau kFreeBSD dan set alat GNU. Oleh karena itu, arsitektur atau platform apa pun yang kernel Linux atau kFreeBSD, libc, <span class="command"><strong>gcc</strong></span>, dll., telah di-port dan yang Debian port ada, dapat menjalankan Debian. Silakan merujuk ke halaman Port di <a class="ulink" href="https://www.debian.org/ports/arm/" target="_top">https://www.debian.org/ports/arm/</a> untuk detail lebih lanjut tentang sistem arsitektur <span class="phrase">64-bit ARM</span> yang telah diuji dengan Debian GNU/Linux. </p>
+<p>Daripada mencoba menjelaskan semua konfigurasi perangkat keras berbeda yang didukung untuk <span class="phrase">64-bit ARM</span>, bagian ini berisi informasi umum dan petunjuk ke tempat informasi tambahan dapat ditemukan. </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm186"></a>2.1.1. Arsitektur yang Didukung</h3></div></div></div>
+<p>Debian GNU/Linux 12 mendukung 9 arsitektur utama dan beberapa variasi dari setiap arsitektur yang dikenal sebagai <span class="quote">“<span class="quote">flavor</span>”</span>. </p>
+<p>
+
+</p>
+<div class="informaltable"><table class="informaltable" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Arsitektur</th>
+<th>Penamaan Debian</th>
+<th>Subarsitektur</th>
+<th>Rasa</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>AMD64 &amp; Intel 64</td>
+<td>amd64</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td rowspan="2">Berbasis Intel x86</td>
+<td rowspan="2">i386</td>
+<td>mesin x86 baku</td>
+<td>baku</td>
+</tr>
+<tr>
+<td>Hanya domain PV Xen</td>
+<td>xen</td>
+</tr>
+<tr>
+<td>ARM</td>
+<td>armel</td>
+<td>Marvell Kirkwood dan Orion</td>
+<td>marvell</td>
+</tr>
+<tr>
+<td>ARM dengan FPU perangkat keras</td>
+<td>armhf</td>
+<td>multiplatform</td>
+<td>armmp</td>
+</tr>
+<tr>
+<td>ARM 64bit</td>
+<td>arm64</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td rowspan="3">MIPS 64bit (little-endian)</td>
+<td rowspan="3">mips64el</td>
+<td>MIPS Malta</td>
+<td>5kc-malta</td>
+</tr>
+<tr>
+<td>Cavium Octeon</td>
+<td>octeon</td>
+</tr>
+<tr>
+<td>Loongson 3</td>
+<td>loongson-3</td>
+</tr>
+<tr>
+<td rowspan="3">MIPS 32bit (little-endian)</td>
+<td rowspan="3">mipsel</td>
+<td>MIPS Malta</td>
+<td>4kc-malta</td>
+</tr>
+<tr>
+<td>Cavium Octeon</td>
+<td>octeon</td>
+</tr>
+<tr>
+<td>Loongson 3</td>
+<td>loongson-3</td>
+</tr>
+<tr>
+<td>Power Systems</td>
+<td>ppc64el</td>
+<td>IBM POWER8 atau mesin yang lebih baru</td>
+<td> </td>
+</tr>
+<tr>
+<td>IBM S/390 64bit</td>
+<td>s390x</td>
+<td>IPL dari VM-reader dan DASD</td>
+<td>generic</td>
+</tr>
+</tbody>
+</table></div>
+<p>
+
+</p>
+<p>Dokumen ini mencakup instalasi untuk arsitektur <span class="emphasis"><em><span class="phrase">64-bit ARM</span></em></span> menggunakan kernel <span class="emphasis"><em>Linux</em></span>. Jika Anda mencari informasi tentang arsitektur lain yang didukung Debian lihat halaman <a class="ulink" href="http://www.debian.org/ports/" target="_top">Port Debian</a>. </p>
+<p>Ini adalah rilis resmi pertama Debian GNU/Linux untuk <span class="phrase">64-bit ARM</span> Arsitektur. Kami merasa bahwa itu sudah cukup membuktikan diri untuk dirilis. Namun, karena belum memiliki eksposur (dan karenanya pengujian oleh pengguna) yang dimiliki beberapa arsitektur lain, Anda mungkin menemukan beberapa bug. Gunakan <a class="ulink" href="https://bugs.debian.org/" target="_top">Sistem Pelacakan Bug</a> kami untuk melaporkan masalah apa pun; pastikan untuk menyebutkan fakta bahwa bug ada di platform <span class="phrase">64-bit ARM</span> menggunakan kernel <span class="emphasis"><em>Linux</em></span>. Mungkin perlu menggunakan <a class="ulink" href="https://www.debian.org/MailingLists/subscribe" target="_top">debian-arm milis</a> juga. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm271"></a>2.1.2. Tiga port ARM yang berbeda</h3></div></div></div>
+<p>Arsitektur ARM telah berkembang dari waktu ke waktu dan prosesor ARM modern menyediakan fitur yang tidak tersedia dalam model yang lebih tua. Oleh karena itu Debian menyediakan tiga port ARM untuk memberikan dukungan terbaik bagi berbagai mesin yang sangat luas: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>Debian/armel menargetkan prosesor ARM 32-bit yang lebih lama tanpa dukungan untuk unit floating point perangkat keras (FPU), </p></li>
+<li class="listitem"><p>Debian/armhf hanya berfungsi pada prosesor ARM 32-bit yang lebih baru yang mengimplementasikan setidaknya arsitektur ARMv7 dengan versi 3 dari spesifikasi floating point vektor ARM (VFPv3). Itu memanfaatkan fitur yang diperluas dan peningkatan kinerja yang tersedia pada model-model ini. </p></li>
+<li class="listitem"><p>Debian/arm64 bekerja pada prosesor ARM 64-bit yang mengimplementasikan setidaknya arsitektur ARMv8. </p></li>
+</ul></div>
+<p>
+</p>
+<p>Secara teknis, semua CPU ARM yang tersedia saat ini dapat dijalankan dalam mode endian mana pun (besar atau kecil), tetapi dalam praktiknya sebagian besar menggunakan mode little-endian. Semua Debian/arm64, Debian/armhf, dan Debian/armel hanya mendukung sistem little-endian. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm282"></a>2.1.3. Variasi dalam desain CPU ARM dan mendukung kompleksitas</h3></div></div></div>
+<p>Sistem ARM jauh lebih heterogen daripada yang didasarkan pada arsitektur PC berbasis i386/amd64, sehingga situasi dukungan bisa jauh lebih rumit. </p>
+<p>Arsitektur ARM digunakan terutama dalam apa yang disebut desain <span class="quote">“<span class="quote">system-on-chip</span>”</span> (SoC). SoC ini dirancang oleh banyak perusahaan yang berbeda, sering kali dengan komponen perangkat keras yang sangat bervariasi bahkan untuk fungsionalitas yang sangat mendasar yang diperlukan untuk menghidupkan sistem. Versi lama dari arsitektur ARM telah melihat perbedaan besar dari satu SoC ke SoC berikutnya, tetapi ARMv8 (arm64) jauh lebih terstandardisasi sehingga lebih mudah untuk didukung oleh kernel Linux dan perangkat lunak lainnya. </p>
+<p>Versi server perangkat keras ARMv8 biasanya dikonfigurasi menggunakan standar Unified Extensible Firmware Interface (UEFI) dan Advanced Configuration and Power Interface (ACPI). Keduanya menyediakan cara umum dan independen perangkat untuk mem-boot dan mengkonfigurasi perangkat keras komputer. Mereka juga umum di dunia PC x86. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm64-supported-platforms"></a>2.1.4. Platform yang didukung oleh Debian/arm64</h3></div></div></div>
+<p>Perangkat keras Arm64/AArch64/ARMv8 tersedia cukup terlambat dalam siklus rilis Debian Bookworm sehingga tidak banyak platform yang dukungannya digabung dalam versi kernel mainline pada saat rilis ini; ini adalah persyaratan utama agar <code class="classname">debian-installer</code> bekerja pada mereka. Platform berikut diketahui didukung oleh Debian/arm64 dalam rilis ini. Hanya ada satu image kernel, yang mendukung semua platform yang terdaftar. </p>
+<div class="variablelist"><dl class="variablelist">
+<dt><span class="term">Applied Micro (APM) Mustang/X-Gene</span></dt>
+<dd><p>APM Mustang adalah sistem ARMv8 berkemampuan Linux pertama yang tersedia. Ini menggunakan SoC X-gene, yang sejak itu juga telah digunakan di mesin lain. Ini adalah CPU 8-core, dengan ethernet, USB, dan serial. Faktor bentuk yang umum terlihat seperti kotak PC desktop, tetapi banyak versi lain diharapkan di masa depan. Sebagian besar perangkat keras didukung di kernel mainline, tetapi pada titik ini dukungan USB kurang dalam kernel Bookworm. </p></dd>
+<dt><span class="term">Platform Pengembangan ARM Juno</span></dt>
+<dd><p>Juno adalah papan pengembangan yang mumpuni dengan CPU 6-core (2xA57, 4xA53) ARMv8-A 800Mhz, grafis Mali (T624), RAM 8GB DDR3, Ethernet, USB, Serial. Ini dirancang untuk sistem bring-up dan pengujian daya sehingga tidak kecil atau murah, tetapi merupakan salah satu papan pertama yang tersedia. Semua perangkat keras on-board didukung di kernel mainline dan di Bookworm. </p></dd>
+</dl></div>
+<p>Saat menggunakan <code class="classname">debian-installer</code> pada sistem non-UEFI, Anda mungkin harus secara manual membuat sistem dapat di-boot di akhir instalasi, misalnya dengan menjalankan perintah yang diperlukan dalam shell yang dimulai dari dalam <code class="classname">debian-installer</code>. flash-kernel tahu cara mengatur boot sistem X-Gene dengan U-Boot. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="arm64-other-platforms"></a>2.1.4.1. Platform lainnya</h4></div></div></div>
+<p>Dukungan multiplatform di kernel Linux arm64 juga memungkinkan menjalankan <code class="classname">debian-installer</code> pada sistem arm64 yang tidak secara eksplisit tercantum di atas. Selama kernel yang digunakan oleh <code class="classname">debian-installer</code> memiliki dukungan untuk komponen sistem target, dan berkas pohon perangkat untuk target itu tersedia, sistem target baru dapat berfungsi dengan baik. Dalam kasus ini, installer biasanya dapat menyediakan instalasi yang berfungsi, dan selama UEFI digunakan, itu harus dapat membuat sistem dapat di-boot juga. Jika UEFI tidak digunakan, Anda mungkin juga perlu melakukan beberapa langkah konfigurasi manual untuk membuat sistem dapat di-boot. </p>
+</div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm309"></a>2.1.5. Beberapa Prosesor</h3></div></div></div>
+<p>Dukungan multiprosesor — juga disebut <span class="quote">“<span class="quote">symmetric multiprocessing</span>”</span> atau SMP — tersedia untuk arsitektur ini. Memiliki banyak prosesor dalam komputer pada awalnya hanya merupakan masalah untuk sistem server kelas atas, tetapi telah menjadi umum dalam beberapa tahun terakhir ini hampir di mana-mana dengan diperkenalkannya apa yang disebut prosesor <span class="quote">“<span class="quote">multi-core</span>”</span>. Prosesor ini mengandung dua atau lebih unit prosesor, yang disebut <span class="quote">“<span class="quote">core</span>”</span>, dalam satu chip fisik. </p>
+<p>Image kernel standar Debian 12 telah dikompilasi dengan dukungan SMP. Ini juga dapat digunakan pada sistem non-SMP tanpa masalah. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="gfx"></a>2.1.6. Dukungan Perangkat Keras Grafis</h3></div></div></div>
+<p>Dukungan Debian untuk antarmuka grafis ditentukan oleh dukungan mendasar yang ditemukan di sistem X11 X.Org, dan kernel. Grafik framebuffer dasar disediakan oleh kernel, sementara lingkungan desktop menggunakan X11. Apakah fitur kartu grafis tingkat lanjut seperti akselerasi perangkat keras 3D atau video yang dipercepat perangkat keras tersedia, tergantung pada perangkat keras grafis aktual yang digunakan dalam sistem dan dalam beberapa kasus pada pemasangan blob <span class="quote">“<span class="quote">firmware</span>”</span> tambahan (lihat <a class="xref" href="ch02s02.html" title="2.2. Perangkat yang Membutuhkan Firmware">Bagian 2.2, “Perangkat yang Membutuhkan Firmware”</a>). </p>
+<p>Hampir semua mesin ARM memiliki perangkat keras grafis bawaan, daripada menggunakan kartu plug-in. Beberapa mesin memang memiliki slot ekspansi yang akan mengambil kartu grafis, tetapi itu jarang terjadi. Perangkat keras yang dirancang tanpa tampilan tanpa grafis sama sekali cukup umum. Sementara video framebuffer dasar yang disediakan oleh kernel harus bekerja pada semua perangkat yang memiliki grafik, grafik 3D yang cepat selalu membutuhkan driver biner untuk bekerja. Situasi berubah dengan cepat tetapi pada saat rilis bookworm driver bebas untuk nouveau (Nvidia Tegra K1 SoC) dan freedreno (Qualcomm Snapdragon SoC) tersedia dalam rilis. Perangkat keras lain membutuhkan driver non-free dari pihak ke-3. </p>
+<p>Detail tentang perangkat keras grafis yang didukung dan perangkat penunjuk dapat ditemukan di <a class="ulink" href="https://wiki.freedesktop.org/xorg/" target="_top">https://wiki.freedesktop.org/xorg/</a>. Debian 12 dikirimkan dengan versi X.Org 7.7. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="network-cards"></a>2.1.7. Perangkat Keras Konektivitas Jaringan</h3></div></div></div>
+<p>Hampir semua kartu antarmuka jaringan (NIC) yang didukung oleh Linux kernel juga harus didukung oleh sistem instalasi; driver biasanya harus dimuat secara otomatis.   </p>
+<p>Pada <span class="phrase">64-bit ARM</span>, sebagian besar perangkat Ethernet bawaan didukung dan modul untuk perangkat PCI dan USB tambahan disediakan. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="supported-peripherals"></a>2.1.8. Periferal dan Perangkat Keras Lainnya</h3></div></div></div>
+<p>Linux mendukung berbagai macam perangkat keras seperti tetikus, pencetak, pemindai, PCMCIA/CardBus/ExpressCard, dan perangkat USB. Namun, sebagian besar perangkat ini tidak diperlukan saat memasang sistem. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch02.html"><img src="images/prev.png" alt="Sebelumnya"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch02.html"><img src="images/up.png" alt="Induk"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch02s02.html"><img src="images/next.png" alt="Lanjut"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Bab 2. Persyaratan Sistem </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Depan"></a></td>
+<td width="40%" align="right" valign="top"> 2.2. Perangkat yang Membutuhkan Firmware</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

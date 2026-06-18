@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>3.6. Než začnete s instalací …</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux — instalační příručka">
+<link rel="up" href="ch03.html" title="Kapitola 3. Než začnete s instalací">
+<link rel="prev" href="ch03s05.html" title="3.5. Předrozdělení disku pro více operačních systémů">
+<link rel="next" href="ch04.html" title="Kapitola 4. Získání instalačních médií">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">3.6. Než začnete s instalací …</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch03s05.html"><img src="images/prev.png" alt="Předcházející"></a> </td>
+<th width="60%" align="center">Kapitola 3. Než začnete s instalací</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch04.html"><img src="images/next.png" alt="Další"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="pre-install-bios-setup"></a>3.6. Než začnete s instalací …</h2></div></div></div>
+<p>This section will walk you through pre-installation hardware setup, if any, that you will need to do prior to installing Debian. Generally, this involves checking and possibly changing BIOS/UEFI/system firmware settings for your system. The <span class="quote">„<span class="quote">BIOS/UEFI</span>“</span> or <span class="quote">„<span class="quote">system firmware</span>“</span> is the core software used by the hardware; it is most critically invoked during the bootstrap process (after power-up). </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-dev-select-arm64"></a>3.6.1. Výběr zaváděcího zařízení</h3></div></div></div>
+<p>
+
+    </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm-firmware-overview"></a>3.6.2. ARM firmware</h3></div></div></div>
+<p>As already mentioned before, there is unfortunately no standard for system firmware on ARM systems. Even the behaviour of different systems which use nominally the same firmware can be quite different. This results from the fact that a large part of the devices using the ARM architecture are embedded systems, for which the manufacturers usually build heavily customized firmware versions and include device-specific patches. Unfortunately the manufacturers often do not submit their changes and extensions back to the mainline firmware developers, so their changes are not integrated into newer versions of the original firmware. </p>
+<p>Výsledkem je, že i nové systémy často používají firmware, který je založený na nějaké prehistorické verzi firmwaru, kterou si výrobce kdysi upravil, přičemž vývoj původního firmwaru mezitím pokračoval a nyní nabízí nové vlastnosti, nebo v některých ohledech jiné chování. Výrobci upravených firmwarů navíc nepojmenovávají integrovaná zařízení konzistentně, takže i když se jedná o stejný základní firmware, je na platformě ARM téměř nemožné poskytnout obecně platné informace. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="uboot-macsetting"></a>3.6.3. Nastavení ethernetové MAC adresy v U-Bootu</h3></div></div></div>
+<p>MAC adresa každého ethernetového rozhraní by měla být celosvětově unikátní, resp. musí být unikátní minimálně v rámci dané ethernetové broadcastovací domény. Výrobce si pro sebe obvykle alokuje blok MAC adres z centrálně spravované zásoby (za což zaplatí nějaký poplatek) a pak příslušně nakonfiguruje každé vyrobené zařízení tak, aby mělo unikátní adresu. </p>
+<p>V případě vývojářských desek se chce někdy výrobce vyhnout placení poplatků a proto unikátní MAC adresu na ethernetové zařízení nenastaví. V takových případech musí MAC adresu nastavit uživatel. Některé ovladače síťových karet, když zjistí, že MAC adresa není přiřazena, vygenerují náhodnou MAC adresu, která se může při každém restartu měnit. Pro uživatele to pak vypadá, že síťování v zásadě funguje, ale některé služby nemusí být zrovna spolehlivé, jako třeba přiřazování semi-statických IP adres pomocí DHCP na základě MAC adresy. </p>
+<p>Aby se předešlo konfliktům se stávajícími, oficiálně přiřazenými MAC adresami, existuje blok adres, které je rezervován pro takzvaně <span class="quote">„<span class="quote">místně spravované</span>“</span> adresy. Blok je definován hodnotou dvou konkrétních bitů v prvním bajtu adresy. V praxi to znamená, že se jako lokálně spravovaná adresa dá použít například libovolná adresa začínající hexadecimálním <code class="literal">ca</code> (jako třeba <code class="literal">ca:ff:ee:12:34:56</code>. </p>
+<p>Na systémech používajících jako firmware U-Boot je ethernetová MAC adresa umístěna v proměnné prostředí <code class="literal">ethaddr</code>. Adresu můžete zkontrolovat v promptu U-Bootu příkazem <span class="command"><strong>printenv ethaddr</strong></span> a nastavit příkazem <span class="command"><strong>setenv ethaddr <em class="replaceable"><code>ca:ff:ee:12:34:56</code></em></strong></span>. Po nastavení proměnné můžete hodnotu trvale uložit příkazem <span class="command"><strong>saveenv</strong></span>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="uboot-relocation-issues"></a>3.6.4. Problémy s přesunem jádra/initrd/stromu zařízení v U-Bootu</h3></div></div></div>
+<p>Na některých systémech se starší verzí U-Bootu se mohou objevit problémy s korektním přesunem linuxového jádra, úvodního ramdisku a binárky se stromem zařízení během zavádění. Projevuje se to tak, že U-Boot vypíše hlášku <code class="computeroutput">Starting kernel ...</code>, ale systém dál zamrzne bez jakéhokoliv výstupu. Problém byl vyřešen v novějších verzích U-Bootu, tj. od verze v2014.07 dále. </p>
+<p>Problém se může projevit i v případě, že systém původně používal verzi U-Bootu starší než v2014.07 a teprv následně byl aktualizován. Aktualizace U-Bootu totiž obvykle nemění stávající proměnné prostředí a oprava problému vyžaduje, aby se nastavila nová proměnná prostředí <code class="literal">bootm_size</code>, což U-Boot provádí automaticky pouze u nových instalací v čistém prostředí. Ručně tuto novou proměnnou nastavíte v promptu U-Bootu příkazem <span class="command"><strong>env default bootm_size; saveenv</strong></span>. </p>
+<p>Jinou možností, jak obejít problém s přesunem, je v promptu U-Bootu spustit příkaz <span class="command"><strong>setenv fdt_high ffffffff; setenv initrd_high 0xffffffff; saveenv</strong></span>, kterým zcela zakážete přesun úvodního ramdisku a binárky se stromem zařízení. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch03s05.html"><img src="images/prev.png" alt="Předcházející"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch03.html"><img src="images/up.png" alt="Nahoru"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch04.html"><img src="images/next.png" alt="Další"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">3.5. Předrozdělení disku pro více operačních systémů </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Domů"></a></td>
+<td width="40%" align="right" valign="top"> Kapitola 4. Získání instalačních médií</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

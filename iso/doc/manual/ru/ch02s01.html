@@ -1,0 +1,214 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>2.1. Поддерживаемое оборудование</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Руководство по установке Debian GNU/Linux">
+<link rel="up" href="ch02.html" title="Глава 2. Системные требования">
+<link rel="prev" href="ch02.html" title="Глава 2. Системные требования">
+<link rel="next" href="ch02s02.html" title="2.2. Устройства, которым требуются микропрограммы">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">2.1. Поддерживаемое оборудование</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch02.html"><img src="images/prev.png" alt="Пред."></a> </td>
+<th width="60%" align="center">Глава 2. Системные требования</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch02s02.html"><img src="images/next.png" alt="След."></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="hardware-supported"></a>2.1. Поддерживаемое оборудование</h2></div></div></div>
+<p>Для Debian не требуется от оборудования сверх того, что требуют ядро Linux или kFreeBSD и утилиты GNU. Таким образом, любая архитектура или платформа, на которую были перенесены ядро Linux или kFreeBSD, libc, <span class="command"><strong>gcc</strong></span> и т.д. и на которую перенесён Debian, может работать под Debian. Сверьтесь со страницами переносов <a class="ulink" href="https://www.debian.org/ports/arm/" target="_top">https://www.debian.org/ports/arm/</a>, какие системы на архитектуре <span class="phrase">64-bit ARM</span> были протестированы с Debian GNU/Linux. </p>
+<p>Вместо того, чтобы пытаться описать всё разнообразие аппаратных конфигураций, которое существует на <span class="phrase">64-bit ARM</span>, эта глава содержит общую информацию и указания, где можно найти дополнительную информацию. </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm191"></a>2.1.1. Поддерживаемые архитектуры</h3></div></div></div>
+<p>Debian GNU/Linux 12 поддерживает 9 основных архитектур и несколько вариаций каждой архитектуры, известных как <span class="quote">«<span class="quote">варианты (flavors)</span>»</span>. </p>
+<p>
+
+</p>
+<div class="informaltable"><table class="informaltable" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Архитектура</th>
+<th>Обозначение в Debian</th>
+<th>Субархитектура</th>
+<th>Вариант</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>AMD64 &amp; Intel 64</td>
+<td>amd64</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td rowspan="2">основанные на Intel x86</td>
+<td rowspan="2">i386</td>
+<td>машины x86 по умолчанию</td>
+<td>по умолчанию</td>
+</tr>
+<tr>
+<td>только домены Xen PV</td>
+<td>xen</td>
+</tr>
+<tr>
+<td>ARM</td>
+<td>armel</td>
+<td>Marvell Kirkwood и Orion</td>
+<td>marvell</td>
+</tr>
+<tr>
+<td>ARM с аппаратным FPU</td>
+<td>armhf</td>
+<td>multiplatform</td>
+<td>armmp</td>
+</tr>
+<tr>
+<td>64-битные ARM</td>
+<td>arm64</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td rowspan="3">64-битные MIPS (с обратным порядком байтов)</td>
+<td rowspan="3">mips64el</td>
+<td>MIPS Malta</td>
+<td>5kc-malta</td>
+</tr>
+<tr>
+<td>Cavium Octeon</td>
+<td>octeon</td>
+</tr>
+<tr>
+<td>Loongson 3</td>
+<td>loongson-3</td>
+</tr>
+<tr>
+<td rowspan="3">32-битные MIPS (с обратным порядком байтов)</td>
+<td rowspan="3">mipsel</td>
+<td>MIPS Malta</td>
+<td>4kc-malta</td>
+</tr>
+<tr>
+<td>Cavium Octeon</td>
+<td>octeon</td>
+</tr>
+<tr>
+<td>Loongson 3</td>
+<td>loongson-3</td>
+</tr>
+<tr>
+<td>Power Systems</td>
+<td>ppc64el</td>
+<td>машины IBM POWER8 или новее</td>
+<td> </td>
+</tr>
+<tr>
+<td>64-битный IBM S/390</td>
+<td>s390x</td>
+<td>IPL с VM-reader и DASD</td>
+<td>generic</td>
+</tr>
+</tbody>
+</table></div>
+<p>
+
+</p>
+<p>Этот документ содержит описание установки на архитектуру <span class="emphasis"><em><span class="phrase">64-bit ARM</span></em></span>. Если вы ищете информацию по любой другой архитектуре, поддерживаемой Debian, посмотрите на странице <a class="ulink" href="http://www.debian.org/ports/" target="_top">переносов Debian</a>. </p>
+<p>Это первый официальный выпуск Debian GNU/Linux для архитектуры <span class="phrase">64-bit ARM</span>. Мы его готовым к выпуску. Однако, поскольку эта архитектура не так сильно распространёна (и, следовательно, не протестирована пользователями), как другие, вы можете встретить некоторые ошибки. Используйте нашу <a class="ulink" href="https://bugs.debian.org/" target="_top">Систему отслеживания ошибок</a>, чтобы сообщить о любой проблеме; убедитесь, что вы упомянули тот факт, что ошибка возникла на архитектуре <span class="phrase">64-bit ARM</span>, использующей ядро <span class="emphasis"><em>Linux</em></span>. Возможно, также придётся воспользоваться <a class="ulink" href="https://www.debian.org/MailingLists/subscribe" target="_top">списком рассылки debian-arm</a>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm275"></a>2.1.2. Три разных переноса ARM</h3></div></div></div>
+<p>Архитектура ARM постоянно развивается и современные процессоры ARM предоставляют возможности, которые недоступны в старых моделях. Поэтому Debian предоставляет три переноса ARM, что даёт улучшенную поддержку широкому диапазону различных машин: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>Debian/armel нацелен на старые 32-битные процессоры ARM без поддержки блока аппаратной плавающей запятой (FPU), </p></li>
+<li class="listitem"><p>Debian/armhf работает только на новых 32-битных процессорах ARM, в которых реализована, как минимум, архитектура ARMv7 версии 3 из спецификации векторной плавающей запятой ARM (VFPv3). Он позволяет использовать расширенные возможности и повышенную производительность, доступные на этих моделях. </p></li>
+<li class="listitem"><p>Debian/arm64 работает на 64-битных процессорах ARM, в которых реализована, как минимум, архитектура ARMv8. </p></li>
+</ul></div>
+<p>
+</p>
+<p>Технически, все доступные в настоящее время процессоры ARM могут работать с любым порядком адресации памяти (прямым или обратным), но практически подавляющее большинство использует обратную адресацию. Debian/arm64, Debian/armhf и Debian/armel поддерживают только системы с обратной адресацией. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm286"></a>2.1.3. Разнообразие конструкций процессоров ARM и сложность поддержки</h3></div></div></div>
+<p>Системы ARM намного разнообразнее, чем архитектура ПК на основе i386/amd64, поэтому ситуация с поддержкой может оказаться намного сложнее. </p>
+<p>В архитектуре ARM используется так называемая <span class="quote">«<span class="quote">система на кристалле</span>»</span> (SOC). Эти SOC, разрабатываемые многими разными компаниями, содержат сильно отличающиеся аппаратные компоненты, используемые даже в таких основных задачах как запуск системы. Старые версии архитектуры ARM имеют много отличий между поколениями SoC, но ARMv8 (arm64) намного стандаризованнее и поэтому её легче поддерживать в ядре Linux и другом ПО. </p>
+<p>Серверные версии аппаратного обеспечения ARMv8, обычно, настраиваются с помощью стандартных универсального интерфейс расширяемой микропрограммы (UEFI) и улучшенного интерфейса настройки и управления электропитанием (ACPI). Они предоставляют общие, независимые от устройств способы запуска и настройки компьютерного оборудования. Также, они поддерживаются и в мире ПК x86. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm64-supported-platforms"></a>2.1.4. Платформы, поддерживаемые Debian/arm64</h3></div></div></div>
+<p>Аппаратное обеспечение Arm64/AArch64/ARMv8 появилось в конце цикла выпуска Debian Bookworm, так как в этот момент немногие платформы поддерживались основной версией ядра; это является основным требованием для работы <code class="classname">debian-installer</code>. Далее перечислены платформы, которые поддерживаются в этом выпуске Debian/arm64. Есть только один образ ядра, который поддерживает все перечисленные платформы. </p>
+<div class="variablelist"><dl class="variablelist">
+<dt><span class="term">Applied Micro (APM) Mustang/X-Gene</span></dt>
+<dd><p>APM Mustang была первой совместимой с Linux с архитектурой ARMv8. В ней используется система-на-кристалле X-gene, которая с тех пор также используется в других машинах. Она содержит 8-ядерный ЦП, ethernet, USB и последовательный порт. По большей части используется форм-фактор, напоминающий рабочую машину ПК, но в будущем ожидается много других вариантов. В основной ветви ядра поддерживается большая часть аппаратного обеспечения, но в ядре Bookworm нет поддержки USB. </p></dd>
+<dt><span class="term">Платформа разработки ARM Juno</span></dt>
+<dd><p>Juno представляет собой платформу разработки с 6-ядерным (2xA57, 4xA53) ARMv8-A 800Mгц ЦП, графикой Mali (T624), 8ГБ DDR3 оперативной памятью, Ethernet, USB, последовательным портом. Она разработана для системных разработок и тестирования питания, поэтому большая и дорогая, но была одной из первых доступных плат. Всё набортное аппаратное обеспечение поддерживается как основной ветвью ядра, так и в Bookworm. </p></dd>
+</dl></div>
+<p>При использовании <code class="classname">debian-installer</code> на системах без UEFI вам придётся вручную сделать систему загрузочной в конце установки, например запустив необходимые команды оболочки, запущенной из <code class="classname">debian-installer</code>. flash-kernel позволяет настроить загрузку системы X-Gene через U-Boot. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="arm64-other-platforms"></a>2.1.4.1. Другие платформы</h4></div></div></div>
+<p>Мультиплатформенная поддержка в ядре Linux arm64 также позволяет запускать <code class="classname">debian-installer</code> на системах arm64, не описанных выше. Если в ядре, используемом <code class="classname">debian-installer</code>, есть поддержка аппаратных частей и файла дерева устройств целевой машины, то новая целевая система сможет прекрасно работать. В этих случаях программа установки, обычно, способна предоставить работающую пользовательскую установку и при условии использования UEFI, вероятно, сможет сделать систему загрузочной. Если UEFI не используется, то вам также может понадобиться выполнить несколько ручных действий для загрузки системы. </p>
+</div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm313"></a>2.1.5. Несколько процессоров</h3></div></div></div>
+<p>На этой архитектуре поддерживается нескольких процессоров — так называемая <span class="quote">«<span class="quote">симметричная многопроцессорная обработка (symmetric multi-processing)</span>»</span> или SMP. Раньше, несколько процессоров имелось только в высокопроизводительных серверных системах, но в настоящее время так называемые <span class="quote">«<span class="quote">многоядерные</span>»</span>процессоры встраивают почти по всё. В них содержится один ЦП с двумя и более вычислительными блоками, называемыми <span class="quote">«<span class="quote">ядрами</span>»</span>. </p>
+<p>Стандартный образ ядра Debian 12 собран с поддержкой SMP. Он также без проблем работает в системах без SMP. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="gfx"></a>2.1.6. Поддержка видеокарт</h3></div></div></div>
+<p>Debian's support for graphical interfaces is determined by the underlying support found in X.Org's X11 system, and the kernel. Basic framebuffer graphics is provided by the kernel, whilst desktop environments use X11. Whether advanced graphics card features such as 3D-hardware acceleration or hardware-accelerated video are available, depends on the actual graphics hardware used in the system and in some cases on the installation of additional <span class="quote">«<span class="quote">firmware</span>»</span> blobs (see <a class="xref" href="ch02s02.html" title="2.2. Устройства, которым требуются микропрограммы">Раздел 2.2, «Устройства, которым требуются микропрограммы»</a>). </p>
+<p>Почти все машины ARM содержат встроенную графику, не в виде отдельной графической карты. У некоторых машин  есть слоты расширения, в которые можно вставить карту, то это редко. Также распространены машины вообще без графики. Базовые графические возможности через фреймбуфер, предоставляемые ядром, должны работать на всех устройствах с графикой, для работы 3D ускорения всем без исключения требуются двоичные драйверы. Ситуация быстро меняется, но в выпуск bookworm включены свободные драйверы nouveau (процессор Nvidia Tegra K1) и freedreno (процессоры Qualcomm Snapdragon). Другим чипам требуются несвободные драйверы производителя. </p>
+<p>Список поддерживаемых графического оборудовния и устройств ввода можно найти на <a class="ulink" href="https://wiki.freedesktop.org/xorg/" target="_top">https://wiki.freedesktop.org/xorg/</a>. Debian 12 поставляется с X.Org версии 7.7. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="network-cards"></a>2.1.7. Аппаратура для подключения к сети</h3></div></div></div>
+<p>Почти любая сетевая плата (NIC), поддерживаемая ядром Linux, должна поддерживаться системой установки; драйверы модулей должны загрузиться автоматически.   </p>
+<p>На <span class="phrase">64-bit ARM</span> поддерживается большинство встроенных устройств Ethernet и предоставляются модули для дополнительных устройств PCI и USB. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="supported-peripherals"></a>2.1.8. Периферия и другое оборудование</h3></div></div></div>
+<p>Linux поддерживает много разных устройств, таких как мыши, принтеры, сканеры, PCMCIA/CardBus/ExpressCard и USB устройства. Однако, большинство этих устройств не требуется для установки системы. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch02.html"><img src="images/prev.png" alt="Пред."></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch02.html"><img src="images/up.png" alt="Наверх"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch02s02.html"><img src="images/next.png" alt="След."></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Глава 2. Системные требования </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Начало"></a></td>
+<td width="40%" align="right" valign="top"> 2.2. Устройства, которым требуются микропрограммы</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Κεφάλαιο 5. Εκκίνηση του Συστήματος Εγκατάστασης</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Οδηγός Εγκατάστασης Debian GNU/Linux">
+<link rel="up" href="index.html" title="Οδηγός Εγκατάστασης Debian GNU/Linux">
+<link rel="prev" href="ch04s06.html" title="4.6. Επαλήθευση της ακεραιότητας των αρχείων εγκατάστασης">
+<link rel="next" href="ch05s01.html" title="5.1. Ξεκινώντας τον εγκαταστάτη στην αρχιτεκτονική 64-bit ARM">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Κεφάλαιο 5. Εκκίνηση του Συστήματος Εγκατάστασης</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch04s06.html"><img src="images/prev.png" alt="Προηγ"></a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="ch05s01.html"><img src="images/next.png" alt="Επόμενο"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="chapter">
+<div class="titlepage"><div><div><h1 class="title">
+<a name="boot-installer"></a>Κεφάλαιο 5. Εκκίνηση του Συστήματος Εγκατάστασης</h1></div></div></div>
+<div class="toc">
+<p><b>Πίνακας Περιεχομένων</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="ch05s01.html">5.1. Ξεκινώντας τον εγκαταστάτη στην αρχιτεκτονική <span class="phrase">64-bit ARM</span></a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch05s01.html#arm64-console-setup">5.1.1. Ρύθμιση της κονσόλας</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#juno-installation">5.1.2. Εγκατάσταση σε Juno</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#apm-installation">5.1.3. Εγκατάσταση σε Applied Micro Mustang</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#boot-tftp-arm">5.1.4. Εκκίνηση με TFTP</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#usb-boot-arm64">5.1.5. Εκκίνηση από κλειδί μνήμης USB με UEFI   </a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#graphical">5.1.6. Ο γραφικός Εγκαταστάτης</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="ch05s02.html">5.2. Προσβασιμότητα</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch05s02.html#idm969">5.2.1. Το front-end του εγκαταστάτη</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm992">5.2.2. Συσκευές Καρτών</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm996">5.2.3. Θέμα Υψηλής Αντίθεσης</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm1002">5.2.4. Zoom</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm1011">5.2.5. Εγκατάσταση έμπειρου χρήστη, λειτουργία διάσωσης και αυτοματοποιημένη εγκατάσταση</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm1025">5.2.6. Προσβασιμότητα του εγκατεστημένου συστήματος</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="ch05s03.html">5.3. Παράμετροι εκκίνησης</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch05s03.html#boot-console">5.3.1. Κονσόλα Εκκίνησης</a></span></dt>
+<dt><span class="sect2"><a href="ch05s03.html#installer-args">5.3.2. Παράμετροι του Εγκαταστάτη του Debian</a></span></dt>
+<dt><span class="sect2"><a href="ch05s03.html#preseed-args">5.3.3. Χρήση παραμέτρων εκκίνησης για την απάντηση ερωτήσεων</a></span></dt>
+<dt><span class="sect2"><a href="ch05s03.html#module-parms">5.3.4. Πέρασμα παραμέτρων στα αρθρώματα του πυρήνα</a></span></dt>
+<dt><span class="sect2"><a href="ch05s03.html#module-blacklist">5.3.5. Αποκλεισμός (blacklisting) αρθρωμάτων του πυρήνα</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="ch05s04.html">5.4. Ανίχνευση λαθών της Διαδικασίας Εγκατάστασης </a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch05s04.html#unreliable-cd">5.4.1. Αξιοπιστία των οπτικών μέσων</a></span></dt>
+<dt><span class="sect2"><a href="ch05s04.html#idm1351">5.4.2. Ρύθμιση της εκκίνησης</a></span></dt>
+<dt><span class="sect2"><a href="ch05s04.html#kernel-msgs">5.4.3. Ερμηνεία των μηνυμάτων έναρξης πυρήνα! </a></span></dt>
+<dt><span class="sect2"><a href="ch05s04.html#problem-report">5.4.4. Αναφορά Προβλημάτων της Εγκατάστασης</a></span></dt>
+<dt><span class="sect2"><a href="ch05s04.html#submit-bug">5.4.5. Διαδικασία υποβολής Αναφοράς Εγκατάστασης</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch04s06.html"><img src="images/prev.png" alt="Προηγ"></a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="ch05s01.html"><img src="images/next.png" alt="Επόμενο"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">4.6. Επαλήθευση της ακεραιότητας των αρχείων εγκατάστασης </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Αρχή"></a></td>
+<td width="40%" align="right" valign="top"> 5.1. Ξεκινώντας τον εγκαταστάτη στην αρχιτεκτονική <span class="phrase">64-bit ARM</span>
+</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

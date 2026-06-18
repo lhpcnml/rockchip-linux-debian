@@ -1,0 +1,214 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>2.1. Podporovaná zařízení</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux — instalační příručka">
+<link rel="up" href="ch02.html" title="Kapitola 2. Požadavky na počítač">
+<link rel="prev" href="ch02.html" title="Kapitola 2. Požadavky na počítač">
+<link rel="next" href="ch02s02.html" title="2.2. Ovladače vyžadující firmware">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">2.1. Podporovaná zařízení</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch02.html"><img src="images/prev.png" alt="Předcházející"></a> </td>
+<th width="60%" align="center">Kapitola 2. Požadavky na počítač</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch02s02.html"><img src="images/next.png" alt="Další"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="hardware-supported"></a>2.1. Podporovaná zařízení</h2></div></div></div>
+<p>Debian neklade na hardware jiná omezení než ta, která jsou dána jádrem Linuxu nebo kFreeBSD a programy GNU. Tedy na libovolné počítačové architektuře, na kterou bylo přeneseno jádro Linuxu nebo kFreeBSD, knihovna libc, překladač <span class="command"><strong>gcc</strong></span> atd., a pro kterou existuje port Debianu, můžete Debian nainstalovat. Viz stránka s porty (<a class="ulink" href="https://www.debian.org/ports/arm/" target="_top">https://www.debian.org/ports/arm/</a>). </p>
+<p>Než abychom se snažili popsat všechny podporované konfigurace hardwaru pro architekturu <span class="phrase">64-bit ARM</span>, zaměříme se spíše na obecné informace a uvedeme odkazy na doplňující dokumentaci. </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm188"></a>2.1.1. Podporované počítačové architektury</h3></div></div></div>
+<p>Debian GNU/Linux 12 podporuje 9 hlavních počítačových architektur a několik jejich variant, někdy označované jako <span class="quote">„<span class="quote">příchutě</span>“</span>. </p>
+<p>
+
+</p>
+<div class="informaltable"><table class="informaltable" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Architektura</th>
+<th>Označení v Debianu</th>
+<th>Podarchitektura</th>
+<th>Varianta</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>AMD64 &amp; Intel 64</td>
+<td>amd64</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td rowspan="2">založené na Intel x86</td>
+<td rowspan="2">i386</td>
+<td>standardní počítače x86</td>
+<td>výchozí</td>
+</tr>
+<tr>
+<td>Xen PV</td>
+<td>xen</td>
+</tr>
+<tr>
+<td>ARM</td>
+<td>armel</td>
+<td>Marvell Kirkwood a Orion</td>
+<td>marvell</td>
+</tr>
+<tr>
+<td>ARM s hardwarovým FPU</td>
+<td>armhf</td>
+<td>multiplatformní</td>
+<td>armmp</td>
+</tr>
+<tr>
+<td>64 bitové ARM</td>
+<td>arm64</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td rowspan="3">64 bitové MIPS (little-endian)</td>
+<td rowspan="3">mips64el</td>
+<td>MIPS Malta</td>
+<td>5kc-malta</td>
+</tr>
+<tr>
+<td>Cavium Octeon</td>
+<td>octeon</td>
+</tr>
+<tr>
+<td>Loongson 3</td>
+<td>loongson-3</td>
+</tr>
+<tr>
+<td rowspan="3">32 bitové MIPS (little-endian)</td>
+<td rowspan="3">mipsel</td>
+<td>MIPS Malta</td>
+<td>4kc-malta</td>
+</tr>
+<tr>
+<td>Cavium Octeon</td>
+<td>octeon</td>
+</tr>
+<tr>
+<td>Loongson 3</td>
+<td>loongson-3</td>
+</tr>
+<tr>
+<td>Power Systems</td>
+<td>ppc64el</td>
+<td>IBM POWER8 nebo novější</td>
+<td> </td>
+</tr>
+<tr>
+<td>64 bitové IBM S/390</td>
+<td>s390x</td>
+<td>IPL z VM-reader a DASD</td>
+<td>generic</td>
+</tr>
+</tbody>
+</table></div>
+<p>
+
+</p>
+<p>Tato verze dokumentu se zabývá instalací Debianu s jádrem <span class="emphasis"><em>Linux</em></span> na architektuře <span class="emphasis"><em><span class="phrase">64-bit ARM</span></em></span>. Pro ostatní podporované architektury jsou návody na stránkách <a class="ulink" href="http://www.debian.org/ports/" target="_top">Debian-Ports</a>. </p>
+<p>Toto je první oficiální vydání systému Debian GNU/Linux pro architekturu <span class="phrase">64-bit ARM</span>. K vydání došlo, protože jsme přesvědčeni, že stav distribuce pro tuto architekturu je již uspokojivý a distribuce může být oficiálně uvolněna k širšímu použití. Jelikož jde o první verzi distribuce podporující tuto architekturu, nebyla distribuce prověřena širokou uživatelskou základnou a proto se v ní mohou vyskytovat chyby. Jakékoliv problémy, prosím, nahlaste na <a class="ulink" href="https://bugs.debian.org/" target="_top">Bug Tracking System</a> a nezapomeňte napsat, že chyba se týká platformy <span class="phrase">64-bit ARM</span> s jádrem Linux. Také bude užitečné sledovat diskuzní list <a class="ulink" href="https://www.debian.org/MailingLists/subscribe" target="_top">debian-arm</a>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm272"></a>2.1.2. Tři hlavní ARM porty</h3></div></div></div>
+<p>Architektura ARM se vyvíjí a moderní ARM procesory nabízí možnosti, které nejsou na starších modelech dostupné. Debian proto nabízí tři základní ARM porty pro nejlepší podporu širokého spektra systémů: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>Debian/armel cílí na starší 32 bitové ARM procesory bez hardwarové podpory výpočtů s plovoucí desetinnou čárkou (nemají FPU). </p></li>
+<li class="listitem"><p>Debian/armhf běží jen na novějších 32 bitových ARM procesorech, které implementují alespoň architekturu ARMv7 s 3. verzí ARM specifikace pro vektorové výpočty s plovoucí desetinnou čárkou (VFPv3). Debian/armhf využívá tyto rozšířené možnosti a vyšší výkon nových modelů. </p></li>
+<li class="listitem"><p>Debian/arm64 funguje na 64 bitových ARM procesorech implementujících alespoň architekturu ARMv8. </p></li>
+</ul></div>
+<p>
+</p>
+<p>Technicky mohou všechny aktuálně dostupné ARM procesory běžet v obou režimech adresování (<span class="quote">„<span class="quote">little-endian</span>“</span> i <span class="quote">„<span class="quote">big-endian</span>“</span>), avšak v praxi používá drtivá většina ARM systémů adresování <span class="quote">„<span class="quote">little-endian</span>“</span>. V tomto duchu podporuje Debian/arm64, Debian/armhf i Debian/armel pouze systémy <span class="quote">„<span class="quote">little-endian</span>“</span>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm287"></a>2.1.3. Různé návrhy ARM procesorů a náročnost podpory</h3></div></div></div>
+<p>Systémy ARM jsou mnohem různorodější, než systémy založené na architektuře i386/amd64, takže podpora může být složitější. </p>
+<p>Architektura ARM se používá hlavně v řešeních vše v jednom, tzv. SoC (<span class="quote">„<span class="quote">system-on-chip</span>“</span>). Tyto SoC navrhuje spousta společností z nejrůznějších hardwarových součástí, které se liší i v tak základní funkcionalitě, jako je zavedení systému. Na rozdíl od starších verzí ARM architektury je architektura ARMv8 (arm64) mnohem více standardizovaná a tudíž jednodušeji podporovatelná jak ze strany linuxového jádra, tak ostatního softwaru. </p>
+<p>Serverová verze ARMv8 hardwaru se typicky konfiguruje s využitím standardů UEFI (Unified Extensible Firmware Interface) a ACPI (Advanced Configuration and Power Interface), které poskytují jednotný, na zařízení nezávislý způsob inicializace počítačového hardwaru. Oba standardy jsou běžné ve světě počítačů x86. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm64-supported-platforms"></a>2.1.4. Platformy podporované v Debian/arm64</h3></div></div></div>
+<p>Arm64/AArch64/ARMv8 hardware se stal dostupným v pozdní fázi vývojového cyklu Debianu Bookworm, tudíž se do jádra používaného v tomto vydání dostala podpora jen málo platforem. Debian/arm64 v tomto vydání podporuje následující platformy. (Všechny uvedené platformy jsou podporovány jediným jádrem). </p>
+<div class="variablelist"><dl class="variablelist">
+<dt><span class="term">Applied Micro (APM) Mustang/X-Gene</span></dt>
+<dd><p>APM Mustang byl první ARMv8 systém použitelný v Linuxu. Používá SoC X-gene SoC, který je nyní používán i v dalších počítačích. Jedná se o osmijádrový procesor, s ethernetem, USB a sériovým rozhraním. Vzhledově vypadá jako běžný desktopový počítač, nicméně je očekáváno mnoho dalších verzí. Většina hardwaru je podporována přímo oficiálním jádrem, ale v jádře dostupném v Bookworm kulhá podpora USB. </p></dd>
+<dt><span class="term">Vývojová platforma ARM Juno</span></dt>
+<dd><p>Juno je vývojářská deska s šestijádrovým procesorem ARMv8-A 800MHz (2xA57, 4xA53), grafikou Mali (T624), 8GB DDR3 RAM, ethernetem, USB a sériovým rozhraním. Jelikož je deska zaměřená na vývojáře, aby se seznámili s touto platformou, není ani malá, ani levná, ale jedná se o jednu z prvních dostupných desek a jádro v Bookworm podporuje veškerý integrovaný hardware. </p></dd>
+</dl></div>
+<p>Při použití <code class="classname">debian-installer</code> na systémech bez UEFI se možná budete muset na konci instalace přepnout do shellu a ručně zadat několik příkazů pro nastavení zavádění nově nainstalovaného systému. <span class="command"><strong>flash-kernel</strong></span> ví, jak nastavit zavádění systému X-Gene pomocí U-Boot. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="arm64-other-platforms"></a>2.1.4.1. Ostatní platformy</h4></div></div></div>
+<p>Díky multiplatformní podpoře v linuxovém jádře je možné, že <code class="classname">debian-installer</code> poběží i na arm64 systémech zde explicitně neuvedených. Stačí, aby jádro podporovalo komponenty instalovaného systému a byl dostupný soubor popisující strom zařízení daného systému. V případě použití UEFI by se mělo v takto nainstalovaném systému automaticky nastavit i zavádění. Na systémech bez UEFI se možná budete muset na konci instalace přepnout do shellu a ručně zadat několik příkazů pro nastavení zavádění. </p>
+</div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm312"></a>2.1.5. Víceprocesorové systémy</h3></div></div></div>
+<p>Tato architektura umožňuje využití více procesorů — tzv. symetrický multiprocesing (SMP). Více procesorů v počítači bylo původně doménou výkonných serverů, ale s uvedením konceptu <em class="firstterm">vícejádrových</em> procesorů, kdy jeden fyzický čip obsahuje několik procesorových jednotek, tzv. <span class="quote">„<span class="quote">jader</span>“</span>, se s nimi dnes setkáváme prakticky všude. </p>
+<p>Standardní jádro v distribuci Debian GNU/Linux 12 bylo sestaveno s podporou SMP, což by nemělo vadit ani při instalaci na jednoprocesorový počítač. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="gfx"></a>2.1.6. Podpora grafických karet</h3></div></div></div>
+<p>Debian's support for graphical interfaces is determined by the underlying support found in X.Org's X11 system, and the kernel. Basic framebuffer graphics is provided by the kernel, whilst desktop environments use X11. Whether advanced graphics card features such as 3D-hardware acceleration or hardware-accelerated video are available, depends on the actual graphics hardware used in the system and in some cases on the installation of additional <span class="quote">„<span class="quote">firmware</span>“</span> blobs (see <a class="xref" href="ch02s02.html" title="2.2. Ovladače vyžadující firmware">2.2 – „Ovladače vyžadující firmware“</a>). </p>
+<p>Téměř všechny ARMové počítače mají grafický hardware zabudovaný přímo v sobě. Počítače se slotem pro zasunutí samostatné grafické karty existují, ale je jich jako šafránu. Naopak celkem běžný je hardware navržený zcela bez grafického výstupu. Základní zobrazování přes jaderný framebuffer by mělo fungovat na všech zařízeních s grafickým hardwarem, avšak rychlá 3D grafika nutně vyžaduje binární ovladače. Situace se mění docela rychle, ale v době vydání bookworm jsou k dispozici svobodné ovladače pro nouveau (SoC Nvidia Tegra K1) a freedreno (SoC Qualcomm Snapdragon). Ostatní hardware vyžaduje nesvobodné ovladače třetích stran. </p>
+<p>Podrobnosti o podporovaných grafických kartách a ukazovacích zařízeních naleznete na <a class="ulink" href="https://wiki.freedesktop.org/xorg/" target="_top">https://wiki.freedesktop.org/xorg/</a>. Debian GNU/Linux 12 je dodáván se systémem X.Org verze 7.7. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="network-cards"></a>2.1.7. Hardware pro připojení k síti</h3></div></div></div>
+<p>Libovolná síťová karta (NIC) podporovaná jádrem Linux by měla být podporována i instalačním systémem. Ovladače by se měly zavádět automaticky.   </p>
+<p>Na architektuře <span class="phrase">64-bit ARM</span> je podporována většina integrovaných ethernetových zařízení a dostupné jsou i moduly pro přídavná PCI a USB zařízení. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="supported-peripherals"></a>2.1.8. Ostatní zařízení</h3></div></div></div>
+<p>Linux umožňuje používat nejrůznější hardwarové vybavení jako myši, tiskárny, scannery, televizní karty a zařízení PCMCIA/CardBus/ExpressCard a USB. Většina z nich však není pro instalaci nutná. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch02.html"><img src="images/prev.png" alt="Předcházející"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch02.html"><img src="images/up.png" alt="Nahoru"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch02s02.html"><img src="images/next.png" alt="Další"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Kapitola 2. Požadavky na počítač </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Domů"></a></td>
+<td width="40%" align="right" valign="top"> 2.2. Ovladače vyžadující firmware</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

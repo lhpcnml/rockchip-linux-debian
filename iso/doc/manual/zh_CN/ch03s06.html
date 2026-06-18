@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>3.6. 安装前的硬件和操作系统的相关设置</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux 安装手册">
+<link rel="up" href="ch03.html" title="第 3 章 开始安装 Debian GNU/Linux 之前">
+<link rel="prev" href="ch03s05.html" title="3.5. 为多重启动系统事先分区">
+<link rel="next" href="ch04.html" title="第 4 章 获取系统安装介质">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">3.6. 安装前的硬件和操作系统的相关设置</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch03s05.html"><img src="images/prev.png" alt="上一页"></a> </td>
+<th width="60%" align="center">第 3 章 开始安装 Debian GNU/Linux 之前</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch04.html"><img src="images/next.png" alt="下一页"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="pre-install-bios-setup"></a>3.6. 安装前的硬件和操作系统的相关设置</h2></div></div></div>
+<p>在本节中，我们将讨论安装之前有关硬件设置的一些问题。如果这些问题的确存在的话，您就需要在安装 Debian 前先做一些准备工作了。一般来说，准备工作包括：检查或者可能修改系统中 BIOS/UEFI/系统固件(system firmware)的设定。所谓<span class="quote">“<span class="quote">BIOS/UEFI</span>”</span> 或 <span class="quote">“<span class="quote">系统固件</span>”</span>就是硬件运行所需的核心软件。它在系统引导过程(即开机之后)中起到了至关重要的作用。 </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-dev-select-arm64"></a>3.6.1. 选择引导设备</h3></div></div></div>
+<p>
+
+    </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm-firmware-overview"></a>3.6.2. ARM 固件</h3></div></div></div>
+<p>如前所述，很不幸 ARM 系统的系统固件没有标准。即使使用名义上相同固件的不同系统，行为也可能是完全不同的。这是由于使用 ARM 架构的大部分设备是嵌入式系统，制造商通常会为此构建有大量定制的固件版本，并且包含特定于设备的修补程序。不幸的是，制造商通常不会将其更改和扩展提交给主线固件开发人员，因此它们的更改不会集成到较新版本的原始固件中。 </p>
+<p>因此，即便是新出售的系统，使用的固件也是基于一年多前制造商修改的固件版本，但与此同时，其主线代码库也进一步发展，且提供了附加功能，或是在某些方面行为不同。除此之外，相同固件的不同制造商修改版本之间的板载设备命名不一致，因此几乎不可能为基于ARM的系统提供可用的产品无关指令。 </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="uboot-macsetting"></a>3.6.3. 在 U-Boot 中设置以太网 MAC 地址</h3></div></div></div>
+<p>每个以太网接口的 MAC 地址通常应该是全局唯一的，技术上讲，它在以太网广播域中必须是唯一的。为了实现这一点，制造商通常从中央管理的池中分配到一个 MAC 地址块（必须支付费用），并且为每个出售的商品从这些地址中选择其一，并预先配置上去。 </p>
+<p>对某些开发板，有时制造商希望避免支付这些费用，因此不提供全球唯一的地址。在这些情况下，用户本身必须为其系统定义 MAC 地址。当没有为以太网接口定义 MAC 地址时，一些网络驱动程序会生成随机 MAC 地址，每次启动时都可以更改 MAC 地址，如果发生这种情况，即使用户没有手动设置地址，但是基于请求客户端的 MAC 地址来分配静态 IP 地址的 DHCP 显然不能可靠地工作。 </p>
+<p>为了避免与现有的官方分配 MAC 地址冲突，有一个保留地址池是为所谓的<span class="quote">“<span class="quote">本地管理</span>”</span>地址。它由地址的第一个字节中的两个特定位的值定义（维基百科中的条目 <span class="quote">“<span class="quote">MAC 地址</span>”</span>给出了很好的解释）。实际上，这意味着，例如以十六进制 ca 开头的任何地址（如 ca:ff:ee:12:34:56）都可以用作本地管理的地址。 </p>
+<p>在以 U-Boot 作系统固件的系统上，以太网 MAC 地址位于 <span class="quote">“<span class="quote">ethaddr</span>”</span> 环境变量中。可以使用命令 <span class="quote">“<span class="quote">printenv ethaddr</span>”</span> 在 U-Boot 命令提示符下检查，并可以使用命令 <span class="quote">“<span class="quote">setenv ethaddr ca:ff:ee:12:34:56</span>”</span>。设置该值后，命令 <span class="quote">“<span class="quote">saveenv</span>”</span> 可长久赋值。 </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="uboot-relocation-issues"></a>3.6.4. U-Boot 中的内核/Initrd/设备树的重定位问题</h3></div></div></div>
+<p>在具有较旧 U-Boot 版本的某些系统上，在引导过程中，在内存中重定位 Linux 内核、初始化内存盘和设备树 blob 可能会出现问题。在这种情况下，U-Boot 会显示信息 <span class="quote">“<span class="quote">Starting kernel ...</span>”</span>，然后系统就不再输出了。这些问题已经在 v2014.07 更新的 U-Boot 版本上得到了解决。 </p>
+<p>如果系统最初使用的是早于 v2014.07 的 U-Boot 版本，并且以后升级到较新版本，则升级 U-Boot 后仍可能会出现此问题。升级 U-Boot 通常不会修改现有的 U-Boot 环境变量，并且修复这个问题需要设置一个额外的环境变量（bootm_size），U-Boot 仅在没有现有环境数据的新安装上自动执行。在 U-Boot 提示符运行命令 <span class="quote">“<span class="quote">env default bootm_size; saveenv</span>”</span>，可以手动将 bootm_size 设置为新的 U-Boot 的默认值。 </p>
+<p>规避重定位相关问题的另一种可能性是在 U-Boot 提示符下运行命令 <span class="quote">“<span class="quote">setenv fdt_high ffffffff; setenv initrd_high 0xffffffff; saveenv</span>”</span>，完全禁用初始化内存盘和设备树 blob 重定位。 </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch03s05.html"><img src="images/prev.png" alt="上一页"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch03.html"><img src="images/up.png" alt="上一级"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch04.html"><img src="images/next.png" alt="下一页"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">3.5. 为多重启动系统事先分区 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="起始页"></a></td>
+<td width="40%" align="right" valign="top"> 第 4 章 获取系统安装介质</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

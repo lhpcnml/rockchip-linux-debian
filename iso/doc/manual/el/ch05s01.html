@@ -1,0 +1,169 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>5.1. Ξεκινώντας τον εγκαταστάτη στην αρχιτεκτονική 64-bit ARM</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Οδηγός Εγκατάστασης Debian GNU/Linux">
+<link rel="up" href="ch05.html" title="Κεφάλαιο 5. Εκκίνηση του Συστήματος Εγκατάστασης">
+<link rel="prev" href="ch05.html" title="Κεφάλαιο 5. Εκκίνηση του Συστήματος Εγκατάστασης">
+<link rel="next" href="ch05s02.html" title="5.2. Προσβασιμότητα">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">5.1. Ξεκινώντας τον εγκαταστάτη στην αρχιτεκτονική <span class="phrase">64-bit ARM</span>
+</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch05.html"><img src="images/prev.png" alt="Προηγ"></a> </td>
+<th width="60%" align="center">Κεφάλαιο 5. Εκκίνηση του Συστήματος Εγκατάστασης</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch05s02.html"><img src="images/next.png" alt="Επόμενο"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="idm864"></a>5.1. Ξεκινώντας τον εγκαταστάτη στην αρχιτεκτονική <span class="phrase">64-bit ARM</span>
+</h2></div></div></div>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Σημείωση]" src="images/note.png"></td>
+<th align="left">Σημείωση</th>
+</tr>
+<tr><td align="left" valign="top"><p>Για πληροφορίες σχετικά με την εκκίνηση του γραφικού εγκαταστάτη δείτε το <a class="xref" href="ch05s01.html#graphical" title="5.1.6. Ο γραφικός Εγκαταστάτης">Τμήμα 5.1.6, «Ο γραφικός Εγκαταστάτης»</a>. </p></td></tr>
+</table></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm64-console-setup"></a>5.1.1. Ρύθμιση της κονσόλας</h3></div></div></div>
+<p>Ο γραφικός εγκαταστάτης είναι (πειραματικά) ενεργοποιημένος για τις εικόνες της αρχιτεκτονικής arm64 <code class="classname">debian-installer</code> αλλά σε κάποιες συσκευές ίσως χρειάζεται ακόμα να χρησιμοποιήσετε την σειριακή κονσόλα. Αυτή η συσκευή κονσόλας θα πρέπει να ανιχνεύεται αυτόματα από το υλισμικό, αλλά αν αυτό δεν συμβεί, τότε θα δείτε, μετά την εκκίνηση στο linux από το μενού του GRUB, θα δείτε ένα μήνυμα <span class="quote">«<span class="quote">Booting Linux</span>»</span> και, στη συνέχεια, τίποτα άλλο. </p>
+<p>Αν αντιμετωπίσετε αυτό το ζήτημα θα πρέπει να ορίσετε μια ρύθμιση για συγκεκριμένη κονσόλα στη γραμμή εντολών του πυρήνα. Πληκτρολογήστε <strong class="userinput"><code>e</code></strong> για γραμμή εντολών <span class="quote">«<span class="quote">Edit Kernel command-line</span>»</span> στο μενού του GRUB, και αλλάξτε το όρισμα </p>
+<div class="informalexample"><pre class="screen">--- quiet</pre></div>
+<p> στο </p>
+<div class="informalexample"><pre class="screen">console=&lt;device&gt;,&lt;speed&gt;</pre></div>
+<p> πχ. </p>
+<div class="informalexample"><pre class="screen">console=ttyAMA0,115200n8</pre></div>
+<p>. Όταν τελειώσετε πληκτρολογήστε <span class="keycap"><strong>Control</strong></span>+<span class="keycap"><strong>x</strong></span> για να συνεχίσετε την εκκίνηση με τη νέα ρύθμιση. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="juno-installation"></a>5.1.2. Εγκατάσταση σε Juno</h3></div></div></div>
+<p>Το σύστημα Juno διαθέτει UEFI οπότε η εγκατάσταση είναι απλή. Η πιο πρακτική μέθοδος είναι η εγκατάσταση από ένα κλειδί USB. Χρειάζεστε ένα επικαιροποιημένο υλισμικό για να δουλέψει η εκκίνηση από το USB.  Εκδόσεις του υλισμικού <a class="ulink" href="http://releases.linaro.org/members/arm/platforms/latest/" target="_top">http://releases.linaro.org/members/arm/platforms/latest/</a> μετά τον Μάρτιο του 2015 έχουν δοκιμαστεί με επιτυχία. Συμβουλευτείτε την τεκμηρίωση της πλατφόρμας Juno σχετικά με την αναβάθμιση του υλισμικού. </p>
+<p>Προετοιμάστε μια συνήθη εικόνα CD/DVD arm64 σε ένα κλειδί USB. Τοποθετήστε το σε μια από τις θύρες USB στην πίσω πλευρά. Συνδέστε ένα σειριακό καλώδιο στην πάνω σειριακή θύρα με τα 9-pin στην πίσω πλευρά. Αν χρειάζεστε δίκτυο (για μια εικόνα netboot) συνδέστε ένα καλώδιο ethernet στην υποδοχή στο μπροστινό μέρος του μηχανήματος. </p>
+<p>Τρέξτε μια σειριακή κονσόλα στα 115200, 8bit no parity, και εκκινήστε το Juno. Θα πρέπει να ξεκινήσει από το κλειδί USB σε ένα μενού του GRUB. Η ρύθμιση της κονσόλας δεν ανιχνεύεται σωστά στο Juno οπότε πατώντας απλά το πλήκτρο <span class="keycap"><strong>Enter</strong></span> δεν θα εμφανίσει κάποιο αποτέλεσμα από τον πυρήνα. Περάστε αυτές τις ρυθμίσεις στην κονσόλα </p>
+<div class="informalexample"><pre class="screen">console=ttyAMA0,115200n8</pre></div>
+<p> (όπως περιγράφεται στην ενότητα<a class="xref" href="ch05s01.html#arm64-console-setup" title="5.1.1. Ρύθμιση της κονσόλας">Τμήμα 5.1.1, «Ρύθμιση της κονσόλας»</a>). Ο συνδυασμός <span class="keycap"><strong>Control</strong></span>+<span class="keycap"><strong>x</strong></span> για εκκίνηση  θα πρέπει να σας εμφανίσει τις οθόνες του <code class="classname">debian-installer</code>, και να σας επιτρέψει να συνεχίσετε με μια κανονική εγκατάσταση. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="apm-installation"></a>5.1.3. Εγκατάσταση σε Applied Micro Mustang</h3></div></div></div>
+<p>Το UEFI είναι διαθέσιμο στο παρόν σύστημα αλλά συνήθως κυκλοφορεί με το U-Boot οπότε θα χρειαστεί είτε να εγκαταστήσετε πρώατα κάποιο υλισμικό για το UEFI και στη συνέχεια να χρησιμοποιήσετε τις συνηθισμένες μεθόδους εκκίνησης/εγκατάστασης.  Θα πρέπει να χρησιμοποιήσετε μια σειριακή κονσόλα για τον έλεγχο της εγκατάστασης επειδή ο γραφικός εγκαταστάτης δεν είναι ενεργοποιημένος στην αρχιτεκτονική arm64. </p>
+<p>Η συνιστώμενη μέθοδος εγκατάστασης είναι η αντιγραφή του <code class="classname">debian-installer</code> του πυρήνα και της initrd στον σκληρό δίσκο, χρησιμοποιώντας το openembedded σύστημα που παρέχεται με το μηχάνημα, και στη συνέχεια εκκινώντας από αυτό για την εκτέλεση του εγκαταστάτη. Εναλλακτικά χρησιμοποιείστε το TFTP για να αντιγράψετε και να εκκινήσετε τον πυρήνα, το "δέντρο" dtb και την initrd (<a class="xref" href="ch05s01.html#boot-tftp-uboot" title="5.1.4.1. Εκκίνηση με TFTP σε U-Boot">Τμήμα 5.1.4.1, «Εκκίνηση με TFTP σε U-Boot»</a>). Μετά την εγκατάσταση, θα χρειαστείτε κάποιες αλλαγές με το χέρι για να ξεκινήσετε από την εγκατεστημένη εικόνα. </p>
+<p>Τρέξτε μια σειριακή κονσόλα στα 115200, 8bit no parity, και εκκινήστε το μηχάνημα. Επανεκκινήστε και όταν δείτε την οθόνη <span class="quote">«<span class="quote">Hit any key to stop autoboot:</span>»</span> πατήστε ένα πλήκτρο για να πάρετε ένα προτρεπτικό Mustang#. Στη συνέχεια χρησιμοποιείστε εντολές του U-Boot για να φορτώσετε και να εκκινήσετε τον πυρήνα, το αρχείο dtb και την αρχική εικόνα δίσκου μνήμης initrd. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-tftp-arm"></a>5.1.4. Εκκίνηση με TFTP</h3></div></div></div>
+<p>H εκκίνηση από το δίκτυο προαπαιτεί ότι διαθέτετε μια δικτυακή σύνδεση και έναν δικτυακό TFTP server εκκίνησης (και πιθανόν επίσης έναν εξυπηρετητή DHCP, RARP, ή BOOTP για αυτόματη ρύθμιση του δικτύου). </p>
+<p>Η ρύθμιση από την πλευρά του εξυπηρετητή για την υποστήριξη της δικτυακής εκκίνησης περιγράφεται στο <a class="xref" href="ch04s04.html" title="4.4. Προετοιμασία Αρχείων για δικτυακή εκκίνηση με TFTP">Τμήμα 4.4, «Προετοιμασία Αρχείων για δικτυακή εκκίνηση με TFTP»</a>. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="boot-tftp-uboot"></a>5.1.4.1. Εκκίνηση με TFTP σε U-Boot</h4></div></div></div>
+<p>Η εκκίνηση από το δίκτυο σε συστήματα που χρησιμοποιούν το υλισμικό U-Boot συνίσταται σε τρία βήματα: α) ρύθμιση του δικτύου, β) φόρτωση των εικόνων (kernel/initial ramdisk/dtb) στη μνήμη και γ) πραγματική εκτέλεση του κώδικα που έχει φορτωθεί προηγουμένως. </p>
+<p>Πρώτα πρέπει να ρυθμίσετε το δίκτυο, είτε αυτόματα μέσω DHCP εκτελώντας την εντολή </p>
+<div class="informalexample"><pre class="screen">
+setenv autoload no
+dhcp
+</pre></div>
+<p> ή με το χέρι ορίζοντας αρκετές μεταβλητές περιβάλλοντος </p>
+<div class="informalexample"><pre class="screen">
+setenv ipaddr &lt;ip διεύθυνση του πελάτη&gt;
+setenv netmask &lt;netmask&gt;
+setenv serverip &lt;ip διεύθυνση του εξυπηρετητή tftp&gt;
+setenv dnsip &lt;ip διεύθυνση του εξυπηρετητή ονοματοδοσίας&gt;
+setenv gatewayip &lt;ip διεύθυνση της προεπιλεγμένης πύλης&gt;
+</pre></div>
+<p> Αν το προτιμάτε, μπορείτε να κάνετε αυτές τις ρυθμίσεις μόνιμες εκτελώντας </p>
+<div class="informalexample"><pre class="screen">saveenv
+</pre></div>
+<p>
+      </p>
+<p>Στη συνέχεια θα πρέπει να φορτώσετε τις εικόνες (kernel/initial ramdisk/dtb) στη μνήμη. Αυτό γίνεται με την εντολή tftpboot, η οποία θα πρέπει να εκτελεστεί με τη διεύθυνση στην οποία θα αποθηκευτεί η εικόνα στη μνήμη. Δυστυχώς ο "χάρτης της μνήμης" (memory map) μπορεί να διαφέρει από σύστημα σε σύστημα, οπότε δεν υπάρχει γενικός κανόνας για το ποιες διευθύνσεις μπορούν να χρησιμοποιηθούν γι' αυτό. </p>
+<p>Σε μερικά συστήματα, το U-Boot προκαθορίζει ένα σύνολο μεταβλητών περιβάλλοντος με κατάλληλες διευθύνσεις φόρτωσης: kernel_addr_r, ramdisk_addr_r και fdt_addr_r. Μπορείτε να ελέγξετε αν είναι ορισμένες εκτελώντας την εντολή </p>
+<div class="informalexample"><pre class="screen">
+printenv kernel_addr_r ramdisk_addr_r fdt_addr_r
+</pre></div>
+<p> Αν δεν είναι ορισμένες, πρέπει να ελέγξετε την τεκμηρίωση του συστήματός σας για κατάλληλες τιμές και να τις θέσετε με το χέρι. Για συστήματα βασισμένα στις SoC Allwinner SunXi (πχ. τα Allwinner A10, όνομα αρχιτεκτονικής <span class="quote">«<span class="quote">sun4i</span>»</span>  ή τα Allwinner A20, όνομα αρχιτεκτονικής <span class="quote">«<span class="quote">sun7i</span>»</span>), μπορείτε πχ. να χρησιμοποιήσετε τις ακόλουθες τιμές: </p>
+<div class="informalexample"><pre class="screen">setenv kernel_addr_r 0x46000000
+setenv fdt_addr_r 0x47000000
+setenv ramdisk_addr_r 0x48000000
+</pre></div>
+<p>
+      </p>
+<p>Όταν έχουν οριστεί οι διευθύνσεις φόρτωσης, μπορείτε να φορτώσετε τις εικόνες στη μνήμη από τον εκ των προτέρων καθορισμένο εξυπηρετητή tftp με </p>
+<div class="informalexample"><pre class="screen">tftpboot ${kernel_addr_r} &lt;filename of the kernel image&gt;
+tftpboot ${fdt_addr_r} &lt;filename of the dtb&gt;
+tftpboot ${ramdisk_addr_r} &lt;filename of the initial ramdisk image&gt;
+</pre></div>
+<p>
+      </p>
+<p>Το τρίτο μέρος είναι η ρύθμιση της γραμμές εντολών τιου πυρήνα και η εκτέλεση όντως του κώδικα που έχει φορτωθεί. Το U-Boot περνά το περιεχόμενα της μεταβλητής περιβάλλοντος  <span class="quote">«<span class="quote">bootargs</span>»</span> ως γραμμή εντολής στον πυρήνα, οπότε οποιεσδήποτε παράμετροι για τον πυρήνα και τον εγκαταστάτη - όπως η συσκευή της κονσόλας (δείτε <a class="xref" href="ch05s03.html#boot-console" title="5.3.1. Κονσόλα Εκκίνησης">Τμήμα 5.3.1, «Κονσόλα Εκκίνησης»</a>) ή επιλογές προρύθμισης  (δείτε <a class="xref" href="ch05s03.html#installer-args" title="5.3.2. Παράμετροι του Εγκαταστάτη του Debian">Τμήμα 5.3.2, «Παράμετροι του Εγκαταστάτη του Debian»</a> και <a class="xref" href="apb.html" title="Παράρτημα B. Αυτοματοποίηση της εγκατάστασης με χρήση προρυθμίσεων (preseeding)">Παράρτημα B, <i>Αυτοματοποίηση της εγκατάστασης με χρήση προρυθμίσεων (preseeding)</i></a>) - μπορούν να τεθούν με μια εντολή όπως η </p>
+<div class="informalexample"><pre class="screen">
+setenv bootargs console=ttyS0,115200 rootwait panic=10
+</pre></div>
+<p> Η ακριβής εντολή για την εκτέλεση του κώδικα που έχει φορτωθεί από πριν εξαρτάται από την διαμόρφωση της εικόνας που χρησιμοποιείται. Με τις εικόνες uImage/uInitrd, η εντολή είναι  </p>
+<div class="informalexample"><pre class="screen">
+bootm ${kernel_addr_r} ${ramdisk_addr_r} ${fdt_addr_r}
+</pre></div>
+<p> και με αυθεντικές εικόνες Linux είναι </p>
+<div class="informalexample"><pre class="screen">bootz ${kernel_addr_r} ${ramdisk_addr_r}:${filesize} ${fdt_addr_r}
+</pre></div>
+<p>
+      </p>
+<p>Σημείωση: όταν εκκινείτε συνηθισμένες εικόνες linux, είναι σημαντικό να φορτώνετε την αρχική εικόνα ramdisk μετά τον πυρήνα και το  αρχείο dtb καθώς το U-Boot θέτει ως τιμή της μεταβλητή του μεγέθους αρχείου το μέγεθος του τελευταίου αρχείου που φορτώθηκε και η εντολή bootz απαιτεί το μέγεθος της εικόνας της ramdisk να δουλεύει σωστά. Σε περίπτωση εκκίνησης ενός πυρήνα μιας συγκεκριμένης πλατφόρμας, δηλαδή ενός πυρήνα χωρίς δέντρο-συσκευών, απλά παραλείψτε την παράμετρο ${fdt_addr_r}. </p>
+</div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-boot-arm64"></a>5.1.5. Εκκίνηση από κλειδί μνήμης USB με UEFI   </h3></div></div></div>
+<p>Αν ο υπολογιστής σας πρόκειται να εκκινηθεί από μια συσκευή USB, αυτός είναι πιθανόν ο ευκολότερος τρόπος για την εγκατάσταση. Υποθέτοντας ότι έχετε κάνει όλες τις προετοιμασίες με βάση τα <span class="phrase"><a class="xref" href="ch03s06.html#boot-dev-select-arm64" title="3.6.1. Επιλογή συσκευής εκκίνησης">Τμήμα 3.6.1, «Επιλογή συσκευής εκκίνησης»</a></span> και <a class="xref" href="ch04s03.html" title="4.3. Προετοιμασία Αρχείων για Εκκίνηση από ένα USB Stick μνήμης">Τμήμα 4.3, «Προετοιμασία Αρχείων για Εκκίνηση από ένα USB Stick μνήμης»</a>, συνδέστε απλά το κλειδί USB σε κάποια από τις ελεύθερες θύρες σύνδεσης και επανεκκινήστε τον υπολογιστή. Το σύστημα θα ξεκινήσει και εκτός και αν έχετε χρησιμοποιήσει τον "ευέλικτο" τρόπο για να φτιάξετε το κλειδί και δεν το έχετε ενεργοποιήσει, θα δείτε ένα μενού εκκίνησης σε γραφικό περιβάλλον(σε υλικό που υποστηρίζει το γραφικό περιβάλλον). Εδώ μπορείτε να διαλέξετε διάφορες επιλογές του εγκαταστάτη ή απλά να πατήσετε το <span class="keycap"><strong>Enter</strong></span>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="graphical"></a>5.1.6. Ο γραφικός Εγκαταστάτης</h3></div></div></div>
+<p>Η εκδοχή με γραφικό περιβάλλον του εγκαταστάτη είναι διαθέσιμη για έναν περιορισμένο αριθμό αρχιτεκτονικών, συμπεριλαμβανομένης της <span class="phrase">64-bit ARM</span>. Η λειτουργικότητα του γραφικού εγκαταστάτη είναι ουσιαστικά η ίδια με αυτήν του εγκαταστάτη που βασίζεται σε κείμενο, αφού χρησιμοποιεί βασικά τα ίδια προγράμματα,αλλά με ένα διαφορετικό frontend. </p>
+<p>Αν και η λειτουργικότητά του είναι ταυτόσημη, ο γραφικός εγκαταστάτης έχει μερικά ακόμα σημαντικά πλεονεκτήματα. Το κύριο πλεονέκτημα είναι ότι υποστηρίζει περισσότερες γλώσσες, συγκεκριμένα εκείνες ποθ χρησιμοποιούν ένα σύνολο χαρακτήρων που δεν μπορεί να εμφανιστεί με το βασισμένο σε κείμενο frontend <span class="quote">«<span class="quote">newt</span>»</span>. Έχει επίσης μερικά πλεονεκτήματα όσον αφορά τη χρηστικόττηα όπως η επιλογή της χρήσης ενός ποντικιού ενώ μερικές φορές αρκετές ερωτήσεις μπορούν να εμφανιστούν σε μια και μόνο οθόνη. </p>
+<p>Όπως ακριβώς και με τον κειμενικό εγκαταστάτη, είναι δυνατόν να προσθέσετε παραμέτρους εκκίνησης όταν ξεκινάτε τον γραφικό εγκαταστάτη. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Σημείωση]" src="images/note.png"></td>
+<th align="left">Σημείωση</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>Ο γραφικός εγκαταστάτης απαιτεί σημαντικά περισσότερη μνήμη για να τρέξει από τον κειμενικό εγκαταστάτη: 640MB. Αν δεν είναι διαθέσιμη η απαραίτητη μνήμη, θα περάσει αυτόματα στο κειμενικό  <span class="quote">«<span class="quote">newt</span>»</span> frontend. </p>
+<p>Αν το μέγεθος της μνήμης στο σύστημά σας είναι μικρότερο από το ελάχιστο 260MB, ο γραφικός εγκαταστάτης ίσως δεν μπορέσει να ξεκινήσει καν ενώ ο κειμενικός εγκαταστάτης μπορεί να εξακολουθείτε να δουλεύει. Η χρήση του κειμενικού εγκαταστάτη συνίσταται για συστήματα που διαθέτουν λίγη μνήμη. </p>
+</td></tr>
+</table></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch05.html"><img src="images/prev.png" alt="Προηγ"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch05.html"><img src="images/up.png" alt="Πάνω"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch05s02.html"><img src="images/next.png" alt="Επόμενο"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Κεφάλαιο 5. Εκκίνηση του Συστήματος Εγκατάστασης </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Αρχή"></a></td>
+<td width="40%" align="right" valign="top"> 5.2. Προσβασιμότητα</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

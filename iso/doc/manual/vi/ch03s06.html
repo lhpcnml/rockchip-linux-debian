@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>3.6. Phần cứng cài đặt sẵn và thiết lập hệ điều hành</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Sổ tay Cài đặt Debian GNU/Linux">
+<link rel="up" href="ch03.html" title="Chương 3. Trước khi cài đặt Debian GNU/Linux">
+<link rel="prev" href="ch03s05.html" title="3.5. Phân vùng sẵn cho hệ thống đa khởi động">
+<link rel="next" href="ch04.html" title="Chương 4. Lấy vật chứa cài đặt hệ thống">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">3.6. Phần cứng cài đặt sẵn và thiết lập hệ điều hành</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch03s05.html"><img src="images/prev.png" alt="Trước đó"></a> </td>
+<th width="60%" align="center">Chương 3. Trước khi cài đặt Debian GNU/Linux</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch04.html"><img src="images/next.png" alt="Kế tiếp"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="pre-install-bios-setup"></a>3.6. Phần cứng cài đặt sẵn và thiết lập hệ điều hành</h2></div></div></div>
+<p>This section will walk you through pre-installation hardware setup, if any, that you will need to do prior to installing Debian. Generally, this involves checking and possibly changing BIOS/UEFI/system firmware settings for your system. The <span class="quote">“<span class="quote">BIOS/UEFI</span>”</span> or <span class="quote">“<span class="quote">system firmware</span>”</span> is the core software used by the hardware; it is most critically invoked during the bootstrap process (after power-up). </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-dev-select-arm64"></a>3.6.1. Chọn thiết bị khởi động</h3></div></div></div>
+<p>
+
+    </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm-firmware-overview"></a>3.6.2. ARM firmware</h3></div></div></div>
+<p>As already mentioned before, there is unfortunately no standard for system firmware on ARM systems. Even the behaviour of different systems which use nominally the same firmware can be quite different. This results from the fact that a large part of the devices using the ARM architecture are embedded systems, for which the manufacturers usually build heavily customized firmware versions and include device-specific patches. Unfortunately the manufacturers often do not submit their changes and extensions back to the mainline firmware developers, so their changes are not integrated into newer versions of the original firmware. </p>
+<p>As a result even newly sold systems often use a firmware that is based on a years-old manufacturer-modified version of a firmware whose mainline codebase has evolved a lot further in the meantime and offers additional features or shows different behaviour in certain aspects. In addition to that, the naming of onboard devices is not consistent between different manufacturer-modified versions of the same firmware, therefore it is nearly impossible to provide usable product-independend instructions for ARM-based systems. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="uboot-macsetting"></a>3.6.3. Setting the ethernet MAC address in U-Boot</h3></div></div></div>
+<p>The MAC address of every ethernet interface should normally be globally unique, and it technically has to be unique within its ethernet broadcast domain. To achieve this, the manufacturer usually allocates a block of MAC addresses from a centrally-administered pool (for which a fee has to be paid) and preconfigures one of these addresses on each item sold. </p>
+<p>In the case of development boards, sometimes the manufacturer wants to avoid paying these fees and therefore provides no globally unique addresses. In these cases the users themselves have to define MAC addresses for their systems. When no MAC address is defined for an ethernet interface, some network drivers generate a random MAC address that can change on every boot, and if this happens, network access would be possible even when the user has not manually set an address, but e.g. assigning semi-static IP addresses by DHCP based on the MAC address of the requesting client would obviously not work reliably. </p>
+<p>To avoid conflicts with existing officially-assigned MAC addresses, there is an address pool which is reserved for so-called <span class="quote">“<span class="quote">locally administered</span>”</span> addresses. It is defined by the value of two specific bits in the first byte of the address (the article <span class="quote">“<span class="quote">MAC address</span>”</span> in the English language Wikipedia gives a good explanation). In practice this means that e.g. any address starting with hexadecimal ca (such as ca:ff:ee:12:34:56) can be used as a locally administered address. </p>
+<p>On systems using U-Boot as system firmware, the ethernet MAC address is placed in the <span class="quote">“<span class="quote">ethaddr</span>”</span> environment variable. It can be checked at the U-Boot command prompt with the command <span class="quote">“<span class="quote">printenv ethaddr</span>”</span> and can be set with the command <span class="quote">“<span class="quote">setenv ethaddr ca:ff:ee:12:34:56</span>”</span>. After setting the value, the command <span class="quote">“<span class="quote">saveenv</span>”</span> makes the assignment permanent. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="uboot-relocation-issues"></a>3.6.4. Kernel/Initrd/Device-Tree relocation issues in U-Boot</h3></div></div></div>
+<p>On some systems with older U-Boot versions there can be problems with properly relocating the Linux kernel, the initial ramdisk and the device-tree blob in memory during the boot process. In this case, U-Boot shows the message <span class="quote">“<span class="quote">Starting kernel ...</span>”</span>, but the system freezes afterwards without further output. These issues have been solved with newer U-Boot versions from v2014.07 onwards. </p>
+<p>If the system has originally used a U-Boot version older than v2014.07 and has been upgraded to a newer version later, the problem might still occur even after upgrading U-Boot. Upgrading U-Boot usually does not modify the existing U-Boot environment variables and the fix requires an additional environment variable (bootm_size) to be set, which U-Boot does automatically only on fresh installations without existing environment data. It is possible to manually set bootm_size to the new U-Boot's default value by running the command <span class="quote">“<span class="quote">env default bootm_size; saveenv</span>”</span> at the U-Boot prompt. </p>
+<p>Another possibility to circumvent relocation-related problems is to run the command <span class="quote">“<span class="quote">setenv fdt_high ffffffff; setenv initrd_high 0xffffffff; saveenv</span>”</span> at the U-Boot prompt to completely disable the relocation of the initial ramdisk and the device-tree blob. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch03s05.html"><img src="images/prev.png" alt="Trước đó"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch03.html"><img src="images/up.png" alt="Lên"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch04.html"><img src="images/next.png" alt="Kế tiếp"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">3.5. Phân vùng sẵn cho hệ thống đa khởi động </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Đầu"></a></td>
+<td width="40%" align="right" valign="top"> Chương 4. Lấy vật chứa cài đặt hệ thống</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

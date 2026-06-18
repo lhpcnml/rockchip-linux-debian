@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>3.6. Настройка аппаратного обеспечения и операционной системы перед установкой</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Руководство по установке Debian GNU/Linux">
+<link rel="up" href="ch03.html" title="Глава 3. Перед установкой Debian GNU/Linux">
+<link rel="prev" href="ch03s05.html" title="3.5. Переразметка для мульти-загрузочных систем">
+<link rel="next" href="ch04.html" title="Глава 4. Получение носителя с дистрибутивом">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">3.6. Настройка аппаратного обеспечения и операционной системы перед установкой</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch03s05.html"><img src="images/prev.png" alt="Пред."></a> </td>
+<th width="60%" align="center">Глава 3. Перед установкой Debian GNU/Linux</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch04.html"><img src="images/next.png" alt="След."></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="pre-install-bios-setup"></a>3.6. Настройка аппаратного обеспечения и операционной системы перед установкой</h2></div></div></div>
+<p>This section will walk you through pre-installation hardware setup, if any, that you will need to do prior to installing Debian. Generally, this involves checking and possibly changing BIOS/UEFI/system firmware settings for your system. The <span class="quote">«<span class="quote">BIOS/UEFI</span>»</span> or <span class="quote">«<span class="quote">system firmware</span>»</span> is the core software used by the hardware; it is most critically invoked during the bootstrap process (after power-up). </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-dev-select-arm64"></a>3.6.1. Выбор загрузочного устройства</h3></div></div></div>
+<p>
+
+    </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm-firmware-overview"></a>3.6.2. Микропрограмма ARM</h3></div></div></div>
+<p>Как уже упоминалось ранее, в системах ARM отсутствует стандартная системная микропрограмма. Даже в случае одинаковой по имени микропрограммы, её поведение может отличаться. В результате в большинство встраиваемых устройств с архитектурой ARM производители, обычно, включают специально изменённые версии микропрограммы и заплаты для устройств. К сожалению, производители часто не отправляют сделанные изменения и расширения разработчикам микропрограммы, и поэтому в новых версиях оригинальной микропрограммы поддержка не появляется. </p>
+<p>Как следствие, даже в совсем новых системах часто используется микропрограмма на основе изменённой производителем версии многолетней давности, в то время как основной версией микропрограммы предлагаются дополнительные возможности или в ней было изменено поведение в работе. В дополнении к этому, в изменённых производителями одной версии микропрограммы используются разные наименования набортных устройств, что не позволяет написать рабочую единую инструкцию для систем ARM. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="uboot-macsetting"></a>3.6.3. Задание MAC-адреса ethernet в U-Boot</h3></div></div></div>
+<p>Считается, что MAC-адрес каждого интерфейса ethernet должен быть уникальным глобально, и, технически, уникальным внутри своего широковещательного домена ethernet. Для этого производителю, обычно, выделяется блок MAC-адресов из централизованно-управляемого пространства (платно), и он настраивает один из этих адресов на каждом продаваемом устройстве. </p>
+<p>Выпуская платы разработчика производитель, иногда, чтобы не платить, не предоставляет глобально-уникальный адрес. В этих случаях пользователи сами задают MAC-адреса для своих систем. Когда MAC-адрес интерфейса не задан, некоторые сетевые драйверы генерируют произвольный MAC-адрес, который может меняться при каждом включении, и если это происходит, доступ к сети возможен даже если пользователь не ввёл адрес вручную, но при этом, например, назначение IP-адресов по DHCP на основе MAC-адреса, очевидно, не заработает. </p>
+<p>Чтобы избежать пересечения с официально выданными MAC-адресами существует зарезервированное пространство, так называемых <span class="quote">«<span class="quote">локально-контролируемых</span>»</span> адресов. Оно задаётся значением двух специальных бит в первом байте адреса (хорошее описание в статье википедии <span class="quote">«<span class="quote">MAC address</span>»</span>). На практике это означает, что любой адрес, начинающийся с шестнадцатеричного ca (например, ca:ff:ee:12:34:56) можно использовать как локально-контролируемый адрес. </p>
+<p>В устройствах с U-Boot в качестве системной микропрограммы, ethernet MAC-адрес хранится в переменной окружения <span class="quote">«<span class="quote">ethaddr</span>»</span>. Его можно увидеть из приглашения U-Boot по команде <span class="quote">«<span class="quote">printenv ethaddr</span>»</span> и изменить командой <span class="quote">«<span class="quote">setenv ethaddr ca:ff:ee:12:34:56</span>»</span>. После установки значения команда <span class="quote">«<span class="quote">saveenv</span>»</span> делает его постоянным. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="uboot-relocation-issues"></a>3.6.4. Проблемы размещения ядра/Initrd/дерева-устройств в U-Boot</h3></div></div></div>
+<p>В процессе загрузки в некоторых устройствах со старыми версиями U-Boot могут быть проблемы с правильным размещением в памяти ядра Linux, начального ramdisk и файла дерева устройств. В этот случае U-Boot выводит сообщение <span class="quote">«<span class="quote">Starting kernel ...</span>»</span>, и система повисает ничего больше не выводя. Эти проблемы были решены в новых версиях U-Boot, начиная с v2014.07. </p>
+<p>Если в системе сначала использовалась версия U-Boot старее v2014.07 и позже она была обновлена на новую, то проблема может остаться. При обновлении u-boot, обычно, не изменяются существующие переменные окружения U-Boot и для исправления требуется установка дополнительной переменной окружения (bootm_size), что делается U-Boot автоматически только при установке с нуля, при отсутствии данных окружения. Возможно вручную указать bootm_size со значением по умолчанию нового U-Boot командой <span class="quote">«<span class="quote">env default bootm_size; saveenv</span>»</span> из приглашения U-Boot. </p>
+<p>Ещё один способ обхода проблем размещения: выполнить команду <span class="quote">«<span class="quote">setenv fdt_high ffffffff; setenv initrd_high 0xffffffff; saveenv</span>»</span> в приглашении U-Boot, полностью выключающую размещение начального ramdisk и файла дерева устройств. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch03s05.html"><img src="images/prev.png" alt="Пред."></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch03.html"><img src="images/up.png" alt="Наверх"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch04.html"><img src="images/next.png" alt="След."></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">3.5. Переразметка для мульти-загрузочных систем </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Начало"></a></td>
+<td width="40%" align="right" valign="top"> Глава 4. Получение носителя с дистрибутивом</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>5.1. Het installatiesysteem starten op 64-bit ARM</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux Installatiehandleiding">
+<link rel="up" href="ch05.html" title="Hoofdstuk 5. Het installatiesysteem starten">
+<link rel="prev" href="ch05.html" title="Hoofdstuk 5. Het installatiesysteem starten">
+<link rel="next" href="ch05s02.html" title="5.2. Toegankelijkheid">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">5.1. Het installatiesysteem starten op <span class="phrase">64-bit ARM</span>
+</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch05.html"><img src="images/prev.png" alt="Terug"></a> </td>
+<th width="60%" align="center">Hoofdstuk 5. Het installatiesysteem starten</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch05s02.html"><img src="images/next.png" alt="Volgende"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="idm870"></a>5.1. Het installatiesysteem starten op <span class="phrase">64-bit ARM</span>
+</h2></div></div></div>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Opmerking]" src="images/note.png"></td>
+<th align="left">Opmerking</th>
+</tr>
+<tr><td align="left" valign="top"><p>Voor informatie over hoe u het grafische installatiesysteem moet starten, raadpleegt u <a class="xref" href="ch05s01.html#graphical" title="5.1.6. Het grafische installatiesysteem">Paragraaf 5.1.6, “Het grafische installatiesysteem”</a>. </p></td></tr>
+</table></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm64-console-setup"></a>5.1.1. De configuratie van de console</h3></div></div></div>
+<p>Het grafische installatiesysteem werd op de <code class="classname">debian-installer</code>-images voor arm64 (op experimentele basis) geactiveerd, maar mogelijk moet u op sommige apparaten nog de seriële console gebruiken. De console zou automatisch gedetecteerd moeten worden op basis van de firmware, maar als dat niet het geval is, zult u nadat u Linux vanuit het GRUB-menu opgestart heeft, de melding <span class="quote">“<span class="quote">Booting Linux</span>”</span> zien en dan niets meer. </p>
+<p>Indien u te maken krijgt met dit probleem, moet u een specifieke consoleconfiguratie instellen aan de commandoregel van de kernel. Druk in het GRUB-menu op de toets <strong class="userinput"><code>e</code></strong> voor <span class="quote">“<span class="quote">Edit Kernel command-line</span>”</span> (de commandoregel van de kernel bewerken) en verander </p>
+<div class="informalexample"><pre class="screen">--- quiet</pre></div>
+<p> in </p>
+<div class="informalexample"><pre class="screen">console=&lt;device&gt;,&lt;speed&gt;</pre></div>
+<p> bijv. </p>
+<div class="informalexample"><pre class="screen">console=ttyAMA0,115200n8</pre></div>
+<p>. Als u klaar bent, drukt u op de toetsencombinatie <span class="keycap"><strong>Control</strong></span>+<span class="keycap"><strong>x</strong></span> om het opstarten voort te zetten met de nieuwe instelling. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="juno-installation"></a>5.1.2. De installatie op Juno</h3></div></div></div>
+<p>Juno beschikt over UEFI en dus verloopt de installatie eenvoudig. De meest praktische methode is installeren vanaf een USB-stick. Opdat opstarten vanaf USB zou werken, moet de firmware up-to-date zijn. Compilaties van <a class="ulink" href="http://releases.linaro.org/members/arm/platforms/latest/" target="_top">http://releases.linaro.org/members/arm/platforms/latest/</a> die dateren van na maart 2015 blijken oké te zijn. Raadpleeg de documentatie van Juno in verband met het opwaarderen van firmware. </p>
+<p>Plaats een standaard arm64 CD/DVD-image op een USB-stick. Plaats die in een van de USB-poorten achteraan. Sluit een seriële kabel aan op de bovenste 9-pins seriële poort achteraan. Indien u een netwerkverbinding nodig heeft (als u het netboot-image gebruikt) moet u een ethernetkabel aansluiten op de socket vooraan op de machine. </p>
+<p>Gebruik een seriële console aan 115200, 8bits zonder pariteit, en start de Juno op. Het apparaat zou vanaf de USB-stick moeten opstarten naar het GRUB-menu. De configuratie van de console wordt op Juno niet correct gedetecteerd en dus zal gewoon op de enter-toets drukken geen uitvoer van de kernel tonen. Stel de console in op </p>
+<div class="informalexample"><pre class="screen">console=ttyAMA0,115200n8</pre></div>
+<p> (zoals beschreven wordt in <a class="xref" href="ch05s01.html#arm64-console-setup" title="5.1.1. De configuratie van de console">Paragraaf 5.1.1, “De configuratie van de console”</a>). De toetsencombinatie <span class="keycap"><strong>Control</strong></span>+<span class="keycap"><strong>x</strong></span> om op te starten zou u de schermuitvoer van <code class="classname">debian-installer</code> moeten laten zien en u in staat moeten stellen om een standaardinstallatie af te werken. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="apm-installation"></a>5.1.3. De installatie op Mustang van Applied Micro</h3></div></div></div>
+<p>Deze machine kan UEFI gebruiken, maar wordt gewoonlijk geleverd met U-Boot. U zal dus ofwel eerst de UEFI-firmware moeten installeren om daarna de standaardmethode te gebruiken voor het opstarten van het systeem en het uitvoeren van de installatie, ofwel zult u de opstartprocedure voor U-Boot moeten gebruiken. U moet een seriële console gebruiken om de installatie op te volgen, vermits het grafische installatiesysteem niet beschikbaar is voor de arm64-architectuur. </p>
+<p>De aanbevolen installatiemethode is om de kernel en initrd van <code class="classname">debian-installer</code> naar de harde schijf te kopiëren met behulp van het 'openembedded' (open-ingebed) systeem dat met de machine meegeleverd wordt, om dan daarvandaan op te starten en het installatiesysteem te gebruiken. Een andere mogelijkheid is om TFTP te gebruiken om kernel/dtb/initrd binnen te halen en op te starten (<a class="xref" href="ch05s01.html#boot-tftp-uboot" title="5.1.4.1. Opstarten via TFTP in U-Boot">Paragraaf 5.1.4.1, “Opstarten via TFTP in U-Boot”</a>). Na de installatie van het image zijn handmatig uit te voeren aanpassingen nodig om van het geïnstalleerde image te kunnen opstarten. </p>
+<p>Gebruik een seriële console aan 115200, 8bits zonder pariteit, en start de machine. Herstart de machine en als u de melding <span class="quote">“<span class="quote">Hit any key to stop autoboot:</span>”</span> (druk op een toets om het automatisch opstarten te onderbreken) ziet, moet u een toets indrukken om een Mustang# prompt te bekomen. Dan moet u U-Boot commando's gebruiken om de kernel, dtb en initrd te laden en op te starten. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-tftp-arm"></a>5.1.4. Opstarten via TFTP</h3></div></div></div>
+<p>Om over het netwerk te kunnen opstarten moet u een netwerkverbinding hebben en een TFTP netwerk-opstartserver (en wellicht ook een DHCP-, RARP-, of BOOTP-server voor het automatisch configureren van de netwerkinstellingen). </p>
+<p>De instellingen aan de kant van de server voor het ondersteunen van opstarten over het netwerk, worden beschreven in <a class="xref" href="ch04s04.html" title="4.4. Bestanden klaarmaken om over het netwerk op te starten met TFTP">Paragraaf 4.4, “Bestanden klaarmaken om over het netwerk op te starten met TFTP”</a>. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="boot-tftp-uboot"></a>5.1.4.1. Opstarten via TFTP in U-Boot</h4></div></div></div>
+<p>Over het netwerk opstarten met systemen die gebruik maken van de U-Boot firmware, omvat drie stappen: a) het netwerk configureren, b) de images (kernel/initiële ramschijf/dtb) in het geheugen laden, en c) de eerder geladen code daadwerkelijk uitvoeren. </p>
+<p>Eerst moet u het netwerk configureren, ofwel automatisch via DHCP met de opdrachten </p>
+<div class="informalexample"><pre class="screen">
+setenv autoload no
+dhcp
+</pre></div>
+<p> ofwel handmatig door verschillende omgevingsvariabelen in te stellen </p>
+<div class="informalexample"><pre class="screen">
+setenv ipaddr &lt;ip-adres van de cliënt&gt;
+setenv netmask &lt;netmasker&gt;
+setenv serverip &lt;ip-adres van de tftp-server&gt;
+setenv dnsip &lt;ip-adres van de naamserver&gt;
+setenv gatewayip &lt;ip-adres van de standaard gateway&gt;
+</pre></div>
+<p> Indien u dit verkiest, kunt u deze instellingen een permanent karakter geven met de opdracht </p>
+<div class="informalexample"><pre class="screen">saveenv
+</pre></div>
+<p>
+      </p>
+<p>Nadien moet u de images (kernel/initiële ramschijf/dtb) in het geheugen laden. Dit gebeurt met het commando tftpboot, waaraan het adres opgegeven moet worden waar het image in het geheugen geplaatst zal worden. Jammer genoeg kan het indelingsplan van het geheugen verschillend zijn van systeem tot systeem, waardoor er geen algemene regel bestaat voor welke adressen daarvoor gebruikt kunnen worden. </p>
+<p>Op sommige systemen stelt U-Boot vooraf een aantal omgevingsvariabelen in met geschikte laadadressen: kernel_addr_r, ramdisk_addr_r en fdt_addr_r. U kunt nagaan of ze ingesteld werden met de opdracht </p>
+<div class="informalexample"><pre class="screen">
+printenv kernel_addr_r ramdisk_addr_r fdt_addr_r
+</pre></div>
+<p> Indien ze niet gedefinieerd zijn, moet u in de documentatie bij uw systeem nagaan welke waarden geschikt zijn en ze handmatig instellen. Voor systemen die gebaseerd zijn op SunXi SOC's van Allwinner (bijv. de Allwinner A10, met als architectuurnaam <span class="quote">“<span class="quote">sun4i</span>”</span> of de Allwinner A20, met als architectuurnaam <span class="quote">“<span class="quote">sun7i</span>”</span>), kunt u bijvoorbeeld de volgende waarden gebruiken: </p>
+<div class="informalexample"><pre class="screen">setenv kernel_addr_r 0x46000000
+setenv fdt_addr_r 0x47000000
+setenv ramdisk_addr_r 0x48000000
+</pre></div>
+<p>
+      </p>
+<p>Wanneer de laadadressen gedefinieerd zijn, kunt u de images vanaf de voordien gedefinieerde tftp-server in het geheugen laden met </p>
+<div class="informalexample"><pre class="screen">tftpboot ${kernel_addr_r} &lt;bestandsnaam van het kernel-image&gt;
+tftpboot ${fdt_addr_r} &lt;bestandsnaam van het dtb&gt;
+tftpboot ${ramdisk_addr_r} &lt;bestandsnaam van het initiële ramschijf-image&gt;
+</pre></div>
+<p>
+      </p>
+<p>De derde stap is het instellen van de commandoregel voor de kernel en het daadwerkelijk uitvoeren van de geladen code. U-Boot geeft de inhoud van de omgevingsvariabele <span class="quote">“<span class="quote">bootargs</span>”</span> als commandoregel door aan de kernel. Dus alle parameters voor de kernel en het installatiesysteem - zoals het apparaat dat de console gebruikt (zie <a class="xref" href="ch05s03.html#boot-console" title="5.3.1. Opstartconsole">Paragraaf 5.3.1, “Opstartconsole”</a>) of opties in het kader van preseeding (vooraf ingestelde antwoorden - zie <a class="xref" href="ch05s03.html#installer-args" title="5.3.2. Parameters voor het installatiesysteem van Debian">Paragraaf 5.3.2, “Parameters voor het installatiesysteem van Debian”</a> en <a class="xref" href="apb.html" title="Bijlage B. De installatie automatiseren door antwoorden vooraf in te stellen">Bijlage B, <i>De installatie automatiseren door antwoorden vooraf in te stellen</i></a>) - kunnen ingesteld worden met een commando zoals </p>
+<div class="informalexample"><pre class="screen">
+setenv bootargs console=ttyS0,115200 rootwait panic=10
+</pre></div>
+<p> Het exacte commando voor het uitvoeren van de voordien geladen code is afhankelijk van welk van de twee imagevormen gebruikt wordt. Met uImage/uInitrd is het commando </p>
+<div class="informalexample"><pre class="screen">
+bootm ${kernel_addr_r} ${ramdisk_addr_r} ${fdt_addr_r}
+</pre></div>
+<p> en met een authentieke Linux-image is het </p>
+<div class="informalexample"><pre class="screen">bootz ${kernel_addr_r} ${ramdisk_addr_r}:${filesize} ${fdt_addr_r}
+</pre></div>
+<p>
+      </p>
+<p>Opmerking: Als u standaard Linux images start, is het belangrijk om het image van de initiële ramschijf te laden na de kernel en de dtb, omdat U-Boot de variabele filesize instelt op de grootte van het laatst geladen bestand en het commando bootz de grootte van de ramschijf nodig heeft om correct te werken. Indien u een platformspecifieke kernel start, d.w.z. een kernel zonder apparatenboom, moet u gewoon de parameter ${fdt_addr_r} weglaten. </p>
+</div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-boot-arm64"></a>5.1.5. Opstarten vanaf een USB-geheugenstick met UEFI</h3></div></div></div>
+<p>Indien uw computer vanaf USB kan opstarten, is dit wellicht de gemakkelijkste weg om een installatie uit te voeren. Als we ervan uitgaan dat u alle voorbereidingen getroffen heeft uit <span class="phrase"><a class="xref" href="ch03s06.html#boot-dev-select-arm64" title="3.6.1. Het opstartapparaat kiezen">Paragraaf 3.6.1, “Het opstartapparaat kiezen”</a></span> en <a class="xref" href="ch04s03.html" title="4.3. Bestanden klaar maken om van een USB-geheugenstick op te starten">Paragraaf 4.3, “Bestanden klaar maken om van een USB-geheugenstick op te starten”</a>, moet u gewoon de USB-stick in een vrije USB-connector plaatsen en de computer herstarten. Het systeem zou moeten opstarten en u zou het grafische opstartmenu te zien moeten krijgen (op hardware dat dit ondersteunt), tenzij u gekozen heeft voor de flexibele manier om de stick samen te stellen en u daarbij niet voor het grafische installatiesysteem koos. In het menu kunt u verschillende installatieopties selecteren of gewoon op <span class="keycap"><strong>Enter</strong></span> drukken. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="graphical"></a>5.1.6. Het grafische installatiesysteem</h3></div></div></div>
+<p>De grafische versie van het installatiesysteem is enkel voor een beperkt aantal architecturen beschikbaar, waaronder <span class="phrase">64-bit ARM</span>. De functionaliteit van het grafische installatiesysteem is essentieel dezelfde als die van het tekstgeoriënteerde installatiesysteem, aangezien het in principe dezelfde programma's gebruikt met enkel een andere frontend. </p>
+<p>Hoewel de functionaliteit identiek is, biedt het grafische installatiesysteem toch enkele significante voordelen. Het grootste voordeel is dat het meer talen ondersteunt, met name die welke een tekenset gebruiken die niet weergegeven kan worden in de tekstgeoriënteerde frontend <span class="quote">“<span class="quote">newt</span>”</span>. Het biedt ook enkele voordelen op het vlak van gebruik, zoals de mogelijkheid om een muis te gebruiken. En in sommige gevallen kunnen verschillende vragen op een scherm weergegeven worden. </p>
+<p>Juist zoals dit het geval is voor het tekstgeoriënteerde installatiesysteem, is het ook bij het starten van het grafische installatiesysteem mogelijk om opstartparameters op te geven. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Opmerking]" src="images/note.png"></td>
+<th align="left">Opmerking</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>Het grafische installatiesysteem heeft significant meer geheugen nodig om te kunnen functioneren dan het tekstgeoriënteerde installatiesysteem: 640MB. Indien onvoldoende geheugen beschikbaar is, zal het automatisch terugvallen op de tekstgeoriënteerde frontend <span class="quote">“<span class="quote">newt</span>”</span>. </p>
+<p>Indien op uw systeem de hoeveelheid geheugen kleiner is dan 260MB, kan het opstarten van het grafische installatiesysteem volledig mislukken, terwijl het opstarten van het tekstgeoriënteerde installatiesysteem nog altijd zou werken. Op systemen met weinig geheugen wordt het gebruik van het tekstgeoriënteerde installatiesysteem aanbevolen. </p>
+</td></tr>
+</table></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch05.html"><img src="images/prev.png" alt="Terug"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch05.html"><img src="images/up.png" alt="Omhoog"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch05s02.html"><img src="images/next.png" alt="Volgende"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Hoofdstuk 5. Het installatiesysteem starten </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Begin"></a></td>
+<td width="40%" align="right" valign="top"> 5.2. Toegankelijkheid</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

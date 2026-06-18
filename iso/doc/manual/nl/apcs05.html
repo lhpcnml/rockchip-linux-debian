@@ -1,0 +1,64 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>C.5. Debian schijfindelingsprogramma's</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux Installatiehandleiding">
+<link rel="up" href="apc.html" title="Bijlage C. Schijven indelen voor Debian">
+<link rel="prev" href="apcs04.html" title="C.4. De benaming van apparaten in Linux">
+<link rel="next" href="apd.html" title="Bijlage D. Varia">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">C.5. Debian schijfindelingsprogramma's</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="apcs04.html"><img src="images/prev.png" alt="Terug"></a> </td>
+<th width="60%" align="center">Bijlage C. Schijven indelen voor Debian</th>
+<td width="20%" align="right"> <a accesskey="n" href="apd.html"><img src="images/next.png" alt="Volgende"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="partition-programs"></a>C.5. Debian schijfindelingsprogramma's</h2></div></div></div>
+<p>De ontwikkelaars van Debian hebben verschillende aantallen schijfindelingsprogramma's aangepast om uiteenlopende types harde schijven en computerarchitecturen te kunnen bedienen. Hierna volgt een lijst met de programma's die voor uw architectuur van toepassing zijn. </p>
+<div class="variablelist"><dl class="variablelist">
+<dt><span class="term"><span class="command"><strong>partman</strong></span></span></dt>
+<dd><p>Het aanbevolen schijfindelingsgereedschap in Debian. Dit Zwitsers zakmes is ook in staat de partitiegrootte te wijzigen, bestandssystemen aan te maken  en ze toe te wijzen aan aankoppelpunten. </p></dd>
+<dt><span class="term"><span class="command"><strong>fdisk</strong></span></span></dt>
+<dd>
+<p>Het originele Linux schijfindelingsprogramma; goed voor goeroes. </p>
+<p>Wees voorzichtig als uw machine bestaande FreeBSD-partities heeft. De kernels van het installatiesysteem ondersteunen deze partities, maar de wijze waarop <span class="command"><strong>fdisk</strong></span> ze voorstelt (of dat niet doet) kan maken dat de benaming van de schijven verschilt. Zie de <a class="ulink" href="http://www.tldp.org/HOWTO/Linux+FreeBSD-2.html" target="_top">Linux+FreeBSD HOWTO</a>. </p>
+</dd>
+<dt><span class="term"><span class="command"><strong>cfdisk</strong></span></span></dt>
+<dd>
+<p>Een gemakkelijk te gebruiken schijfindelingsprogramma in een volledig scherm voor de rest onder ons. </p>
+<p>Merk op dat <span class="command"><strong>cfdisk</strong></span> helemaal geen notie heeft van FreeBSD-partities, en nogmaals, als gevolg daarvan kan de benaming van de schijven verschillend zijn. </p>
+</dd>
+</dl></div>
+<p>Een van deze programma's zal standaard uitgevoerd worden als u <span class="guimenuitem">Schijven indelen</span> (of iets dergelijks) selecteert. Het is mogelijk om een ander schijfindelingsprogramma te gebruiken aan de commandoregel op VT2, maar dit wordt niet aangeraden. </p>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="apcs04.html"><img src="images/prev.png" alt="Terug"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="apc.html"><img src="images/up.png" alt="Omhoog"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="apd.html"><img src="images/next.png" alt="Volgende"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">C.4. De benaming van apparaten in Linux </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Begin"></a></td>
+<td width="40%" align="right" valign="top"> Bijlage D. Varia</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

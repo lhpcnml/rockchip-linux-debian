@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>3.6. Configuration matérielle et système avant l'installation</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Manuel d'installation pour la distribution Debian GNU/Linux">
+<link rel="up" href="ch03.html" title="Chapitre 3. Avant d'installer Debian GNU/Linux">
+<link rel="prev" href="ch03s05.html" title="3.5. Partitionnement préalable d'une machine multisystème">
+<link rel="next" href="ch04.html" title="Chapitre 4. Comment obtenir les supports du système d'installation ?">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">3.6. Configuration matérielle et système avant l'installation</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch03s05.html"><img src="images/prev.png" alt="Précédent"></a> </td>
+<th width="60%" align="center">Chapitre 3. Avant d'installer Debian GNU/Linux</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch04.html"><img src="images/next.png" alt="Suivant"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="pre-install-bios-setup"></a>3.6. Configuration matérielle et système avant l'installation</h2></div></div></div>
+<p>Cette section passe en revue les réglages matériels que vous devrez peut-être effectuer avant d'installer Debian. En général, cela implique de vérifier, et parfois de modifier, les réglages du microprogramme système (BIOS,UEFI, etc.) sur votre machine. Le <span class="quote">« <span class="quote">BIOS</span> »</span>, <span class="quote">« <span class="quote">UEFI</span> »</span> ou <span class="quote">« <span class="quote">microprogramme système</span> »</span> est le logiciel de base utilisé par le matériel ; il est plus spécifiquement exécuté pendant le processus d'amorçage (après la mise sous tension). </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-dev-select-arm64"></a>3.6.1. Sélection du périphérique d'amorçage</h3></div></div></div>
+<p>
+
+    </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm-firmware-overview"></a>3.6.2. Microprogramme ARM</h3></div></div></div>
+<p>Comme évoqué plus haut, il n'y a malheureusement pas de standard de microprogramme sur les systèmes ARM. Même le comportement de deux systèmes qui utilisent le même microprogramme peut être différent. Cela vient du fait que beaucoup de périphériques utilisant l'architecture ARM sont des systèmes embarqués, pour lesquels les constructeurs produisent des versions de microprogramme largement personnalisées et incluent des correctifs spécifiques au matériel. Malheureusement, ces constructeurs ne remontent pas leurs modifications et extensions aux développeurs de la branche principale, et leurs changements ne sont pas intégrés aux nouvelles versions du microprogramme original. </p>
+<p>En conséquence de cela, même les nouveaux systèmes vendus utilisent souvent un microprogramme basé sur une ancienne version propre au constructeur, alors que la branche principale a beaucoup évolué et offre maintenant des fonctionnalités supplémentaires, ou se comporte différemment. De plus, les nommages des périphériques embarqués ne sont pas cohérents d'un fabriquant à l'autre pour le même microprogramme. Il est donc presque impossible de fournir des instructions utilisables pour tous les systèmes basés sur ARM. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="uboot-macsetting"></a>3.6.3. Configurer l'adresse MAC Ethernet dans U-Boot</h3></div></div></div>
+<p>L'adresse MAC de chaque interface Ethernet devrait normalement être unique de façon globale, et doit surtout être unique au sein de son domaine réseau. Pour y parvenir, les constructeurs réservent généralement un lot d'adresses MAC depuis une réserve centrale (pour laquelle il faut payer) et préconfigurent une de ces adresses sur chaque élément vendu. </p>
+<p>Dans le cas des cartes de développement, certains constructeurs veulent éviter de payer ces frais et ne fournissent pas d'adresse réellement unique. Dans ce cas, les utilisateurs doivent définir eux-mêmes une adresse MAC pour leurs systèmes. Si aucune adresse MAC n'est définie pour une interface ethernet, certains pilotes de réseau génèrent une adresse MAC aléatoire qui peut changer à chaque démarrage. Dans cette configuration, l'accès au réseau est possible même si l'utilisateur n'a pas configuré d'adresse, mais par exemple assigner une adresse IP semi statique par DHCP, basée sur l'adresse MAC du client, ne fonctionnerait évidemment pas correctement. </p>
+<p>Pour éviter les conflits avec les adresses MAC officiellement assignées, il y a une réserve pour les adresses <span class="quote">« <span class="quote">administrées localement</span> »</span>. Elles sont définies par la valeur de deux bits spécifiques dans le premier octet de leur adresse (l'article <span class="quote">« <span class="quote">Adresse MAC</span> »</span> sur Wikipédia, ou <span class="quote">« <span class="quote"> MAC address</span> »</span> sur la page anglaise, donne une bonne explication). En pratique, cela veut dire que toute adresse commençant avec la chaîne hexadécimale ca (comme ca:ff:ee:12:34:56) peut être utilisée comme administrée localement. </p>
+<p>Sur les systèmes utilisant U-Boot comme microprogramme système, l'adresse MAC Ethernet est placée dans la variable d'environnement <span class="quote">« <span class="quote">ethaddr</span> »</span>. Elle peut être vérifiée à l'invite de U-Boot avec la commande <span class="quote">« <span class="quote">printenv ethaddr</span> »</span> et peut être positionnée avec <span class="quote">« <span class="quote">setenv ethaddr ca:ff:ee:12:34:56</span> »</span>. Après avoir positionnée la variable, la commande <span class="quote">« <span class="quote">saveenv</span> »</span> rend la modification permanente. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="uboot-relocation-issues"></a>3.6.4. Problèmes de positionnement du noyau, de l'initrd et de l'arbre de périphériques dans U-Boot</h3></div></div></div>
+<p>Sur certains systèmes avec d'anciennes versions de U-Boot, il peut y avoir des problèmes de déplacement du noyau Linux, de l'image mémoire initiale ou de l'arbre des périphériques dans la mémoire lors du démarrage. Dans ce cas, U-Boot affiche le message <span class="quote">« <span class="quote">Starting kernel ...</span> »</span>, mais le système gèle après cela sans autre message. Ces problèmes ont été résolus dans les nouvelles versions de U-Boot, postérieures à v2014.07. </p>
+<p>Si le système utilisait une version plus ancienne que la v2014.07, et même après une mise à niveau de U-Boot, le problème peut encore apparaître. La mise à niveau de U-Boot ne modifie généralement pas les variables d'environnement existantes et le correctif nécessite une variable d'environnement supplémentaire (bootm_size), qui n’est créée automatiquement que sur les nouvelles installations sans variable d’environnement existante, Il est possible de positionner manuellement la variable bootm_size à la nouvelle valeur par défaut en exécutant la commande <span class="quote">« <span class="quote">env default bootm_size; saveenv</span> »</span> à l'invite de U-Boot. </p>
+<p>Une autre possibilité de contourner les problèmes liés au déplacement est d'exécuter la commande <span class="quote">« <span class="quote">setenv fdt_high ffffffff; setenv initrd_high 0xffffffff; saveenv</span> »</span> à l'invite de U-Boot, pour désactiver totalement le déplacement du disque mémoire initial et de l'arbre de périphériques. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch03s05.html"><img src="images/prev.png" alt="Précédent"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch03.html"><img src="images/up.png" alt="Niveau supérieur"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch04.html"><img src="images/next.png" alt="Suivant"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">3.5. Partitionnement préalable d'une machine multisystème </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Sommaire"></a></td>
+<td width="40%" align="right" valign="top"> Chapitre 4. Comment obtenir les supports du système d'installation ?</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

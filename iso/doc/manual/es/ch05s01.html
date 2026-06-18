@@ -1,0 +1,169 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>5.1. Arranque del instalador en 64-bit ARM</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Guía Debian GNU/Linux de instalación">
+<link rel="up" href="ch05.html" title="Capítulo 5. Arranque del sistema de instalación">
+<link rel="prev" href="ch05.html" title="Capítulo 5. Arranque del sistema de instalación">
+<link rel="next" href="ch05s02.html" title="5.2. Accesibilidad">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">5.1. Arranque del instalador en <span class="phrase">64-bit ARM</span>
+</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch05.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<th width="60%" align="center">Capítulo 5. Arranque del sistema de instalación</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch05s02.html"><img src="images/next.png" alt="Siguiente"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="idm871"></a>5.1. Arranque del instalador en <span class="phrase">64-bit ARM</span>
+</h2></div></div></div>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td>
+<th align="left">Nota</th>
+</tr>
+<tr><td align="left" valign="top"><p>Consulte <a class="xref" href="ch05s01.html#graphical" title="5.1.6. El Instalador Gráfico">Sección 5.1.6, “El Instalador Gráfico”</a> si desea más información sobre el arranque del instalador gráfico. </p></td></tr>
+</table></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm64-console-setup"></a>5.1.1. Configuración de consola</h3></div></div></div>
+<p>El instalador gráfico está habilitado (experimentalmente) en la imagen arm64 <code class="classname">debian-installer</code>, pero en algunos dispositivos aún has de utilizar la consola en serie. El firmware del equipo debería detectar automáticamente la terminal; si no es así, después de arrancar Linux desde el menú de GRUB verás únicamente un mensaje <span class="quote">“<span class="quote">Booting Linux</span>”</span> y nada más. </p>
+<p>Si se encuentra con este problema, necesitará definir una configuración concreta para la consola desde la línea de órdenes del núcleo. Pulse <strong class="userinput"><code>e</code></strong> para <span class="quote">“<span class="quote">Editar la línea de órdenes del núcleo</span>”</span> en el menú de GRUB, y cambie </p>
+<div class="informalexample"><pre class="screen">--- quiet</pre></div>
+<p> por </p>
+<div class="informalexample"><pre class="screen">console=&lt;device&gt;,&lt;speed&gt;</pre></div>
+<p> p. ej., </p>
+<div class="informalexample"><pre class="screen">console=ttyAMA0,115200n8</pre></div>
+<p>. Cuando termine, pulse la combinación de teclas <span class="keycap"><strong>Control</strong></span>+<span class="keycap"><strong>x</strong></span> para que continúe el arranque con el nuevo ajuste. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="juno-installation"></a>5.1.2. Instalación en Juno</h3></div></div></div>
+<p>Juno dispone de UEFI, lo que facilita la instalación. El método más práctico consiste en instalar desde un dispositivo USB. Para que funcione el arranque desde USB necesitará contar con el «firmware» más reciente. Las compilaciones posteriores a marzo de 2015 disponibles en <a class="ulink" href="http://releases.linaro.org/members/arm/platforms/latest/" target="_top">http://releases.linaro.org/members/arm/platforms/latest/</a> funcionaron adecuadamente en las pruebas. Consulte la documentación de Juno para saber cómo actualizar el «firmware». </p>
+<p>Prepare una imagen de CD/DVD estándar para arm64 en un dispositivo USB. Insértelo en uno de los puertos traseros. Enchufe un cable en el puerto en serie de nueve pines ubicado en la parte superior del lado posterior de la máquina. Conecte el cable de Ethernet en el zócalo de la parte frontal de la máquina si necesita la red (imagen «netboot»). </p>
+<p>Ejecute un terminal en serie de 8 bits en 115200 sin paridad y arranque el Juno. Este debería arrancar desde el USB y mostrar un menú de GRUB. Juno no detecta adecuadamente la configuración de consola, por lo que accionar la tecla Intro no mostrará la salida del núcleo. Establezca el terminal a </p>
+<div class="informalexample"><pre class="screen">console=ttyAMA0,115200n8</pre></div>
+<p> (tal como se explica en <a class="xref" href="ch05s01.html#arm64-console-setup" title="5.1.1. Configuración de consola">Sección 5.1.1, “Configuración de consola”</a>). Oprimir <span class="keycap"><strong>Ctrl</strong></span>+<span class="keycap"><strong>x</strong></span> para arrancar debería mostrarle las pantallas del <code class="classname">debian-installer</code> y permitirle proceder al proceso de instalación estándar. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="apm-installation"></a>5.1.3. Instalación en Applied Micro Mustang</h3></div></div></div>
+<p>UEFI está disponible en esta máquina, pero normalmente esta se suministra con U-Boot; si este es su caso, hará falta que instale de antemano el «firmware» UEFI para utilizar un método de arranque e instalación normal, o bien, deberá seguir un procedimiento de instalación para U-Boot. Debe utilizar una consola en serie para controlar la instalación porque el instalador gráfico no está activado en la arquitectura arm64. </p>
+<p>El método de instalación recomendado consiste en copiar el núcleo y el «initrd» del <code class="classname">debian-installer</code> en el disco duro empleando el sistema «openembedded» brindado por la máquina y, a continuación, arrancarlo para ejecutar el instalador. Alternativamente, puede utilizar TFTP para copiar y arrancar el núcleo, el «dtb» y el «initrd» (<a class="xref" href="ch05s01.html#boot-tftp-uboot" title="5.1.4.1. Arranque TFTP en U-Boot">Sección 5.1.4.1, “Arranque TFTP en U-Boot”</a>). Después de la instalación, necesitará llevar a cabo modificaciones manuales a la imagen instalada para arrancarla. </p>
+<p>Ejecute una consola serie a 115200, 8 bits sin paridad, y arranque el sistema. Reinicie el sistema y cuando aparezca en la pantalla <span class="quote">“<span class="quote">Pulse cualquier tecla para detener el arranque automático:</span>”</span> pulse cualquier tecla para obtener un símbolo de arranque Mustang#. Utilice las órdenes de U-Boot para cargar el núcleo, dtb e initrd. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-tftp-arm"></a>5.1.4. Arrancar desde TFTP</h3></div></div></div>
+<p>El arranque a través de la red requiere que tenga una conexión de red y un servidor de arranque TFTP (y probablemente también un servidor DHCP, RARP o BOOTP para la configuración automática de la red). </p>
+<p>En la <a class="xref" href="ch04s04.html" title="4.4. Preparación de los ficheros para el arranque a través de red usando TFTP">Sección 4.4, “Preparación de los ficheros para el arranque a través de red usando TFTP”</a> se describe la configuración del servidor para permitir el arranque a través de la red. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="boot-tftp-uboot"></a>5.1.4.1. Arranque TFTP en U-Boot</h4></div></div></div>
+<p>El arranque desde la red en sistemas que usan el firmware de U-Boot consiste en tres pasos: a) configurar la red, b) cargar las imágenes (kernel/initial ramdisk/dtb) en la memoria y c) ejecutar el código cargado previamente. </p>
+<p>Primero tiene que configurar la red, bien automáticamente mediante DHCP ejecutando </p>
+<div class="informalexample"><pre class="screen">
+setenv autoload no
+dhcp
+</pre></div>
+<p> o de manera manual definiendo varias variables de entorno </p>
+<div class="informalexample"><pre class="screen">
+setenv ipaddr &lt;dirección IP del cliente&gt;
+setenv netmask &lt;máscara de red&gt;
+setenv serverip &lt;dirección IP del servidor TFTP&gt;
+setenv dnsip &lt;dirección IP del servidor de nombres&gt;
+setenv gatewayip &lt;dirección IP de la pasarela predeterminada&gt;
+</pre></div>
+<p> Si lo prefiere, puede hacer que estos cambios sean permanentes ejecutando </p>
+<div class="informalexample"><pre class="screen">saveenv
+</pre></div>
+<p>
+      </p>
+<p>Después tiene que cargar las imágenes (kernel/initial ramdisk/dtb) en la memoria. Esto se lleva a cabo con la orden tftpboot, a la que debe indicar la dirección donde debe almacenarse la imagen en la memoria. Desafortunadamente, el mapa de memoria puede variar de un sistema a otro, por lo que no existe una regla general que determine las direcciones que puede utilizar. </p>
+<p>En algunos sistemas, U-Boot predefine un conjunto de variables de entorno con las direcciones de carga apropiadas: kernel_addr_r, ramdisk_addr_r y fdt_addr_r. Puede comprobar si se encuentran definidas ejecutando </p>
+<div class="informalexample"><pre class="screen">printenv kernel_addr_r ramdisk_addr_r fdt_addr_r
+</pre></div>
+<p> Si no se han definido, tiene que consultar la documentación de su sistema para obtener estos valores y establecerlos manualmente. En sistemas basados en Allwinner SunXi SOC (p. ej., el Allwinner A10, nombre de arquitectura <span class="quote">“<span class="quote">sun4i</span>”</span> o el Allwinner A20, nombre de arquitectura <span class="quote">“<span class="quote">sun7i</span>”</span>), puede, p. ej., utilizar los siguientes valores: </p>
+<div class="informalexample"><pre class="screen">setenv kernel_addr_r 0x46000000
+setenv fdt_addr_r 0x47000000
+setenv ramdisk_addr_r 0x48000000
+</pre></div>
+<p>
+      </p>
+<p>Cuando se definan direcciones de carga, puede cargar las imágenes en la memoria desde el servidor tftp definido anteriormente con </p>
+<div class="informalexample"><pre class="screen">tftpboot ${kernel_addr_r} &lt;nombre del archivo de la imagen del núcleo&gt;
+tftpboot ${fdt_addr_r} &lt;nombre del archivo de dtb&gt;
+tftpboot ${ramdisk_addr_r} &lt;nombre del archivo de la imagen de inicio de ramdisk&gt;
+</pre></div>
+<p>
+      </p>
+<p>La tercera parte consiste en configurar la línea de órdenes del núcleo y ejecutar el código cargado. U-Boot pasa el contenido de la variable de entorno <span class="quote">“<span class="quote">bootargs</span>”</span> como línea de órdenes al núcleo, por lo que cualquiera de los parámetros para el núcleo y el instalador - como el dispositivo de consola (consulte <a class="xref" href="ch05s03.html#boot-console" title="5.3.1. Consola de arranque">Sección 5.3.1, “Consola de arranque”</a>) o las opciones de preconfiguración (consulte <a class="xref" href="ch05s03.html#installer-args" title="5.3.2. Parámetros del instalador de Debian">Sección 5.3.2, “Parámetros del instalador de Debian”</a> y <a class="xref" href="apb.html" title="Apéndice B. Instalar automáticamente utilizando preconfiguración">Apéndice B, <i>Instalar automáticamente utilizando preconfiguración</i></a>) - pueden establecerse con una orden como
+</p>
+<div class="informalexample"><pre class="screen">
+setenv bootargs console=ttyS0,115200 rootwait panic=10
+</pre></div>
+<p> La orden exacta para ejecutar el código cargado previamente depende del formato usado para la imagen. Con uImage/uInitrd, la orden es </p>
+<div class="informalexample"><pre class="screen">
+bootm ${kernel_addr_r} ${ramdisk_addr_r} ${fdt_addr_r}
+</pre></div>
+<p> y con imágenes nativas de Linux es </p>
+<div class="informalexample"><pre class="screen">bootz ${kernel_addr_r} ${ramdisk_addr_r}:${filesize} ${fdt_addr_r}
+</pre></div>
+<p>
+      </p>
+<p>Nota: al arrancar imágenes de Linux estándares, es importante cargar la imagen del disco RAM inicial después del núcleo y el «dtb» a medida que U-Boot define en la variable «filesize» el valor del tamaño del último archivo cargado y la orden «bootz» solicita el tamaño de la imagen del disco RAM para que esta funcione adecuadamente. Si está arrancando un núcleo específico para una plataforma (un núcleo sin árbol de dispositivos, por ejemplo), omita el parámetro ${fdt_addr_r}. </p>
+</div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-boot-arm64"></a>5.1.5. Arranque desde un dispositivo de memoria USB con UEFI</h3></div></div></div>
+<p>Si su equipo va a arrancar desde una memoria USB, probablemente este será el método más sencillo para la instalación. Asumimos que ha preparado todo conforme se describe en <span class="phrase"><a class="xref" href="ch03s06.html#boot-dev-select-arm64" title="3.6.1. Selección de dispositivo de arranque">Sección 3.6.1, “Selección de dispositivo de arranque”</a></span> y <a class="xref" href="ch04s03.html" title="4.3. Preparación de ficheros para el arranque desde un dispositivo de memoria USB">Sección 4.3, “Preparación de ficheros para el arranque desde un dispositivo de memoria USB”</a>. Ahora simplemente conecte su dispositivo de memoria USB en alguno de los conectores USB libres y reinicie el ordenador. El sistema debería arrancar y, a menos que haya utilizado la forma flexible de creación del dispositivo y no lo haya activado, se debería mostrar un menú de arranque gráfico (si el sistema lo admite). Aquí puede introducir argumentos de arranque adicionales o simplemente presionar <span class="keycap"><strong>Enter</strong></span>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="graphical"></a>5.1.6. El Instalador Gráfico</h3></div></div></div>
+<p>La versión gráfica del instalador sólo está disponible para un número limitado de arquitecturas, entre las que se incluye <span class="phrase">64-bit ARM</span>. La funcionalidad del instalador gráfico es esencialmente la misma que la del instalador basado en texto, puesto que ambos utilizan los mismos programas pero con una interfaz diferente. </p>
+<p>Aunque ambos disponen de la misma funcionalidad, el instalador gráfico tiene algunas ventajas significativas. La principal es que admite más idiomas, es decir, los que utilizan un conjunto de caracteres que no se pueden mostrar con la interfaz de texto <span class="quote">“<span class="quote">newt</span>”</span>. También tiene algunas ventajas relacionadas con la usabilidad, como la posibilidad de usar el ratón, y en algunos casos, se pueden mostrar varias preguntas en una única pantalla. </p>
+<p>Al igual que el instalador en modo texto, puede añadir parámetros de arranque cuando inicie el instalador gráfico. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td>
+<th align="left">Nota</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>El instalador gráfico necesita una mayor cantidad de memoria para ejecutarse que el instalador el modo texto: 640MB. Si no dispone de suficiente memoria, se revertirá automáticamente a la interfaz basada en texto <span class="quote">“<span class="quote">newt</span>”</span>. </p>
+<p>Si la cantidad de memoria de su sistema es menor de 260MB, el instalador gráfico podría no arrancar, si bien el instalador en modo texto seguiría disponible. Se recomienda usar el instalador en modo texto en sistemas que dispongan de poca memoria. </p>
+</td></tr>
+</table></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch05.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch05.html"><img src="images/up.png" alt="Subir"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch05s02.html"><img src="images/next.png" alt="Siguiente"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Capítulo 5. Arranque del sistema de instalación </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Inicio"></a></td>
+<td width="40%" align="right" valign="top"> 5.2. Accesibilidad</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

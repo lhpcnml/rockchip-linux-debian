@@ -1,0 +1,130 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>4.4. Dateien vorbereiten für TFTP-Netzwerk-Boot</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux – Installationsanleitung">
+<link rel="up" href="ch04.html" title="Kapitel 4. Systeminstallations-Medien beschaffen">
+<link rel="prev" href="ch04s03.html" title="4.3. Dateien vorbereiten für das Booten von einem USB-Memory-Stick">
+<link rel="next" href="ch04s05.html" title="4.5. Automatische Installation">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">4.4. Dateien vorbereiten für TFTP-Netzwerk-Boot</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch04s03.html"><img src="images/prev.png" alt="Zurück"></a> </td>
+<th width="60%" align="center">Kapitel 4. Systeminstallations-Medien beschaffen</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch04s05.html"><img src="images/next.png" alt="Weiter"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="install-tftp"></a>4.4. Dateien vorbereiten für TFTP-Netzwerk-Boot</h2></div></div></div>
+<p>Wenn Ihr Rechner mit einem Netzwerk (Local Area Network, LAN) verbunden ist, sind Sie vielleicht in der Lage, über das Netzwerk per TFTP von einem anderen Rechner aus zu booten. Wenn Sie dies vorhaben, müssen die Boot-Dateien in speziellen Verzeichnissen auf diesem entfernten Rechner abgelegt werden und der Rechner muss für das Booten speziell Ihrer Maschine konfiguriert werden. </p>
+<p>Sie müssen einen TFTP-Server einrichten und in vielen Fällen auch einen DHCP-Server<span class="phrase"> oder einen RARP-Server</span><span class="phrase"> oder einen BOOTP-Server</span>. </p>
+<p><span class="phrase">Das Reverse-Address-Resolution-Protocol (RARP) ist eine Möglichkeit, dem Client mitzuteilen, welche IP-Adresse er selbst verwenden soll. Ein anderer Weg wäre, das BOOTP-Protokoll zu verwenden.</span> <span class="phrase">BOOTP ist ein IP-Protokoll, das einem Computer seine IP-Adresse mitteilt und wo er im Netzwerk ein Boot-Image findet.</span> Das Dynamic-Host-Configuration-Protocol (DHCP) ist eine flexiblere, rückwärts-kompatible Erweiterung von BOOTP. Einige Systeme können nur per DHCP konfiguriert werden. </p>
+<p>Das Trivial-File-Transfer-Protocol (TFTP) wird benutzt, um dem Client das Boot-Image zur Verfügung zu stellen. Theoretisch könnte jeder Server auf jeder Plattform benutzt werden, der diese Protokolle implementiert. In den Beispielen in diesem Abschnitt geben wir Kommandos für SunOS 4.x, SunOS 5.x (a.k.a. Solaris) und GNU/Linux an. 
+
+</p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="tftp-rarp"></a>4.4.1. Einen RARP-Server einrichten</h3></div></div></div>
+<p>Um RARP einzurichten, benötigen Sie die Ethernet-Adresse (a.k.a. die MAC-Adresse) des Clients, der gestartet werden soll. Wenn Ihnen diese Informationen nicht bekannt sind, können Sie in den <span class="quote">„<span class="quote">Rescue</span>“</span>-Modus booten und dort das Kommando <strong class="userinput"><code>ip addr show dev eth0</code></strong> verwenden. </p>
+<p>Auf einem RARP-Server, der unter Linux oder Solaris/SunOS läuft, benutzen Sie das Programm <span class="command"><strong>rarpd</strong></span>. Sie müssen sicherstellen, dass die Ethernet-Hardware-Adresse des Clients in der <span class="quote">„<span class="quote">ethers</span>“</span>-Datenbank aufgelistet ist (entweder in der Datei <code class="filename">/etc/ethers</code> oder per NIS/NIS+) sowie in der <span class="quote">„<span class="quote">hosts</span>“</span>-Datenbank. Dann starten Sie den RARP-Daemon. Benutzen Sie auf den meisten Linux-Systemen und unter SunOS 5 (Solaris 2) folgenden Befehl (als root): <strong class="userinput"><code>/usr/sbin/rarpd -a</code></strong>; auf einigen Linux-Systemen könnte es auch <strong class="userinput"><code>/usr/sbin/in.rarpd -a</code></strong> sein und unter SunOS 4 (Solaris 1) <strong class="userinput"><code>/usr/etc/rarpd -a</code></strong>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="dhcpd"></a>4.4.2. Einen DHCP-Server einrichten</h3></div></div></div>
+<p>Ein Free-Software-DHCP-Server ist der ISC-<span class="command"><strong>dhcpd</strong></span>. Für Debian GNU/Linux wird das <code class="classname">isc-dhcp-server</code>-Paket empfohlen. Hier eine beispielhafte Konfigurationsdatei (siehe <code class="filename">/etc/dhcp/dhcpd.conf</code>): </p>
+<div class="informalexample"><pre class="screen">option domain-name "example.com";
+option domain-name-servers ns1.example.com;
+option subnet-mask 255.255.255.0;
+default-lease-time 600;
+max-lease-time 7200;
+server-name "servername";
+
+subnet 192.168.1.0 netmask 255.255.255.0 {
+  range 192.168.1.200 192.168.1.253;
+  option routers 192.168.1.1;
+}
+
+host clientname {
+  filename "/tftpboot.img";
+  server-name "servername";
+  next-server servername;
+  hardware ethernet 01:23:45:67:89:AB;
+  fixed-address 192.168.1.90;
+}
+</pre></div>
+<p>
+
+</p>
+<p>In diesem Beispiel gibt es einen Server <em class="replaceable"><code>servername</code></em>, der alle Aufgaben von DHCP-Server, TFTP-Server und Netzwerk-Gateway übernimmt. Sie müssen natürlich die Domain-Namen-Einträge ändern wie auch den Servernamen und die Hardware-Adresse der Clients. Der Eintrag <em class="replaceable"><code>filename</code></em> sollte der Name der Datei sein, die per TFTP abgerufen wird. </p>
+<p>Nachdem Sie die Konfigurationsdatei des <span class="command"><strong>dhcpd</strong></span> verändert haben, starten Sie ihn mit <strong class="userinput"><code>/etc/init.d/isc-dhcp-server restart</code></strong> neu. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="tftp-bootp"></a>4.4.3. Einen BOOTP-Server einrichten</h3></div></div></div>
+<p>Es gibt für GNU/Linux zwei BOOTP-Server: erstens den <span class="command"><strong>bootpd</strong></span> (CMU) und der zweite ist eigentlich ein DHCP-Server, der <span class="command"><strong>dhcpd</strong></span> (ISC). Sie sind in den Debian GNU/Linux-Paketen <code class="classname">bootp</code> bzw. <code class="classname">isc-dhcp-server</code> enthalten. </p>
+<p>Um den <span class="command"><strong>bootpd</strong></span> (CMU) zu nutzen, müssen Sie als erstes für die entsprechende Zeile in <code class="filename">/etc/inetd.conf</code> das Kommentarzeichen entfernen (bzw. die Zeile hinzufügen, falls noch nicht vorhanden). Unter Debian GNU/Linux erledigen Sie das mit <strong class="userinput"><code>update-inetd --enable bootps</code></strong> und anschließendem <strong class="userinput"><code>/etc/init.d/inetd reload</code></strong>. Für den Fall, dass Ihr Bootp-Server nicht unter Debian läuft, sollte die fragliche Zeile so aussehen: </p>
+<div class="informalexample"><pre class="screen">
+bootps  dgram  udp  wait  root  /usr/sbin/bootpd  bootpd -i -t 120
+</pre></div>
+<p> Jetzt müssen Sie die Datei <code class="filename">/etc/bootptab</code> erstellen. Sie hat das gewohnte kryptische Format wie die guten alten BSD-Dateien <code class="filename">printcap</code>, <code class="filename">termcap</code> und <code class="filename">disktab</code>. Mehr Informationen bekommen Sie in der Handbuchseite von <code class="filename">bootptab</code>. Beim CMU-<span class="command"><strong>bootpd</strong></span> müssen Sie die Hardware-(MAC-)Adresse des Clients kennen. Hier ein Beispiel für <code class="filename">/etc/bootptab</code>: </p>
+<div class="informalexample"><pre class="screen">
+client:\
+  hd=/tftpboot:\
+  bf=tftpboot.img:\
+  ip=192.168.1.90:\
+  sm=255.255.255.0:\
+  sa=192.168.1.1:\
+  ha=0123456789AB:
+</pre></div>
+<p> Sie müssen zumindest den Eintrag <span class="quote">„<span class="quote">ha</span>“</span> anpassen, der die Hardware-Adresse des Clients angibt. Der Eintrag <span class="quote">„<span class="quote">bf</span>“</span> legt fest, welche Datei der Client per TFTP bezieht; <a class="xref" href="ch04s04.html#tftp-images" title="4.4.5. Die TFTP-Images an ihren Platz befördern">Abschnitt 4.4.5, „Die TFTP-Images an ihren Platz befördern“</a> enthält mehr Details. </p>
+<p>Im Unterschied dazu ist es wirklich einfach, den ISC-<span class="command"><strong>dhcpd</strong></span> einzurichten, da dieser BOOTP-Clients gewissermaßen als Spezialfall von DHCP-Clients behandelt. Einige Architekturen erfordern eine komplexe Konfiguration, um Clients per BOOTP zu starten. Wenn Sie solch einen Fall haben, lesen Sie <a class="xref" href="ch04s04.html#dhcpd" title="4.4.2. Einen DHCP-Server einrichten">Abschnitt 4.4.2, „Einen DHCP-Server einrichten“</a>. Andernfalls könnte es vielleicht ausreichen, in der Datei <code class="filename">/etc/dhcp/dhcpd.conf</code> den Eintrag <strong class="userinput"><code>allow bootp</code></strong> zu dem Abschnitt hinzuzufügen, der das Subnetz konfiguriert, zu dem Ihr Client gehört. Danach muss der <span class="command"><strong>dhcpd</strong></span> mit <strong class="userinput"><code>/etc/init.d/isc-dhcp-server restart</code></strong> neu gestartet werden. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="tftpd"></a>4.4.4. Den TFTP-Server aktivieren</h3></div></div></div>
+<p>Um den TFTP-Server einzurichten, sollten Sie als Erstes sicherstellen, dass <span class="command"><strong>tftpd</strong></span> aktiv ist. </p>
+<p>Im Falle von <code class="classname">tftpd-hpa</code> gibt es zwei Wege, wie der Dienst zum Laufen gebracht werden kann. Er kann bei Bedarf vom <code class="classname">inetd</code>-Daemon des Systems gestartet werden oder er kann eingerichtet werden, als eigenständiger Daemon zu laufen. Welche der beiden Methoden verwendet wird, wird bei der Installation des Pakets ausgewählt und kann auch später geändert werden, indem das Paket rekonfiguriert wird. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Anmerkung]" src="images/note.png"></td>
+<th align="left">Anmerkung</th>
+</tr>
+<tr><td align="left" valign="top"><p>Früher haben TFTP-Server das Verzeichnis <code class="filename">/tftpboot</code> genutzt, um Images bereitzustellen. Allerdings verwenden Server aus Debian GNU/Linux-Paketen unter Umständen andere Verzeichnisse, um den <a class="ulink" href="http://refspecs.linuxfoundation.org/fhs.shtml" target="_top">Filesystem Hierarchy Standard</a> (Festlegungen, an welcher Stelle im Dateisystem bestimmte Daten abgespeichert werden sollten) zu erfüllen. Zum Beispiel nutzt <code class="classname">tftpd-hpa</code> standardmäßig <code class="filename">/srv/tftp</code>. Sie müssen also eventuell die Konfigurationsbeispiele aus diesem Kapitel entsprechend an Ihre Situation anpassen. </p></td></tr>
+</table></div>
+<p>Alle in Debian verfügbaren <span class="command"><strong>in.tftpd</strong></span>-Alternativen sollten standardmäßig Protokolleinträge aller TFTP-Anfragen in das System-Log schreiben. Einige unterstützen das Argument <strong class="userinput"><code>-v</code></strong>, um die Ausführlichkeit der Einträge zu erhöhen. Es wird empfohlen, im Falle von Boot-Problemen diese Logeinträge zu kontrollieren; sie sind ein guter Anfang, um der Fehlerursache auf die Spur zu kommen. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="tftp-images"></a>4.4.5. Die TFTP-Images an ihren Platz befördern</h3></div></div></div>
+<p>Als nächstes legen Sie die TFTP-Boot-Images, die Sie benötigen und die Sie wie in <a class="xref" href="ch04s02.html#where-files" title="4.2.1. Wo Sie die Installationsdateien finden">Abschnitt 4.2.1, „Wo Sie die Installationsdateien finden“</a> beschrieben bekommen können, im <span class="command"><strong>tftpd</strong></span>-Bootimage-Verzeichnis ab. Sie müssen unter Umständen einen Link von diesem Image auf die Datei anlegen, die <span class="command"><strong>tftpd</strong></span> benutzt, um einen speziellen Client zu booten. Bedauerlicherweise hängt der Name dieser Datei von dem TFTP-Client ab und es gibt dabei keine festen Standards. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch04s03.html"><img src="images/prev.png" alt="Zurück"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch04.html"><img src="images/up.png" alt="Nach oben"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch04s05.html"><img src="images/next.png" alt="Weiter"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">4.3. Dateien vorbereiten für das Booten von einem USB-Memory-Stick </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Zum Anfang"></a></td>
+<td width="40%" align="right" valign="top"> 4.5. Automatische Installation</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

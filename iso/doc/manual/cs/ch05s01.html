@@ -1,0 +1,168 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>5.1. Zavedení instalátoru na 64-bit ARM</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux — instalační příručka">
+<link rel="up" href="ch05.html" title="Kapitola 5. Zavedení instalačního systému">
+<link rel="prev" href="ch05.html" title="Kapitola 5. Zavedení instalačního systému">
+<link rel="next" href="ch05s02.html" title="5.2. Zpřístupnění">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">5.1. Zavedení instalátoru na <span class="phrase">64-bit ARM</span>
+</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch05.html"><img src="images/prev.png" alt="Předcházející"></a> </td>
+<th width="60%" align="center">Kapitola 5. Zavedení instalačního systému</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch05s02.html"><img src="images/next.png" alt="Další"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="idm880"></a>5.1. Zavedení instalátoru na <span class="phrase">64-bit ARM</span>
+</h2></div></div></div>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Poznámka]" src="images/note.png"></td>
+<th align="left">Poznámka</th>
+</tr>
+<tr><td align="left" valign="top"><p>Informace o zavedení grafického instalátoru naleznete v kapitole <a class="xref" href="ch05s01.html#graphical" title="5.1.6. Grafický instalátor">5.1.6 – „Grafický instalátor“</a>. </p></td></tr>
+</table></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm64-console-setup"></a>5.1.1. Nastavení konzoly</h3></div></div></div>
+<p>The graphical installer is (experimentally) enabled on the arm64 <code class="classname">debian-installer</code> images, but on some devices you may still have to use the serial console. The console device should be detected automatically from the firmware, but if it is not then after you boot linux from the GRUB menu you will see a <span class="quote">„<span class="quote">Booting Linux</span>“</span> message, then nothing more. </p>
+<p>Jestliže to je i váš případ, musíte parametry konzoly nastavit ručně. V nabídce GRUBu stiskněte klávesu <span class="keycap"><strong>e</strong></span> pro editaci příkazové řádky a upravte část </p>
+<div class="informalexample"><pre class="screen">--- quiet</pre></div>
+<p> do podoby </p>
+<div class="informalexample"><pre class="screen">console=<em class="replaceable"><code>zařízení</code></em>,<em class="replaceable"><code>rychlost</code></em></pre></div>
+<p> například: </p>
+<div class="informalexample"><pre class="screen">console=ttyAMA0,115200n8</pre></div>
+<p> Následně stiskněte kombinaci <span class="keycap"><strong>Control</strong></span>+<span class="keycap"><strong>x</strong></span>, čímž bude zavádění pokračovat s novým nastavením. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="juno-installation"></a>5.1.2. Instalace na Juno</h3></div></div></div>
+<p>Juno používá UEFI, takže je instalace celkem přímočará. Nejpraktičtější je instalace z USB klíčenky, ovšem aby zavádění z USB fungovalo, potřebujete aktuální firmware. Sestavení z <a class="ulink" href="http://releases.linaro.org/members/arm/platforms/latest/" target="_top">http://releases.linaro.org/members/arm/platforms/latest/</a> po březnu 2015 je ověřeno, že funguje. Více o aktualizaci firmwaru se dozvíte v dokumentaci k Juno. </p>
+<p>Prepare a standard arm64 CD/DVD image on a USB stick. Insert it in one of the USB ports on the back. Plug a serial cable into the upper 9-pin serial port on the back. If you need networking (netboot image) plug the ethernet cable into the socket on the front of the machine. </p>
+<p>Spusťte sériovou konzoli s rychlostí 115200, 8 bitů bez parity a Juno zapněte.  Juno by mělo nastartovat z USB klíčenky do nabídky GRUBu. Nastavení konzoly na Junu zlobí, takže prosté pokračování klávesou <span class="keycap"><strong>Enter</strong></span> nezobrazí žádný výstup. Nejprve musíte podle (<a class="xref" href="ch05s01.html#arm64-console-setup" title="5.1.1. Nastavení konzoly">5.1.1 – „Nastavení konzoly“</a>) nastavit konzoli na </p>
+<div class="informalexample"><pre class="screen">console=ttyAMA0,115200n8</pre></div>
+<p> a teprve pak lze pokračovat v běžné instalaci. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="apm-installation"></a>5.1.3. Instalace na Applied Micro Mustang</h3></div></div></div>
+<p>Tento počítač se běžně dodává s U-Bootem, ale je dostupný i UEFI firmware. Budete se tedy muset rozhodnout, zda nejprve nainstalujete UEFI firmware a pak použijete standardní způsob instalace, nebo zda použijete U-Boot a jeho metody. Pro ovládání instalačního systému budete muset použít sériovou konzoli, protože grafická instalace není na architektuře amd64 povolena. </p>
+<p>Doporučený postup instalace je pomocí openembedded systému dodávaného s počítačem nakopírovat <code class="classname">debian-installer</code>, jádro a initrd na pevný disk a pak z těchto souborů zavést instalační systém. Alternativně můžete jádro, dtb a initrd získat a zavést ze sítě protokolem TFTP (viz část <a class="xref" href="ch05s01.html#boot-tftp-uboot" title="5.1.4.1. Zavedení z TFTP přes U-Boot">5.1.4.1 – „Zavedení z TFTP přes U-Boot“</a>). Po dokončení instalace je třeba ruční zásah, aby bylo možno nově nainstalovaný systém zavést. </p>
+<p>Spusťte sériovou konzoli s rychlostí 115200, 8 bitů bez parity a počítač zapněte. Restartujte počítač a až se zobrazí hláška <code class="computeroutput">Hit any key to stop autoboot</code>, stiskněte libovolnou klávesu. Objeví se výzva <code class="computeroutput">Mustang#</code>, kde můžete použít příkazy U-Bootu pro nahrání a zavedení jádra, dtb a initrd. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-tftp-arm"></a>5.1.4. Zavedení z TFTP</h3></div></div></div>
+<p>Zavedení se sítě vyžaduje síťové připojení, funkční TFTP server a nejspíš i DHCP, RARP nebo BOOTP server pro automatické nastavení sítě. </p>
+<p>Nastavení zavádění ze sítě je popsáno v <a class="xref" href="ch04s04.html" title="4.4. Příprava souborů pro zavedení ze sítě pomocí TFTP">4.4 – „Příprava souborů pro zavedení ze sítě pomocí TFTP“</a>. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="boot-tftp-uboot"></a>5.1.4.1. Zavedení z TFTP přes U-Boot</h4></div></div></div>
+<p>Zavedení ze sítě přes firmware U-Boot se skládá ze tří kroků: nastavení sítě, zavedení obrazů jádra, initrd a dtb do paměti a konečně spuštění nahraného jádra. </p>
+<p>Síť můžete nastavit buď automaticky pomocí DHCP: </p>
+<div class="informalexample"><pre class="screen">
+setenv autoload no
+dhcp
+</pre></div>
+<p> nebo ručně nastavením několika proměnných: </p>
+<div class="informalexample"><pre class="screen">
+setenv ipaddr &lt;ip address of the client&gt;
+setenv netmask &lt;netmask&gt;
+setenv serverip &lt;ip address of the tftp server&gt;
+setenv dnsip &lt;ip address of the nameserver&gt;
+setenv gatewayip &lt;ip address of the default gateway&gt;
+</pre></div>
+<p> Budete-li chtít toto nastavení uložit trvale, použijte příkaz </p>
+<div class="informalexample"><pre class="screen">saveenv
+</pre></div>
+<p>
+      </p>
+<p>Nyní musíte nahrát obrazy jádra, initrd a dtb do paměti, což se provádí příkazem <span class="command"><strong>tftpboot</strong></span>. jako parametr příkazu musíte zadat adresu v paměti, na kterou se má obraz nahrát. Bohužel, mapa paměti se liší systém od systému a proto zde nemůžeme vypsat pevné adresy platné pro všechny. </p>
+<p>Na některých systémech si U-Boot předdefinovává proměnné prostředí s vhodnými adresami. Jsou to proměnné <code class="literal">kernel_addr_r</code>, <code class="literal">ramdisk_addr_r</code> a <code class="literal">fdt_addr_r</code>. Zda jsou ve vašem případě nastaveny, a připraveny k použití, si můžete ověřit příkazem </p>
+<div class="informalexample"><pre class="screen">
+printenv kernel_addr_r ramdisk_addr_r fdt_addr_r
+</pre></div>
+<p> Nejsou-li definovány, budete si muset konkrétní hodnoty zjistit v dokumentaci k vašemu systému a nastavit je ručně. Například na systémech založených na SOC Allwinner SunXi (třeba Allwinner A10, architektura <span class="quote">„<span class="quote">sun4i</span>“</span> nebo Allwinner A20, architektura <span class="quote">„<span class="quote">sun7i</span>“</span>) můžete použít následující hodnoty: </p>
+<div class="informalexample"><pre class="screen">setenv kernel_addr_r 0x46000000
+setenv fdt_addr_r 0x47000000
+setenv ramdisk_addr_r 0x48000000
+</pre></div>
+<p>
+      </p>
+<p>Po nastavení adres můžete stáhnout obrazy z dříve definovaného TFTP serveru a nahrát je do paměti příkazy: </p>
+<div class="informalexample"><pre class="screen">tftpboot ${kernel_addr_r} &lt;název_souboru_s_obrazem_jádra&gt;
+tftpboot ${fdt_addr_r} &lt;název_souboru_s_dtb&gt;
+tftpboot ${ramdisk_addr_r} &lt;název_souboru_s_obrazem_initrd&gt;
+</pre></div>
+<p>
+      </p>
+<p>Nyní zbývá nastavit parametry jádra a spustit ho. U-Boot předá jádru parametry přes proměnnou prostředí <code class="literal">bootargs</code>, takže do ní nastavte veškeré potřebné parametry jádra a instalačního systému, jako je třeba konzole (<a class="xref" href="ch05s03.html#boot-console" title="5.3.1. Zavěděcí konzole">5.3.1 – „Zavěděcí konzole“</a>) nebo přednastavení (<a class="xref" href="ch05s03.html#installer-args" title="5.3.2. Parametry instalačního programu">5.3.2 – „Parametry instalačního programu“</a> a <a class="xref" href="apb.html" title="Příloha B. Automatizování instalací pomocí přednastavení">B – „<i>Automatizování instalací pomocí přednastavení</i>“</a>). Například: </p>
+<div class="informalexample"><pre class="screen">
+setenv bootargs console=ttyS0,115200 rootwait panic=10
+</pre></div>
+<p> Samotné spuštění jádra závisí na použitém formátu. Pro uImage/uInitrd vypadá příkaz následovně: </p>
+<div class="informalexample"><pre class="screen">
+bootm ${kernel_addr_r} ${ramdisk_addr_r} ${fdt_addr_r}</pre></div>
+<p> a pro nativní linuxový formát takto: </p>
+<div class="informalexample"><pre class="screen">bootz ${kernel_addr_r} ${ramdisk_addr_r}:${filesize} ${fdt_addr_r}
+</pre></div>
+<p>
+      </p>
+<p>Při zavádění standardních linuxových obrazů je důležité nahrát obraz úvodního ramdisku až po jádru a dtb, jelikož U-Boot automaticky uloží do proměnné <code class="literal">filesize</code> velikost posledně nahraného souboru. Aby příkaz <span class="command"><strong>bootz</strong></span> fungoval správně, potřebuje znát velikost ramdisku, kterou mu předáte právě z proměnné <code class="literal">filesize</code>. Jestliže zavádíte jádro sestavené pro konkrétní platformu (tj. bez stromu zařízení), jednoduše vynechte parametr <code class="literal">${fdt_addr_r}</code>. </p>
+</div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-boot-arm64"></a>5.1.5. Zavedení z USB klíčenky přes UEFI</h3></div></div></div>
+<p>If your computer will boot from USB, this will probably be the easiest route for installation. Assuming you have prepared everything from <span class="phrase"><a class="xref" href="ch03s06.html#boot-dev-select-arm64" title="3.6.1. Výběr zaváděcího zařízení">3.6.1 – „Výběr zaváděcího zařízení“</a></span> and <a class="xref" href="ch04s03.html" title="4.3. Příprava souborů pro zavedení z USB zařízení">4.3 – „Příprava souborů pro zavedení z USB zařízení“</a>, just plug your USB stick into some free USB connector and reboot the computer. The system should boot up, and unless you have used the flexible way to build the stick and not enabled it, you should be presented with a graphical boot menu (on hardware that supports it). Here you can select various installer options, or just hit <span class="keycap"><strong>Enter</strong></span>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="graphical"></a>5.1.6. Grafický instalátor</h3></div></div></div>
+<p>Grafická verze instalačního systému je dostupná pouze na několika architekturách, kam patří i <span class="phrase">64-bit ARM</span>. Funkcionalita grafického instalátoru je shodná s textovou verzí, protože se jedná o stejné programy, liší se pouze vzhled. </p>
+<p>I když je funkcionalita stejná, přesto přináší grafická verze několik výhod. Tou hlavní je, že podporuje více jazyků, konkrétně ty, jejichž znaková sada se nedá zobrazit v textovém rozhraní <span class="quote">„<span class="quote">newt</span>“</span>. Grafické rozhraní také zlepšuje použitelnost tím, že můžete volitelně používat myš a že je v některých případech zobrazeno více otázek na jediné obrazovce (typicky zadání hesla a jeho ověření). </p>
+<p>Při startu grafického instalátoru můžete používat zaváděcí parametry stejně, jako u textové verze. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Poznámka]" src="images/note.png"></td>
+<th align="left">Poznámka</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>Grafický instalátor vyžaduje pro běh mnohem více paměti než textová verze: 640MB. Pokud instalace zjistí nedostatek paměti, automaticky se přepne do textového rozhraní <span class="quote">„<span class="quote">newt</span>“</span>. </p>
+<p>Máte-li však méně paměti než 260MB, je možné, že se grafická instalace vůbec nezavede, zatímco textová verze může stále fungovat. Pro počítače s minimem dostupné paměti je doporučeno použít rovnou textovou verzi. </p>
+</td></tr>
+</table></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch05.html"><img src="images/prev.png" alt="Předcházející"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch05.html"><img src="images/up.png" alt="Nahoru"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch05s02.html"><img src="images/next.png" alt="Další"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Kapitola 5. Zavedení instalačního systému </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Domů"></a></td>
+<td width="40%" align="right" valign="top"> 5.2. Zpřístupnění</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

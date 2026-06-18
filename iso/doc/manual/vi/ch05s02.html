@@ -1,0 +1,82 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>5.2. Khả năng truy cập</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Sổ tay Cài đặt Debian GNU/Linux">
+<link rel="up" href="ch05.html" title="Chương 5. Khởi động Hệ thống Cài đặt">
+<link rel="prev" href="ch05s01.html" title="5.1. Khởi động trình cài đặt trên 64-bit ARM">
+<link rel="next" href="ch05s03.html" title="5.3. Tham số khởi động">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">5.2. Khả năng truy cập</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch05s01.html"><img src="images/prev.png" alt="Trước đó"></a> </td>
+<th width="60%" align="center">Chương 5. Khởi động Hệ thống Cài đặt</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch05s03.html"><img src="images/next.png" alt="Kế tiếp"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="boot-installer-accessibility"></a>5.2. Khả năng truy cập</h2></div></div></div>
+<p>Some users may need specific support because of e.g. some visual impairment.  <span class="phrase">Most</span> accessibility features have to be enabled manually.  Some boot parameters can  be appended to enable accessibility features. Note that on most architectures the boot loader interprets your keyboard as a QWERTY keyboard. </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm978"></a>5.2.1. Installer front-end</h3></div></div></div>
+<p>The Debian installer supports several front-ends for asking questions, with varying convenience for accessibility: notably, <strong class="userinput"><code>text</code></strong> uses plain text while <strong class="userinput"><code>newt</code></strong> uses text-based dialog boxes. The choice can be made at the boot prompt, see the documentation for <strong class="userinput"><code>DEBIAN_FRONTEND</code></strong> in <a class="xref" href="ch05s03.html#installer-args" title="5.3.2. Tham số trình cài đặt Debian">Phần 5.3.2, “Tham số trình cài đặt Debian”</a>. </p>
+<p>With the <strong class="userinput"><code>newt</code></strong> front-end (used mostly with braille), one mostly just selects answers with arrow keys and presses <span class="keycap"><strong>Enter</strong></span> to validate the choice. Pressing <span class="keycap"><strong>Tab</strong></span> or <span class="keycap"><strong>Shift</strong></span> - <span class="keycap"><strong>Tab</strong></span> allows to switch between dialog elements, and notably to access the <strong class="userinput"><code>Go Back</code></strong> button, which brings back again to previous questions. Some dialogs contain check boxes, which can be ticked on and off by pressing <span class="keycap"><strong>Space</strong></span>. </p>
+<p>With the <strong class="userinput"><code>text</code></strong> front-end (used mostly with speech), one mostly selects answers either by typing their number followed by pressing <span class="keycap"><strong>Enter</strong></span>, or by selecting an answer with arrow keys, and pressing <span class="keycap"><strong>Enter</strong></span> to validate the choice. One can also not type anything and just press <span class="keycap"><strong>Enter</strong></span> to simply accept the default value. Typing <strong class="userinput"><code>&lt;</code></strong> and pressing <span class="keycap"><strong>Enter</strong></span> brings back again to previous questions. When a selection of choices has to be made (e.g. during task selection), one can type <strong class="userinput"><code>!</code></strong> to express an empty selection. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm1001"></a>5.2.2. Thiết bị bảng</h3></div></div></div>
+<p>Một số thiết bị khả năng truy cập nào đó là bảng thật được cắm vào bên trong máy tính, mà đọc văn bản một cách trực tiếp từ vùng nhớ ảnh động. Để hiệu lực thiết bị kiểu này, bạn cần phải tắt hỗ trợ cho vùng đệm khung bằng cách sử dụng tham số khởi động  <strong class="userinput"><code>fb=false</code></strong>. Tuy nhiên, việc này cũng giảm số các ngôn ngữ sẵn sàng. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm1005"></a>5.2.3. Sắc thái cao tương phản</h3></div></div></div>
+<p>For users with low vision, the installer can use a high-contrast color theme that makes it more readable. To enable it, you can use the <span class="quote">“<span class="quote">Accessible high contrast</span>”</span> entry from the boot screen with the <strong class="userinput"><code>d</code></strong> shortcut, or append the <strong class="userinput"><code>theme=dark</code></strong> boot parameter. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm1011"></a>5.2.4. Zoom</h3></div></div></div>
+<p>For users with low vision, the graphical installer has a very basic zoom support: the <span class="keycap"><strong>Control</strong></span>+<span class="keycap"><strong>+</strong></span> and <span class="keycap"><strong>Control</strong></span>+<span class="keycap"><strong>-</strong></span> shortcuts increase and decrease the font size. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm1020"></a>5.2.5. Expert install, rescue mode, automated install</h3></div></div></div>
+<p>Expert, Rescue, and Automated installation choices are also available with accessibility support. To access them, one has to first enter the <span class="quote">“<span class="quote">Advanced options</span>”</span> submenu from the boot menu by typing <strong class="userinput"><code>a</code></strong>. When using a BIOS system (the boot menu will have beeped only once), this has to be followed by <span class="keycap"><strong>Enter</strong></span> ; for UEFI systems (the boot menu will have beeped twice) that must not be done. Then, to enable speech synthesis, <strong class="userinput"><code>s</code></strong> can optionally be pressed (followed again by <span class="keycap"><strong>Enter</strong></span> on BIOS systems but not on UEFI systems). From there, various shortcuts can be used: <strong class="userinput"><code>x</code></strong> for expert installation, <strong class="userinput"><code>r</code></strong> for rescue mode, or <strong class="userinput"><code>a</code></strong> for automated installation. Again these need to be followed by <span class="keycap"><strong>Enter</strong></span> when using a BIOS system. </p>
+<p>The automated install choice allows to install Debian completely automatically by using preseeding, whose source can be entered after accessibility features get started. Preseeding itself is documented in <a class="xref" href="apb.html" title="Phụ lục B. Tự động hoá việc cài đặt bằng chèn sẵn">Phụ lục B, <i>Tự động hoá việc cài đặt bằng chèn sẵn</i></a>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm1034"></a>5.2.6. Accessibility of the installed system</h3></div></div></div>
+<p>Documentation on accessibility of the installed system is available on the <a class="ulink" href="https://wiki.debian.org/accessibility" target="_top">Debian Accessibility wiki page</a>. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch05s01.html"><img src="images/prev.png" alt="Trước đó"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch05.html"><img src="images/up.png" alt="Lên"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch05s03.html"><img src="images/next.png" alt="Kế tiếp"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">5.1. Khởi động trình cài đặt trên <span class="phrase">64-bit ARM</span> </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Đầu"></a></td>
+<td width="40%" align="right" valign="top"> 5.3. Tham số khởi động</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

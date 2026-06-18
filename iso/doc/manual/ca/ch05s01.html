@@ -1,0 +1,169 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>5.1. Arrencada de l'instal·lador en l'arquitectura 64-bit ARM</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Guia d'instal·lació de Debian GNU/Linux">
+<link rel="up" href="ch05.html" title="Capítol 5. Arrencada del sistema d'instal·lació">
+<link rel="prev" href="ch05.html" title="Capítol 5. Arrencada del sistema d'instal·lació">
+<link rel="next" href="ch05s02.html" title="5.2. Accessibilitat">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">5.1. Arrencada de l'instal·lador en l'arquitectura <span class="phrase">64-bit ARM</span>
+</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch05.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<th width="60%" align="center">Capítol 5. Arrencada del sistema d'instal·lació</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch05s02.html"><img src="images/next.png" alt="Següent"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="idm866"></a>5.1. Arrencada de l'instal·lador en l'arquitectura <span class="phrase">64-bit ARM</span>
+</h2></div></div></div>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td>
+<th align="left">Nota</th>
+</tr>
+<tr><td align="left" valign="top"><p>Per informar-se de com arrencar l'instal·lador gràfic, vegeu <a class="xref" href="ch05s01.html#graphical" title="5.1.6. L'instal·lador gràfic">Secció 5.1.6, «L'instal·lador gràfic»</a>. </p></td></tr>
+</table></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm64-console-setup"></a>5.1.1. Configuració del terminal</h3></div></div></div>
+<p>L'instal·lador gràfic està (experimentalment) habilitat en les imatges arm64 <code class="classname">debian-installer</code>, però en alguns dispositius encara haureu d'usar la terminal sèrie. El dispositiu de terminal hauria de ser detectat automàticament pel microprogramari del maquinari («firmware»), però en cas que no sigui així, després d'arrencar Linux des del menú de GRUB només veureu un missatge <span class="quote">«<span class="quote">Arrencar Linux</span>»</span> i res més. </p>
+<p>Si se us presenta aquest problema, caldrà que especifiqueu la configuració del terminal a la línia d'ordres del nucli. Premeu <strong class="userinput"><code>e</code></strong> per a <span class="quote">«<span class="quote">Edit Kernel command-line</span>»</span> en el menú de GRUB i canvii </p>
+<div class="informalexample"><pre class="screen">--- quiet</pre></div>
+<p> per </p>
+<div class="informalexample"><pre class="screen">console=&lt;device&gt;,&lt;speed&gt;</pre></div>
+<p>: per exemple </p>
+<div class="informalexample"><pre class="screen">console=ttyAMA0,115200n8</pre></div>
+<p> En acabar, premeu <span class="keycap"><strong>Control</strong></span>+<span class="keycap"><strong>x</strong></span> per a continuar l'arrencada amb la nova configuració. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="juno-installation"></a>5.1.2. Instal·lació de Juno</h3></div></div></div>
+<p>Juno disposa de UEFI de manera que la instal·lació és senzilla. El mètode més pràctic és fer la instal·lació amb una memòria USB. Cal tenir actualitzat el microprogramari del maquinari («firmware») per tal que funcioni l'arrencada per USB. Les compilacions disponibles a <a class="ulink" href="http://releases.linaro.org/members/arm/platforms/latest/" target="_top">http://releases.linaro.org/members/arm/platforms/latest/</a> posteriors a març de 2015 han funcionat correctament a les proves. Consulti la documentació de Juno per l'actualització del microprogramari («firmware»). </p>
+<p>Preparar una imatge estàndard de CD/DVD per a arm64 en una memòria USB. Connectar-la a un dels ports USB de la part posterior. Endollar un cable sèrie al port sèrie de 9 pins de la part posterior superior. Si necessitau la xarxa internet (imatge d'arrencada de xarxa) endollau un cable d'ethernet en el connector de la tarja ethernet de la part frontal de la màquina. </p>
+<p>Executeu un terminal serie a 115200, 8bit sense paritat i arranqui Juno. Ara hauria d'arrencar des de la memòria USB el menú GRUB. Si Juno no detecta correctament el terminal configurat pitjant <span class="keycap"><strong>Intro</strong></span> no mostrarà cap sortida del nucli. Establiu el terminal a </p>
+<div class="informalexample"><pre class="screen">console=ttyAMA0,115200n8</pre></div>
+<p> (com s'explica a <a class="xref" href="ch05s01.html#arm64-console-setup" title="5.1.1. Configuració del terminal">Secció 5.1.1, «Configuració del terminal»</a>). <span class="keycap"><strong>Control</strong></span>+<span class="keycap"><strong>x</strong></span> per arrencar mostrant les pantalles <code class="classname">debian-installer</code> i podreu continuar amb la instal·lació. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="apm-installation"></a>5.1.3. Instal·lació a Applied Micro Mustang</h3></div></div></div>
+<p>UEFI és disponible per aquesta màquina però normalment s'envia amb U-Boot per que serà necessari o bé instal·lar el microprogramari («firmware») UEFI abans de fer servir els mètodes estàndard d'arrencada/instal·lació, o bé fer servir el mètodes U-Boot d'arrencada. S'ha de fer servir una terminal sèrie per controlar la instal·lació degut a què la instal·lació gràfica no està suportada per l'arquitectura arm64. </p>
+<p>El mètode recomanat d'instal·lació és copiar el nucli de <code class="classname">debian-installer</code> i «initrd» en el disc dur, fent servir el sistema «openembedded» subministrat amb la màquina, i a continuació arrencar-ho per tal d'executar l'instal·lador. Alternativament, fer servir TFTP per a obtenir el nucli, «dtb» i «initrd», copiar-ho i arrencar-ho (<a class="xref" href="ch05s01.html#boot-tftp-uboot" title="5.1.4.1. Arrencada TFPT a U-Boot">Secció 5.1.4.1, «Arrencada TFPT a U-Boot»</a>). Després de la instal·lació, caldrà fer manualment els canvis necessaris per arrencar la imatge instal·lada. </p>
+<p>Executeu un terminal serie a 115200, 8bit sense paritat i arranqui la màquina. Reinicii la màquina i en veure <span class="quote">«<span class="quote">Premeu qualsevol tecla per aturar l'arrencada:</span>»</span> premeu una tecla per a llançar un indicador Mustang#. Llavors feu servir les ordres U-Boot per a carregar i arrencar el nucli, «dtb» i «initrd». </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-tftp-arm"></a>5.1.4. Arrencada amb el TFTP</h3></div></div></div>
+<p>Per arrencar des de la xarxa necessitareu una connexió i un servidor d'arrencada de xarxa TFTP ( i probablement un servidor DHCP, RARP o BOOTP per a la configuració automàtica de la xarxa). </p>
+<p>El mètode d'instal·lació per suportar l'arrencada de la xarxa es descriu a <a class="xref" href="ch04s04.html" title="4.4. Preparació dels fitxers per a l'arrencada en xarxa TFTP">Secció 4.4, «Preparació dels fitxers per a l'arrencada en xarxa TFTP»</a>. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="boot-tftp-uboot"></a>5.1.4.1. Arrencada TFPT a U-Boot</h4></div></div></div>
+<p>L'arrencada amb xarxa en sistemes que fan servir el microprogramari («firmware») U-Boot consisteix en tres passos: a) configuració de la xarxa, b) càrrega de les imatges (nucli, dics RAM inicial i «dtb») a la memòria i c) execució del codi carregat prèviament. </p>
+<p>Primer cal configurar la xarxa, ja sigui automàticament a través de DHCP executant </p>
+<div class="informalexample"><pre class="screen">
+setenv autoload no
+dhcp
+</pre></div>
+<p> o bé manualment establint els valors de diverses variables d'entorn </p>
+<div class="informalexample"><pre class="screen">
+setenv ipaddr &lt;ip adreça del client&gt;
+setenv netmask &lt;netmask&gt;
+setenv serverip &lt;ip aadreça del servidor tftp &gt;
+setenv dnsip &lt;ip adreça dels servidor de noms&gt;
+setenv gatewayip &lt;ip adreça de la passarel·la predeterminada&gt;
+</pre></div>
+<p> Si ho prefereix, pot fer que aquests ajustos siguin permanents executant </p>
+<div class="informalexample"><pre class="screen">saveenv
+</pre></div>
+<p>
+      </p>
+<p>Després ha de carregar les imatges (nucli, disc inicial RAM i «dtb») a la memòria. Això es fa executant l'ordre «tftpboot», el qual cal proveir la direcció en la qual està emmagatzemada la imatge a la memòria. Malauradament, el mapa de memòria pot variar entre sistemes, pel que no hi ha una regla general per a les adreces que es puguin fer servir per això. </p>
+<p>En diversos sistemes, U-Boot predefineix con conjunt de variables d'entorn amb les adreces de càrrega adequades: «kernel_addr_r», «ramdisk_addr_r» i «fdt_addr_r». Podeu comprovar quines estan definides executant </p>
+<div class="informalexample"><pre class="screen">
+printenv kernel_addr_r ramdisk_addr_r fdt_addr_r
+</pre></div>
+<p> Si no estan definides, haureu de consultar la documentació del vostre sistema per saber els valors adequats i establir-los manualment. Per a sistemes basats en «Allwinner SunXi SOCs» (p. ex. Allwinner A10, nom d'arquitectura <span class="quote">«<span class="quote">sun4i</span>»</span> o Allwinner A20, nom d'arquitectura <span class="quote">«<span class="quote">sun7i</span>»</span>), podeu, per exemple, fer servir els següents valors: </p>
+<div class="informalexample"><pre class="screen">setenv kernel_addr_r 0x46000000
+setenv fdt_addr_r 0x47000000
+setenv ramdisk_addr_r 0x48000000
+</pre></div>
+<p>
+      </p>
+<p>Una vegada definides les adreces de càrrega, podeu carregar les imatges a la memòria del servidor tftp prèviament determinat amb </p>
+<div class="informalexample"><pre class="screen">tftpboot ${kernel_addr_r} &lt;nom del fitxer d'imatge del nucli&gt;
+tftpboot ${fdt_addr_r} &lt;nom del fitxer del «dtb»&gt;
+tftpboot ${ramdisk_addr_r} &lt;nom del fitxer de la imatge inicial del disc RAM&gt;
+</pre></div>
+<p>
+      </p>
+<p>La tercera part és establir la línia d'ordres del nucli i executar el codi carregat. U-Boot transfereix el contingut de la variable d'entorn <span class="quote">«<span class="quote">bootargs</span>»</span> com a línies d'ordres al nucli, de manera que els paràmetres per al nucli i l'instal·lador, com el dispositiu de terminal (llegiu <a class="xref" href="ch05s03.html#boot-console" title="5.3.1. Terminal d'arrencada">Secció 5.3.1, «Terminal d'arrencada»</a>) o opcions de configuració (llegiu <a class="xref" href="ch05s03.html#installer-args" title="5.3.2. Paràmetres de l'instal·lador Debian">Secció 5.3.2, «Paràmetres de l'instal·lador Debian»</a> i <a class="xref" href="apb.html" title="Apèndix B. Automatització de la instal·lació fent servir una configuració prèvia">Apèndix B, <i>Automatització de la instal·lació fent servir una configuració prèvia</i></a>)- poden establir-se amb ordres del tipus </p>
+<div class="informalexample"><pre class="screen">
+setenv bootargs console=ttyS0,115200 rootwait panic=10
+</pre></div>
+<p> L'ordre concreta per executar el codi prèviament carregat depèn del format de la imatge que s'utilitzi.Amb «uImage/uInitrd», l'ordre és </p>
+<div class="informalexample"><pre class="screen">
+bootm ${kernel_addr_r} ${ramdisk_addr_r} ${fdt_addr_r}
+</pre></div>
+<p> i amb imatges natives de Linux és </p>
+<div class="informalexample"><pre class="screen">bootz ${kernel_addr_r} ${ramdisk_addr_r}:${filesize} ${fdt_addr_r}
+</pre></div>
+<p>
+      </p>
+<p>Nota: en arrencar imatges estàndard Linux, és important carregar la imatge del disc RAM inicial després que el nucli i el «dtb» com a U-Boot estableixin la variable de la mida de fitxer amb el valor de la mida del darrer fitxer carregat i l'ordre «bootz» requereixi la mida de la imatge de disc RAM per a treballar correctament. En el cas d'arrencar un nucli específic de la plataforma, p. ex. un nucli sense arbre de dispositius, ometeu el paràmetre ${fdt_addr_r}. </p>
+</div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-boot-arm64"></a>5.1.5. Arrencada des d'una memòria USB amb UEFI</h3></div></div></div>
+<p>Si el seu ordinador pot arrencar des d'un USB, probablement aquesta és la opció més fàcil per la instal·lació. Assumint que ho teniu tot preparat (<span class="phrase"><a class="xref" href="ch03s06.html#boot-dev-select-arm64" title="3.6.1. Selecció del dispositiu d'arrencada">Secció 3.6.1, «Selecció del dispositiu d'arrencada»</a></span> i <a class="xref" href="ch04s03.html" title="4.3. Preparació dels fitxers per arrencar amb el llapis de memòria USB">Secció 4.3, «Preparació dels fitxers per arrencar amb el llapis de memòria USB»</a>), només heu de connectar la memòria USB en algun dels connectors lliures i reiniciar l'ordinador. El sistema arrencarà i, llevat que hageu fet servir un mètode distint per preparar el USB i que no estigui en condicions, se us presentarà el menú gràfic d'arrencada (en el maquinari que ho suporta). Ara podeu seleccionar diferents opcions d'instal·ació o només teclejar <span class="keycap"><strong>Intro</strong></span>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="graphical"></a>5.1.6. L'instal·lador gràfic</h3></div></div></div>
+<p>La versió gràfica de l'instal·lador només està disponible per a un nombre limitat d'arquitectures, incloent <span class="phrase">64-bit ARM</span>. La funcionalitat de l'instal·lador gràfic és essencialment la mateixa que la versió text de l'instal·lador, però amb un aspecte diferent; en el fons utilitza els mateixos programes. </p>
+<p>Encara que la funcionalitat sigui idèntica, l'instal·lador gràfic té alguns avantatges significatius. La millora principal és que suporta més idiomes, concretament aquells que utilitzen jocs de caràcters que no es poden mostrar amb la interfície <span class="quote">«<span class="quote">newt</span>»</span>. També incorpora certes millores relacionades amb la usabilitat com l'opció d'utilitzar el ratolí, i en alguns casos també es poden veure diverses preguntes alhora en una mateixa pantalla. </p>
+<p>Tal i com passa en l'instal·lador de text, és possible afegir paràmetres d'arrencada quan s'inicia l'instal·lador gràfic. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td>
+<th align="left">Nota</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>L'instal·lador gràfic requereix més memòria que l'instal·lador de text: 640MB. Si no hi ha prou memòria, passarà a utilitzar la interfície <span class="quote">«<span class="quote">newt</span>»</span> automàticament com a alternativa. </p>
+<p>Si la quantitat de memòria en el vostre sistema està per sota de 260MB, l'instal·lador gràfic podria fallar a l'arrencar mentre l'instal·lador de text encara hauria de funcionar. Es recomana la utilització de l'instal·lador de text en sistemes amb poca memòria. </p>
+</td></tr>
+</table></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch05.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch05.html"><img src="images/up.png" alt="Pujar"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch05s02.html"><img src="images/next.png" alt="Següent"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Capítol 5. Arrencada del sistema d'instal·lació </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Inici"></a></td>
+<td width="40%" align="right" valign="top"> 5.2. Accessibilitat</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

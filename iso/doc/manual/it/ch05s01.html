@@ -1,0 +1,208 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>5.1. Avvio dell'installatore su ARM 64 bit</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Guida all'installazione di Debian GNU/Linux">
+<link rel="up" href="ch05.html" title="Capitolo 5. Avvio del sistema d'installazione">
+<link rel="prev" href="ch05.html" title="Capitolo 5. Avvio del sistema d'installazione">
+<link rel="next" href="ch05s02.html" title="5.2. Accessibilità">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">5.1. Avvio dell'installatore su 
+  
+  
+  <span class="phrase">ARM 64 bit</span>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch05.html"><img src="images/prev.png" alt="Indietro"></a> </td>
+<th width="60%" align="center">Capitolo 5. Avvio del sistema d'installazione</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch05s02.html"><img src="images/next.png" alt="Avanti"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="idm870"></a>5.1. Avvio dell'installatore su 
+  
+  
+  <span class="phrase">ARM 64 bit</span>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </h2></div></div></div>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td>
+<th align="left">Nota</th>
+</tr>
+<tr><td align="left" valign="top"><p>Le istruzioni per l'avvio della versione grafica dell'installatore sono in <a class="xref" href="ch05s01.html#graphical" title="5.1.6. Installatore grafico">Sezione 5.1.6, «Installatore grafico»</a>. </p></td></tr>
+</table></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm64-console-setup"></a>5.1.1. Configurazione della console</h3></div></div></div>
+<p>L'installatore grafico è disponibile (solo in via sperimentale) nelle immagini arm64 del <code class="classname">installatore Debian</code> tuttavia su alcuni dispositivi occorre usare una console seriale. Il device della console dovrebbe essere rilevato automaticamente dal firmware ma se non lo fosse dopo l'avvio di linux dal menu di GRUB appare il messaggio <span class="quote">«<span class="quote">Booting Linux</span>»</span> e nulla più. </p>
+<p>Nel caso si verifichi questo problema occorre passare la configurazione della console nella riga di comando del kernel. Nel menu di GRUB premere <strong class="userinput"><code>e</code></strong> per <span class="quote">«<span class="quote">Edit Kernel command-line</span>»</span> e modificare </p>
+<div class="informalexample"><pre class="screen">--- quiet</pre></div>
+<p> in </p>
+<div class="informalexample"><pre class="screen">console=&lt;device&gt;,&lt;speed&gt;</pre></div>
+<p> per esempio </p>
+<div class="informalexample"><pre class="screen">console=ttyAMA0,115200n8</pre></div>
+<p>. Fatta la modifica premere <span class="keycap"><strong>Control</strong></span>+<span class="keycap"><strong>x</strong></span> per continuare l'avvio con la nuova configurazione. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="juno-installation"></a>5.1.2. Installazione su Juno</h3></div></div></div>
+<p>Juno dispone di UEFI quindi l'installazione è diretta. Il modo più pratico è l'installare da una chiavetta USB. Per eseguire l'avvio da dispositivo USB è necessario aggiornare il firmware. I firmware in <a class="ulink" href="http://releases.linaro.org/members/arm/platforms/latest/" target="_top">http://releases.linaro.org/members/arm/platforms/latest/</a> creati dopo Marzo 2015 sono stati verificati e funzionano. Consultare la documentazione di Juno su come aggiornare il firmware. </p>
+<p>Preparare un'immagine CD/DVD arm64 su una chiavetta USB. Inserirla in una delle porte USB sul retro e collegare un cavo seriale nella porta a 9 pin in alto. Se è necessario accedere alla rete (con l'immagine netboot) inserire il cavo Ethernet nel connettore sul davanti della macchina. </p>
+<p>Attivare la console seriale a 115200, 8 bit, senza parità e poi avviare Juno. Dovrebbe avviarsi dalla chiavetta USB e mostrare il menu di GRUB. La configurazione della console non è rilevata correttamente quindi premere <span class="keycap"><strong>Invio</strong></span> per vedere l'output del kernel. Per impostare la console </p>
+<div class="informalexample"><pre class="screen">
+console=ttyAMA0,115200n8
+</pre></div>
+<p> come descritto in <a class="xref" href="ch05s01.html#arm64-console-setup" title="5.1.1. Configurazione della console">Sezione 5.1.1, «Configurazione della console»</a>. Per avviare il <code class="classname">installatore Debian</code> premere <span class="keycap"><strong>Control</strong></span>+<span class="keycap"><strong>x</strong></span> e continuare con l'installazione standard. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="apm-installation"></a>5.1.3. Installazione su Applied Micro Mustang</h3></div></div></div>
+<p>Per queste macchine è possibile usare UEFI e normalmente sono equipaggiate con U-Boot quindi sarà possibile installare prima il firmware UEFI e poi usare i metodi d'avvio e d'installazione standard, oppure usare uno dei metodi d'avvio con U-Boot. È necessario usare una console seriale per controllare l'installazione perché l'installatore grafico non è disponibile sull'architettura arm64. </p>
+<p>Il metodo d'installazione raccomandato è copiare il kernel e l'initrd del <code class="classname">installatore Debian</code> sul disco fisso utilizzando il sistema openembedded fornito insieme alla macchina poi avviare ed eseguire l'installatore. In alternativa usare TFTP per copiare e avviare kernel/dtb/initrd (<a class="xref" href="ch05s01.html#boot-tftp-uboot" title="5.1.4.1. Avvio da TFTP con U-Boot">Sezione 5.1.4.1, «Avvio da TFTP con U-Boot»</a>). Dopo l'installazione occorre modificare manualmente la configurazione per l'avvio. </p>
+<p>Attivare la console seriale a 115200, 8 bit, senza parità e poi avviare la macchina. Riavviare la macchina e quando appare <span class="quote">«<span class="quote">Hit any key to stop autoboot:</span>»</span> premere un tasto qualsiasi per avere il prompt Mustang#. Poi usare i comandi U-Boot per caricare e avviare kernel, dtb e initrd. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-tftp-arm"></a>5.1.4. Avvio con TFTP</h3></div></div></div>
+<p>L'avvio da rete richiede una connessione di rete e un boot server TFTP (e probabilmente anche un server DHCP, RARP o BOOTP per la configurazione automatica della rete). </p>
+<p>La configurazione lato server per effettuare l'avvio dalla rete è descritto in <a class="xref" href="ch04s04.html" title="4.4. Preparazione dei file per l'avvio TFTP da rete">Sezione 4.4, «Preparazione dei file per l'avvio TFTP da rete»</a>. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="boot-tftp-uboot"></a>5.1.4.1. Avvio da TFTP con U-Boot</h4></div></div></div>
+<p>L'avvio da rete per i sistemi che usano il firmware U-Boot consiste di tre passi: a) configurazione della rete b) caricamento delle immagini (kernel, ramdisk e dtb) in memoria c) l'esecuzione del codice appena caricato. </p>
+<p>Il primo passo è configurare la rete, automaticamente tramite DHCP con </p>
+<div class="informalexample"><pre class="screen">
+setenv autoload no
+dhcp
+</pre></div>
+<p> oppure manualmente impostando alcune variabili d'ambiente </p>
+<div class="informalexample"><pre class="screen">
+setenv ipaddr &lt;indirizzo ip del client&gt;
+setenv netmask &lt;maschera di rete&gt;
+setenv serverip &lt;indirizzo ip del server tftp&gt;
+setenv dnsip &lt;indirizzo ip del nameserver&gt;
+setenv gatewayip &lt;indirizzo ip del gateway predefinito&gt;
+</pre></div>
+<p> È possibile salvare in modo permanente queste impostazioni eseguendo </p>
+<div class="informalexample"><pre class="screen">saveenv
+</pre></div>
+<p>
+      </p>
+<p>Dopodiché è necessario caricare le immagini (kernel, ramdisk iniziale e dtb) in memoria. Per questa operazione occorre usare il comando tftpboot passando l'indirizzo di memoria al quale deve deve caricata l'immagine. Sfortunatamente la mappa di memoria varia da sistema a sistema e non esiste una regola generale su quale indirizzo utilizzare. </p>
+<p>Su alcuni sistemi, U-Boot predefinisce una serie di varibili d'ambiente con gli indirizzi da usare: kernel_addr_r, ramdisk_addr_r e fdt_addr_r. È possibile verificare se tali variabili sono state definite con </p>
+<div class="informalexample"><pre class="screen">
+printenv kernel_addr_r ramdisk_addr_r fdt_addr_r
+</pre></div>
+<p> Se non sono state definite, è necessario trovare nella documentazione i valori adatti al proprio sistema e impostarli manualmente. Per i sistemi basati sui SOC Allwinner SunXi (per esempio per Allwinner A10 nome dell'architettura <span class="quote">«<span class="quote">sun4i</span>»</span>, o Allwinner A20, nome dell'architettura <span class="quote">«<span class="quote">sun7i</span>»</span>) è possibile usare i seguenti valori: </p>
+<div class="informalexample"><pre class="screen">setenv kernel_addr_r 0x46000000
+setenv fdt_addr_r 0x47000000
+setenv ramdisk_addr_r 0x48000000
+</pre></div>
+<p>
+      </p>
+<p>Dopo aver impostato gli indirizzi, è possibile caricare le immagini in memoria dal server tftp definito in precedenza con </p>
+<div class="informalexample"><pre class="screen">tftpboot ${kernel_addr_r} &lt;nome file dell'immagine del kernel&gt;
+tftpboot ${fdt_addr_r} &lt;nome file del dtb&gt;
+tftpboot ${ramdisk_addr_r} &lt;nome file del ramdisk iniziale&gt;
+</pre></div>
+<p>
+      </p>
+<p>Il terzo passo è impostare la riga di comando per il kernel e avviare l'esecuzione del codice appena caricato. U-boot passa il contenuto della variabile d'ambiente <span class="quote">«<span class="quote">bootargs</span>»</span> come riga di comando al kernel, quindi tutti parametri per il kernel e per l'installatore, come il device della console (vedere <a class="xref" href="ch05s03.html#boot-console" title="5.3.1. Avvio da console">Sezione 5.3.1, «Avvio da console»</a>) oppure le opzioni di preconfigurazione (vedere <a class="xref" href="ch05s03.html#installer-args" title="5.3.2. Parametri dell'Installatore Debian">Sezione 5.3.2, «Parametri dell'Installatore Debian»</a> e <a class="xref" href="apb.html" title="Appendice B. Installazione automatica tramite preconfigurazione">Appendice B, <i>Installazione automatica tramite preconfigurazione</i></a>), possono essere impostati con un comando simile a </p>
+<div class="informalexample"><pre class="screen">
+setenv bootargs console=ttyS0,115200 rootwait panic=10
+</pre></div>
+<p> Il comando per eseguire il codice caricato in precedenza dipende dal formato delle immagini usato. Con uImage/uInitrd, usare il comando </p>
+<div class="informalexample"><pre class="screen">
+bootm ${kernel_addr_r} ${ramdisk_addr_r} ${fdt_addr_r}
+</pre></div>
+<p> e con le immagini native Linux usare </p>
+<div class="informalexample"><pre class="screen">bootz ${kernel_addr_r} ${ramdisk_addr_r}:${filesize} ${fdt_addr_r}
+</pre></div>
+<p>
+      </p>
+<p>Nota: quando si avviano immagini linux è importante caricare l'immagine del ramdisk iniziale dopo il kernel e il dtb poiché U-Boot imposta il valore della variabile filesize pari alla dimensione dell'ultimo file caricato e il comando bootz ha bisogno di conoscere la dimensione dell'immagine del ramdisk per funzionare correttamente. Per avviare un kernel specifico per una piattaforma, vale a dire un kernel senza il device-tree, è sufficiente omettere il parametro ${fdt_addr_r}. </p>
+</div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-boot-arm64"></a>5.1.5. Avvio da chiavetta USB con UEFI</h3></div></div></div>
+<p>Se il proprio computer può effettuare l'avvio da USB, probabilmente questo sarà il modo più semplice per far partire l'installazione. Supponendo di aver seguito le indicazioni contenute in <span class="phrase"><a class="xref" href="ch03s06.html#boot-dev-select-arm64" title="3.6.1. Selezione del dispositivo di avvio">Sezione 3.6.1, «Selezione del dispositivo di avvio»</a></span> e <a class="xref" href="ch04s03.html" title="4.3. Preparazione dei file per l'avvio da chiavetta USB">Sezione 4.3, «Preparazione dei file per l'avvio da chiavetta USB»</a>, inserire la chiavetta USB in uno qualsiasi dei connetori USB liberi e riavviare il computer. Il sistema partirà e se non è stato usato il metodo flessibile di preparazione della chiavetta e non è stato attivato, dovrebbe apparire il menu grafico d'avvio (se supportato dall'hardware ). Dal menu è possibile scegliere una delle varie opzioni dell'installatore oppure premere semplicemente <span class="keycap"><strong>Invio</strong></span>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="graphical"></a>5.1.6. Installatore grafico</h3></div></div></div>
+<p>La versione grafica dell'installatore è disponibile soltanto su un numero limitato di architetture, fra le quali 
+  
+  
+  <span class="phrase">ARM 64 bit</span>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  . La funzionalità dell'installatore grafico è quasi identica a quella dell'installatore testuale dato che entrambe le versioni hanno come base gli stessi programmi e differiscono soltanto per l'interfaccia. </p>
+<p>Nonostante la funzionalità sia identica, l'installatore grafico ha alcuni piccoli ma significativi vantaggi. Il vantaggio principale è che può supportare un numero maggiore di lingue, cioè le lingue che usano un set di caratteri che non può essere visualizzato con l'interfaccia testuale <span class="quote">«<span class="quote">newt</span>»</span>. Ha anche vantaggi di usabilità, infatti è possibile usare il mouse e, in alcuni casi, le domande possono mostrate all'interno di un'unica schermata. </p>
+<p>Come per l'installatore testuale è possibile aggiungere dei parametri d'avvio anche per l'installatore grafico. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td>
+<th align="left">Nota</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>L'uso dell'installatore grafico richiede molta più memoria rispetto all'installatore testuale: almeno 640MB. Se la memoria disponibile non è sufficiente, viene automaticamente attivata l'interfaccia testuale <span class="quote">«<span class="quote">newt</span>»</span>. </p>
+<p>Se la quantità di memoria presente sul sistema è inferiore a 260MB, può risultare impossibile avviare la versione grafica dell'installatore invece la versione testuale potrebbe funzionare. Sui sistemi con poca memoria si raccomanda l'uso della versione testuale dell'installatore. </p>
+</td></tr>
+</table></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch05.html"><img src="images/prev.png" alt="Indietro"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch05.html"><img src="images/up.png" alt="Risali"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch05s02.html"><img src="images/next.png" alt="Avanti"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Capitolo 5. Avvio del sistema d'installazione </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Partenza"></a></td>
+<td width="40%" align="right" valign="top"> 5.2. Accessibilità</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

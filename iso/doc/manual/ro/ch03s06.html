@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>3.6. Configurarea componentelor, dispozitivelor și a sistemului de operare înainte de instalare</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux - Ghid de instalare">
+<link rel="up" href="ch03.html" title="Cap. 3. Înainte de a instala Debian GNU/Linux">
+<link rel="prev" href="ch03s05.html" title="3.5. Pre-partiționare pentru sisteme multi-pornire">
+<link rel="next" href="ch04.html" title="Cap. 4. Obținerea unui mediu de instalare a sistemului">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">3.6. Configurarea componentelor, dispozitivelor și a sistemului de operare înainte de instalare</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch03s05.html"><img src="images/prev.png" alt="Înapoi"></a> </td>
+<th width="60%" align="center">Cap. 3. Înainte de a instala Debian GNU/Linux</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch04.html"><img src="images/next.png" alt="Înainte"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="pre-install-bios-setup"></a>3.6. Configurarea componentelor, dispozitivelor și a sistemului de operare înainte de instalare</h2></div></div></div>
+<p>Această secțiune preinstalare, vă va ghida în configurarea componentelor și a dispozitivelor, dacă este cazul, pe care va trebui să o faceți înainte de a instala Debian. În general, aceasta implică verificarea și, eventual, modificarea configurărilor microcodului BIOS/UEFI din sistem pentru sistemul dumneavoastră. <span class="quote">„<span class="quote">BIOS/UEFI</span>”</span> sau <span class="quote">„<span class="quote">microcodul sistemului (system firmware)</span>”</span> este software-ul de bază folosit de componente; este invocat cel mai critic în timpul procesului de pornire (după acționarea butonului de alimentare cu energie). </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-dev-select-arm64"></a>3.6.1. Selectarea dispozitivului de pornire</h3></div></div></div>
+<p>
+
+    </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm-firmware-overview"></a>3.6.2. Firmware-ul ARM</h3></div></div></div>
+<p>După cum s-a menționat deja, nu există, din păcate, un standard pentru firmware-ul de sistem pe sistemele ARM. Chiar și comportamentul diferitelor sisteme care folosesc nominal același firmware poate fi destul de diferit. Acest lucru rezultă din faptul că o mare parte a dispozitivelor care utilizează arhitectura ARM sunt sisteme încorporate, pentru care producătorii construiesc de obicei versiuni de firmware puternic personalizate și includ corecțiii specifice dispozitivului. Din păcate, producătorii de multe ori nu își trimit modificările și extensiile înapoi dezvoltatorilor de firmware din ramura principală, astfel încât modificările lor nu sunt integrate în versiunile mai noi ale firmware-ului original. </p>
+<p>Drept urmare, chiar și sistemele nou vândute folosesc adesea un firmware care se bazează pe o versiune modificată de producător de ani de zile a unui firmware al cărui cod bază a evoluat mult mai mult între timp și oferă caracteristici suplimentare sau prezintă un comportament diferit în anumite aspecte. În plus, denumirea dispozitivelor integrate nu este consecventă între diferitele versiuni modificate de producător ale aceluiași firmware, prin urmare este aproape imposibil să se furnizeze instrucțiuni utilizabile independente de produs pentru sistemele bazate pe ARM. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="uboot-macsetting"></a>3.6.3. Configurarea adresei MAC Ethernet în U-Boot</h3></div></div></div>
+<p>Adresa MAC a fiecărei interfețe Ethernet ar trebui, în mod normal, să fie unică la nivel global și, din punct de vedere tehnic, trebuie să fie unică în domeniul său de difuzare Ethernet. Pentru a realiza acest lucru, producătorul alocă de obicei un bloc de adrese MAC dintr-un fond comun (pool) administrat central (pentru care trebuie plătită o taxă) și preconfigurează una dintre aceste adrese pentru fiecare articol vândut. </p>
+<p>În cazul plăcilor de dezvoltare, uneori producătorul dorește să evite plata acestor taxe și, prin urmare, nu oferă adrese unice la nivel global. În aceste cazuri, utilizatorii înșiși trebuie să definească adrese MAC pentru sistemele lor. Când nu este definită nicio adresă MAC pentru o interfață ethernet, unii controlori de rețea generează o adresă MAC aleatorie care se poate modifica la fiecare pornire și, dacă se întâmplă acest lucru, accesul la rețea ar fi posibil chiar și atunci când utilizatorul nu a stabilit manual o adresă, dar de exemplu atribuirea de adrese IP semi-statice de către DHCP pe baza adresei MAC a clientului solicitant nu ar funcționa în mod evident. </p>
+<p>Pentru a evita conflictele cu adrese MAC existente atribuite oficial, există un grup de adrese care este rezervat pentru așa-numitele adrese <span class="quote">„<span class="quote">administrate local</span>”</span>. Este definit prin valoarea a doi biți specifici din primul octet al adresei (articolul <span class="quote">„<span class="quote">Adresa MAC</span>”</span> din Wikipedia în limba engleză oferă o explicație bună). În practică, aceasta înseamnă că de exemplu orice adresă care începe cu un hexazecimal „ca” (cum ar fi ca:ff:ee:12:34:56) poate fi utilizată ca adresă administrată local. </p>
+<p>Pe sistemele care utilizează U-Boot ca firmware de sistem, adresa MAC Ethernet este plasată în variabila de mediu <span class="quote">„<span class="quote">ethaddr</span>”</span>. Acest lucru poate fi verificat în linia de comandă U-Boot, cu comanda <span class="quote">„<span class="quote">printenv ethaddr</span>”</span> și poate fi stabilită cu comanda <span class="quote">„<span class="quote">setenv ethaddr ca:ff:ee:12:34:56</span>”</span> . După stabilirea valorii, comanda <span class="quote">„<span class="quote">saveenv</span>”</span> face ca atribuirea să fie permanentă. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="uboot-relocation-issues"></a>3.6.4. Probleme de realocare Nucleu/Initrd/Device-Tree în U-Boot</h3></div></div></div>
+<p>Pe unele sisteme cu versiuni U-Boot mai vechi pot apărea probleme cu realocarea corectă a nucleului Linux, a discului ram inițial și a blocului arborelui de dispozitive în memorie în timpul procesului de pornire. În acest caz, U-Boot afișează mesajul <span class="quote">„<span class="quote">Se pornește nucleul... (Starting kernel ...)</span>”</span>, dar sistemul se blochează după aceea, fără alte rezultate. Aceste probleme au fost rezolvate cu versiuni mai noi U-Boot începând cu v2014.07. </p>
+<p>Dacă sistemul a folosit inițial o versiune U-Boot mai veche decât v2014.07 și a fost actualizat ulterior la o versiune mai nouă, problema poate apărea în continuare chiar și după actualizarea U-Boot. Actualizarea U-Boot, de obicei, nu modifică variabilele de mediu U-Boot existente, iar remedierea necesită configurarea unei variabile de mediu suplimentare (bootm_size), lucru pe care U-Boot îl face automat numai în instalațiile noi, fără date de mediu existente. Este posibil să stabiliți manual „bootm_size” la valoarea implicită a noului U-Boot rulând comanda <span class="quote">„<span class="quote">env default bootm_size; saveenv</span>”</span> în linia de comandă a U-Boot. </p>
+<p>O altă posibilitate de a evita problemele legate de realocare este să rulați comanda <span class="quote">„<span class="quote">setenv fdt_high ffffffff; setenv initrd_high 0xffffffff; saveenv</span>”</span> în linia de comandă U-Boot pentru a dezactiva complet realocarea discului ram inițial și blocul arborelui de dispozitive. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch03s05.html"><img src="images/prev.png" alt="Înapoi"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch03.html"><img src="images/up.png" alt="Sus"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch04.html"><img src="images/next.png" alt="Înainte"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">3.5. Pre-partiționare pentru sisteme multi-pornire </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Acasă"></a></td>
+<td width="40%" align="right" valign="top"> Cap. 4. Obținerea unui mediu de instalare a sistemului</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

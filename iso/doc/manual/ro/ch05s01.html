@@ -1,0 +1,169 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>5.1. Pornirea programului de instalare pe 64-bit ARM</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux - Ghid de instalare">
+<link rel="up" href="ch05.html" title="Cap. 5. Pornirea sistemului de instalare">
+<link rel="prev" href="ch05.html" title="Cap. 5. Pornirea sistemului de instalare">
+<link rel="next" href="ch05s02.html" title="5.2. Accesibilitate">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">5.1. Pornirea programului de instalare pe <span class="phrase">64-bit ARM</span>
+</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch05.html"><img src="images/prev.png" alt="Înapoi"></a> </td>
+<th width="60%" align="center">Cap. 5. Pornirea sistemului de instalare</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch05s02.html"><img src="images/next.png" alt="Înainte"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="idm870"></a>5.1. Pornirea programului de instalare pe <span class="phrase">64-bit ARM</span>
+</h2></div></div></div>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notă]" src="images/note.png"></td>
+<th align="left">Notă</th>
+</tr>
+<tr><td align="left" valign="top"><p>Pentru informații despre cum să porniți programul de instalare grafic, consultați <a class="xref" href="ch05s01.html#graphical" title="5.1.6. Programul de instalare cu interfață grafică">Secțiune 5.1.6, „Programul de instalare cu interfață grafică”</a>. </p></td></tr>
+</table></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm64-console-setup"></a>5.1.1. Configurarea consolei</h3></div></div></div>
+<p>Programul de instalare grafică este activat (experimental) pe imaginile arm64 <code class="classname">debian-installer</code>, dar pe unele dispozitive este posibil să fiți nevoit să utilizați în continuare consola serială. Dispozitivul de consolă ar trebui să fie detectat automat din firmware, dar dacă nu este, atunci după ce porniți Linux din meniul GRUB, veți vedea un mesaj <span class="quote">„<span class="quote">Se pornește Linux (Booting Linux)</span>”</span>, și nimic mai mult după aceea. </p>
+<p>Dacă vă întâlniți cu această problemă, va trebui să definiți o anumită configurație a consolei în linia de comandă a nucleului. Apăsați <strong class="userinput"><code>e</code></strong> pentru a<span class="quote">„<span class="quote">Edita linia de comandă a nucleului</span>”</span> din meniul GRUB și schimbați </p>
+<div class="informalexample"><pre class="screen">--- quiet</pre></div>
+<p> în </p>
+<div class="informalexample"><pre class="screen">console=&lt;dispozitiv&gt;,&lt;viteza&gt;</pre></div>
+<p> de exemplu: </p>
+<div class="informalexample"><pre class="screen">console=ttyAMA0,115200n8</pre></div>
+<p>. Când ați terminat, apăsați pe <span class="keycap"><strong>Control</strong></span>+<span class="keycap"><strong>x</strong></span> pentru a continua pornirea cu o nouă configurare. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="juno-installation"></a>5.1.2. Instalarea pe Juno</h3></div></div></div>
+<p>Juno are UEFI, așa că instalarea este simplă. Cea mai practică metodă este instalarea de pe un stick USB. Aveți nevoie de firmware actualizat pentru ca pornirea prin USB să funcționeze. Compilările din <a class="ulink" href="http://releases.linaro.org/members/arm/platforms/latest/" target="_top">http://releases.linaro.org/members/arm/platforms/latest/</a> după martie 2015 au fost testate OK. Consultați documentația Juno despre actualizarea firmware-ului. </p>
+<p>Pregătiți o imagine standard arm64 CD/DVD pe un stick USB. Introduceți-l într-unul dintre porturile USB din spate. Conectați un cablu serial în portul serial superior cu 9 pini din spate. Dacă aveți nevoie de rețea (imagine „netboot”), conectați cablul ethernet la mufa din partea din față a aparatului. </p>
+<p>Rulați o consolă serială la 115200, 8 biți fără paritate și porniți Juno. Ar trebui să pornească de pe stick-ul USB într-un meniu GRUB. Configurația consolei nu este detectată corect pe Juno, așa că apăsați doar pe <span class="keycap"><strong>Enter</strong></span> nu va afișa nicio ieșire a nucleului. Configurați consola la </p>
+<div class="informalexample"><pre class="screen">console=ttyAMA0,115200n8</pre></div>
+<p> (după cum este descris în <a class="xref" href="ch05s01.html#arm64-console-setup" title="5.1.1. Configurarea consolei">Secțiune 5.1.1, „Configurarea consolei”</a>). <span class="keycap"><strong>Control</strong></span>+<span class="keycap"><strong>x</strong></span> pentru a porni ar trebui să vă arate ecranele <code class="classname">debian-installer</code> și să vă permită să continuați cu o instalare standard. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="apm-installation"></a>5.1.3. Instalarea pe Applied Micro Mustang</h3></div></div></div>
+<p>UEFI este disponibil pentru această mașină, dar este livrat în mod normal cu U-Boot, așa că va trebui fie să instalați firmware UEFI mai întâi, apoi să utilizați metode standard de pornire/instalare, fie să utilizați metode de pornire U-Boot. Trebuie să utilizați o consolă serială pentru a controla instalarea deoarece programul de instalare grafică nu este activat pe arhitectura arm64. </p>
+<p>Metoda de instalare recomandată este să copiați nucleul <code class="classname">debian-installer</code> și initrd pe discul dur, folosind sistemul „openembedded” furnizat cu mașina, apoi porniți de pe acesta pentru a rula programul de instalare. Alternativ, utilizați TFTP pentru a copia și a porni nucleul/dtb/initrd (<a class="xref" href="ch05s01.html#boot-tftp-uboot" title="5.1.4.1. Pornirea prin TFTP din U-Boot">Secțiune 5.1.4.1, „Pornirea prin TFTP din U-Boot”</a>). După instalare, sunt necesare modificări manuale la pornirea din imaginea instalată. </p>
+<p>Rulați o consolă serială la 115200, 8 biți fără paritate și porniți mașina. Reporniți mașina și când vedeți <span class="quote">„<span class="quote">Apăsați orice tastă pentru a opri pornirea automată:</span>”</span> apăsați o tastă pentru a primi un prompt Mustang#. Apoi utilizați comenzile U-Boot pentru a încărca și a porni nucleul, dtb și initrd. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-tftp-arm"></a>5.1.4. Pornire prin TFTP</h3></div></div></div>
+<p>Pornirea din rețea necesită să aveți o conexiune la rețea și un server de pornire în rețea TFTP (și probabil, de asemenea, un server DHCP, RARP sau BOOTP pentru configurarea automată a rețelei). </p>
+<p>Configurarea serverului pentru a accepta pornirea din rețea este descrisă în <a class="xref" href="ch04s04.html" title="4.4. Pregătirea fișierelor pentru pornirea prin rețea utilizînd TFTP">Secțiune 4.4, „Pregătirea fișierelor pentru pornirea prin rețea utilizînd TFTP”</a>. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="boot-tftp-uboot"></a>5.1.4.1. Pornirea prin TFTP din U-Boot</h4></div></div></div>
+<p>Pornirea din rețea pe sistemele care utilizează firmware-ul U-Boot constă în trei pași: a) configurarea rețelei, b) încărcarea imaginilor (nucleu/imaginea ramdisk inițială/dtb) în memorie și c) executarea efectivă a codului încărcat anterior. </p>
+<p>Mai întâi trebuie să configurați rețeaua, fie automat prin DHCP rulând </p>
+<div class="informalexample"><pre class="screen">
+setenv autoload no
+dhcp
+</pre></div>
+<p> fie manual setând mai multe variabile de mediu </p>
+<div class="informalexample"><pre class="screen">
+setenv ipaddr &lt;adresa IP a clientului&gt;
+setenv netmask &lt;masca de rețea&gt;
+setenv serverip &lt;adresa IP a serverului tftp&gt;
+setenv dnsip &lt;adresa IP a serverului de nume&gt;
+setenv gatewayip &lt;adresa IP a pasarelei implicite&gt;
+</pre></div>
+<p> Dacă preferați, puteți face aceste configurări permanente rulând </p>
+<div class="informalexample"><pre class="screen">saveenv
+</pre></div>
+<p>
+      </p>
+<p>După aceea, trebuie să încărcați imaginile (nucleu/imaginea ramdisk inițială/dtb) în memorie. Acest lucru se face cu comanda «tftpboot», care trebuie furnizată cu adresa la care imaginea va fi stocată în memorie. Din păcate, adresa din memorie poate varia de la un sistem la altul, așa că nu există o regulă generală care să poată fi folosită pentru aceasta. </p>
+<p>Pe unele sisteme, U-Boot predefinește un set de variabile de mediu cu adrese de încărcare adecvate: kernel_addr_r, ramdisk_addr_r și fdt_addr_r. Puteți verifica dacă sunt definite rulând: </p>
+<div class="informalexample"><pre class="screen">
+printenv kernel_addr_r ramdisk_addr_r fdt_addr_r
+</pre></div>
+<p> Dacă nu sunt definite, trebuie să verificați documentația sistemului dumneavoastră pentru valorile adecvate și să le stabiliți manual. Pentru sistemele bazate pe SOC-uri Allwinner SunXi (de exemplu Allwinner A10, numele arhitecturii <span class="quote">„<span class="quote">sun4i</span>”</span> sau Allwinner A20, numele arhitecturii <span class="quote">„<span class="quote">sun7i</span>”</span>), puteți, să utilizați de exemplu, următoarele valori: </p>
+<div class="informalexample"><pre class="screen">setenv kernel_addr_r 0x46000000
+setenv fdt_addr_r 0x47000000
+setenv ramdisk_addr_r 0x48000000
+</pre></div>
+<p>
+      </p>
+<p>Când adresele de încărcare sunt definite, puteți încărca imaginile în memorie de pe serverul tftp definit anterior cu </p>
+<div class="informalexample"><pre class="screen">tftpboot ${kernel_addr_r} &lt;numele de fișier al imaginii nucleului&gt;
+tftpboot ${fdt_addr_r} &lt;numele de fișier al dtb&gt;
+tftpboot ${ramdisk_addr_r} &lt;numele de fișier al imaginii ramdisk inițiale&gt;
+</pre></div>
+<p>
+      </p>
+<p>A treia parte este definirea liniei de comandă a nucleului și executarea efectivă a codului încărcat. U-Boot transmite conținutul variabilei de mediu <span class="quote">„<span class="quote">bootargs</span>”</span> ca linie de comandă către nucleu, astfel încât orice parametri pentru nucleu și pentru programul de instalare - cum ar fi dispozitivul de consolă (consultați <a class="xref" href="ch05s03.html#boot-console" title="5.3.1. Consola de pornire">Secțiune 5.3.1, „Consola de pornire”</a>) sau opțiunile de preconfigurare (a se vedea <a class="xref" href="ch05s03.html#installer-args" title="5.3.2. Parametrii programului de instalare Debian">Secțiune 5.3.2, „Parametrii programului de instalare Debian”</a> și <a class="xref" href="apb.html" title="Anexa B. Automatizarea instalării folosind preconfigurarea">Anexa B, <i>Automatizarea instalării folosind preconfigurarea</i></a>) - pot fi stabilite cu o comandă ca </p>
+<div class="informalexample"><pre class="screen">
+setenv bootargs console=ttyS0,115200 rootwait panic=10
+</pre></div>
+<p> Comanda exactă pentru a executa codul încărcat anterior depinde de formatul de imagine utilizat. Cu uImage/uInitrd, comanda este: </p>
+<div class="informalexample"><pre class="screen">
+bootm ${kernel_addr_r} ${ramdisk_addr_r} ${fdt_addr_r}
+</pre></div>
+<p> iar cu imaginile native Linux este: </p>
+<div class="informalexample"><pre class="screen">bootz ${kernel_addr_r} ${ramdisk_addr_r}:${filesize} ${fdt_addr_r}
+</pre></div>
+<p>
+      </p>
+<p>Notă: Când porniți imagini standard Linux, este important să încărcați imaginea ramdisk inițială după nucleu și dtb, deoarece U-Boot stabilește variabila dimensiunii fișierului la dimensiunea ultimului fișier încărcat, iar comanda bootz necesită dimensiunea imaginii ramdisk-ului. ca să funcționeze corect. În cazul pornirii unui nucleu specific platformei, adică un nucleu fără arbore de dispozitive, pur și simplu omiteți parametrul ${fdt_addr_r}. </p>
+</div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-boot-arm64"></a>5.1.5. Pornirea de pe un stick de memorie USB cu UEFI</h3></div></div></div>
+<p>Dacă calculatorul dvs. va porni de pe USB, aceasta va fi probabil cea mai ușoară cale de instalare. Presupunând că ați pregătit totul de la <span class="phrase"><a class="xref" href="">???</a></span> și <a class="xref" href="ch04s03.html" title="4.3. Pregătirea fișierelor pentru pornirea unui stick de memorie USB">Secțiune 4.3, „Pregătirea fișierelor pentru pornirea unui stick de memorie USB”</a>, trebuie doar să conectați stick-ul USB la un conector USB liber și să reporniți calculatorul. Sistemul ar trebui să pornească și, dacă nu ați folosit modul flexibil de a construi stick-ul și nu l-ați activat, ar trebui să vi se prezinte un meniu grafic de pornire (pe echipamentul care îl acceptă). Aici puteți selecta diverse opțiuni de instalare sau puteți apăsa pur și simplu <span class="keycap"><strong>Enter</strong></span>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="graphical"></a>5.1.6. Programul de instalare cu interfață grafică</h3></div></div></div>
+<p>Versiunea grafică a programului de instalare este disponibilă numai pentru un număr limitat de arhitecturi, inclusiv <span class="phrase">64-bit ARM</span>. Funcționalitatea programului de instalare cu interfață grafică este, în esență, aceeași cu cea a programului de instalare bazat pe text, deoarece folosește, practic, aceleași programe, dar cu o interfață diferită. </p>
+<p>Deși funcționalitatea este identică, programul de instalare cu interfață grafică are totuși câteva avantaje semnificative. Principalul avantaj este că acceptă mai multe limbi, și anume cele care folosesc un set de caractere care nu poate fi afișat cu interfața <span class="quote">„<span class="quote">newt</span>”</span> bazată pe text. De asemenea, are câteva avantaje de utilizare, cum ar fi opțiunea de a folosi un mouse, iar în unele cazuri mai multe întrebări pot fi afișate pe un singur ecran. </p>
+<p>La fel ca în cazul programului de instalare bazat pe text, este posibil să adăugați parametri de pornire la pornirea programului de instalare cu interfață grafică. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Notă]" src="images/note.png"></td>
+<th align="left">Notă</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>Programul de instalare cu interfață grafică necesită mult mai multă memorie pentru a rula decât programul de instalare bazat pe text: 640MB. Dacă este disponibilă o memorie insuficientă, acesta va reveni automat la interfața <span class="quote">„<span class="quote">newt</span>”</span> bazată pe text. </p>
+<p>Dacă cantitatea de memorie din sistemul dumneavoastră. este sub 260MB, este posibil ca programul de instalare cu interfață grafică să nu pornească deloc, în timp ce pornirea programului de instalare bazat pe text va funcționa în continuare. Utilizarea programului de instalare bazat pe text este recomandată pentru sistemele cu puțină memorie disponibilă. </p>
+</td></tr>
+</table></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch05.html"><img src="images/prev.png" alt="Înapoi"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch05.html"><img src="images/up.png" alt="Sus"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch05s02.html"><img src="images/next.png" alt="Înainte"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Cap. 5. Pornirea sistemului de instalare </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Acasă"></a></td>
+<td width="40%" align="right" valign="top"> 5.2. Accesibilitate</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

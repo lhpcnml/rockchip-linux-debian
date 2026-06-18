@@ -1,0 +1,74 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>A.2. Opstart af installationsprogrammet</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Installationsguide for Debian GNU/Linux">
+<link rel="up" href="apa.html" title="Appendiks A. Installationsmanual">
+<link rel="prev" href="apas01.html" title="A.1. Forudsætninger">
+<link rel="next" href="apas03.html" title="A.3. Installation">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">A.2. Opstart af installationsprogrammet</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="apas01.html"><img src="images/prev.png" alt="forrige"></a> </td>
+<th width="60%" align="center">Appendiks A. Installationsmanual</th>
+<td width="20%" align="right"> <a accesskey="n" href="apas03.html"><img src="images/next.png" alt="næste"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="howto-getting-images"></a>A.2. Opstart af installationsprogrammet</h2></div></div></div>
+<p> Debian-cd-holdet tilbyder bygninger af installationsaftryk der bruger <code class="classname">debian-installer</code> på <a class="ulink" href="https://www.debian.org/CD/" target="_top">Debians cd/dvd-side</a>. For yderligere information om hvor du kan få installationsaftryk, se <a class="xref" href="ch04s01.html" title="4.1. Officielle Debian GNU/Linux installationsaftryk">Afsnit 4.1, “Officielle Debian GNU/Linux installationsaftryk”</a>. </p>
+<p>Nogle installationsmetoder kræver andre aftryk end optiske medier.  <a class="xref" href="ch04s02.html#where-files" title="4.2.1. Her kan du finde installationsfiler">Afsnit 4.2.1, “Her kan du finde installationsfiler”</a> forklarer hvordan du finder aftryk på Debian-spejl. </p>
+<p>Underafsnittene nedenfor vil have detaljer om hvilke aftryk, du bør hente for mulige måde at installere på. </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="howto-getting-images-cdrom"></a>A.2.1. Optisk disk</h3></div></div></div>
+<p>Netinst cd-aftrykket er et populært aftryk, som kan bruges til at installere bookworm med <code class="classname">debian-installer</code>. Dette aftryk at lavet for at kunne starte op fra aftrykket og installere yderligere pakker over et netværk; deraf navnet <span class="quote">“<span class="quote">netinst</span>”</span>. Aftrykket har programkomponenterne til at køre installationsprogrammet og de grundlæggende pakker for et minimalt bookworm-system. Hvis du foretrækker det, så kan du hente et fuldt cd/dvd-aftryk, som ikke vil kræve netværket for installationen. Du skal kun bruge den første cd i sættet. </p>
+<p>Hent den type du foretrækker og brænd den til en optisk disk.   </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="howto-getting-images-usb"></a>A.2.2. USB-hukommelsesdrev</h3></div></div></div>
+<p>Det er også muligt at installere fra eksterne USB-lagerenheder. For eksempel kan et USB-nøgledrev lave et smart Debian-installationsmedie, som du kan medtage overalt. </p>
+<p>Den nemmeste måde at forberede dit USB-hukommelsesdrev er at hente et cd- eller dvd-aftryk for Debian, som størrelsesmæssigt passer på drevet, og så skrive aftrykket direkte til hukommelsesdrevet. Selvfølgelig vil dette ødelægge alt allerede på hukommelsesdrevet. Det fungerer fordi Debians cd/dvd-aftryk er »isohybrid«-aftryk, som kan starte op både fra optiske drev og fra USB-drev. </p>
+<p>Der er andre, mere fleksible måder at opsætte et hukommelsesdrev for debian-installer, og det er muligt at få den til at fungere med små hukommelsesdrev. For detaljer se <a class="xref" href="ch04s03.html" title="4.3. Forberedning af filer for opstart via USB-hukommelsesdrev">Afsnit 4.3, “Forberedning af filer for opstart via USB-hukommelsesdrev”</a>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="howto-getting-images-netboot"></a>A.2.3. Opstart fra netværk</h3></div></div></div>
+<p>Det er også muligt at starte <code class="classname">debian-installer</code> alene fra nettet. De forskellige metoder til netopstart afhænger af din arkitektur og opsætning af netopstarten. Filerne i <code class="filename">netboot/</code> kan bruges til at netopstarte <code class="classname">debian-installer</code>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="howto-getting-images-hard-disk"></a>A.2.4. Opstart fra harddisk</h3></div></div></div>
+<p>Det er muligt at igangsætte installationsprogrammet uden at bruge eksterne medier, men alene en eksisterende harddisk, som kan have et andet operativsystem. Hent <code class="filename">hd-media/initrd.gz</code>, <code class="filename">hd-media/vmlinuz</code>, og et Debian-cd/dvd-aftryk til øverste niveau af harddisken. Sikr dig, at cd-aftrykket har et filnavn, der ender med <code class="literal">.iso</code>. Nu gælder det bare om at starte Linux op med initrd.  </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="apas01.html"><img src="images/prev.png" alt="forrige"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="apa.html"><img src="images/up.png" alt="op"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="apas03.html"><img src="images/next.png" alt="næste"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">A.1. Forudsætninger </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="hjem"></a></td>
+<td width="40%" align="right" valign="top"> A.3. Installation</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

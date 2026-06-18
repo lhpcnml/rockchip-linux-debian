@@ -1,0 +1,87 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>第5章 インストールシステムの起動</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux インストールガイド">
+<link rel="up" href="index.html" title="Debian GNU/Linux インストールガイド">
+<link rel="prev" href="ch04s06.html" title="4.6. インストールファイルの整合性の検証">
+<link rel="next" href="ch05s01.html" title="5.1. 64-bit ARM でのインストーラの起動">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">第5章 インストールシステムの起動</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch04s06.html"><img src="images/prev.png" alt="戻る"></a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="ch05s01.html"><img src="images/next.png" alt="次へ"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="chapter">
+<div class="titlepage"><div><div><h1 class="title">
+<a name="boot-installer"></a>第5章 インストールシステムの起動</h1></div></div></div>
+<div class="toc">
+<p><b>目次</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="ch05s01.html">5.1. <span class="phrase">64-bit ARM</span> でのインストーラの起動</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch05s01.html#arm64-console-setup">5.1.1. コンソール設定</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#juno-installation">5.1.2. Juno のインストール</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#apm-installation">5.1.3. Applied Micro Mustang でのインストール</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#boot-tftp-arm">5.1.4. TFTP による起動</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#usb-boot-arm64">5.1.5. UEFI を利用した USB メモリからの起動</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#graphical">5.1.6. グラフィカルインストーラ</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="ch05s02.html">5.2. アクセシビリティ</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch05s02.html#idm976">5.2.1. インストーラフロントエンド</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm999">5.2.2. 基板デバイス</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm1003">5.2.3. 高コントラストテーマ</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm1009">5.2.4. 拡大</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm1018">5.2.5. Expert モード、Rescue モード、自動化インストール</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm1033">5.2.6. インストールしたシステムのアクセシビリティ</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="ch05s03.html">5.3. 起動パラメータ</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch05s03.html#boot-console">5.3.1. ブートコンソール</a></span></dt>
+<dt><span class="sect2"><a href="ch05s03.html#installer-args">5.3.2. Debian Installer パラメータ</a></span></dt>
+<dt><span class="sect2"><a href="ch05s03.html#preseed-args">5.3.3. 起動パラメータで質問に答える</a></span></dt>
+<dt><span class="sect2"><a href="ch05s03.html#module-parms">5.3.4. カーネルモジュールへパラメータを渡す</a></span></dt>
+<dt><span class="sect2"><a href="ch05s03.html#module-blacklist">5.3.5. カーネルモジュールのブラックリスト化</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="ch05s04.html">5.4. インストールプロセスのトラブルシューティング</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch05s04.html#unreliable-cd">5.4.1. 光学メディアの信頼性</a></span></dt>
+<dt><span class="sect2"><a href="ch05s04.html#idm1367">5.4.2. 起動設定</a></span></dt>
+<dt><span class="sect2"><a href="ch05s04.html#kernel-msgs">5.4.3. カーネルの起動時メッセージの意味</a></span></dt>
+<dt><span class="sect2"><a href="ch05s04.html#problem-report">5.4.4. インストールで発生した問題の報告</a></span></dt>
+<dt><span class="sect2"><a href="ch05s04.html#submit-bug">5.4.5. インストールレポートの送信</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch04s06.html"><img src="images/prev.png" alt="戻る"></a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="ch05s01.html"><img src="images/next.png" alt="次へ"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">4.6. インストールファイルの整合性の検証 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="ホーム"></a></td>
+<td width="40%" align="right" valign="top"> 5.1. <span class="phrase">64-bit ARM</span> でのインストーラの起動</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

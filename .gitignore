@@ -1,0 +1,12 @@
+# Build / runtime binaries — NEVER go into git
+/binary/
+/overlay/
+/build/
+/output/
+/tmp/
+/cache/
+*.img
+*.deb
+*.tar*
+*.tar.gz
+*.zip

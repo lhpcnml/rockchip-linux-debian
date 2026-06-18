@@ -1,0 +1,64 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>C.5. Debians partitioneringsprogram</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux Installationsguide">
+<link rel="up" href="apc.html" title="Appendix C. Partitionera för Debian">
+<link rel="prev" href="apcs04.html" title="C.4. Enhetsnamn i Linux">
+<link rel="next" href="apd.html" title="Appendix D. Diverse bitar">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">C.5. Debians partitioneringsprogram</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="apcs04.html"><img src="images/prev.png" alt="Föregående"></a> </td>
+<th width="60%" align="center">Appendix C. Partitionera för Debian</th>
+<td width="20%" align="right"> <a accesskey="n" href="apd.html"><img src="images/next.png" alt="Nästa"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="partition-programs"></a>C.5. Debians partitioneringsprogram</h2></div></div></div>
+<p>Flera varianter av partitioneringsprogram har anpassats av Debians utvecklare för att fungera på olika typer av hårddiskar och datorarkitekturer. Följande är en listan på de program som lämpar sig för din arkitektur. </p>
+<div class="variablelist"><dl class="variablelist">
+<dt><span class="term"><span class="command"><strong>partman</strong></span></span></dt>
+<dd><p>Rekommenderat partitioneringsverktyg i Debian. Den här schweiziska armékniven kan också ändra storlek på partitioner, skapa filsystem  och tilldela dem monteringspunkter. </p></dd>
+<dt><span class="term"><span class="command"><strong>fdisk</strong></span></span></dt>
+<dd>
+<p>Den originella diskpartitioneraren för Linux, bra för experter. </p>
+<p>Var försiktig om du har befintliga FreeBSD-partitioner på din maskin. Installationskärnorna inkluderar stöd för dessa partitioner, men sättet som <span class="command"><strong>fdisk</strong></span> representerar dem på (eller inte) kan göra att enhetsnamnen skiljer sig. Se <a class="ulink" href="http://www.tldp.org/HOWTO/Linux+FreeBSD-2.html" target="_top">Linux+FreeBSD HOWTO</a>. </p>
+</dd>
+<dt><span class="term"><span class="command"><strong>cfdisk</strong></span></span></dt>
+<dd>
+<p>En diskpartitionerare i helskärm som är enkel att använda för resten av oss. </p>
+<p>Observera att <span class="command"><strong>cfdisk</strong></span> inte förstår FreeBSD-partitioner alls, och, igen, som ett resultat av det kan enhetsnamnen skilja sig. </p>
+</dd>
+</dl></div>
+<p>Ett av dessa program kommer att köras som standard när du väljer <span class="guimenuitem">Partitionera diskar</span> (eller liknande). Det kan vara möjligt att använda ett annat partitioneringsverktyg från kommandoraden på VT2, men det är inte rekommenderat. </p>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="apcs04.html"><img src="images/prev.png" alt="Föregående"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="apc.html"><img src="images/up.png" alt="Upp"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="apd.html"><img src="images/next.png" alt="Nästa"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">C.4. Enhetsnamn i Linux </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Hem"></a></td>
+<td width="40%" align="right" valign="top"> Appendix D. Diverse bitar</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

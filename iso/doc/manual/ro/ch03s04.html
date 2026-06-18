@@ -1,0 +1,87 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>3.4. Îndeplinirea cerințelor minime de către componente și dispozitive</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux - Ghid de instalare">
+<link rel="up" href="ch03.html" title="Cap. 3. Înainte de a instala Debian GNU/Linux">
+<link rel="prev" href="ch03s03.html" title="3.3. Informații de care veți avea nevoie">
+<link rel="next" href="ch03s05.html" title="3.5. Pre-partiționare pentru sisteme multi-pornire">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">3.4. Îndeplinirea cerințelor minime de către componente și dispozitive</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch03s03.html"><img src="images/prev.png" alt="Înapoi"></a> </td>
+<th width="60%" align="center">Cap. 3. Înainte de a instala Debian GNU/Linux</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch03s05.html"><img src="images/next.png" alt="Înainte"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="minimum-hardware-reqts"></a>3.4. Îndeplinirea cerințelor minime de către componente și dispozitive</h2></div></div></div>
+<p>După ce ați adunat informații despre componentele și dispozitivele calculatorului, verificați dacă acestea vă vor permite să faceți tipul de instalare pe care doriți să-l faceți. </p>
+<p>În funcție de nevoile dvs., este posibil să vă descurcați cu componente și dispozitive având caracteristici mai scăzute decât cele recomandate în tabelul de mai jos. Cu toate acestea, majoritatea utilizatorilor riscă să fie frustrați dacă ignoră aceste sugestii. </p>
+<div class="table">
+<a name="idm609"></a><p class="title"><b>Tabel 3.2. Cerințe minime de sistem recomandate</b></p>
+<div class="table-contents"><table class="table" summary="Cerințe minime de sistem recomandate" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Tip de instalare</th>
+<th>memorie RAM (minimă)</th>
+<th>memorie RAM (recomandată)</th>
+<th>Disc dur/solid</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Fără mediu grafic de birou</td>
+<td>256 Megaocteți</td>
+<td>512 Megaocteți</td>
+<td>4 Gigaocteți</td>
+</tr>
+<tr>
+<td>Cu mediu grafic de birou</td>
+<td>1 Gigaocteți</td>
+<td>2 Gigaocteți</td>
+<td>10 Gigaocteți</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<br class="table-break"><p>Valorile minime presupun că spațiul de memorie de interschimb „swap” va fi activat și este utilizată o imagine non-liveCD. Valoarea <span class="quote">„<span class="quote">Fără mediu grafic de birou</span>”</span> presupune că este utilizat programul de instalare non-grafic (bazat pe text). </p>
+<p>Cerințele minime reale de memorie sunt mult mai mici decât cele enumerate în acest tabel. Cu spațiul de memorie de interschimb „swap” activat, este posibil să instalați Debian cu doar 245MB de memorie RAM. Același lucru este valabil și pentru cerințele de spațiu pe disc, mai ales dacă alegeți ce aplicații să instalați; consultați <a class="xref" href="apds02.html" title="D.2. Spațiu pe disc necesar pentru sarcini">Secțiune D.2, „Spațiu pe disc necesar pentru sarcini”</a> pentru informații suplimentare despre cerințele de spațiu pe disc. </p>
+<p>Este posibil să rulați un mediu grafic de birou pe sisteme mai vechi sau cu prestații reduse, dar în acest caz este recomandat să instalați un administrator de ferestre care necesită mai puțin resurse decât mediile de birou „GNOME” sau „KDE Plasma”; alternativele includ <code class="classname">xfce4</code>, <code class="classname">icewm</code> și <code class="classname">wmaker</code>, dar există multe altele din care puteți să alegeți. </p>
+<p>Este practic imposibil să se ofere cerințe generale de memorie sau spațiu pe disc pentru instalările de server, deoarece acestea depind foarte mult de domeniul pentru care urmează să fie utilizat serverul (web, imprimare, difuzare conținut multimedia, partajare fișiere, etc). </p>
+<p>Rețineți că aceste dimensiuni nu includ toate celelalte lucruri care se găsesc de obicei, cum ar fi fișierele utilizatorului, corespondența și datele. Cel mai bine este întotdeauna să fii generos atunci când iei în considerare spațiul pentru propriile fișiere și date. </p>
+<p>Spațiul pe disc necesar pentru buna funcționare a sistemului Debian GNU/Linux în sine este luat în considerare în aceste cerințe de sistem recomandate. În special, partiția <code class="filename">/var</code> conține o mulțime de informații de stare specifice pentru Debian pe lângă conținutul său obișnuit, cum ar fi fișierele jurnal. Fișierele <span class="command"><strong>dpkg</strong></span> (cu informații despre toate pachetele instalate) pot consuma cu ușurință 40 MB. De asemenea, <span class="command"><strong>apt</strong></span> pune pachetele descărcate aici înainte de a fi instalate. De obicei, ar trebui să alocați cel puțin 200 MB pentru <code class="filename">/var</code> și mult mai mult dacă instalați un mediu grafic de birou. </p>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch03s03.html"><img src="images/prev.png" alt="Înapoi"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch03.html"><img src="images/up.png" alt="Sus"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch03s05.html"><img src="images/next.png" alt="Înainte"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">3.3. Informații de care veți avea nevoie </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Acasă"></a></td>
+<td width="40%" align="right" valign="top"> 3.5. Pre-partiționare pentru sisteme multi-pornire</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

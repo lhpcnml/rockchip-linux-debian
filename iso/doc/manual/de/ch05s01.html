@@ -1,0 +1,167 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>5.1. Starten des Installers auf 64-Bit ARM-Systemen</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux – Installationsanleitung">
+<link rel="up" href="ch05.html" title="Kapitel 5. Das Installationssystem booten">
+<link rel="prev" href="ch05.html" title="Kapitel 5. Das Installationssystem booten">
+<link rel="next" href="ch05s02.html" title="5.2. Barrierefreiheit">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">5.1. Starten des Installers auf <span class="phrase">64-Bit ARM</span>-Systemen</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch05.html"><img src="images/prev.png" alt="Zurück"></a> </td>
+<th width="60%" align="center">Kapitel 5. Das Installationssystem booten</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch05s02.html"><img src="images/next.png" alt="Weiter"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="idm877"></a>5.1. Starten des Installers auf <span class="phrase">64-Bit ARM</span>-Systemen</h2></div></div></div>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Anmerkung]" src="images/note.png"></td>
+<th align="left">Anmerkung</th>
+</tr>
+<tr><td align="left" valign="top"><p>Informationen darüber, wie Sie den grafischen Installer booten, finden Sie im <a class="xref" href="ch05s01.html#graphical" title="5.1.6. Der Grafische Installer">Abschnitt 5.1.6, „Der Grafische Installer“</a>. </p></td></tr>
+</table></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm64-console-setup"></a>5.1.1. Konfiguration der Konsole</h3></div></div></div>
+<p>Der grafische Installer ist auf den arm64 <code class="classname">debian-installer</code>-Images aktiviert (experimentell), aber auf manchen Geräten müssen Sie unter Umständen trotzdem die serielle Konsole verwenden. Das Konsolengerät sollte automatisch durch die Firmware erkannt werden; falls dies jedoch nicht funktioniert, sehen Sie nach dem Booten von Linux über das GRUB-Menü nur die Nachricht <span class="quote">„<span class="quote">Booting Linux</span>“</span> und danach weiter nichts. </p>
+<p>In diesem Fall müssen Sie eine Konfiguration für eine spezielle Konsole auf der Kernel-Befehlszeile setzen. Drücken Sie im GRUB-Menü <strong class="userinput"><code>e</code></strong> für <span class="quote">„<span class="quote">Edit kernel command-line</span>“</span> und ändern Sie </p>
+<div class="informalexample"><pre class="screen">--- quiet</pre></div>
+<p> in </p>
+<div class="informalexample"><pre class="screen">console=&lt;gerät&gt;,&lt;geschwindigkeit&gt;</pre></div>
+<p>, also z.B. </p>
+<div class="informalexample"><pre class="screen">console=ttyAMA0,115200n8</pre></div>
+<p>. Drücken Sie danach <span class="keycap"><strong>Strg</strong></span>+<span class="keycap"><strong>x</strong></span>, um das Booten mit der neuen Einstellung fortzusetzen. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="juno-installation"></a>5.1.2. Installation auf Juno</h3></div></div></div>
+<p>Juno ist ein UEFI-System, daher ist die Installation ziemlich einfach. Die praktischste Methode ist die Installation von einem USB-Stick. Sie benötigen eine aktuelle Firmware, um von USB booten zu können. Builds von <a class="ulink" href="http://releases.linaro.org/members/arm/platforms/latest/" target="_top">http://releases.linaro.org/members/arm/platforms/latest/</a> mit einem Datum nach März 2015 wurden diesbezüglich erfolgreich getestet. Konsultieren Sie die Juno-Dokumentation, wie Sie ein Update der Firmware durchführen. </p>
+<p>Bereiten Sie ein Standard-arm64-CD/DVD-Image auf einem USB-Stick vor. Stecken Sie ihn in einen der USB-Ports auf der Rückseite ein. Schließen Sie ein serielles Kabel an den oberen 9-poligen seriellen Anschluß auf der Rückseite an. Falls Sie eine Netzwerkverbindung benötigen (z.B. bei einem netboot-Image), stecken Sie ein Ethernet-Kabel in den Anschluß auf der Vorderseite des Juno ein. </p>
+<p>Starten Sie jetzt eine serielle Konsole mit 115200 + 8Bit ohne Parität und booten Sie den Juno. Er sollte von dem USB-Stick booten und ein GRUB-Menü anzeigen. Die Konfiguration der Konsole wird auf dem Juno nicht korrekt detektiert, daher bekommen Sie keine Kernel-Ausgabe, wenn Sie einfach nur <span class="keycap"><strong>Enter</strong></span> drücken. Setzen Sie die Konsole auf </p>
+<div class="informalexample"><pre class="screen">console=ttyAMA0,115200n8</pre></div>
+<p>, wie in <a class="xref" href="ch05s01.html#arm64-console-setup" title="5.1.1. Konfiguration der Konsole">Abschnitt 5.1.1, „Konfiguration der Konsole“</a> beschrieben. Ein anschließendes Drücken von <span class="keycap"><strong>Strg</strong></span>+<span class="keycap"><strong>x</strong></span> sollte den <code class="classname">debian-installer</code> zur Anzeige bringen; fahren Sie nun wie bei einer normalen Installation fort. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="apm-installation"></a>5.1.3. Installation auf Applied Micro Mustang</h3></div></div></div>
+<p>Für dieses Gerät ist UEFI verfügbar, allerdings wird es normalerweise mit U-Boot ausgeliefert. Daher können Sie entweder zunächst UEFI-Firmware installieren und dann Standard-Boot- und Installationsmethoden verwenden, oder Sie nutzen Methoden, um mit U-Boot zu booten. Sie müssen eine serielle Konsole verwenden, um die Installation durchzuführen, da der grafische Installer auf der arm64-Architektur nicht aktiviert ist. </p>
+<p>Die empfohlene Methode zur Installation ist, Kernel und initrd des <code class="classname">debian-installer</code> auf die Festplatte zu kopieren (nutzen Sie dazu das openembedded-System, das dem Gerät beiliegt), und booten Sie anschließend von der Festplatte, um den Installer zu starten. Alternativ können Sie TFTP verwenden, um Kernel, dtb und initrd rüber zu kopieren und zu booten (<a class="xref" href="ch05s01.html#boot-tftp-uboot" title="5.1.4.1. TFTP-Boot in U-Boot">Abschnitt 5.1.4.1, „TFTP-Boot in U-Boot“</a>). Nach der Installation sind manuelle Änderungen nötig, um von dem installierten Image zu booten. </p>
+<p>Starten Sie eine serielle Konsole mit 115200 + 8Bit ohne Parität und booten Sie das Gerät. Sobald Sie nach dem Neustart die Anzeige <span class="quote">„<span class="quote">Hit any key to stop autoboot:</span>“</span> sehen, drücken Sie eine Taste, um einen Mustang#-Prompt zu bekommen. Verwenden Sie dann die entsprechenden U-Boot-Befehle, um Kernel, dtb und initrd zu laden und zu booten. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-tftp-arm"></a>5.1.4. Booten per TFTP</h3></div></div></div>
+<p>Um per Netzwerk booten zu können, benötigen sie eine Netzwerkverbindung sowie einen TFTP-Netzwerk-Boot-Server (und unter Umständen auch einen DHCP-, RARP- oder BOOTP-Server zur automatischen Netzwerkkonfiguration). </p>
+<p>Die server-seitige Einrichtung zur Unterstützung vom Booten über Netzwerk ist im <a class="xref" href="ch04s04.html" title="4.4. Dateien vorbereiten für TFTP-Netzwerk-Boot">Abschnitt 4.4, „Dateien vorbereiten für TFTP-Netzwerk-Boot“</a> beschrieben. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="boot-tftp-uboot"></a>5.1.4.1. TFTP-Boot in U-Boot</h4></div></div></div>
+<p>Das Booten von Systemen über das Netzwerk mittels der U-Boot-Firmware erfordert drei Schritte: a) Konfigurieren des Netzwerks, b) Laden der Images (Kernel/Initial-Ramdisk/dtb) in den Speicher und c) das eigentliche Ausführen des vorher geladenen Codes. </p>
+<p>Als erstes müssen Sie das Netzwerk konfigurieren, entweder automatisch über DHCP, indem Sie dies ausführen: </p>
+<div class="informalexample"><pre class="screen">
+setenv autoload no
+dhcp
+</pre></div>
+<p> oder manuell, indem Sie verschiedene Umgebungsvariablen setzen: </p>
+<div class="informalexample"><pre class="screen">
+setenv ipaddr &lt;ip-adresse des clients&gt;
+setenv netmask &lt;netmask&gt;
+setenv serverip &lt;ip-adresse des tftp-servers&gt;
+setenv dnsip &lt;ip-adresse des nameservers&gt;
+setenv gatewayip &lt;ip-adresse des standard-gateways&gt;
+</pre></div>
+<p> Falls Sie möchten, können Sie diese Einstellungen auch fest einrichten mit: </p>
+<div class="informalexample"><pre class="screen">saveenv
+</pre></div>
+<p>
+      </p>
+<p>Danach müssen Sie die Images (Kernel/Initial-Ramdisk/dtb) in den Speicher laden. Dies wird mit dem tftpboot-Befehl erledigt, der zusammen mit der Adresse, an der das Image im Speicher abgelegt werden soll, angegeben werden muss. Unglücklicherweise kann die Lücke im Speicher von System zu System variieren, daher gibt es keine grundsätzliche Regel, welche Adresse hierfür verwendet werden muss. </p>
+<p>Auf einigen Systemen legt U-Boot einige Umgebungsvariablen mit passenden Ladeadressen an: kernel_addr_r, ramdisk_addr_r und fdt_addr_r. Sie können überprüfen, ob diese definiert sind, indem Sie dies ausführen: </p>
+<div class="informalexample"><pre class="screen">
+printenv kernel_addr_r ramdisk_addr_r fdt_addr_r
+</pre></div>
+<p> Falls sie nicht definiert sind, müssen Sie die Dokumentation des Systems konsultieren bezüglich näherer Angaben zu passenden Werten und diese händisch setzen. Für Systeme, die auf Allwinner SunXi-SoCs (z.B. dem Allwinner A10, Architekturname <span class="quote">„<span class="quote">sun4i</span>“</span> oder dem Allwinner A20, Architekturname <span class="quote">„<span class="quote">sun7i</span>“</span>) basieren, können Sie z.B. folgende Werte nutzen: </p>
+<div class="informalexample"><pre class="screen">setenv kernel_addr_r 0x46000000
+setenv fdt_addr_r 0x47000000
+setenv ramdisk_addr_r 0x48000000
+</pre></div>
+<p>
+      </p>
+<p>Sind die Ladeadressen bereits definiert, können Sie die Images von dem vorher definierten TFTP-Server in den Speicher laden mit: </p>
+<div class="informalexample"><pre class="screen">tftpboot ${kernel_addr_r} &lt;dateiname des kernel-images&gt;
+tftpboot ${fdt_addr_r} &lt;dateiname des dtb&gt;
+tftpboot ${ramdisk_addr_r} &lt;dateiname des initial-ramdisk-images&gt;
+</pre></div>
+<p>
+      </p>
+<p>Der dritte Schritt ist das Setzen der Kernel-Befehlszeile und das eigentliche Ausführen des geladenen Codes. U-Boot übergibt den Inhalt der Umgebungsvariable <span class="quote">„<span class="quote">bootargs</span>“</span> als Befehlszeile an den Kernel; also können alle Parameter für den Kernel und den Installer - wie z.B. die Konsolen-Gerätedatei (lesen Sie dazu <a class="xref" href="ch05s03.html#boot-console" title="5.3.1. Boot-Konsole">Abschnitt 5.3.1, „Boot-Konsole“</a>) oder eventuelle Voreinstellungsoptionen (Näheres in <a class="xref" href="ch05s03.html#installer-args" title="5.3.2. Debian-Installer-Parameter">Abschnitt 5.3.2, „Debian-Installer-Parameter“</a> und <a class="xref" href="apb.html" title="Anhang B. Automatisieren der Installation mittels Voreinstellung">Anhang B, <i>Automatisieren der Installation mittels Voreinstellung</i></a>) - mit einem Befehl wie dem folgenden gesetzt werden: </p>
+<div class="informalexample"><pre class="screen">
+setenv bootargs console=ttyS0,115200 rootwait panic=10
+</pre></div>
+<p> Der exakte Befehl zur Ausführung des vorher geladenen Codes hängt vom verwendeten Image-Format ab. Bei uImage/uInitrd lautet der Befehl: </p>
+<div class="informalexample"><pre class="screen">
+bootm ${kernel_addr_r} ${ramdisk_addr_r} ${fdt_addr_r}
+</pre></div>
+<p> Bei nativen Linux-Image ist es: </p>
+<div class="informalexample"><pre class="screen">bootz ${kernel_addr_r} ${ramdisk_addr_r}:${filesize} ${fdt_addr_r}
+</pre></div>
+<p>
+      </p>
+<p>Beachten Sie: wenn Sie Standard-Linux-Images booten, ist es wichtig, dass das Initial-Ramdisk-Image nach dem Kernel und der DTB geladen wird, da U-Boot die filesize-Variable (Dateigröße) auf die Größe der letzten geladenen Datei setzt und der bootz-Befehl benötigt die Größe des Ramdisk-Images, um korrekt zu arbeiten. Beim Booten eines plattformspezifischen Kernels, also eines Kernels ohne Gerätebaum-Abbild (DTB), lassen Sie den ${fdt_addr_r}-Parameter einfach weg. </p>
+</div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-boot-arm64"></a>5.1.5. Booten von USB-Stick mit UEFI</h3></div></div></div>
+<p>Wenn Ihr Computer von USB booten kann, ist dies vielleicht der einfachste Weg zur Installation. Wir nehmen an, Sie haben alles wie unter <span class="phrase"><a class="xref" href="ch03s06.html#boot-dev-select-arm64" title="3.6.1. Auswahl des Boot-Laufwerks">Abschnitt 3.6.1, „Auswahl des Boot-Laufwerks“</a></span> und <a class="xref" href="ch04s03.html" title="4.3. Dateien vorbereiten für das Booten von einem USB-Memory-Stick">Abschnitt 4.3, „Dateien vorbereiten für das Booten von einem USB-Memory-Stick“</a> beschrieben vorbereitet. Stecken Sie jetzt den USB-Stick in einen freien Steckplatz und starten Sie den Rechner neu. Das System sollte booten und (auf Systemen, die dies unterstützen) ein grafisches Boot-Menü anzeigen. Sie können hier verschiedene Installer-Optionen auswählen oder einfach <span class="keycap"><strong>Enter</strong></span> drücken. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="graphical"></a>5.1.6. Der Grafische Installer</h3></div></div></div>
+<p>Die grafische Version des Installers ist nur für eine begrenzte Anzahl von Architekturen verfügbar, unter anderem für <span class="phrase">64-Bit ARM</span>. Die Funktionalität des grafischen Installers ist grundsätzlich die gleiche wie die des textbasierten Installers, da er die gleichen Programme verwendet, nur mit einer anderen Bedienoberfläche (Frontend). </p>
+<p>Obwohl die Funktionalität identisch ist, hat der grafische Installer trotzdem einige bedeutende Vorteile. Der hauptsächliche Vorteil ist, dass mehr Sprachen unterstützt werden, nämlich solche, die einen Zeichensatz verwenden, der in dem textbasierten <span class="quote">„<span class="quote">newt</span>“</span>-Frontend nicht dargestellt werden kann. Außerdem gibt es einige weitere Vorteile bezüglich der Bedienung, zum Beispiel die Nutzung einer Maus sowie die Möglichkeit, in einigen Fällen mehrere Fragen in einem Bild darstellen zu können. </p>
+<p>Wie auch bei dem textbasierten Installer ist es möglich, Boot-Parameter hinzuzufügen, wenn der grafische Installer gestartet wird. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Anmerkung]" src="images/note.png"></td>
+<th align="left">Anmerkung</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>Der grafische Installer benötigt erheblich mehr Arbeitsspeicher als der textbasierte, und zwar mindestens 640MB. Falls nicht genügend Speicher verfügbar ist, wird automatisch das textbasierte <span class="quote">„<span class="quote">newt</span>“</span>-Frontend gebootet. </p>
+<p>Wenn der installierte Arbeitsspeicher in Ihrem System kleiner als 260MB ist, könnte der Start des grafischen Installers fehlschlagen, wobei jedoch der textbasierte Installer korrekt booten würde. Es wird empfohlen, auf Systemen mit wenig Arbeitsspeicher den textbasierten Installer zu verwenden. </p>
+</td></tr>
+</table></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch05.html"><img src="images/prev.png" alt="Zurück"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch05.html"><img src="images/up.png" alt="Nach oben"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch05s02.html"><img src="images/next.png" alt="Weiter"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Kapitel 5. Das Installationssystem booten </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Zum Anfang"></a></td>
+<td width="40%" align="right" valign="top"> 5.2. Barrierefreiheit</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>3.6. Hardware- und Betriebssystem-Setup vor der Installation</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux – Installationsanleitung">
+<link rel="up" href="ch03.html" title="Kapitel 3. Bevor Sie Debian GNU/Linux installieren">
+<link rel="prev" href="ch03s05.html" title="3.5. Im Voraus partitionieren für eine Multiboot-Installation">
+<link rel="next" href="ch04.html" title="Kapitel 4. Systeminstallations-Medien beschaffen">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">3.6. Hardware- und Betriebssystem-Setup vor der Installation</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch03s05.html"><img src="images/prev.png" alt="Zurück"></a> </td>
+<th width="60%" align="center">Kapitel 3. Bevor Sie Debian GNU/Linux installieren</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch04.html"><img src="images/next.png" alt="Weiter"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="pre-install-bios-setup"></a>3.6. Hardware- und Betriebssystem-Setup vor der Installation</h2></div></div></div>
+<p>Dieses Kapitel wird Sie durch die Hardware-Einstellungen leiten, die Sie eventuell vor der Installation von Debian durchführen müssen. Dies beinhaltet das Überprüfen und eventuell Ändern von BIOS/UEFI/Firmware-Einstellungen für Ihr System. Das <span class="quote">„<span class="quote">BIOS/UEFI</span>“</span> oder die <span class="quote">„<span class="quote">System-Firmware</span>“</span> ist die von der Hardware genutzte interne Software; sie ist meistens höchst kritisch in den Boot-Prozess involviert (direkt nach dem Einschalten). </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-dev-select-arm64"></a>3.6.1. Auswahl des Boot-Laufwerks</h3></div></div></div>
+<p>
+
+    </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm-firmware-overview"></a>3.6.2. ARM-Firmware</h3></div></div></div>
+<p>Wie bereits vorher erwähnt, gibt es unglücklicherweise keinen Standard für System-Firmware auf ARM-Systemen. Sogar das Verhalten verschiedener Systeme, die nominal die gleiche Firmware verwenden, kann ziemlich unterschiedlich sein. Dies liegt an der Tatsache, dass ein großer Teil der Geräte, die die ARM-Architektur nutzen, eingebettete (embedded) Systeme sind, für die die Hersteller üblicherweise stark angepasste Firmware-Versionen erstellen und gerätespezifische Patches integrieren. Unglücklicherweise melden die Hersteller oft ihre Änderungen nicht zurück an die ursprünglichen Firmware-Entwickler, so dass die Änderungen nicht in neuere Versionen der Original-Firmware einfließen. </p>
+<p>Als Ergebnis daraus verwenden sogar neu verkaufte Systeme oft eine Firmware, die auf einer mehrere Jahre alten, durch den Hersteller angepassten Version einer Firmware basiert, deren Original-Codebasis sich in der Zwischenzeit erheblich weiterentwickelt hat und zusätzliche Funktionalitäten enthält oder bei bestimmten Aspekten ein verändertes Verhalten zeigt. Zusätzlich dazu ist die Benamung von Onboard-Geräten nicht konsistent zwischen hersteller-modifizierten Versionen der gleichen Firmware, daher ist es nahezu unmöglich, nützliche geräteunabhängige Dokumentation für ARM-basierte Systeme bereitzustellen. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="uboot-macsetting"></a>3.6.3. Setzen der Ethernet-MAC-Adresse in U-Boot</h3></div></div></div>
+<p>Die MAC-Adresse jeder Ethernet-Schnittstelle sollte eigentlich global eindeutig sein, und technisch muss sie innerhalb ihrer Ethernet-Broadcast-Domain eindeutig sein. Um dies zu erreichen, reserviert der Hersteller normalerweise einen Block von MAC-Adressen aus einem zentral administrierten Pool (für den eine Gebühr gezahlt werden muss) und vergibt dann eine dieser Adressen an jedes verkaufte Gerät. </p>
+<p>Im Falle von Development-Boards wollen Hersteller manchmal die Zahlung der Gebühr vermeiden und stellen daher keine global eindeutigen Adressen bereit. In diesen Fällen muss der Benutzer selbst MAC-Adressen für seine Systeme vergeben. Wenn für eine Ethernet-Schnittstelle keine MAC-Adresse festgelegt ist, generieren einige Netzwerktreiber eine zufällige MAC-Adresse, die sich dann bei jedem Neustart ändern kann, und dabei wäre ein Netzwerkzugriff möglich, ohne dass der Benutzer händisch eine Adresse festgelegt hat; wenn jedoch z.B. die IP-Adressen über DHCP aus der MAC-Adresse des anfordernden Clients abgeleitet werden, würde dies natürlich nicht zuverlässig funktionieren. </p>
+<p>Um Konflikte mit vorhandenen offiziell vergebenen MAC-Adressen zu vermeiden, gibt es einen Adress-Pool, der für sogenannte <span class="quote">„<span class="quote">lokal administrierte</span>“</span> Adressen reserviert ist. Er wird über den Wert von zwei speziellen Bits im ersten Byte der Adresse definiert (der Artikel <span class="quote">„<span class="quote">MAC address</span>“</span> in der englisch-sprachigen Wikipedia enthält hierzu eine gute Beschreibung). In der Praxis bedeutet dies, dass z.B. jede Adresse, die mit dem hexadezimalen Wert ca beginnt (wie ca:ff:ee:12:34:56), als lokal administrierte Adresse verwendet werden kann. </p>
+<p>Auf Systemen, die U-Boot als System-Firmware nutzen, ist die Ethernet-MAC-Adresse in der Umgebungsvariablen <span class="quote">„<span class="quote">ethaddr</span>“</span> abgelegt. Sie kann über den U-Boot-Befehlsprompt mit dem Befehl <span class="quote">„<span class="quote">printenv ethaddr</span>“</span> überprüft und mit <span class="quote">„<span class="quote">setenv ethaddr ca:ff:ee:12:34:56</span>“</span> gesetzt werden. Nach dem Ändern des Wertes wird mit dem Befehl <span class="quote">„<span class="quote">saveenv</span>“</span> diese Einstellung fest abgespeichert. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="uboot-relocation-issues"></a>3.6.4. Probleme bei der Speicherzuweisung für Kernel/Initrd/Gerätebaum in U-Boot</h3></div></div></div>
+<p>Auf einigen Systemen mit älteren U-Boot-Versionen können Probleme bei der korrekten Speicherzuweisung für Linux-Kernel, Initial-Ramdisk und Gerätebaum-Abbild während des Boot-Prozesses auftreten. In diesem Fall zeigt U-Boot die Meldung <span class="quote">„<span class="quote">Starting kernel ...</span>“</span> an, aber das System friert danach ohne weitere Ausgabe ein. Diese Probleme wurden in neueren U-Boot-Versionen ab v2014.07 aufwärts behoben. </p>
+<p>Falls das System im Originalzustand eine U-Boot-Version älter als v2014.07 genutzt hat und dann auf eine neuere Version aktualisiert wurde, könnte das Problem auch nach dem Upgrade von U-Boot noch auftreten. Das Aktualisieren von U-Boot modifiziert üblicherweise nicht die vorhandenen Umgebungsvariablen und der Fix zur Fehlerbehebung erfordert das Setzen einer zusätzlichen Umgebungsvariable (bootm_size), was jedoch nur bei frischen Neuinstallationen ohne vorhandene Umgebungsdaten von U-Boot automatisch erledigt wird. Es ist möglich, bootm_size händisch auf den neuen U-Boot-Standardwert zu setzen, indem <span class="quote">„<span class="quote">env default bootm_size; saveenv</span>“</span> am U-Boot-Prompt ausgeführt wird. </p>
+<p>Eine andere Möglichkeit, solche Probleme bei Speicherzuweisungen zu verhindern, wäre die Ausführung von <span class="quote">„<span class="quote">setenv fdt_high ffffffff; setenv initrd_high 0xffffffff; saveenv</span>“</span> am U-Boot-Prompt; damit wird die dynamische Speicherzuweisung für Initial-Ramdisk und Gerätebaum-Abbild vollständig deaktiviert. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch03s05.html"><img src="images/prev.png" alt="Zurück"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch03.html"><img src="images/up.png" alt="Nach oben"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch04.html"><img src="images/next.png" alt="Weiter"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">3.5. Im Voraus partitionieren für eine Multiboot-Installation </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Zum Anfang"></a></td>
+<td width="40%" align="right" valign="top"> Kapitel 4. Systeminstallations-Medien beschaffen</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

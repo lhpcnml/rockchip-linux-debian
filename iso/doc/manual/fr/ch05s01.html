@@ -1,0 +1,206 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>5.1. Démarrer l'installateur sur ARM 64 bit</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Manuel d'installation pour la distribution Debian GNU/Linux">
+<link rel="up" href="ch05.html" title="Chapitre 5. Démarrer le système d'installation">
+<link rel="prev" href="ch05.html" title="Chapitre 5. Démarrer le système d'installation">
+<link rel="next" href="ch05s02.html" title="5.2. Accessibilité">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">5.1. Démarrer l'installateur sur 
+  
+  
+  <span class="phrase">ARM 64 bit</span>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch05.html"><img src="images/prev.png" alt="Précédent"></a> </td>
+<th width="60%" align="center">Chapitre 5. Démarrer le système d'installation</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch05s02.html"><img src="images/next.png" alt="Suivant"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="idm865"></a>5.1. Démarrer l'installateur sur 
+  
+  
+  <span class="phrase">ARM 64 bit</span>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </h2></div></div></div>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>Voyez la <a class="xref" href="ch05s01.html#graphical" title="5.1.6. L'installateur graphique">Section 5.1.6, « L'installateur graphique »</a> pour savoir comment amorcer l'installateur graphique. </p></td></tr>
+</table></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm64-console-setup"></a>5.1.1. Configuration de la console</h3></div></div></div>
+<p>L'installateur graphique est activé (de manière expérimentale) dans les images de l'installateur pour l'architecture arm64. Mais certains périphériques nécessitent toujours l'utilisation de la console série. Le périphérique de console devrait être détecté par le microcode, mais si ça n'est pas le cas, après avoir démarré Linux depuis le menu de GRUB, vous verrez le message <span class="quote">« <span class="quote">Booting Linux</span> »</span> mais rien d'autre. </p>
+<p>Si vous observez ce problème, vous devrez définir une configuration spécifique de la console sur la ligne de commande du noyau. Entrez <strong class="userinput"><code>e</code></strong> pour éditer la ligne de commande du noyau (<span class="quote">« <span class="quote">Edit kernel command-line</span> »</span>) au menu de GRUB, et remplacez </p>
+<div class="informalexample"><pre class="screen">--- quiet</pre></div>
+<p> par </p>
+<div class="informalexample"><pre class="screen">console=&lt;périphérique&gt;,&lt;vitesse&gt;</pre></div>
+<p> Par exemple </p>
+<div class="informalexample"><pre class="screen">console=ttyAMA0,115200n8</pre></div>
+<p> Après cela, entrez <span class="keycap"><strong>Control</strong></span>+<span class="keycap"><strong>x</strong></span> pour amorcer avec les nouveaux paramètres. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="juno-installation"></a>5.1.2. Installation sur Juno</h3></div></div></div>
+<p>Juno est un système UEFI et l'installation devrait donc être relativement simple. La méthode la plus pratique est d'installer depuis une clé USB. Vous aurez besoin d'un microcode à jour pour faire fonctionner l'amorçage par USB. Les constructions de <a class="ulink" href="http://releases.linaro.org/members/arm/platforms/latest/" target="_top">http://releases.linaro.org/members/arm/platforms/latest/</a> postérieures à mars 2015 ont été testées avec succès. Veuillez consulter la documentation des systèmes Juno pour la mise à jour du microcode. </p>
+<p>Préparez une image CD ou DVD standard pour arm64 sur une clé USB. Insérez la clé dans un des ports disponibles à l'arrière. Branchez un câble de liaison série dans le port série à 9 broches supérieur à l'arrière. Si vous avez besoin du réseau (pour les images netboot), branchez le câble dans la prise de devant. </p>
+<p>Exécutez une console série à 115200 bauds, 8 bits, aucun bit de parité, et amorcez la carte Juno. Celle-ci devrait amorcer depuis la clé USB et présenter un menu GRUB. La configuration de la console n'est pas correctement détectée sur les cartes Juno et saisir <span class="keycap"><strong>Entrée</strong></span> ne devrait pas montrer la sortie du noyau. Réglez la console à </p>
+<div class="informalexample"><pre class="screen">console=ttyAMA0,115200n8</pre></div>
+<p> comme décrit dans la <a class="xref" href="ch05s01.html#arm64-console-setup" title="5.1.1. Configuration de la console">Section 5.1.1, « Configuration de la console »</a>. Entrez <span class="keycap"><strong>Control</strong></span>+<span class="keycap"><strong>x</strong></span> à l'amorçage pour voir les écrans de l'<code class="classname">installateur Debian</code> et démarrer une installation standard.  </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="apm-installation"></a>5.1.3. Installation sur Applied Micro Mustang</h3></div></div></div>
+<p>UEFI est disponible sur cette machine, mais elle est souvent fournie avec U-Boot. Vous devrez donc d'abord installer le microcode UEFI pour démarrer une installation standard, ou utiliser la méthode avec U-Boot. Vous devrez utiliser une console série pour effectuer l'installation car l'installateur graphique n'est pas activé pour l'architecture arm64. </p>
+<p>La méthode recommandée est de copier le noyau de l'<code class="classname">installateur Debian</code> et l'initrd sur le disque dur en utilisant le système openembedded fourni avec la machine, puis d'amorcer depuis ce disque pour effectuer l'installation. Autrement, utilisez TFTP pour obtenir le noyau, l'initrd et l'arbre de périphérique et démarrez la machine (<a class="xref" href="ch05s01.html#boot-tftp-uboot" title="5.1.4.1. Amorcer à partir de TFTP avec U-Boot">Section 5.1.4.1, « Amorcer à partir de TFTP avec U-Boot »</a>). Après l'installation, des changements seront à faire pour amorcer depuis le système installé. </p>
+<p>Exécutez une console série à 115200 bauds, 8 bits, aucun bit de parité, et amorcez la machine. Redémarrez la machine et lorsque vous lisez <span class="quote">« <span class="quote">Hit any key to stop autoboot:</span> »</span>, pressez une touche pour obtenir une invite Mustang#. Utilisez ensuite les commandes U-Boot pour charger et démarrer le noyau, l'arbre de périphérique et l'initrd. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-tftp-arm"></a>5.1.4. Amorcer à partir de TFTP</h3></div></div></div>
+<p>Pour amorcer depuis le réseau, il vous faut une connexion au réseau et un serveur TFTP (et aussi, sûrement, un serveur DHCP, RARP ou BOOTP pour la configuration automatique du réseau). </p>
+<p>L'installation côté serveur pour l'amorçage depuis le réseau est décrite dans la <a class="xref" href="ch04s04.html" title="4.4. Préparer les fichiers pour amorcer depuis le réseau avec TFTP">Section 4.4, « Préparer les fichiers pour amorcer depuis le réseau avec TFTP »</a>. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="boot-tftp-uboot"></a>5.1.4.1. Amorcer à partir de TFTP avec U-Boot</h4></div></div></div>
+<p>Sur les systèmes utilisant le microprogramme U-Boot, l'amorçage depuis le réseau est effectué en trois étapes : a) configurer le réseau, b) charger les images (noyau/initrd/dtb) en mémoire et c) exécuter le code chargé. </p>
+<p>Premièrement, il faut configurer le réseau automatiquement avec DHCP en exécutant : </p>
+<div class="informalexample"><pre class="screen">
+setenv autoload no
+dhcp
+</pre></div>
+<p> ou manuellement en positionnant plusieurs variables d'environnement : </p>
+<div class="informalexample"><pre class="screen">
+setenv ipaddr &lt;adresse ip du client&gt;
+setenv netmask &lt;masque réseau&gt;
+setenv serverip &lt;adresse ip du serveur tftp&gt;
+setenv dnsip &lt;adresse ip du serveur de noms&gt;
+setenv gatewayip &lt;adresse ip de la passerelle par défaut&gt;
+</pre></div>
+<p> Si vous préférez, vous pouvez rendre ces réglages permanents en exécutant : </p>
+<div class="informalexample"><pre class="screen">saveenv
+</pre></div>
+<p>
+      </p>
+<p>Une fois cette étape exécutée, vous devez charger les images (noyau/initrd/dtb) en mémoire avec la commande tftpboot qui doit être appelée avec l'adresse à laquelle charger l'image. Malheureusement, l'adressage de la mémoire varie d'un système à l'autre et il n'y a donc pas de règle générale à appliquer. </p>
+<p>Sur certains systèmes, U-Boot prédéfinit un ensemble de variables d'environnement avec des adresses de chargement adaptées : kernel_addr_r, ramdisk_addr_r et fdt_addr_r. Vous pouvez vérifier si elles sont définies en exécutant : </p>
+<div class="informalexample"><pre class="screen">
+printenv kernel_addr_r ramdisk_addr_r fdt_addr_r
+</pre></div>
+<p> Si elles ne sont pas définies, vous devez consulter la documentation de votre système et les positionner manuellement. Pour les systèmes basés sur les puces Allwinner SunXi (par exemple, les Allwinner A10 ou A20, noms d'architecture sun4i et sun7i), vous pouvez utiliser les valeurs suivantes : </p>
+<div class="informalexample"><pre class="screen">setenv kernel_addr_r 0x46000000
+setenv fdt_addr_r 0x47000000
+setenv ramdisk_addr_r 0x48000000
+</pre></div>
+<p>
+      </p>
+<p>Lorsque les adresses de chargement sont définies, vous pouvez charger les images depuis le serveur tftp défini précédemment avec : </p>
+<div class="informalexample"><pre class="screen">tftpboot ${kernel_addr_r} &lt;fichier de l'image du noyau&gt;
+tftpboot ${fdt_addr_r} &lt;fichier du dtb&gt;
+tftpboot ${ramdisk_addr_r} &lt;fichier de l'image initrd&gt;
+</pre></div>
+<p>
+      </p>
+<p>La troisième étape consiste à positionner la ligne de commande du noyau et exécuter le code chargé. U-boot envoie le contenu de la variable d'environnement <span class="quote">« <span class="quote">bootargs</span> »</span> au noyau. Tous les paramètres pour le noyau et l'installateur — comme le périphérique d'interface (consultez la <a class="xref" href="ch05s03.html#boot-console" title="5.3.1. Console d'amorçage">Section 5.3.1, « Console d'amorçage »</a>) ou les options de préconfiguration (consultez la <a class="xref" href="ch05s03.html#installer-args" title="5.3.2. Paramètres pour l'installateur Debian">Section 5.3.2, « Paramètres pour l'installateur Debian »</a> et l'<a class="xref" href="apb.html" title="Annexe B. Automatisation de l'installation par préconfiguration">Annexe B, <i>Automatisation de l'installation par préconfiguration</i></a>) — peuvent être positionnés avec une commande comme celle-ci </p>
+<div class="informalexample"><pre class="screen">
+setenv bootargs console=ttyS0,115200 rootwait panic=10
+</pre></div>
+<p> La commande exacte pour exécuter le code chargé dépend du format d'image utilisé. Pour le format uImage/uInitrd, la commande sera : </p>
+<div class="informalexample"><pre class="screen">
+bootm ${kernel_addr_r} ${ramdisk_addr_r} ${fdt_addr_r}
+</pre></div>
+<p> et avec une image Linux native, elle sera : </p>
+<div class="informalexample"><pre class="screen">bootz ${kernel_addr_r} ${ramdisk_addr_r}:${filesize} ${fdt_addr_r}
+</pre></div>
+<p>
+      </p>
+<p>Note : dans le cas de l'amorçage avec une image Linux standard, il est important de charger l'initrd après le noyau et le dtb, car U-Boot positionne la variable filesize à la taille du dernier fichier chargé, et la commande bootz a besoin de la taille de cet initrd pour fonctionner correctement. Dans le cas de l'amorçage d'un noyau spécifique (c'est-à-dire sans arbre de périphériques), il suffit d'omettre le paramètre ${fdt_addr_r}. </p>
+</div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="usb-boot-arm64"></a>5.1.5. Amorcer sur une clé USB avec UEFI</h3></div></div></div>
+<p>Si votre machine peut amorcer depuis l'USB, cela sera la méthode la plus simple. Supposons que tout a été préparé comme l'expliquent la <span class="phrase"><a class="xref" href="ch03s06.html#boot-dev-select-arm64" title="3.6.1. Sélection du périphérique d'amorçage">Section 3.6.1, « Sélection du périphérique d'amorçage »</a></span> et la <a class="xref" href="ch04s03.html" title="4.3. Préparation des fichiers pour un amorçage avec une clé USB">Section 4.3, « Préparation des fichiers pour un amorçage avec une clé USB »</a>. Branchez maintenant votre clé USB dans un port libre et relancez la machine. Le système devrait se lancer et, sauf si vous avez utilisé la méthode flexible pour créer la clé et que vous ne l'avez pas activée, un menu d'amorçage devrait apparaître (sur les matériels pris en charge). Maintenant, vous pouvez choisir différentes options de l'installateur, ou simplement appuyer sur la touche <span class="keycap"><strong>Entrée</strong></span>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="graphical"></a>5.1.6. L'installateur graphique</h3></div></div></div>
+<p>La version graphique de l'installateur n'est disponible que sur certaines architectures, dont 
+  
+  
+  <span class="phrase">ARM 64 bit</span>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  . Les fonctionnalités de l'installateur graphique sont essentiellement les mêmes que celles de l'installateur en mode texte. Ils utilisent les mêmes programmes mais l'interface est différente. </p>
+<p>Malgré cette similitude, l'installateur graphique possède quelques avantages. Le principal est qu'il reconnaît plus de langues, notamment celles qui utilisent des jeux de caractères impossibles à afficher avec l'interface <span class="quote">« <span class="quote">newt</span> »</span>. Un autre avantage est la possibilité d'utiliser une souris. De même, plusieurs questions peuvent être réunies dans un seul écran. </p>
+<p>Comme pour l'installateur texte, il est possible d'ajouter des paramètres d'amorçage au lancement de l'installateur graphique. </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>L'installateur graphique exige beaucoup plus de mémoire que l'installateur texte : 640 Mo. S'il n'y a pas assez de mémoire, l'installateur reviendra à l'interface <span class="quote">« <span class="quote">newt</span> »</span>. </p>
+<p>Si la quantité de mémoire du système est inférieure à 260 Mo, il se peut que l'installateur graphique ne fonctionne plus mais que l'installateur texte fonctionne encore. Pour des systèmes avec peu de mémoire, il est recommandé d'utiliser l'installateur texte. </p>
+</td></tr>
+</table></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch05.html"><img src="images/prev.png" alt="Précédent"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch05.html"><img src="images/up.png" alt="Niveau supérieur"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch05s02.html"><img src="images/next.png" alt="Suivant"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapitre 5. Démarrer le système d'installation </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Sommaire"></a></td>
+<td width="40%" align="right" valign="top"> 5.2. Accessibilité</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

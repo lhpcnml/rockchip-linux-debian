@@ -1,0 +1,87 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Kapitel 5. Das Installationssystem booten</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux – Installationsanleitung">
+<link rel="up" href="index.html" title="Debian GNU/Linux – Installationsanleitung">
+<link rel="prev" href="ch04s06.html" title="4.6. Verifizieren der Authentizität von Installationsdateien">
+<link rel="next" href="ch05s01.html" title="5.1. Starten des Installers auf 64-Bit ARM-Systemen">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Kapitel 5. Das Installationssystem booten</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch04s06.html"><img src="images/prev.png" alt="Zurück"></a> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="ch05s01.html"><img src="images/next.png" alt="Weiter"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="chapter">
+<div class="titlepage"><div><div><h1 class="title">
+<a name="boot-installer"></a>Kapitel 5. Das Installationssystem booten</h1></div></div></div>
+<div class="toc">
+<p><b>Inhaltsverzeichnis</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="ch05s01.html">5.1. Starten des Installers auf <span class="phrase">64-Bit ARM</span>-Systemen</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch05s01.html#arm64-console-setup">5.1.1. Konfiguration der Konsole</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#juno-installation">5.1.2. Installation auf Juno</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#apm-installation">5.1.3. Installation auf Applied Micro Mustang</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#boot-tftp-arm">5.1.4. Booten per TFTP</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#usb-boot-arm64">5.1.5. Booten von USB-Stick mit UEFI</a></span></dt>
+<dt><span class="sect2"><a href="ch05s01.html#graphical">5.1.6. Der Grafische Installer</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="ch05s02.html">5.2. Barrierefreiheit</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch05s02.html#idm982">5.2.1. Installer-Oberfläche (Frontend)</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm1004">5.2.2. Interne Boards/Karten</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm1008">5.2.3. Theme mit hohem Kontrast</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm1014">5.2.4. Zoom</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm1023">5.2.5. Experten-Installation, Rettungsmodus, automatisierte Installation</a></span></dt>
+<dt><span class="sect2"><a href="ch05s02.html#idm1037">5.2.6. Barrierefreiheit auf dem neu installierten System</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="ch05s03.html">5.3. Boot-Parameter</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch05s03.html#boot-console">5.3.1. Boot-Konsole</a></span></dt>
+<dt><span class="sect2"><a href="ch05s03.html#installer-args">5.3.2. Debian-Installer-Parameter</a></span></dt>
+<dt><span class="sect2"><a href="ch05s03.html#preseed-args">5.3.3. Boot-Parameter benutzen, um Fragen automatisiert zu beantworten</a></span></dt>
+<dt><span class="sect2"><a href="ch05s03.html#module-parms">5.3.4. Parameter für Kernelmodule angeben</a></span></dt>
+<dt><span class="sect2"><a href="ch05s03.html#module-blacklist">5.3.5. Kernel-Module als gesperrt markieren</a></span></dt>
+</dl></dd>
+<dt><span class="sect1"><a href="ch05s04.html">5.4. Beseitigen von Problemen während der Installation</a></span></dt>
+<dd><dl>
+<dt><span class="sect2"><a href="ch05s04.html#unreliable-cd">5.4.1. Unzuverlässigkeit von optischen Datenträgern</a></span></dt>
+<dt><span class="sect2"><a href="ch05s04.html#idm1374">5.4.2. Boot-Konfiguration</a></span></dt>
+<dt><span class="sect2"><a href="ch05s04.html#kernel-msgs">5.4.3. Die Startmeldungen des Kernels deuten</a></span></dt>
+<dt><span class="sect2"><a href="ch05s04.html#problem-report">5.4.4. Installationsprobleme berichten</a></span></dt>
+<dt><span class="sect2"><a href="ch05s04.html#submit-bug">5.4.5. Installationsberichte einschicken</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch04s06.html"><img src="images/prev.png" alt="Zurück"></a> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="ch05s01.html"><img src="images/next.png" alt="Weiter"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">4.6. Verifizieren der Authentizität von Installationsdateien </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Zum Anfang"></a></td>
+<td width="40%" align="right" valign="top"> 5.1. Starten des Installers auf <span class="phrase">64-Bit ARM</span>-Systemen</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

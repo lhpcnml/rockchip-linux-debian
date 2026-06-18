@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>3.6. Pré-Instalação do Hardware e Configuração do Sistema Operativo</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Guia de Instalação de Debian GNU/Linux">
+<link rel="up" href="ch03.html" title="Capítulo 3. Antes de Instalar Debian GNU/Linux">
+<link rel="prev" href="ch03s05.html" title="3.5. Pré-Particionamento para sistemas Multi-Boot">
+<link rel="next" href="ch04.html" title="Capítulo 4. Obter o Meio de Instalação do Sistema">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">3.6. Pré-Instalação do Hardware e Configuração do Sistema Operativo</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch03s05.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<th width="60%" align="center">Capítulo 3. Antes de Instalar Debian GNU/Linux</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch04.html"><img src="images/next.png" alt="Próximo"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="pre-install-bios-setup"></a>3.6. Pré-Instalação do Hardware e Configuração do Sistema Operativo</h2></div></div></div>
+<p>Esta seção irá guiá-lo através da configuração de hardware durante a pré-instalação, caso exista alguma que necessite fazer antes de instalar Debian. Normalmente isto envolve verificar e possivelmente alterar definições de BIOS/UEFI/firmware no seu sistema. A <span class="quote">“<span class="quote">BIOS/UEFI</span>”</span> ou o <span class="quote">“<span class="quote">firmware</span>”</span> do sistema é o software utilizado pelo hardware; é o mais crítico invocado durante o processo de arranque (depois de ligar). </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="boot-dev-select-arm64"></a>3.6.1. Seleção de Dispositivo Para Arranque</h3></div></div></div>
+<p>
+
+    </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm-firmware-overview"></a>3.6.2. Firmware ARM</h3></div></div></div>
+<p>Conforme já mencionado anteriormente, infelizmente não existe standard para o firmware de sistema nos sistemas ARM. Mesmo o comportamento de diferentes sistemas que normalmente utilizem o mesmo firmware pode ser bastante diferente. Isto resulta do facto que uma grande parte dos dispositivos que utilizam a arquitetura ARM são sistemas embebidos, para os quais os fabricantes utilizam versões de firmware altamente customizadas e que incluem patches específicos de dispositivos. Infelizmente os fabricantes muitas vezes não submetem as suas alterações e extensões de volta aos desenvolvedores de firmware mainline, por isso as suas alterações não são integradas em novas versões do firmware original. </p>
+<p>Como resultado, mesmo sistemas recentemente vendidos muitas vezes utilizam um firmware que é baseado numa versão com anos modificada pelo fabricante cujo código mainline do firmware entretanto evoluiu imenso e oferece funcionalidades adicionais ou apresenta comportamento diferente em certos aspetos. Além disso, o nome de dispositivos onboard não é consistente entre diferentes versões modificadas pelo fabricante do mesmo firmware, e por isso é quase impossível disponibilizar instruções utilizáveis que sejam independentes de produto para sistemas baseados em ARM. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="uboot-macsetting"></a>3.6.3. Definir o endereço MAC de ethernet em U-Boot</h3></div></div></div>
+<p>O endereço MAC de cada interface ethernet deve ser único globalmente, e tecnicamente tem que ser único dentro do domínio de broadcast ethernet. Para conseguir isto, o fabricante geralmente aloca um bloco de endereços MAC e partir de um conjunto administrado centralmente (para o qual é pago um valor) e pré-configurar um destes endereços em cada item vendido. </p>
+<p>No caso de placas de desenvolvimento, por vezes o fabricante quer evitar pagar esses valores e por isso não disponibiliza um endereço globalmente único. Nesses casos os próprios utilizadores têm de definir os endereços MAC para os seus sistemas. Quando não está definido um endereço MAC para um interface ethernet, alguns controladores de rede geram um endereço MAC aleatório que pode ser alterado em cada arranque, mas se isso acontecer, o acesso à rede será possível mesmo que o utilizador não defina manualmente o endereço, mas e.g. atribuir endereços IP semi-estáticos por DHCP baseados em endereços MAC do cliente que requisita obviamente não irá funcionar corretamente. </p>
+<p>Para evitar conflitos com endereços MAC atribuídos oficialmente, existe um conjunto de endereços que é reservado para os chamados endereços <span class="quote">“<span class="quote">administrados localmente</span>”</span>. É definido por um valor de dois bits específicos no primeiro byte do endereço (o artigo <span class="quote">“<span class="quote">MAC address</span>”</span> na Wikipedia em idioma Inglês dá uma boa explicação). Na prática isto significa que qualquer endereço começado pelo hexadecimal ca (tal como ca:ff:ee:12:34:56) pode ser utilizado como endereço administrado localmente. </p>
+<p>Em sistemas que utilizem U-Boot como firmware de sistema, o endereço MAC é colocado na variável de ambiente <span class="quote">“<span class="quote">ethaddr</span>”</span>. Pode ser verificado na linha de comandos do U-Boot com o comando <span class="quote">“<span class="quote">printenv ethaddr</span>”</span> e pode ser definido com o comando <span class="quote">“<span class="quote">setenv ethaddr ca:ff:ee:12:34:56</span>”</span>. Após definir o valor, o comando <span class="quote">“<span class="quote">saveenv</span>”</span> torna a atribuição permanente. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="uboot-relocation-issues"></a>3.6.4. Problemas de relocação do Kernel/Initrd/Device-tree no U-Boot</h3></div></div></div>
+<p>Em alguns sistemas com versões mais antigas do U-Boot podem haver problemas com a correta relocação do kernel Linux, do ramdisk inicial e do blob de device-tree em memória durante o processo de arranque. Neste caso, o U-Boot mostra a mensagem <span class="quote">“<span class="quote">Starting kernel ...</span>”</span>, mas o sistema congela de seguida sem mais qualquer saída. Estes problemas foram resolvidos com novas versões do U-Boot a partir da v2014.07. </p>
+<p>Se o sistema utilizou originalmente uma versão do U-Boot anterior à v2014.7 e foi posteriormente atualizado para uma versão mais recente, o problema pode ainda assim ocorrer mesmo após atualizar o U-Boot. A atualização do u-boot normalmente não altera as variáveis de ambiente existentes e a correção requer que seja definida uma variável de ambiente adicional (bootm_size), o que o U-Boot faz automaticamente apenas em novas instalações sem dados de ambiente. É possível definir manualmente bootm_size para a nova predefinição do U-Boot ao correr na linha de comandos o comando <span class="quote">“<span class="quote">env default bootm_size; saveenv</span>”</span>. </p>
+<p>Outra possibilidade de contornar os problemas relacionados com a relocação é correr o seguinte comando na linha de comandos do U-Boot <span class="quote">“<span class="quote">setenv fdt_high ffffffff; setenv iitrd_high 0xffffffff; saveenv</span>”</span> para desabilitar completamente a relocação do ramdisk inicial e do blob device-tree. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch03s05.html"><img src="images/prev.png" alt="Anterior"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch03.html"><img src="images/up.png" alt="Subir"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch04.html"><img src="images/next.png" alt="Próximo"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">3.5. Pré-Particionamento para sistemas Multi-Boot </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Início"></a></td>
+<td width="40%" align="right" valign="top"> Capítulo 4. Obter o Meio de Instalação do Sistema</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

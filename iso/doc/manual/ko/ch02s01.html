@@ -1,0 +1,214 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>2.1. 지원하는 하드웨어</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="데비안 GNU/리눅스 설치 안내서">
+<link rel="up" href="ch02.html" title="2장. 시스템 요구 사항">
+<link rel="prev" href="ch02.html" title="2장. 시스템 요구 사항">
+<link rel="next" href="ch02s02.html" title="2.2. 펌웨어가 필요한 장치">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">2.1. 지원하는 하드웨어</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch02.html"><img src="images/prev.png" alt="이전"></a> </td>
+<th width="60%" align="center">2장. 시스템 요구 사항</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch02s02.html"><img src="images/next.png" alt="다음"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="hardware-supported"></a>2.1. 지원하는 하드웨어</h2></div></div></div>
+<p>데비안은 Linux 및 kFreeBSD 커널과 GNU 툴셋을 쓰는데 필요한 것 외에는 특별한 하드웨어를 요구하지 않습니다. 그러므로 Linux 및 kFreeBSD 커널, libc, <span class="command"><strong>gcc</strong></span>등이 포팅되어 있고, 데비안 포팅이 존재하면 아키텍처나 플랫폼에서 데비안을 작동시킬 수 있습니다. 이미 데비안 GNU/리눅스에서 테스트되는 <span class="phrase">64-bit ARM</span> 아키텍처 시스템의 자세한 내용은 <a class="ulink" href="https://www.debian.org/ports/arm/" target="_top">https://www.debian.org/ports/arm/</a>에있는 포팅 페이지를 참조하십시오. </p>
+<p>여기서는 <span class="phrase">64-bit ARM</span> 아키텍처에서 지원하는 여러가지 하드웨어를 모두 설명하지는 않고, 일반적인 정보만 설명한 다음 추가 정보가 들어 있는 웹사이트를 안내해 놓았습니다. </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm186"></a>2.1.1. 지원하는 아키텍처</h3></div></div></div>
+<p>데비안 GNU/리눅스 12 릴리스는 9개의 주요 아키텍처와 <span class="quote">“<span class="quote">기종</span>”</span>이라는 각 아키텍처 변형을 지원합니다. </p>
+<p>
+
+</p>
+<div class="informaltable"><table class="informaltable" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>아키텍처</th>
+<th>데비안의 명칭</th>
+<th>서브 아키텍처</th>
+<th>기종</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>AMD64 및 인텔 64</td>
+<td>amd64</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td rowspan="2">인텔 x86 기반</td>
+<td rowspan="2">i386</td>
+<td>일반 x86 컴퓨터</td>
+<td>일반</td>
+</tr>
+<tr>
+<td>Xen PV 도메인 전용</td>
+<td>xen</td>
+</tr>
+<tr>
+<td>ARM</td>
+<td>armel</td>
+<td>Marvell Kirkwood and Orion</td>
+<td>marvell</td>
+</tr>
+<tr>
+<td>ARM, 하드웨어 FPU 포함</td>
+<td>armhf</td>
+<td>멀티플랫폼</td>
+<td>armmp</td>
+</tr>
+<tr>
+<td>64비트 ARM</td>
+<td>arm64</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td rowspan="3">64비트 MIPS (리틀 엔디안)</td>
+<td rowspan="3">mips64el</td>
+<td>MIPS Malta</td>
+<td>5kc-malta</td>
+</tr>
+<tr>
+<td>Cavium Octeon</td>
+<td>octeon</td>
+</tr>
+<tr>
+<td>Loongson 3</td>
+<td>loongson-3</td>
+</tr>
+<tr>
+<td rowspan="3">32비트 MIPS (리틀 엔디안)</td>
+<td rowspan="3">mipsel</td>
+<td>MIPS Malta</td>
+<td>4kc-malta</td>
+</tr>
+<tr>
+<td>Cavium Octeon</td>
+<td>octeon</td>
+</tr>
+<tr>
+<td>Loongson 3</td>
+<td>loongson-3</td>
+</tr>
+<tr>
+<td>Power Systems</td>
+<td>ppc64el</td>
+<td>IBM POWER8 또는 그 이후 시스템</td>
+<td> </td>
+</tr>
+<tr>
+<td>64비트 IBM S/390</td>
+<td>s390x</td>
+<td>VM-reader 및 DASD에서 IPL</td>
+<td>generic</td>
+</tr>
+</tbody>
+</table></div>
+<p>
+
+</p>
+<p>이 문서는 <span class="emphasis"><em>Linux</em></span>커널을 이용한 <span class="emphasis"><em><span class="phrase">64-bit ARM</span></em></span> 아키텍처에서의 설치를 다루고 있습니다. 데비안이 지원하는 다른 아키텍처에 관한 정보를 찾고있다면, <a class="ulink" href="http://www.debian.org/ports/" target="_top"> 데비안 포팅 </a> 페이지를 참조하십시오. </p>
+<p>이것은 <span class="phrase">64-bit ARM</span> 아키텍처 데비안 GNU/리눅스 첫 공식 릴리스입니다. 릴리스하려면 이미 충분히 안정되어 있다고 우리는 생각하고 있습니다. 하지만 아직 다른 아키텍처 버전만큼 널리 사용되지 않아(즉 사용자가 테스트도 많지 않다) 몇 가지 버그를 우연히 만날 가능성도 있습니다. 어떤 문제가 발생하면 <a class="ulink" href="https://bugs.debian.org/" target="_top">버그 추적 시스템</a>을 사용하여 보고하십시오. 그 때 그 버그가 <span class="emphasis"><em>Linux</em></span> 커널을 이용한 <span class="phrase">64-bit ARM</span> 플랫폼의 것임을 반드시 적어주세요. 또한 <a class="ulink" href="https://www.debian.org/MailingLists/subscribe" target="_top">debian-arm 메일링 리스트</a>의 가입도 필요할지도 모릅니다. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm271"></a>2.1.2. 3가지 ARM 포트</h3></div></div></div>
+<p>ARM 아키텍쳐는 발전해 왔고 현대적인 ARM 프로세서는 과거 모델에 없는 기능이 들어 있습니다. 그러므로 데비안에서는 다음 3가지 ARM 포트를 통해 여러가지 종류의 시스템을 최대한 지원합니다: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>데비안/armel은 오래된 32비트 ARM 프로세서로 하드웨어 부동 소수점 기능(FPU)이 없는 프로세서이고, </p></li>
+<li class="listitem"><p>데비안/armhf는 최소한 ARMv7 아키텍쳐를 구현하고 ARM vector floating point specification의 버전3를(VFPv3) 구현한 최근의 ARM 프로세서에서만 동작합니다. 이 모델의 프로세서에 들어 있는 확장된 기능을 사용하므로 성능이 높습니다. </p></li>
+<li class="listitem"><p>데비안/arm64는 최소한 ARMv8 아키텍쳐를 구현한 64비트 ARM 프로세서입니다. </p></li>
+</ul></div>
+<p>
+</p>
+<p>현재 사용 가능한 ARM CPU는 빅이든 리틀이든 둘 중 하나의 엔디안에서 동작하지만, 실제로 대부분은 리틀 엔디안에서 동작합니다. 데비안/arm64, 데비안/armhf, 데비안/armel도 리틀 엔디안 시스템만 지원합니다. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm282"></a>2.1.3. ARM CPU 설계의 다양함과 복잡한 지원</h3></div></div></div>
+<p>ARM 시스템은 i386/amd64 기반 PC 아키텍쳐보다 하드웨어가 훨씬 더 다른 점이 많습니다. 그러므로 지원에 복잡한 부분이 많이 있습니다. </p>
+<p>ARM 아키텍쳐는 <span class="quote">“<span class="quote">시스템온칩</span>”</span>(SoC, system on chip)에서 주로 사용합니다. 이 SoC는 여러 회사에서 여러가지 종류의 하드웨어를 집어넣도록 설계하고, 이 중에는 시스템이 부팅할 때 필요한 아주 기본적인 하드웨어도 있습니다. 시스템 펌웨어 인터페이스는 날이 갈수록 표준화가 되었지만, 오래 된 하드웨어의 경우 SoC마다 많이 다르지만, ARMv8(arm64)은 비교적 표준화되어 있기 때문에 리눅스 및 기타 소프트웨어가 지원하기 편리합니다. </p>
+<p>ARMv8 하드웨어의 서버 버전은 보통 UEFI(Unified Extensible Firmware Interface)와 ACPI(Advanced Configuration and Power Interface) 표준을 사용합니다. 이 두 가지에는 시스템 독립적으로 컴퓨터를 부팅하고 설정하는 방법을 제공합니다. x86 PC에서도 공통으로 사용합니다. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm64-supported-platforms"></a>2.1.4. 데비안/arm64가 지원하는 플랫폼</h3></div></div></div>
+<p>Arm64/AArch64/ARMv8 하드웨어는 데비안 Bookworm 릴리스에서 아주 늦게 사용할 수 있었으므로, 릴리스 시점에 메인라인 커널 버전에 통합된 플랫폼은 많지 않습니다. 커널에 들어 있어야 <code class="classname">debian-installer</code>가 동작합니다. 이 릴리스에서 다음 플랫폼이 데비안/arm64에서 지원된다고 알려져 있습니다. 커널 이미지는 하나만 있고, 열거된 모든 플랫폼을 지원합니다. </p>
+<div class="variablelist"><dl class="variablelist">
+<dt><span class="term">Applied Micro (APM) Mustang/X-Gene</span></dt>
+<dd><p>APM Mustang은 최초로 리눅스를 사용할 수 있었던 ARMv8 시스템입니다. 이 시스템은 X-gene SoC를 사용하고, X-gene SoC는 그 이후 다른 시스템에서도 사용되었습니다. X-gene SoC는 8코어 CPU로 이더넷, USB, 시리얼이 들어 있습니다. 폼팩터는 데스크톱 PC와 동일하지만, 앞으로 다른 버전이 나올 예정입니다. 대부분 하드웨어는 메인라인 커널에서 지원하지만, USB 지원은 Bookworm 커널에서 빠져 있습니다. </p></dd>
+<dt><span class="term">ARM Juno 개발 플랫폼</span></dt>
+<dd><p>Juno는 6코어 (2xA57, 4xA53) ARMv8-A 800 Mhz CPU, Mali (T624) 그래픽, 8GB DDR3 RAM, 이더넷, USB, 시리얼이 들어 있는 개발 보드입니다. 시스템 시작과 전원 테스트용으로 설계되었으므로 작지도 않고 싸지도 않지만, 처음 사용 가능한 보드 중 하나입니다. 보드에 들어 있는 모든 하드웨어를 메인라인 커널과 Bookworm에서 지원합니다. </p></dd>
+</dl></div>
+<p>이러한 UEFI가 아닌 시스템에서 <code class="classname">debian-installer</code>를 사용할 때, 설치가 끝날 때 시스템이 부팅 가능하도록 수동으로 설정해야 할 수도 있습니다. 예를 들어 <code class="classname">debian-installer</code>에서 시작한 셸에서 필요한 명령어를 실행하든지 해야 합니다. flash-kernel에서 U-Boot를 사용한 X-Gene 시스템 부팅을 설정할 수 있습니다. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="arm64-other-platforms"></a>2.1.4.1. 기타 플랫폼</h4></div></div></div>
+<p>arm64 리눅스 커널의 멀티플랫폼 기능을 사용하면 위 목록에 없는 arm64 시스템에서 <code class="classname">debian-installer</code>를 실행할 수도 있습니다. 단 <code class="classname">debian-installer</code>가 사용하는 커널에서 대상 시스템의 구성 요소 및 device-tree 파일을 사용할 수 있어야 합니다. 이 경우 일반적이라면 UEFI를 사용하는 한 설치가 완전히 동작하고, 시스템을 부팅 가능하게도 만듭니다. UEFI를 사용하지 않는다면, 부팅 가능하게 만드려고 수동으로 설정을 해야 할 수도 있습니다. </p>
+</div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm309"></a>2.1.5. 다중 프로세서</h3></div></div></div>
+<p>멀티 프로세서 지원(<span class="quote">“<span class="quote">SMP(symmetric multiprocessing, 대칭 멀티 프로세싱)</span>”</span>라고 부르는)은 이 아키텍처에 사용할 수 있습니다. 한 컴퓨터에서 여러 개의 프로세서를 사용하는 일은 원래는 고사양 서버 시스템에서만 일어나는 일이었지만, 최근에는 <span class="quote">“<span class="quote">멀티코어</span>”</span> 프로세서가 도입되면서 매우 일반적인 일이 되었습니다. 이런 프로세서에는 물리적인 칩 한 개에 두 개 이상의 <span class="quote">“<span class="quote">코어</span>”</span>라고 부르는 프로세서 유닛이 들어 있습니다. </p>
+<p>표준 데비안 12 커널 이미지에는 SMP 지원 기능이 컴파일되어 들어 있습니다. SMP가 아닌 시스템에서도 이 커널을 문제 없이 사용할 수 있습니다. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="gfx"></a>2.1.6. 그래픽 하드웨어 지원</h3></div></div></div>
+<p>데비안의 그래픽 장치 지원은 내부에 있는 X.Org의 X11 시스템과 커널이 얼마나 지원하느냐에 달려 있습니다. 데스크톱 환경은 X11을 사용하지만 기본적인 프레임버퍼 그래픽은 커널에 들어 있습니다. 3D 하드웨어 가속이나 동영상 가속 같은 기능이 있는 고급 그래픽 기능을 사용할 수 있느냐 여부는, 시스템의 실제 그래픽 하드웨어 및 필요에 따라 추가 <span class="quote">“<span class="quote">펌웨어</span>”</span> 파일의 설치에 따라(<a class="xref" href="ch02s02.html" title="2.2. 펌웨어가 필요한 장치">2.2절. “펌웨어가 필요한 장치”</a> 참고) 달라집니다. </p>
+<p>거의 모든 ARM 시스템에서는 그래픽 하드웨어를 별도 카드로 연결할 필요 없이 내장되어 있습니다. 일부 시스템에서는 그래픽 카드를 연결할 수 있는 확장 슬롯이 있지만 드문 경우입니다. 헤드리스 시스템의 경우 그래픽이 아예 없는 경우도 흔합니다. 기본적인 프레임버퍼 비디오는 그래픽이 있는 모든 장치에서 동작하지만, 3D 그래픽 가속은 변함없이 바이너리 드라이버가 필요합니다. 이러한 상황은 빠르게 개선되고 있지만, bookworm 릴리스 시점에서 nouveau (엔비디아 테그라 K1 SoC) 및 freedreno (퀄컴 스냅드래곤 SoC) 드라이버만 릴리스에 들어 있습니다. 기타 하드웨어는 서드 파티에서 만든 독점 드라이버가 별도로 필요합니다. </p>
+<p>지원하는 그래픽 하드웨어와 포인팅 장치에 대한 자세한 내용은 <a class="ulink" href="https://wiki.freedesktop.org/xorg/" target="_top">https://wiki.freedesktop.org/xorg/</a>를 참조하십시오. 또 데비안 12는 X.Org 7.7 버전이 들어 있습니다. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="network-cards"></a>2.1.7. 네트워크 연결 하드웨어</h3></div></div></div>
+<p>Linux 커널이 지원하는 네트워크 인터페이스 카드(NIC)는 모두 설치 시스템에서도 지원합니다. 드라이버 모듈은 일반적으로 자동으로 로드됩니다.   </p>
+<p>대부분의 내장 이더넷 장치를 지원하고 일부 PCI 및 USB 장치에 대해서는 모듈이 들어 있습니다. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="supported-peripherals"></a>2.1.8. 주변 장치 및 기타 하드웨어</h3></div></div></div>
+<p>Linux는 마우스, 프린터, 스캐너, PCMCIA/CardBus/ExpressCard 및 USB 장치와 같은 다양한 하드웨어에 폭넓게 대응하고 있습니다. 하지만 시스템을 설치할 때 이 장치가 필요하지는 않습니다. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch02.html"><img src="images/prev.png" alt="이전"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch02.html"><img src="images/up.png" alt="위로"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch02s02.html"><img src="images/next.png" alt="다음"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">2장. 시스템 요구 사항 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="처음으로"></a></td>
+<td width="40%" align="right" valign="top"> 2.2. 펌웨어가 필요한 장치</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

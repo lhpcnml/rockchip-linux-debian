@@ -1,0 +1,214 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>2.1. Componente electronice compatibile (plăci și dispozitive)</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux - Ghid de instalare">
+<link rel="up" href="ch02.html" title="Cap. 2. Cerințele sistemului de operare">
+<link rel="prev" href="ch02.html" title="Cap. 2. Cerințele sistemului de operare">
+<link rel="next" href="ch02s02.html" title="2.2. Dispozitive care necesită firmware">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">2.1. Componente electronice compatibile (plăci și dispozitive)</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch02.html"><img src="images/prev.png" alt="Înapoi"></a> </td>
+<th width="60%" align="center">Cap. 2. Cerințele sistemului de operare</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch02s02.html"><img src="images/next.png" alt="Înainte"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="hardware-supported"></a>2.1. Componente electronice compatibile (plăci și dispozitive)</h2></div></div></div>
+<p>Debian nu impune cerințe de componente electronice (plăci și dispozitive) dincolo de cerințele nucleului Linux sau kFreeBSD și ale setului de instrumente GNU. Prin urmare, orice arhitectură sau platformă la care au fost adaptate nucleul Linux sau kFreeBSD, libc, <span class="command"><strong>gcc</strong></span> etc. și pentru care o adaptare Debian există, poate rula Debian. Vă rugăm să consultați paginile de adaptări de la <a class="ulink" href="https://www.debian.org/ports/arm/" target="_top">https://www.debian.org/ports/arm/</a> pentru mai multe detalii despre <span class="phrase">64-bit ARM</span> sisteme de arhitectură care au fost testate cu Debian GNU/Linux. </p>
+<p>În loc să încerce să descrie toate configurațiile de componente electronice diferite care sunt compatibile cu <span class="phrase">64-bit ARM</span>, această secțiune conține informații generale și indicații către unde pot fi găsite informații suplimentare. </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm188"></a>2.1.1. Arhitecturi compatibile</h3></div></div></div>
+<p>Debian GNU/Linux 12 funcționează pe 9 arhitecturi principale și mai multe variante ale fiecărei arhitecturi cunoscute sub numele de <span class="quote">„<span class="quote">savori</span>”</span>. </p>
+<p>
+
+</p>
+<div class="informaltable"><table class="informaltable" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Arhitectura</th>
+<th>Denumirea în Debian</th>
+<th>Subarhitectura</th>
+<th>Savoare</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>AMD64 și Intel 64</td>
+<td>amd64</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td rowspan="2">Bazată pe Intel x86</td>
+<td rowspan="2">i386</td>
+<td>mașini x86 implicite</td>
+<td>varianta implicită</td>
+</tr>
+<tr>
+<td>numai domenii Xen PV</td>
+<td>xen</td>
+</tr>
+<tr>
+<td>ARM</td>
+<td>armel</td>
+<td>Marvell Kirkwood și Orion</td>
+<td>marvell</td>
+</tr>
+<tr>
+<td>ARM cu componente FPU</td>
+<td>armhf</td>
+<td>multiplatformă</td>
+<td>armmp</td>
+</tr>
+<tr>
+<td>ARM pe 64 de biți</td>
+<td>arm64</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td rowspan="3">MIPS pe 64 de biți (little-endian)</td>
+<td rowspan="3">mips64el</td>
+<td>MIPS Malta</td>
+<td>5kc-malta</td>
+</tr>
+<tr>
+<td>Cavium Octeon</td>
+<td>octeon</td>
+</tr>
+<tr>
+<td>Loongson 3</td>
+<td>loongson-3</td>
+</tr>
+<tr>
+<td rowspan="3">MIPS pe 32 de biți (little-endian)</td>
+<td rowspan="3">mipsel</td>
+<td>MIPS Malta</td>
+<td>4kc-malta</td>
+</tr>
+<tr>
+<td>Cavium Octeon</td>
+<td>octeon</td>
+</tr>
+<tr>
+<td>Loongson 3</td>
+<td>loongson-3</td>
+</tr>
+<tr>
+<td>Power Systems</td>
+<td>ppc64el</td>
+<td>mașini IBM POWER8 sau mai noi</td>
+<td> </td>
+</tr>
+<tr>
+<td>IBM S/390 pe 64 de biți</td>
+<td>s390x</td>
+<td>IPL de la VM-reader (lectorul de mașină virtuală) și DASD (accesul direct la dispozitivul de stocare)</td>
+<td>generic</td>
+</tr>
+</tbody>
+</table></div>
+<p>
+
+</p>
+<p>Acest document acoperă instalarea pentru arhitectura <span class="emphasis"><em><span class="phrase">64-bit ARM</span></em></span> folosind nucleul <span class="emphasis"><em>Linux</em></span>. Dacă căutați informații despre oricare dintre celelalte arhitecturi compatibile cu Debian, aruncați o privire la paginile <a class="ulink" href="http://www.debian.org/ports/" target="_top">Adaptările de Debian</a>. </p>
+<p>Aceasta este prima versiune oficială a Debian GNU/Linux pentru arhitectura <span class="phrase">64-bit ARM</span>. Considerăm că s-a probat suficient pentru a fi făcută public. Cu toate acestea, deoarece nu a avut expunerea (și, prin urmare, testarea de către utilizatori) pe care au avut-o alte arhitecturi, este posibil să întâlniți câteva erori. Utilizați <a class="ulink" href="https://bugs.debian.org/" target="_top">Sistemul nostru de urmărire a erorilor</a> pentru a raporta orice problemă; asigurați-vă că menționați faptul că eroarea se află pe <span class="phrase">64-bit ARM</span> platforma folosind nucleul <span class="emphasis"><em>Linux</em></span>. Poate fi necesar să folosiți, de asemenea lista de corespondență <a class="ulink" href="https://www.debian.org/MailingLists/subscribe" target="_top">debian-arm</a>. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm273"></a>2.1.2. Trei adaptări ARM diferite</h3></div></div></div>
+<p>Arhitectura ARM a evoluat de-a lungul timpului, iar procesoarele ARM moderne oferă caracteristici care nu sunt disponibile la modelele mai vechi. Debian prin urmare, oferă trei adaptări ARM pentru a oferi cel mai bun suport pentru o gamă foarte largă de mașini diferite: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>Debian/armel vizează procesoarele ARM mai vechi pe 32 de biți fără suport pentru o unitate în virgulă mobilă la nivel de hardware (FPU), </p></li>
+<li class="listitem"><p>Debian/armhf funcționează numai pe procesoare ARM mai noi pe 32 de biți care implementează cel puțin arhitectura ARMv7 cu versiunea 3 a specificației vectorului ARM în virgulă mobilă (VFPv3). Utilizează funcțiile extinse și îmbunătățirile de performanță disponibile pentru aceste modele. </p></li>
+<li class="listitem"><p>Debian/arm64 funcționează pe procesoare ARM pe 64 de biți care implementează cel puțin arhitectura ARMv8. </p></li>
+</ul></div>
+<p>
+</p>
+<p>Din punct de vedere tehnic, toate procesoarele ARM disponibile în prezent pot fi rulate fie în modul endian („big” sau „little”), dar în practică marea majoritate utilizează modul „little-endian”. Toate sistemele Debian/arm64, Debian/armhf și Debian/armel funcționează numai în modul „little-endian”. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm284"></a>2.1.3. Variațiile în proiectarea procesoarelor ARM și complexitatea suportului</h3></div></div></div>
+<p>Sistemele ARM sunt mult mai eterogene decât cele bazate pe arhitectura PC bazată pe i386/amd64, astfel încât situația de suport poate fi mult mai complicată. </p>
+<p>Arhitectura ARM este folosită în principal în așa-numitele <span class="quote">„<span class="quote">sisteme pe cip (system-on-chip)</span>”</span> (SoC). Aceste SoC-uri sunt proiectate de multe companii diferite cu componente hardware foarte variate, chiar și pentru funcționalitățile elementare necesare pentru a porni sistemul. Versiunile mai vechi ale arhitecturii ARM au experimentat diferențe masive de la un SoC la altul, dar ARMv8 (arm64) este mult mai standardizat și, prin urmare, este mai ușor de suportat pentru nucleul Linux și pentru alte software-uri. </p>
+<p>Versiunile de server ale sistemului ARMv8 sunt de obicei configurate folosind standardele Interfață de firmware extensibilă unificată (Unified Extensible Firmware Interface: <span class="quote">„<span class="quote">UEFI)</span>”</span> și Interfață de alimentare și configurare avansată (Advanced Configuration and Power Interface: <span class="quote">„<span class="quote">ACPI</span>”</span>). Acestea două oferă modalități comune, independente de dispozitiv, de a porni și configura componentele calculatorului. Ele sunt, de asemenea, comune în lumea PC-urilor x86. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm64-supported-platforms"></a>2.1.4. Platforme compatibile cu Debian/arm64</h3></div></div></div>
+<p>Procesorul Arm64/AArch64/ARMv8 a devenit disponibil destul de târziu în ciclul de lansare Debian Bookworm, așa că nu multe platforme aveau suport integrat în versiunea principală a nucleului până la momentul acestei lansări; aceasta este principala cerință pentru a avea <code class="classname">debian-installer</code> lucrând pe ele. Se știe că următoarele platforme sunt compatibile cu Debian/arm64 în această versiune. Există o singură imagine de nucleul, care acceptă toate platformele enumerate. </p>
+<div class="variablelist"><dl class="variablelist">
+<dt><span class="term">Applied Micro (APM) Mustang/X-Gene</span></dt>
+<dd><p>Sistemul APM Mustang a fost primul sistem ARMv8 disponibil compatibil cu Linux Folosește SoC-ul X-gene, care de atunci a fost folosit și în alte mașini. Este un procesor cu 8 nuclee, cu Ethernet, USB și port serie. Un factor de formă comun îl face să arate exact ca un calculator de birou, dar sunt așteptate multe alte versiuni în viitor. Majoritatea componentelor au asigurat suportul necesar în nucleul ramurii principale, dar în acest moment suportul USB lipsește în nucleul Bookworm. </p></dd>
+<dt><span class="term">Platforma de dezvoltare ARM Juno</span></dt>
+<dd><p>Juno este o placă de dezvoltare foarte avansată, echipată cu un procesor ARMv8-A 800Mhz cu 6 nuclee (2xA57, 4xA53), procesor grafic Mali (T624), 8Go RAM DDR3, Ethernet, USB, port serie. A fost concepută pentru actualizarea acestui sistem și testarea capacității acestuia, așa că nu este nici mică, nici ieftină, dar a fost una dintre primele plăci disponibile. Toate componentele integrate au suportul asigurat în nucleul ramurii principale și în Bookworm. </p></dd>
+</dl></div>
+<p>Când utilizați <code class="classname">debian-installer</code> pe sistemele non-UEFI, poate fi necesar să faceți manual sistemul să fie capabil să pornească la sfârșitul instalării; de exemplu, prin rularea comenzilor necesare într-un shell pornit din <code class="classname">debian-installer</code>. Nucleul-flash știe cum să configureze un sistem X-Gene care pornește cu U-Boot. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="arm64-other-platforms"></a>2.1.4.1. Alte platforme</h4></div></div></div>
+<p>Suportul multiplatformă din nucleul Linux arm64 poate permite, de asemenea, rularea <code class="classname">debian-installer</code> pe sistemele arm64 care nu sunt enumerate în mod explicit mai sus. Atâta timp cât nucleul folosit de <code class="classname">debian-installer</code> are suport pentru componentele sistemului țintă și este disponibil un fișier de arbore de dispozitive pentru acea țintă, un nou sistem țintă poate funcționa bine. În aceste cazuri, programul de instalare poate oferi de obicei o instalare funcțională și, atâta timp cât UEFI este în uz, ar trebui să poată face și ca sistemul să poată fi pornit. Dacă UEFI nu este utilizat, este posibil să fie necesar să efectuați câțiva pași de configurare manuală pentru ca sistemul să poată fi pornit. </p>
+</div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm313"></a>2.1.5. Procesoare multiple</h3></div></div></div>
+<p>Suportul pentru multiprocesoare — numit și multiprocesare simetrică <span class="quote">„<span class="quote">symmetric multiprocessing</span>”</span> sau SMP — este disponibil pentru această arhitectură. Prezența a mai multor procesoare într-un singur calculator a fost inițial doar o caracteristică pentru sistemele de servere de înalt nivel, dar a devenit comună în ultimii ani aproape peste tot odată cu introducerea așa-numitelor procesoare multi-nucleu <span class="quote">„<span class="quote">multi-core</span>”</span>. Acestea conțin două sau mai multe unități de procesor, numite nuclee <span class="quote">„<span class="quote">cores</span>”</span>, într-un singur cip fizic. </p>
+<p>Imaginea nucleului standard al Debian 12 a fost compilată cu suport SMP. De asemenea, se poate utiliza fără probleme pe sisteme non-SMP. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="gfx"></a>2.1.6. Suportul pentru plăcile grafice</h3></div></div></div>
+<p>Suportul Debian pentru interfețele grafice este determinat de suportul subiacent găsit în sistemul X11 al X.Org și în nucleu. Grafica framebuffer de bază este furnizată de nucleu, în timp ce mediile de birou folosesc X11. Dacă sunt disponibile funcții avansate ale plăcii grafice, cum ar fi accelerarea în 3D a plăcii (3D-hardware acceleration) sau video accelerat de componentele plăcii (hardware-accelerated video), depinde de placa grafică reală utilizată în sistem și, în unele cazuri, de instalarea de blocuri <span class="quote">„<span class="quote">firmware</span>”</span> suplimentare (consultați <a class="xref" href="ch02s02.html" title="2.2. Dispozitive care necesită firmware">Secțiune 2.2, „Dispozitive care necesită firmware”</a>). </p>
+<p>Aproape toate mașinile ARM au placa grafică încorporată în placa bază, mai degrabă decât să fie pe o placă conectabilă. Unele mașini au sloturi de expansiune pentru conectarea dei plăci grafice, dar aceasta este o raritate. Dispozitive concepute pentru a fi fără ecran și fără grafică sunt destul de comune. În timp ce suportul de bază pentru framebuffer-ul video furnizat de nucleu ar trebui să funcționeze pe toate dispozitivele care au placă grafică, accelerarea 3D are invariabil nevoie de controlori binari pentru a funcționa. Situația se schimbă rapid, dar în momentul lansării bookworm controlorii liberi pentru „nouveau” (Nvidia Tegra K1 SoC) și „freedreno” (SoC-urile Qualcomm Snapdragon) sunt disponibile în această versiune. Alte dispozitive necesită controlori care nu sunt liberi de la terțe părți. </p>
+<p>Detalii despre plăcile grafice și dispozitivele de indicare acceptate pot fi găsite la <a class="ulink" href="https://wiki.freedesktop.org/xorg/" target="_top">https://wiki.freedesktop.org/xorg/</a>. Debian 12 include X.Org versiunea 7.7. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="network-cards"></a>2.1.7. Plăci de conectare la rețea</h3></div></div></div>
+<p>Aproape orice placă de interfață de rețea (Network Interface Card: NIC) acceptată de nucleul Linux ar trebui să fie acceptată și de sistemul de instalare; controlorii ar trebui să fie în mod normal încărcați automat.   </p>
+<p>Pe <span class="phrase">64-bit ARM</span>, majoritatea dispozitivelor Ethernet încorporate sunt acceptate și sunt furnizate module pentru dispozitive PCI și USB suplimentare. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="supported-peripherals"></a>2.1.8. Periferice și alte dispozitive</h3></div></div></div>
+<p>Linux oferă suport pentru o mare varietate de dispozitive, cum ar fi mouse-uri, imprimante, scanere, PCMCIA/CardBus/ExpressCard și dispozitive USB. Cu toate acestea, majoritatea acestor dispozitive nu sunt necesare în timpul instalării sistemului. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch02.html"><img src="images/prev.png" alt="Înapoi"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch02.html"><img src="images/up.png" alt="Sus"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch02s02.html"><img src="images/next.png" alt="Înainte"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Cap. 2. Cerințele sistemului de operare </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Acasă"></a></td>
+<td width="40%" align="right" valign="top"> 2.2. Dispozitive care necesită firmware</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>2.1. サポートするハードウェア</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux インストールガイド">
+<link rel="up" href="ch02.html" title="第2章 必要なシステム">
+<link rel="prev" href="ch02.html" title="第2章 必要なシステム">
+<link rel="next" href="ch02s02.html" title="2.2. ファームウェアが必要なデバイス">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">2.1. サポートするハードウェア</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch02.html"><img src="images/prev.png" alt="戻る"></a> </td>
+<th width="60%" align="center">第2章 必要なシステム</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch02s02.html"><img src="images/next.png" alt="次へ"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="hardware-supported"></a>2.1. サポートするハードウェア</h2></div></div></div>
+<p>Debian は、Linux・kFreeBSD カーネルや GNU ツールセットが必要とする以上のハードウェアを要求しません。それゆえ、Linux・kFreeBSD カーネル、libc、<span class="command"><strong>gcc</strong></span> などが移植されていて、Debian の移植版が存在すれば、どんなアーキテクチャや プラットフォームでも Debian を動作させることができます。すでに Debian GNU/Linux でテストされている <span class="phrase">64-bit ARM</span> アーキテクチャシステムの詳細は、 <a class="ulink" href="https://www.debian.org/ports/arm/" target="_top">https://www.debian.org/ports/arm/</a> にある移植版のページを参照してください。 </p>
+<p>この節では、<span class="phrase">64-bit ARM</span> でサポートされるハードウェアの様々な設定のすべてに触れることは避け、一般的な情報とさらなる情報が見つけられる場所へのポインタを紹介します。 </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm190"></a>2.1.1. サポートするアーキテクチャ</h3></div></div></div>
+<p>Debian GNU/Linux 12 は 9 の主要なアーキテクチャと、<span class="quote">「<span class="quote">フレーバー</span>」</span>と呼ばれる各アーキテクチャのバリエーションをサポートしています。 </p>
+<p>
+
+</p>
+<div class="informaltable"><table class="informaltable" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>アーキテクチャ</th>
+<th>Debian での名称</th>
+<th>サブアーキテクチャ</th>
+<th>フレーバー</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>AMD64 &amp; Intel 64</td>
+<td>amd64</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td rowspan="2">Intel x86 ベース</td>
+<td rowspan="2">i386</td>
+<td>デフォルトの x86 マシン</td>
+<td>デフォルト</td>
+</tr>
+<tr>
+<td>Xen PV ドメインのみ</td>
+<td>xen</td>
+</tr>
+<tr>
+<td>ARM</td>
+<td>armel</td>
+<td>Marvell Kirkwood 及び Orion</td>
+<td>marvell</td>
+</tr>
+<tr>
+<td>ハードウェア FPU がある ARM</td>
+<td>armhf</td>
+<td>複数プラットフォーム対応</td>
+<td>armmp</td>
+</tr>
+<tr>
+<td>64bit ARM</td>
+<td>arm64</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td rowspan="3">64bit MIPS (リトルエンディアン)</td>
+<td rowspan="3">mips64el</td>
+<td>MIPS Malta</td>
+<td>5kc-malta</td>
+</tr>
+<tr>
+<td>Cavium Octeon</td>
+<td>octeon</td>
+</tr>
+<tr>
+<td>Loongson 3</td>
+<td>loongson-3</td>
+</tr>
+<tr>
+<td rowspan="3">32bit MIPS (リトルエンディアン)</td>
+<td rowspan="3">mipsel</td>
+<td>MIPS Malta</td>
+<td>4kc-malta</td>
+</tr>
+<tr>
+<td>Cavium Octeon</td>
+<td>octeon</td>
+</tr>
+<tr>
+<td>Loongson 3</td>
+<td>loongson-3</td>
+</tr>
+<tr>
+<td>Power Systems</td>
+<td>ppc64el</td>
+<td>IBM POWER8 以降のマシン</td>
+<td> </td>
+</tr>
+<tr>
+<td>64bit IBM S/390</td>
+<td>s390x</td>
+<td>VM-reader や DASD からの IPL</td>
+<td>generic</td>
+</tr>
+</tbody>
+</table></div>
+<p>
+
+</p>
+<p>この文書は <span class="emphasis"><em>Linux</em></span> カーネルを用いた <span class="emphasis"><em><span class="phrase">64-bit ARM</span></em></span> アーキテクチャへのインストールを扱います。Debian がサポートしている他のアーキテクチャに関する情報を探しているなら、<a class="ulink" href="http://www.debian.org/ports/" target="_top">Debian 移植版</a> のページをご覧ください。 </p>
+<p>これは <span class="phrase">64-bit ARM</span> アーキテクチャ用 Debian GNU/Linux の初公式リリースです。すでにリリースとするに充分安定していると私たちは考えています。しかし、まだ他のアーキテクチャ版ほど広く使われていない (つまりユーザによるテストも多くない) ことから、いくつかのバグにでくわす可能性もあります。何か問題が起きたら、<a class="ulink" href="https://bugs.debian.org/" target="_top">バグ追跡システム</a> を使って報告してください。その際、そのバグが、<span class="emphasis"><em>Linux</em></span> カーネルを用いた <span class="phrase">64-bit ARM</span> プラットフォーム上のものであることを必ず書き添えてください。また <a class="ulink" href="https://www.debian.org/MailingLists/subscribe" target="_top">debian-arm メーリングリスト</a> の購読も必要かもしれません。 </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm275"></a>2.1.2. 3つの異なるARM移植版</h3></div></div></div>
+<p>ARMアーキテクチャは時間とともに進化し、今のARMプロセッサでは旧型では利用できなかった機能を提供しています。Debian ではそのため、幅広い種類のマシンを可能な限りサポートできるように3つのARM移植版を提供しています: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>Debian/armel はハードウェア浮動小数点演算ユニット (FPU) をサポートしない、古い32ビットのARMプロセッサを対象としています。 </p></li>
+<li class="listitem"><p>Debian/armhf は最低でも ARMv7 アーキテクチャにARMベクトル浮動小数点演算仕様のバージョン3 (VFPv3) を実装した新しい32ビットのARMプロセッサでのみ動作します。Debian/armhf ではそういったモデルで拡張された機能や性能拡張を利用するようになっています。 </p></li>
+<li class="listitem"><p>Debian/arm64 は ARMv8 以降のアーキテクチャを実装する64ビットのARMプロセッサで動作します。 </p></li>
+</ul></div>
+<p>
+</p>
+<p>現在利用できる CPU は全て、技術的に (ビッグ、リトルの) どちらのエンディアンモードでも動作します。しかし、大多数のシステム実装では、リトルエンディアンモードを使用します。Debian/arm64 や Debian/armhf、Debian/armel はどれもリトルエンディアン ARM システムのみサポートします。 </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm286"></a>2.1.3. ARM CPU の設計のばらつきとそのサポートの複雑さ</h3></div></div></div>
+<p>ARMシステムは i386/amd64 ベースのPCアーキテクチャと比べてかなり異質なので、サポート状況ははるかに複雑になります。 </p>
+<p>ARMアーキテクチャはいわゆる <span class="quote">「<span class="quote">systems-on-chip</span>」</span> (SoC) で主に利用されています。こういったSoCは多くの様々な企業により設計され、そのハードウェアの構成要素はシステムの起動に必要となるような非常に基本的な機能までが非常に様々です。古いARMアーキテクチャでは、あるSoCからその後継機の間でも大規模に変更されることがありました。しかし ARMv8 (arm64) では標準化が大きく進み、Linux カーネルやその他のソフトウェアのサポートが容易になっています。 </p>
+<p>サーバ版の ARMv8 ハードウェアは通常、Unified Extensible Firmware Interface (UEFI) 及び Advanced Configuration and Power Interface (ACPI) 標準を使って設定されます。この2つにより、一般的で機器に依存しない方法でコンピュータハードウェアをブート、設定できるようになります。これは x86 PC の世界でも共通しています。 </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm64-supported-platforms"></a>2.1.4. Debian/arm64 によりサポートされているプラットフォーム</h3></div></div></div>
+<p>Arm64/AArch64/ARMv8 ハードウェアは Debian Bookworm リリースサイクルのかなり終盤になって利用できるようになったため、このリリース時点までの主流側カーネルのバージョンでサポートがマージされているプラットフォームはあまり多くありません。これは <code class="classname">debian-installer</code> を使えるようにするための大きな要件なのです。以下のプラットフォームはこのリリースの Debian/arm64 でサポートされていることがわかっています。挙げられているプラットフォームは全て、ただ一つのカーネルイメージでサポートします。 </p>
+<div class="variablelist"><dl class="variablelist">
+<dt><span class="term">Applied Micro (APM) Mustang/X-Gene</span></dt>
+<dd><p>APM Mustang は Linux が動作する最初に利用可能となった ARMv8 システムでした。X-gene SoC を採用で、これはその後他のマシンでも採用されました。8コア CPU、イーサネット、USB、シリアルポートを搭載します。共通フォームファクターはデスクトップPC用と酷似していますが、別バージョンが今後多数出てくることが期待されます。ハードウェアはほとんどが主流側カーネルでサポートされていますが、Bookworm のカーネルでは現時点でUSBのサポートが欠けています。 </p></dd>
+<dt><span class="term">ARM Juno Development Platform</span></dt>
+<dd><p>Juno は 6コア (2xA57, 4xA53) ARMv8-A 800Mhz CPU、Mali (T624) グラフィック、8GB DDR3 RAM、イーサネット、USB、シリアルポートを搭載する高性能開発用ボードです。システムの提示や電力テスト向けに設計されたため、小型でもなく安価でもありませんが、最初に利用できるようになったボードの一つです。オンボードのハードウェアは全て主流側カーネル及び Bookworm でサポートされています。 </p></dd>
+</dl></div>
+<p>非 UEFI システムで <code class="classname">debian-installer</code> を利用している場合は、例えば <code class="classname">debian-installer</code> から起動したシェルで必要なコマンドを実行する等、インストールの最後に手作業でシステムをブート可能にしないといけないかもしれません。flash-kernel は U-Boot でブートする X-Gene システムの段取りを知っています。 </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="arm64-other-platforms"></a>2.1.4.1. 他のプラットフォーム:</h4></div></div></div>
+<p>arm64 Linux カーネルの複数プラットフォームサポートにより、上記に明記されていない arm64 システムでも <code class="classname">debian-installer</code> を実行できるかもしれません。<code class="classname">debian-installer</code> により利用されるカーネルで対象システムの構成要素をサポートしていて、対象システムのデバイスツリーファイルが利用可能であれば、新しい対象システムでも普通に動作するかもしれません。その場合は通常、インストーラによってインストールした後も機能するため、UEFI を利用している場合は同様にシステムをブート可能にできるはずです。UEFI を利用していない場合は、システムをブート可能にするために何らかのマニュアル設定を行う必要があるかもしれません。 </p>
+</div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm313"></a>2.1.5. マルチプロセッサ</h3></div></div></div>
+<p>このアーキテクチャでは、マルチプロセッササポート (<span class="quote">「<span class="quote">対称型マルチプロセッシング</span>」</span> や SMP とも呼ばれる) が利用できます。もともと、複数のプロセッサがあるコンピュータは、ハイエンドサーバシステムのみのものでしたが、近年では<span class="quote">「<span class="quote">マルチコア</span>」</span>と呼ばれるプロセッサの登場により、どこでも当たり前のものになりました。これには、1 つの物理的なチップに、<span class="quote">「<span class="quote">コア</span>」</span>と呼ばれる複数のプロセッサユニットが搭載されています。 </p>
+<p>標準の Debian 12 カーネルイメージは、SMP をサポートしてコンパイルされています。非 SMP システムでも、問題なく動作します。 </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="gfx"></a>2.1.6. グラフィックハードウェアのサポート</h3></div></div></div>
+<p>Debian のグラフィカルインターフェースのサポートは、X.Org による X11 システムやカーネルでサポートされているかどうかで決まります。デスクトップ環境は X11 を利用するのに対し、基本的なフレームバッファのグラフィックはカーネルにより提供されます。3D ハードウェアアクセラレーションやハードウェアアクセラーションビデオといった、高性能なグラフィックカードの機能が有効かどうかは、システムで使用する実際のグラフィックハードウェアと、ある状況下では、追加 <span class="quote">「<span class="quote">ファームウェア</span>」</span> ファイルのインストール (<a class="xref" href="ch02s02.html" title="2.2. ファームウェアが必要なデバイス">「ファームウェアが必要なデバイス」</a> 参照) に依存します。 </p>
+<p>ほぼ全てのARMマシンがグラフィックハードウェアを、プラグインカードに依らず組み込みで持っています。グラフィックカードを増設できる拡張スロットを備えるマシンはありますが、それは希少です。グラフィックを一切持たないヘッドレス設計のハードウェアがかなり一般的です。カーネルにより提供される基本的なフレームバッファのビデオはグラフィックを備えた機器であればどれでも使えるはずですが、高速 3D グラフィックを使うためにはバイナリドライバが必ず必要です。状況は刻々と変わりますが、bookworm のリリース時点では nouveau (Nvidia Tegra K1 の SoC) 及び freedreno (Qualcomm Snapdragon の SoC) 用のフリードライバがこのリリースで利用できるようになっています。他のハードウェアではサードパーティの non-free ドライバが必要です。 </p>
+<p>サポートされているグラフィックハードウェアやポインティングデバイスに関する、より詳細な情報は <a class="ulink" href="https://wiki.freedesktop.org/xorg/" target="_top">https://wiki.freedesktop.org/xorg/</a> にあります。Debian 12 は X.Org バージョン 7.7 を採用しています。 </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="network-cards"></a>2.1.7. ネットワーク接続機器</h3></div></div></div>
+<p>Linux カーネルがサポートしているネットワークインターフェースカード (NIC) なら、インストールシステムでもほとんどサポートしています。ドライバモジュールは、通常自動的に読み込まれます。  </p>
+<p><span class="phrase">64-bit ARM</span> では、ほとんどの内蔵イーサネットデバイスをサポートしており、追加 PCI デバイスや、USB デバイスのモジュールを提供しています。 </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="supported-peripherals"></a>2.1.8. 周辺機器やその他のハードウェア</h3></div></div></div>
+<p>Linux は、マウス、プリンタ、スキャナ、PCMCIA/CardBus/ExpressCard、USB デバイスなどの様々なハードウェアに幅広く対応しています。しかし、システムのインストールに、これらのデバイスが必要なわけではありません。 </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch02.html"><img src="images/prev.png" alt="戻る"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch02.html"><img src="images/up.png" alt="上に戻る"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch02s02.html"><img src="images/next.png" alt="次へ"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">第2章 必要なシステム </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="ホーム"></a></td>
+<td width="40%" align="right" valign="top"> 2.2. ファームウェアが必要なデバイス</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

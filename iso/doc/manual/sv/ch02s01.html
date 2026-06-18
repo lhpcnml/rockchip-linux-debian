@@ -1,0 +1,214 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>2.1. Maskinvara som stöds</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux Installationsguide">
+<link rel="up" href="ch02.html" title="Kapitel 2. Systemkrav">
+<link rel="prev" href="ch02.html" title="Kapitel 2. Systemkrav">
+<link rel="next" href="ch02s02.html" title="2.2. Enheter som kräver fast programvara">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">2.1. Maskinvara som stöds</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch02.html"><img src="images/prev.png" alt="Föregående"></a> </td>
+<th width="60%" align="center">Kapitel 2. Systemkrav</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch02s02.html"><img src="images/next.png" alt="Nästa"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="hardware-supported"></a>2.1. Maskinvara som stöds</h2></div></div></div>
+<p>Debian ställer inga maskinvarukrav utöver kraven ställda för Linux- eller kFreeBSD-kärnan och GNU:s verktyg. Därför kan alla arkitekturer eller plattformar till vilka Linuxkärnan, libc, <span class="command"><strong>gcc</strong></span> och så vidare, blivit porterade, och för vilken en portering till Debian finns, köra Debian. Referera till ports-sidorna på <a class="ulink" href="https://www.debian.org/ports/arm/" target="_top">https://www.debian.org/ports/arm/</a> för mera detaljer om <span class="phrase">64-bit ARM</span>-arkitektursystem som har blivit testade med Debian GNU/Linux. </p>
+<p>Hellre än att försöka att beskriva alla de olika maskinvarukonfigurationerna som finns stöd för i <span class="phrase">64-bit ARM</span> innehåller det här avsnittet allmän information och pekar till källor för ytterligare information. </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm195"></a>2.1.1. Arkitekturer som stöds</h3></div></div></div>
+<p>Debian GNU/Linux 12 har stöd för 9 större arkitekturer och ett flertal variationer av varje arkitektur kända som <span class="quote">”<span class="quote">varianter</span>”</span>. </p>
+<p>
+
+</p>
+<div class="informaltable"><table class="informaltable" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Arkitektur</th>
+<th>Debian-beteckning</th>
+<th>Underarkitektur</th>
+<th>Variant</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>AMD64 &amp; Intel 64</td>
+<td>amd64</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td rowspan="2">Intel x86-baserad</td>
+<td rowspan="2">i386</td>
+<td>standard x86-maskiner</td>
+<td>standard</td>
+</tr>
+<tr>
+<td>Endast Xen PV-domäner</td>
+<td>xen</td>
+</tr>
+<tr>
+<td>ARM</td>
+<td>armel</td>
+<td>Marvell Kirkwood och Orion</td>
+<td>marvell</td>
+</tr>
+<tr>
+<td>ARM med hårdvara FPU</td>
+<td>armhf</td>
+<td>multiplatform</td>
+<td>armmp</td>
+</tr>
+<tr>
+<td>64bit ARM</td>
+<td>arm64</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td rowspan="3">64bit MIPS (little-endian)</td>
+<td rowspan="3">mips64el</td>
+<td>MIPS Malta</td>
+<td>5kc-malta</td>
+</tr>
+<tr>
+<td>Cavium Octeon</td>
+<td>octeon</td>
+</tr>
+<tr>
+<td>Loongson 3</td>
+<td>loongson-3</td>
+</tr>
+<tr>
+<td rowspan="3">32bit MIPS (little-endian)</td>
+<td rowspan="3">mipsel</td>
+<td>MIPS Malta</td>
+<td>4kc-malta</td>
+</tr>
+<tr>
+<td>Cavium Octeon</td>
+<td>octeon</td>
+</tr>
+<tr>
+<td>Loongson 3</td>
+<td>loongson-3</td>
+</tr>
+<tr>
+<td>Power Systems</td>
+<td>ppc64el</td>
+<td>IBM POWER8 eller nyare maskiner</td>
+<td> </td>
+</tr>
+<tr>
+<td>64bit IBM S/390</td>
+<td>s390x</td>
+<td>IPL från VM-läsare och DASD</td>
+<td>generisk</td>
+</tr>
+</tbody>
+</table></div>
+<p>
+
+</p>
+<p>Det här dokumentet täcker in installationen för <span class="emphasis"><em><span class="phrase">64-bit ARM</span></em></span>--arkitekturen med <span class="emphasis"><em>Linux</em></span>-kärnan. Om du letar efter information om någon av de andra arkitekturerna som Debian stöder kan du se på sidorna för <a class="ulink" href="http://www.debian.org/ports/" target="_top">Debian-porteringar</a>. </p>
+<p>Det här är den första officiella utgåvan av Debian GNU/Linux för arkitekturen <span class="phrase">64-bit ARM</span>. Vi tycker att den har bevisat sig vara tillräckligt bra för att ges ut. Dock har den inte haft samma exponering (och följaktligen blivit testad av användarna) som andra arkitekturer har haft, och du kan kanske påträffa några fel. Använd vårt <a class="ulink" href="https://bugs.debian.org/" target="_top">Felhanteringssystem</a> för att rapportera problem; se till att påpeka fakta att felet gäller för plattformen <span class="phrase">64-bit ARM</span> med kärnan <span class="emphasis"><em>Linux</em></span>. Det kan vara nödvändigt att använda <a class="ulink" href="https://www.debian.org/MailingLists/subscribe" target="_top">sändlistan debian-arm</a> också. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm280"></a>2.1.2. Tre olika ARM-portar</h3></div></div></div>
+<p>The ARM architecture has evolved over time and modern ARM processors provide features which are not available in older models. Debian therefore provides three ARM ports to give the best support for a very wide range of different machines: </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>Debian/armel riktar sig mot äldre 32-bitars ARM-processorer utan stöd för en hardware floating point unit (FPU), </p></li>
+<li class="listitem"><p>Debian/armhf fungerar endast på nyare 32-bitars ARM-processorer som implementerar åtminstone ARMv7-arkitekturen med version 3 av ARM-vektorn floating point-specifikation (VFPv3). Den använder de utökade funktionerna och prestandaförbättringarna som finns tillgängliga på dessa modeller. </p></li>
+<li class="listitem"><p>Debian/arm64 fungerar på 64-bitars ARM processorer som åtminstone implementerar ARMv8 arkitekturen. </p></li>
+</ul></div>
+<p>
+</p>
+<p>Technically, all currently available ARM CPUs can be run in either endian mode (big or little), but in practice the vast majority use little-endian mode. All of Debian/arm64, Debian/armhf and Debian/armel support only little-endian systems. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm291"></a>2.1.3. Variationer i ARM CPU-konstruktioner och stöd komplexitet</h3></div></div></div>
+<p>ARM-system är mycket mer heterogena än de som bygger på den i386/amd64-baserade PC-arkitekturen, så supportsituationen kan vara mycket mer komplicerad. </p>
+<p>The ARM architecture is used mainly in so-called <span class="quote">”<span class="quote">system-on-chip</span>”</span> (SoC) designs. These SoCs are designed by many different companies, often with vastly varying hardware components even for the very basic functionality required to bring the system up. Older versions of the ARM architecture have seen massive differences from one SoC to the next, but ARMv8 (arm64) is much more standardised and so is easier for the Linux kernel and other software to support. </p>
+<p>Serverversioner av ARMv8-hårdvara konfigureras vanligtvis med hjälp av Unified Extensible Firmware Interface (UEFI) och Advanced Configuration and Power Interface (ACPI) standarder. Dessa två ger vanliga, enhetsoberoende sätt att starta och konfigurera maskinvara. De är också vanliga i x86 PC-världen. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm64-supported-platforms"></a>2.1.4. Plattformar som stöds av Debian/arm64</h3></div></div></div>
+<p>Arm64/AArch64/ARMv8 hardware became available quite late in the Debian Bookworm release cycle so not many platforms had support merged in the mainline kernel version by the time of this release; this is the main requirement to have <code class="classname">debian-installer</code> working on them. The following platforms are known to be supported by Debian/arm64 in this release. There is only one kernel image, which supports all the listed platforms. </p>
+<div class="variablelist"><dl class="variablelist">
+<dt><span class="term">Applied Micro (APM) Mustang/X-Gene</span></dt>
+<dd><p>The APM Mustang was the first Linux-capable ARMv8 system available. It uses the X-gene SoC, which has since also been used in other machines. It is an 8-core CPU, with ethernet, USB and serial. A common form-factor looks just like a desktop PC box, but many other versions are expected in the future. Most of the hardware is supported in the mainline kernel, but at this point USB support is lacking in the Bookworm kernel. </p></dd>
+<dt><span class="term">ARM Juno utvecklingsplattform</span></dt>
+<dd><p>Juno is a capable development board with a 6-core (2xA57, 4xA53) ARMv8-A 800Mhz CPU, Mali (T624) graphics, 8GB DDR3 RAM, Ethernet, USB, Serial. It was designed for system bring-up and power testing so is neither small nor cheap, but was one of the first boards available. All the on-board hardware is supported in the mainline kernel and in Bookworm. </p></dd>
+</dl></div>
+<p>When using <code class="classname">debian-installer</code> on non-UEFI systems, you may have to manually make the system bootable at the end of the installation, e.g. by running the required commands in a shell started from within <code class="classname">debian-installer</code>. flash-kernel knows how to set up an X-Gene system booting with U-Boot. </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="arm64-other-platforms"></a>2.1.4.1. Andra plattformar</h4></div></div></div>
+<p>The multiplatform support in the arm64 Linux kernel may also allow running <code class="classname">debian-installer</code> on arm64 systems not explicitly listed above. So long as the kernel used by <code class="classname">debian-installer</code> has support for the target system's components, and a device-tree file for that target is available, a new target system may work just fine. In these cases, the installer can usually provide a working installation, and so long as UEFI is in use, it should be able to make the system bootable as well. If UEFI is not used you may also need to perform some manual configuration steps to make the system bootable. </p>
+</div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm318"></a>2.1.5. Flera processorer</h3></div></div></div>
+<p>Multiprocessor support — also called <span class="quote">”<span class="quote">symmetric multiprocessing</span>”</span> or SMP — is available for this architecture. Having multiple processors in a computer was originally only an issue for high-end server systems but has become common in recent years nearly everywhere with the introduction of so called <span class="quote">”<span class="quote">multi-core</span>”</span> processors. These contain two or more processor units, called <span class="quote">”<span class="quote">cores</span>”</span>, in one physical chip. </p>
+<p>Standard Debian12 kärnavbilden har kompilerats med SMP-stöd. Den kan också användas på icke-SMP-system utan problem. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="gfx"></a>2.1.6. Stöd för grafikhårdvara</h3></div></div></div>
+<p>Debian's support for graphical interfaces is determined by the underlying support found in X.Org's X11 system, and the kernel. Basic framebuffer graphics is provided by the kernel, whilst desktop environments use X11. Whether advanced graphics card features such as 3D-hardware acceleration or hardware-accelerated video are available, depends on the actual graphics hardware used in the system and in some cases on the installation of additional <span class="quote">”<span class="quote">firmware</span>”</span> blobs (see <a class="xref" href="ch02s02.html" title="2.2. Enheter som kräver fast programvara">Avsnitt 2.2, ”Enheter som kräver fast programvara”</a>). </p>
+<p>Nearly all ARM machines have the graphics hardware built-in, rather than being on a plug-in card. Some machines do have expansion slots which will take graphics cards, but that is a rarity. Hardware designed to be headless with no graphics at all is quite common. Whilst basic framebuffer video provided by the kernel should work on all devices that have graphics, fast 3D graphics invariably needs binary drivers to work. The situation is changing quickly but at the time of the bookworm release free drivers for nouveau (Nvidia Tegra K1 SoC) and freedreno (Qualcomm Snapdragon SoCs) are available in the release. Other hardware needs non-free drivers from 3rd parties. </p>
+<p>Detaljer om grafikhårdvaraoch pekenheter kan hittas på <a class="ulink" href="https://wiki.freedesktop.org/xorg/" target="_top">https://wiki.freedesktop.org/xorg/</a>. Debian 12 skickar med X.Org version 7.7. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="network-cards"></a>2.1.7. Maskinvara för anslutning till nätverk</h3></div></div></div>
+<p>Nästan alla nätverkskort (NIC) som stöds av Linux-kärnan stöds även av installationssystemet; modulära drivrutiner ska vanligtvis läsas in automatiskt.   </p>
+<p>På <span class="phrase">64-bit ARM</span> finns stöd för de flesta inbyggda Ethernet-enheter och moduler för ytterligare PCI- och USB-enheter tillhandahålls. </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="supported-peripherals"></a>2.1.8. Kringutrustning och annan maskinvara</h3></div></div></div>
+<p>Linux har stöd för ett stort antal maskinvaruenheter såsom möss, skrivare, skannrar, PCMCIA/CardBus/ExpressCard och USB-enheter. Dock krävs inte de flesta av dessa enheter vid installation av systemet. </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch02.html"><img src="images/prev.png" alt="Föregående"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch02.html"><img src="images/up.png" alt="Upp"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch02s02.html"><img src="images/next.png" alt="Nästa"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Kapitel 2. Systemkrav </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="Hem"></a></td>
+<td width="40%" align="right" valign="top"> 2.2. Enheter som kräver fast programvara</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

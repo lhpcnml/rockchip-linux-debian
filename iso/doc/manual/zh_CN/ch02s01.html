@@ -1,0 +1,214 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>2.1. 支持的硬件</title>
+<link rel="stylesheet" type="text/css" href="install.css">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<link rel="home" href="index.html" title="Debian GNU/Linux 安装手册">
+<link rel="up" href="ch02.html" title="第 2 章 系统需求">
+<link rel="prev" href="ch02.html" title="第 2 章 系统需求">
+<link rel="next" href="ch02s02.html" title="2.2. 需要固件的设备">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">2.1. 支持的硬件</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ch02.html"><img src="images/prev.png" alt="上一页"></a> </td>
+<th width="60%" align="center">第 2 章 系统需求</th>
+<td width="20%" align="right"> <a accesskey="n" href="ch02s02.html"><img src="images/next.png" alt="下一页"></a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="hardware-supported"></a>2.1. 支持的硬件</h2></div></div></div>
+<p>Debian 不会超出 Linux 内核与 GNU 工具集所支持的硬件范围之外。因此，任何被移植了 Linux 内核、libc、<span class="command"><strong>gcc</strong></span> 等，并拥有对应的 Debian 移植版的硬件体系或平台都可以运行 Debian。请参考移植页面 <a class="ulink" href="https://www.debian.org/ports/arm/" target="_top">https://www.debian.org/ports/arm/</a> 以了解更多已被 Debian GNU/Linux 测试过的 <span class="phrase">64-bit ARM</span> 体系。 </p>
+<p>本章仅包含一些通用的信息，以及在何处可以获得更多信息的指导，而不是试图列出支持 <span class="phrase">64-bit ARM</span> 的所有不同硬件配置。 </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm187"></a>2.1.1. 支持的体系</h3></div></div></div>
+<p>Debian GNU/Linux 12 支持 9 种主要架构，和一些称为 <span class="quote">“<span class="quote">flavors</span>”</span> 的衍生品种。 </p>
+<p>
+
+</p>
+<div class="informaltable"><table class="informaltable" border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>体系</th>
+<th>Debian 命名</th>
+<th>子体系</th>
+<th>Flavor</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>AMD64 &amp; Intel 64</td>
+<td>amd64</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td rowspan="2">基于 Intel x86</td>
+<td rowspan="2">i386</td>
+<td>默认的 x86 机器</td>
+<td>default</td>
+</tr>
+<tr>
+<td>仅 Xen PV 域</td>
+<td>xen</td>
+</tr>
+<tr>
+<td>ARM</td>
+<td>armel</td>
+<td>Marvell Kirkwood</td>
+<td>marvell</td>
+</tr>
+<tr>
+<td>带 FPU 的 ARM</td>
+<td>armhf</td>
+<td>多平台</td>
+<td>armmp</td>
+</tr>
+<tr>
+<td>64 位 ARM</td>
+<td>arm64</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td rowspan="3">MIPS（小尾端）</td>
+<td rowspan="3">mips64el</td>
+<td>MIPS Malta</td>
+<td>5kc-malta</td>
+</tr>
+<tr>
+<td>Cavium Octeon</td>
+<td>octeon</td>
+</tr>
+<tr>
+<td>Loongson 3</td>
+<td>loongson-3</td>
+</tr>
+<tr>
+<td rowspan="3">MIPS（小尾端）</td>
+<td rowspan="3">mipsel</td>
+<td>MIPS Malta</td>
+<td>4kc-malta</td>
+</tr>
+<tr>
+<td>Cavium Octeon</td>
+<td>octeon</td>
+</tr>
+<tr>
+<td>Loongson 3</td>
+<td>loongson-3</td>
+</tr>
+<tr>
+<td>Power 系统</td>
+<td>ppc64el</td>
+<td>IBM POWER8 或更新的机器</td>
+<td> </td>
+</tr>
+<tr>
+<td>64 位 IBM S/390</td>
+<td>s390x</td>
+<td>来自 VM-reader 和 DASD 的 IPL</td>
+<td>generic</td>
+</tr>
+</tbody>
+</table></div>
+<p>
+
+</p>
+<p>本文档主要讲述的是 <span class="emphasis"><em><span class="phrase">64-bit ARM</span></em></span> 体系下的安装。如果您在寻找其他 Debian 所支持的体系的信息，请访问 <a class="ulink" href="http://www.debian.org/ports/" target="_top">Debian-Ports</a> 网页。 </p>
+<p>此为第一个 <span class="phrase">64-bit ARM</span> 体系的 Debian GNU/Linux 正式发布版。我们认为它已经达到了可发布的质量要求。但是，由于它没有像其他体系那样得到足够的曝光(经过用户测试)，您可能会遇到一些 bug。请使用我们的 <a class="ulink" href="https://bugs.debian.org/" target="_top">Bug 跟踪系统</a> 来报告问题，并注明该 bug 是在 <span class="phrase">64-bit ARM</span> 平台上使用 <span class="emphasis"><em>Linux</em></span> 内核产生的。当然，您也可以用 <a class="ulink" href="https://www.debian.org/MailingLists/subscribe" target="_top">debian-arm 邮件列表</a> 来进行讨论。 </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm271"></a>2.1.2. 三种不同的 ARM 移植</h3></div></div></div>
+<p>ARM 架构随着时间的推移而发展，现代 ARM 处理器提供了旧型号上不可用的功能。因此，Debian 提供了三种 ARM 移植，可以为各种不同的机器提供最佳支持： </p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc">
+<li class="listitem"><p>Debian/armel 针对旧的 32 位 ARM 处理器，而不支持硬件浮点单元（FPU）， </p></li>
+<li class="listitem"><p>Debian/armhf 仅适用于较新的 32 位 ARM 处理器，其至少实现了 ARMv7 架构，且支持 ARM 矢量浮点规范（VFPv3）第 3 版。此移植可利用这些型号上可用的扩展和性能增强功能。 </p></li>
+<li class="listitem"><p>Debian/arm64 适用于 64 位 ARM 处理器，其至少实现了 ARMv8 架构。 </p></li>
+</ul></div>
+<p>
+</p>
+<p>大多数的 ARM CPU 可以运行在（大尾或小尾）任一尾端模式下。但是当前绝大多少系统的实现都是使用小尾端模式。Debian 现在也仅支持小尾端 ARM 系统。 </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm282"></a>2.1.3. ARM CPU 设计的变化性和支持的复杂性</h3></div></div></div>
+<p>ARM 系统比基于 i386/amd64 的 PC 机更加多样，因此支持情况可能会非常复杂。 </p>
+<p>ARM 架构主要用于所谓的<span class="quote">“<span class="quote">片上系统</span>”</span>（SoC）设计。这些 SoC 由许多不同的公司设计，即使是对于系统工作所需的非常基本的功能，硬件组件变化也非常大。旧版本的ARM架构上，SoC从一代到下一代会有很大的差异，但ARMv8（arm64）已经更加标准化，使得Linux内核和其他软件更容易对其进行支持。 </p>
+<p>服务器版的 ARMv8 硬件通常使用统一可扩展固件接口（UEFI）和高级配置与电源接口（ACPI）标准来进行配置。这两个提供常见的、独立于设备的方式，来引导和配置计算机硬件。它们在 x86 PC 世界中也很常见。 </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="arm64-supported-platforms"></a>2.1.4. Debian/arm64 支持的平台</h3></div></div></div>
+<p>Debian Bookworm 发布周期中的晚些时候才加入了 Arm64/AArch64/ARMv8 的硬件支持，所以在此版本发布时，没有合并太多平台的支持到主线内核；这是要在其上运行 <code class="classname">debian-installer</code> 的基本要求。在此版本的 Debian/arm64 中，以下平台受支持。只有一个内核映像支持所有列出的平台。 </p>
+<div class="variablelist"><dl class="variablelist">
+<dt><span class="term">Applied Micro (APM) Mustang/X-Gene</span></dt>
+<dd><p>APM Mustang 是第一个支持 Linux 的 ARMv8 系统。它使用 X-gene SoC，因此也用于其他机器。它为 8 核 CPU，带以太网、USB 和串口。常见外形看起来就像台式机，但将来很可能会有其他版本。主线内核支持大多数硬件，但目前的 Bookworm 内核缺少对 USB的支持。 </p></dd>
+<dt><span class="term">ARM Juno 开发平台</span></dt>
+<dd><p>Juno 是一款 6 核（2xA57，4xA53）ARMv8-A 800Mhz CPU 开发板，带 Mali（T624）显卡、8GB DDR3 RAM、以太网、USB、串口。它专为系统启动和电源测试而设计的，既不小也不便宜，但是是首批可用的板子之一。主线内核和 Bookworm 都支持所有板载硬件。 </p></dd>
+</dl></div>
+<p>在非 UEFI 系统上使用 <code class="classname">debian-installer</code> 时，您可能必须在安装结束时手动使系统启动，例如在 <code class="classname">debian-installer</code> 的 shell 中运行启动所必需的命令。flash-kernel 知道如何用 U-Boot 启动 X-Gene 系统。 </p>
+<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="arm64-other-platforms"></a>2.1.4.1. 其他平台</h4></div></div></div>
+<p>对于上面没有明确列出的 arm64 系统，arm64 Linux 内核中的多平台支持也可能能使 <code class="classname">debian-installer</code> 运行在这些系统上。只要 <code class="classname">debian-installer</code> 使用的内核支持目标系统的组件，并且该目标的设备树文件可用，新的目标系统就可能正常工作。在这种情况下，安装程序通常可以提供可运行的安装结果，而如果在使用 UEFI，也应该能够使系统启动。如果不使用 UEFI，您可能还需要执行一些手动配置步骤，使系统可启动。 </p>
+</div>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm309"></a>2.1.5. 多处理器</h3></div></div></div>
+<p>多处理器支持 — 又称 <span class="quote">“<span class="quote">symmetric multiprocessing</span>”</span> 或 SMP — 在本体系架构下可以使用。在一台计算机上安装多处理器原来只是高端的服务器才具有，但近年来随着<span class="quote">“<span class="quote">多核</span>”</span>处理器的出现已经应用到相对低端的桌面计算机和便携机上。这种处理器包含两个或多个称为<span class="quote">“<span class="quote">核心</span>”</span>的处理器单元集成在一个物理芯片上。 </p>
+<p>标准的 Debian 12 内核映像编译时已经加入 SMP 支持。它在非 SMP 系统上使用也没有问题。 </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="gfx"></a>2.1.6. 图形卡支持</h3></div></div></div>
+<p>Debian 能支持的显卡取决于底层的 X.Org 的 X11 系统以及内核的支持。基本的 framebuffer 由内核提供，而桌面环境使用 X11。至于高级的显卡功能，比如 3D 硬件加速或硬件视频加速是否可用，由系统所使用的具体显示硬件和所要安装的额外<span class="quote">“<span class="quote">固件(firmware)</span>”</span>决定(参阅<a class="xref" href="ch02s02.html" title="2.2. 需要固件的设备">第 2.2 节 “需要固件的设备”</a>)。 </p>
+<p>几乎所有 ARM 机器都内置了图形硬件，而不用额外插卡。有些机器有扩展插槽用于显卡，但这比较罕见。无头、无图像的硬件设计也很常见。虽然内核提供的基本帧缓冲显示在有图像的设备上应该都能工作，但快速 3D 绘图总是需要二进制驱动程序才能正常工作。情况正在迅速变化，但在发布 bookworm 时，nouveau（Nvidia Tegra K1 SoC）和 freedreno（Qualcomm Snapdragon SoC）有自由的驱动程序可用。其他硬件需要第三方的非自由驱动程序。 </p>
+<p>对显卡和其他定点设备的具体支持情况，见 <a class="ulink" href="https://wiki.freedesktop.org/xorg/" target="_top">https://wiki.freedesktop.org/xorg/</a>。Debian 12 包含 X.Org 7.7 版。 </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="network-cards"></a>2.1.7. 网络连接硬件</h3></div></div></div>
+<p>几乎所有被 Linux 内核支持的网卡 (NIC) 都被安装系统支持；驱动程序通常会自动加载。  </p>
+<p><span class="phrase">64-bit ARM</span> 上，支持大多数内置的以太网设备，并提供额外的 PCI 和 USB 设备模块。 </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="supported-peripherals"></a>2.1.8. 外围设备与其他硬件</h3></div></div></div>
+<p>Linux 支持众多的硬件设备，比如：鼠标、打印机、扫描仪、PCMCIA 和 USB 设备。然而，在安装系统的时候，并不需要其中的大部分设备。 </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ch02.html"><img src="images/prev.png" alt="上一页"></a> </td>
+<td width="20%" align="center"><a accesskey="u" href="ch02.html"><img src="images/up.png" alt="上一级"></a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ch02s02.html"><img src="images/next.png" alt="下一页"></a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">第 2 章 系统需求 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html"><img src="images/home.png" alt="起始页"></a></td>
+<td width="40%" align="right" valign="top"> 2.2. 需要固件的设备</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
